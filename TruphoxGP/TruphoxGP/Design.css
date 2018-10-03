@@ -13,6 +13,7 @@ ul {
 
 li {
     float: left;
+    height: 49px;
 }
 
     li a, .dropbtn {

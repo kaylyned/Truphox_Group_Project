@@ -20,10 +20,8 @@
             <li><a href="Writting.aspx">Writting</a></li>
             <li><a href="Photography.aspx">Photography</a></li>
             <li><a href="Video.aspx">Video</a></li>
-            <li class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="Search" /></li>
-            <li>
-                <button type="submit" class="btn btn-default">Search</button></li>
+            <li class="form-group"><input type="text" class="form-control" placeholder="Search..." name="Search" /></li>
+            <li><button type="submit" class="btn btn-default">Search</button></li>
             <li class="dropdown">
                 <a href="Profile.aspx" class="dropbtn">Profile</a>
                 <div class="dropdown-content">

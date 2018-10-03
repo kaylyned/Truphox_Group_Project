@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterSupreme.Master.cs" Inherits="TruphoxGP.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="Design.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a class="nav logo" href="#">LOGO</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Writting</a></li>
+            <li><a href="#">Photography</a></li>
+             <li><a href="#">Video</a></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Profile</a>
+                <div class="dropdown-content">
+                    <a href="#">Settings</a>
+                    <a href="#">Edit</a>
+                    <a href="#">Logout</a>
+                    </div>
+            </li>
+       <li style="float: right"><a href="#">Form</a></li>
+        </ul>
+    </div>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

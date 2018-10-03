@@ -15,7 +15,7 @@
 <body>
     <div class="nav">
         <ul>
-            <li><a class="nav logo" href="#">LOGO</a></li>
+            <li><a class="nav logo" href="Home.aspx">LOGO</a></li>
             <li><a href="Art.aspx">Art</a></li>
             <li><a href="Writting.aspx">Writting</a></li>
             <li><a href="Photography.aspx">Photography</a></li>

@@ -6,7 +6,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    height: 41px;
+    height: 51px;
     width:1400px;
  
 }
@@ -29,6 +29,7 @@ li {
 
     li.dropdown {
         display: inline-block;
+        float:right;
     }
 
 .dropdown-content {

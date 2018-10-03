@@ -13,20 +13,20 @@
     <div class="nav">
         <ul>
             <li><a class="nav logo" href="#">LOGO</a></li>
-            <li><a href="#">Art</a></li>
-            <li><a href="#">Writting</a></li>
-            <li><a href="#">Photography</a></li>
-             <li><a href="#">Video</a></li>
+            <li><a href="Art.aspx">Art</a></li>
+            <li><a href="Writting.aspx">Writting</a></li>
+            <li><a href="Photography.aspx">Photography</a></li>
+            <li><a href="Video.aspx">Video</a></li>
 
             <li class="dropdown">
-                <a href="#" class="dropbtn">Profile</a>
+                <a href="Profile.aspx" class="dropbtn">Profile</a>
                 <div class="dropdown-content">
                     <a href="#">Settings</a>
-                    <a href="#">Edit</a>
+                    <a href="Profile.aspx">Edit</a>
                     <a href="#">Logout</a>
-                    </div>
+                </div>
             </li>
-       <li style="float: right"><a href="#">Form</a></li>
+            <li style="float: right"><a href="#">Form</a></li>
         </ul>
     </div>
     <form id="form1" runat="server">

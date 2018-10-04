@@ -15,7 +15,7 @@
 <body>
     <div class="nav">
         <ul>
-            <li><a class="nav logo" href="Home.aspx">LOGO</a></li>
+            <li><a class="navLog" href="Home.aspx"><img src="Images/GP-Logo.png" style="height:35px; width:40px;"/></a></li>
             <li><a href="Art.aspx">Art</a></li>
             <li><a href="Writting.aspx">Writting</a></li>
             <li><a href="Photography.aspx">Photography</a></li>
@@ -23,11 +23,11 @@
             <li class="form-group"><input type="text" class="form-control" placeholder="Search..." name="Search" /></li>
             <li><div class="glyphicon glyphicon-search"><button type="submit" class="btn btn-default">Search</button></div></li>
             <li class="dropdown">
-                <a href="Profile.aspx" class="dropbtn">Profile</a>
+                <a href="Profile.aspx" class="dropbtn"><asp:Label ID="lblProfile" runat="server" Text="profile/login"></asp:Label></a>
                 <div class="dropdown-content">
-                    <a href="#">Settings</a>
+                    <a href="Settings.aspx">Settings</a>
                     <a href="Profile.aspx">Edit</a>
-                    <a href="#">Logout</a>
+                    <a href="#"><asp:Label ID="lblLU" runat="server" Text="Logout/ new user"></asp:Label></a>
                 </div>
             </li>
             <li style="float: right"><a href="#">Form</a></li>

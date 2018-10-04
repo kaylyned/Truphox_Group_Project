@@ -3,6 +3,7 @@
     <div class="header">
         <h1>PROFILE</h1>
         <p>Some kinds of info.... bla bla bla.... </p>
+
     </div>
     <div class="row">
         <div class="leftcolumn">

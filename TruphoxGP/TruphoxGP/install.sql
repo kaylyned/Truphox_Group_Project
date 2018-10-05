@@ -13,8 +13,13 @@ CREATE TABLE tbAccount
 (
 	username VARCHAR(30) PRIMARY KEY,
 	userPassword VARCHAR(30),
+	email VARCHAR(70),
+	firstName VARCHAR(40),
+	lastName VARCHAR (40),
 	dob DATETIME,
-	profileImage VARCHAR(150)
+	profileImage VARCHAR(150),
+	active BIT,
+	accessLevel INT
 )
 
 CREATE TABLE tbFollowing
@@ -128,3 +133,148 @@ CREATE TABLE tbVideo
 --	typeID INT FOREIGN KEY REFERENCES tbType(typeID),
 --	itemName VARCHAR(40)
 --)
+
+GO
+-------------------------------- PROCEDURES --------------------------------
+
+-------------------------------- ACCOUNTS --------------------------------
+
+CREATE PROCEDURE spCreateAccount
+(
+	@username VARCHAR(30),
+	@userPassword VARCHAR(30),
+	@email VARCHAR(70),
+	@firstName VARCHAR(40),
+	@lastName VARCHAR (40),
+	@dob DATETIME,
+	@profileImage VARCHAR(150),
+	@active BIT = 1,
+	@accessLevel INT = 1
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbAccount WHERE username = @username)
+		BEGIN
+			SELECT 'User already exists' as MESSAGE
+		END
+	ELSE
+		BEGIN
+			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, profileImage, active, accessLevel) VALUES
+						(@username, @userPassword, @email, @firstName, @lastName, @dob, @profileImage, @active, @accessLevel)
+		END
+END
+GO
+
+CREATE PROCEDURE spReadAccount
+(
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT * FROM tbAccount WHERE username = ISNULL (@username, username)
+END
+GO
+
+CREATE PROCEDURE spUpdateAccount
+(
+	@username VARCHAR(30),
+	@userPassword VARCHAR(30),
+	@dob DATETIME,
+	@profileImage VARCHAR(150),
+	@active BIT
+)
+AS
+BEGIN
+	UPDATE tbAccount SET
+	username = @username,
+	userPassword = @userPassword,
+	dob = @dob,
+	profileImage = @profileImage,
+	active = @active
+	WHERE username = @username
+END
+GO
+
+CREATE PROCEDURE spDisableAccount
+(
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE tbAccount SET
+	active = 0
+	WHERE username = @username
+END
+GO
+
+-------------------------------- FOLLOWING --------------------------------
+
+CREATE PROCEDURE spFollow
+(
+	@username VARCHAR(30),
+	@followedUser VARCHAR(30)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbBlocked WHERE username = @username AND blockedUser = @followedUser OR username = @followedUser AND blockedUser = @username)
+		BEGIN
+			SELECT 'User cannot be followed' AS MESSAGE
+		END
+	ELSE
+		BEGIN
+			IF EXISTS (SELECT * FROM tbFollowing WHERE username = @username and followedUser = @followedUser)
+				BEGIN
+					DELETE FROM tbFollowing WHERE username = @username and followedUser = @followedUser
+				END
+			ELSE
+				BEGIN
+					INSERT INTO tbFollowing (username, followedUser) VALUES
+											(@username, @followedUser)
+				END
+		END
+END
+GO
+
+CREATE PROCEDURE spReadFollow
+(
+	@username VARCHAR(30) = null,
+	@followedUser VARCHAR(30) = null
+)
+AS
+BEGIN
+	IF (@username IS NOT NULL and @followedUser IS NULL)
+		BEGIN
+			SELECT * FROM tbFollowing WHERE username = @username
+		END
+	ELSE IF (@followedUser IS NOT NULL and @username IS NULL)
+		BEGIN
+			SELECT * FROM tbFollowing WHERE followedUser = @followedUser
+		END
+	ELSE
+		BEGIN
+			SELECT 'Must provide only username or followedUser' as MESSAGE
+		END
+END
+GO	
+
+-------------------------------- BLOCKED --------------------------------
+
+CREATE PROCEDURE spBlock
+(
+	@username VARCHAR(30),
+	@blockedUser VARCHAR(30),
+	@blockDate DATETIME = null
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbBlocked WHERE username = @username and blockedUser = @blockedUser)
+		BEGIN
+			DELETE FROM tbBlocked WHERE username = @username and blockedUser = @blockedUser
+		END
+	ELSE
+		BEGIN
+			INSERT INTO tbBlocked(username, blockedUser, blockDate) VALUES
+						(@username, @blockedUser, GETDATE())
+		END
+END
+GO

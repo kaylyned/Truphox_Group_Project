@@ -30,10 +30,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="Artwork.aspx">ARTWORK</a></li>
+        <li><a href="Art.aspx">ART</a></li>
+        <li><a href="Writting.aspx">WRITTING</a></li>
         <li><a href="Photography.aspx">PHOTOGRAPHY</a></li>
         <li><a href="Video.aspx">VIDEOS</a></li>
-         <li><a href="Writting.aspx">WRITTING</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>

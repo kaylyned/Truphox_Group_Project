@@ -41,6 +41,12 @@
             <li><a href="Profile.aspx">PROFILE</a></li>
             <li><a href="#">STORE</a></li>
             <li><a href="Form.aspx">FORMS</a></li> 
+              <asp:Panel runat="server" style="text-align:center" Visible="true">
+                  <li><a href="Register.aspx">REGISTER</a></li>
+              </asp:Panel>
+               <asp:Panel runat="server" style="text-align:center" Visible="false">
+                  <li><a href="Login.aspx">LOGIN</a></li>
+              </asp:Panel>
           </ul>
         </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>

@@ -6,22 +6,69 @@
         <p>Please fill in this form to create an account.</p>
         <hr>
         <br />
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-        <br />
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-        <br />
-        <label for="psw-repeat"><b>Repeat Password</b></label>
-        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+        <table>
+            <tr>
+                <td>
+                    <label for="email"><b>Username</b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox1" placeholder="Enter Username" runat="server" Width="142px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="psw"><b>Password: </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtPassword" placeholder="Enter Password" runat="server" Width="142px" TextMode="Password"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="psw-repeat"><b>Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp; </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtpswRepeat" placeholder="Repeat Password" runat="server" Width="142px" TextMode="Password"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email"><b>First Name: </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtFirst" placeholder="Enter First Name" runat="server" Width="142px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email"><b>Last Name: </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtLast" placeholder="Enter Last Name" runat="server" Width="142px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email"><b>DOB: </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtDOB" placeholder="Enter Date of Birth" runat="server" Width="142px" TextMode="Date"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email"><b>Email: </b></label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtEmail" placeholder="Enter Email" runat="server" Width="142px" TextMode="Email"></asp:TextBox>
+                </td>
+            </tr>
+        </table>
         <br />
         <hr>
-        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-
+        <p>By creating an account you agree to our <a href="TAP.aspx">Terms & Privacy</a>.</p>
         <button type="submit" class="registerbtn">Register</button>
     </div>
-
     <div class="container signin">
         <p>Already have an account? <a href="#">Sign in</a>.</p>
     </div>

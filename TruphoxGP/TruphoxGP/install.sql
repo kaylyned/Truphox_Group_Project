@@ -37,11 +37,12 @@ CREATE TABLE tbBlocked
 	blockDate DATETIME
 )
 
-CREATE TABLE tbNotifications
+CREATE TABLE tbNotification
 (
 	notificationID INT IDENTITY (0,1) PRIMARY KEY,
 	notificationText VARCHAR(100),
-	notificationDate DATETIME
+	notificationDate DATETIME,
+	username VARCHAR(30) FOREIGN KEY REFERENCES tbAccount(username)
 )
 
 CREATE TABLE tbPost
@@ -50,16 +51,18 @@ CREATE TABLE tbPost
 	rating INT,
 	postText VARCHAR(200),
 	postDate DATETIME,
-	lastComment INT
+	lastComment INT,
+	username VARCHAR(30)
 )
 
-CREATE TABLE tbComments
+CREATE TABLE tbComment
 (
 	commentID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
 	postCommentNumber INT,
 	commentText VARCHAR(100),
-	commentDate DATETIME
+	commentDate DATETIME,
+	username VARCHAR(30)
 )
 
 CREATE TABLE tbLike
@@ -69,7 +72,7 @@ CREATE TABLE tbLike
 	username VARCHAR(30) FOREIGN KEY REFERENCES tbAccount(username)
 )
 
-CREATE TABLE tbTagNames
+CREATE TABLE tbTagName
 (
 	tagID INT IDENTITY (0,1) PRIMARY KEY,
 	tagName VARCHAR(30)
@@ -79,7 +82,7 @@ CREATE TABLE tbPostTag
 (
 	postTagID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	tagID INT FOREIGN KEY REFERENCES tbTagNames(tagID)
+	tagID INT FOREIGN KEY REFERENCES tbTagName(tagID)
 )
 
 CREATE TABLE tbWriting
@@ -114,7 +117,7 @@ CREATE TABLE tbVideo
 	videoSubtitle VARCHAR(100)
 )
 
---CREATE TABLE tbSales
+--CREATE TABLE tbSale
 --(
 --	saleID INT IDENTITY (0,1) PRIMARY KEY,
 --	saleStatus VARCHAR(30)
@@ -147,7 +150,7 @@ CREATE PROCEDURE spCreateAccount
 	@firstName VARCHAR(40),
 	@lastName VARCHAR (40),
 	@dob DATETIME,
-	@profileImage VARCHAR(150),
+	@profileImage VARCHAR(150) = null,
 	@active BIT = 1,
 	@accessLevel INT = 1
 )
@@ -209,7 +212,7 @@ GO
 
 -------------------------------- FOLLOWING --------------------------------
 
-CREATE PROCEDURE spFollow
+CREATE PROCEDURE spCreateFollow
 (
 	@username VARCHAR(30),
 	@followedUser VARCHAR(30)
@@ -259,7 +262,7 @@ GO
 
 -------------------------------- BLOCKED --------------------------------
 
-CREATE PROCEDURE spBlock
+CREATE PROCEDURE spCreateBlock
 (
 	@username VARCHAR(30),
 	@blockedUser VARCHAR(30),
@@ -278,3 +281,144 @@ BEGIN
 		END
 END
 GO
+
+CREATE PROCEDURE spReadBlock
+(
+	@username VARCHAR(30) = null,
+	@blockedUser VARCHAR(30)
+)
+AS
+BEGIN
+	IF (@username IS NOT NULL and @blockedUser IS NULL)
+		BEGIN
+			SELECT * FROM tbBlocked WHERE username = @username
+		END
+	ELSE IF (@blockedUser IS NOT NULL and @username IS NULL)
+		BEGIN
+			SELECT * FROM tbBlocked WHERE blockedUser = @blockedUser
+		END
+	ELSE
+		BEGIN
+			SELECT 'Must provide only username or blockedUser' as MESSAGE
+		END
+END
+GO
+
+-------------------------------- Notification --------------------------------
+
+CREATE PROCEDURE spCreateNotification
+(
+	@notificationText VARCHAR(100),
+	@notificationDate DATETIME,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	INSERT INTO tbNotifications (notificationText, notificationDate, username) VALUES (@notificationText, GETDATE(), @username)
+END
+GO
+
+CREATE PROCEDURE spReadNotification
+(
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT * FROM tbNotification WHERE username = ISNULL (@username, username)
+END
+GO
+
+CREATE PROCEDURE spUpdateNotification
+(
+	@notificationID INT,
+	@notificationText VARCHAR(100),
+	@notificationDate DATETIME,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE tbNotification SET
+	notificationText = @notificationText,
+	notificationDate = @notificationDate,
+	username = @username
+	WHERE notificationID = @notificationID
+END
+GO
+
+CREATE PROCEDURE spDeleteNotification
+(
+	@notificationID INT
+)
+AS
+BEGIN
+	DELETE FROM tbNotification WHERE notificationID = @notificationID
+END
+GO
+
+-------------------------------- POST --------------------------------
+
+CREATE PROCEDURE spCreatePost
+(
+	@rating INT,
+	@postText VARCHAR(200),
+	@postDate DATETIME,
+	@lastComment INT,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	INSERT INTO tbPost (rating, postText, postDate, lastComment, username) VALUES
+					(@rating, @postText, GETDATE(), @lastComment, @username)
+END
+GO
+
+CREATE PROCEDURE spReadPost
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPost WHERE postID = ISNULL (@postID, postID)
+END
+GO
+
+CREATE PROCEDURE spUpdatePost
+(
+	@postID INT,
+	@rating INT,
+	@postText VARCHAR(200),
+	@postDate DATETIME,
+	@lastComment INT,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE tbPost SET
+	rating = @rating,
+	postText = @postText,
+	postDate = @postDate,
+	lastComment = @lastComment,
+	username = @username
+	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spDeletePost
+(
+	@postID INT
+)
+AS
+BEGIN
+	DELETE FROM tbPost WHERE postID = @postID
+END
+GO
+
+-------------------------------- POST --------------------------------
+
+
+	--commentID INT IDENTITY (0,1) PRIMARY KEY,
+	--postID INT FOREIGN KEY REFERENCES tbPost(postID),
+	--postCommentNumber INT,
+	--commentText VARCHAR(100),
+	--commentDate DATETIME,
+	--username VARCHAR(30)

@@ -7,11 +7,11 @@
             <div class="header">
                 <h1>PROFILE</h1>
                 <div class="btn-group" role="group">
-                    <button id="btnLogout" class="btn btn-secondary">Logout</button>
-                    <button id="btnEdit" class="btn btn-secondary">Edit</button>
+                    <asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" OnClick="btnLogout_Click" />
+                    <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Edit" />
                     <asp:Panel runat="server" Visible="false">
-                    <button id="btnFollow" class="btn btn-secondary">Follow</button>
-                        </asp:Panel>
+                        <asp:Button ID="btnFollow" CssClass="btn btn-secondary" runat="server" Text="Follow" />
+                    </asp:Panel>
                 </div>
             </div>
             <br />
@@ -86,25 +86,29 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
-                                <p>Share your creative adventures here!</p>
+                                <p>Your creative adventures are here!</p>
+                                <asp:DataList ID="dlArt" runat="server"></asp:DataList>
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
                                 <p>Are you sure you didn't just grab this from Google imgages like the rest of us?</p>
+                                <asp:DataList ID="dlPhotots" runat="server"></asp:DataList>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
-                                <p>You did something stupid? Post it here!</p>
+                                <p>You did something stupid? It's posted here!</p>
+                                <asp:DataList ID="dlVideos" runat="server"></asp:DataList>
                             </div>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>WRITTING</h2>
                                 <p>What inspired you to write that book? Post it here!</p>
+                                <asp:DataList ID="dlWritting" runat="server"></asp:DataList>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-10">
                 <div class="well">
                     <p>WORDS</p>
                 </div>
@@ -114,8 +118,8 @@
             </div>
         </div>
         <br />
-        <br />
-        <div class="col-sm-6">
+        <br /><br />
+        <div class="col-sm-4">
             <div class="well">
                 <h2>TITLE</h2>
                 <div class="fakeimg" style="height: 100px;">Image</div>

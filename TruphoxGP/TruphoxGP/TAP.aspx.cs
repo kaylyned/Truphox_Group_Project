@@ -13,5 +13,17 @@ namespace TruphoxGP
         {
 
         }
+
+        protected void btnFrench_Click(object sender, EventArgs e)
+        {
+            frenchPnl.Visible = true;
+            englishPnl.Visible = false;
+        }
+
+        protected void btnEnglish_Click(object sender, EventArgs e)
+        {
+            frenchPnl.Visible = false;
+            englishPnl.Visible = true;
+        }
     }
 }

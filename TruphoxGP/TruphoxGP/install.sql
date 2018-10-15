@@ -413,12 +413,179 @@ BEGIN
 END
 GO
 
--------------------------------- POST --------------------------------
+-------------------------------- COMMENT --------------------------------
+
+CREATE PROCEDURE spCreateComment
+(
+	@postID INT,
+	@postCommentNumber INT,
+	@commentText VARCHAR(100),
+	@commentDate DATETIME,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
+						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
+END
+GO
+
+CREATE PROCEDURE spReadComment
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbComment WHERE postID = ISNULL (@postID, postID)
+END
+GO
+
+CREATE PROCEDURE spUpdateComment
+(
+	@commentID INT,	
+	@commentText VARCHAR(100)	
+)
+AS
+BEGIN
+	UPDATE tbComment SET
+	commentText = @commentText
+	WHERE commentID = @commentID
+END
+GO
+
+CREATE PROCEDURE spDeleteComment
+(
+	@commentID INT
+)	
+AS
+BEGIN
+	DELETE FROM tbComment WHERE commentID = @commentID
+END
+GO
+
+-------------------------------- LIKE --------------------------------
+
+CREATE PROCEDURE spCreateLike
+(
+	@postID INT,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbLike WHERE username = @username and postID = @postID)
+				BEGIN
+					DELETE FROM tbLike WHERE username = @username and postID = @postID
+				END
+			ELSE
+				BEGIN				
+					INSERT INTO tbLike (postID, username) VALUES
+									(@postID, @username)
+				END
+END
+GO
+
+CREATE PROCEDURE spReadLike
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbLike WHERE postID = ISNULL (@postID, postID)
+END
+GO
 
 
-	--commentID INT IDENTITY (0,1) PRIMARY KEY,
-	--postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	--postCommentNumber INT,
-	--commentText VARCHAR(100),
-	--commentDate DATETIME,
-	--username VARCHAR(30)
+-------------------------------- TAGS --------------------------------
+
+CREATE PROCEDURE spCreateTag
+(
+	@tagName VARCHAR(30)
+)
+AS
+BEGIN
+		IF EXISTS (SELECT * FROM tbTagName WHERE tagName = @tagName)
+			BEGIN
+				SELECT 'Tag Already Exists' AS MESSAGE
+			END
+		ELSE
+			BEGIN				
+				INSERT INTO tbTagName(tagName) VALUES
+									(@tagName)
+			END	
+END
+GO
+
+CREATE PROCEDURE spReadTag
+(
+	@tagID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbTagName WHERE tagID = ISNULL (@tagID, tagID)
+END
+GO
+
+CREATE PROCEDURE spDeleteTag
+(
+	@tagID INT
+)
+AS
+BEGIN
+	DELETE FROM tbTagName WHERE tagID = @tagID
+END
+GO
+
+-------------------------------- POST TAGS --------------------------------
+
+CREATE PROCEDURE spCreatePostTag
+(
+	@postID INT,
+	@tagName VARCHAR(30),
+	@tagID INT
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbTagName WHERE tagName = @tagName)
+		BEGIN
+			INSERT INTO tbPostTag (postID, tagID) VALUES
+								(@postID, @tagID)
+		END
+	ELSE
+		BEGIN				
+			INSERT INTO tbTagName(tagName) VALUES
+								(@tagName)
+			INSERT INTO tbPostTag (postID, tagID) VALUES
+								(@postID, @@IDENTITY)
+		END	
+END
+GO
+
+CREATE PROCEDURE spReadPostTag
+(
+	@postTagID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPostTag WHERE postTagID = ISNULL (@postTagID, postTagID)
+END
+GO
+
+CREATE PROCEDURE spDeletePostTag
+(
+	@postTagID INT
+)
+AS
+BEGIN
+	DELETE FROM tbPostTag WHERE postTagID = @postTagID
+END
+GO
+
+-------------------------------- WRITING --------------------------------
+
+
+
+
+	--writingID INT IDENTITY (0,1) PRIMARY KEY,
+	--writingText VARCHAR(3000),
+	--writingTitle VARCHAR(100),
+	--writingSubTitle VARCHAR(100)

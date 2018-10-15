@@ -49,7 +49,7 @@ CREATE TABLE tbPost
 (
 	postID INT IDENTITY(0,1) PRIMARY KEY,
 	rating INT,
-	postText VARCHAR(200),
+	postText VARCHAR(800),
 	postDate DATETIME,
 	lastComment INT,
 	username VARCHAR(30)
@@ -360,7 +360,7 @@ GO
 CREATE PROCEDURE spCreatePost
 (
 	@rating INT,
-	@postText VARCHAR(200),
+	@postText VARCHAR(800),
 	@postDate DATETIME,
 	@lastComment INT,
 	@username VARCHAR(30)
@@ -589,3 +589,51 @@ GO
 	--writingText VARCHAR(3000),
 	--writingTitle VARCHAR(100),
 	--writingSubTitle VARCHAR(100)
+	
+
+-------------------------------- USERS CREATED --------------------------------
+
+EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='', @active='1', @accessLevel='0'
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dancourcelles7@gmail.com', @firstName='', @lastName='', @dob='1990-09-07', @profileImage='', @active='1', @accessLevel='0'
+EXEC spCreateAccount @username='TruPhox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='', @active='1', @accessLevel='0'
+EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='', @active='1', @accessLevel='1'
+EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='', @active='1', @accessLevel='1'
+EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='', @active='1', @accessLevel='1'
+
+SELECT * FROM tbAccount
+GO
+
+---------------------POSTS CREATED (WRITTING) -------------------
+
+EXEC spCreatePost @rating=0, @postText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @postDate='2018-10-18', @lastComment=0, @username='TruPhox'
+EXEC spCreatePost @rating=0, @postText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe ― Albert Einstein', @postDate='', @lastComment='', @username='wrenjay'
+EXEC spCreatePost @rating=0, @postText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerable ― C.S. Lewis, The Four Loves', @postDate='', @lastComment=3, @username='wrenjay'
+EXEC spCreatePost @rating=0, @postText='I''M TINY RICK!!', @postDate='', @lastComment=3, @username='CanadaGhost'
+EXEC spCreatePost @rating=0, @postText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...', @postDate='', @lastComment=3, @username='Person'
+EXEC spCreatePost @rating=0, @postText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.', @postDate='', @lastComment=3, @username='Person'
+
+------------------POSTS CREATED (ART) -------------------
+
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+
+------------------POSTS CREATED (VIDEO) -------------------
+
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+
+------------------POSTS CREATED (PHOTOGRAPHY) -------------------
+
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+
+SELECT * FROM tbPost

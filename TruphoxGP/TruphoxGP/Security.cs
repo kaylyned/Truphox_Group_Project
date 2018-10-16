@@ -35,7 +35,7 @@ namespace TruphoxGP
         {
             username = Username;
             userPassword = UserPassword;
-            SqlConnection conn = new SqlConnection("data source= localhost; Initial Catalog= dbTruphox; Integrated Security=SSPI");
+            SqlConnection conn = new SqlConnection("Data Source=localhost;Initial Catalog=dbTruphox;Integrated Security=SSPI");
 
             //Need a proc that loggs a person in 
             SqlDataAdapter cmd = new SqlDataAdapter("", conn);

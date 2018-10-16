@@ -65,6 +65,18 @@ CREATE TABLE tbComment
 	username VARCHAR(30)
 )
 
+CREATE TABLE tbDeletedComments
+(
+	commentID INT,
+	postID INT FOREIGN KEY REFERENCES tbPost(postID),
+	postCommentNumber INT,
+	commentText VARCHAR(100),
+	commentDate DATETIME,
+	username VARCHAR(30),
+	deletedCommentDate DATETIME
+)
+
+
 CREATE TABLE tbLike
 (
 	likeID INT IDENTITY (0,1) PRIMARY KEY,
@@ -88,6 +100,7 @@ CREATE TABLE tbPostTag
 CREATE TABLE tbWriting
 (
 	writingID INT IDENTITY (0,1) PRIMARY KEY,
+	postID INT FOREIGN KEY REFERENCES tbPost(postID),
 	writingText VARCHAR(3000),
 	writingTitle VARCHAR(100),
 	writingSubTitle VARCHAR(100)
@@ -96,6 +109,7 @@ CREATE TABLE tbWriting
 CREATE TABLE tbArt
 (
 	artID INT IDENTITY (0,1) PRIMARY KEY,
+	postID INT FOREIGN KEY REFERENCES tbPost(postID),
 	artLink VARCHAR(150),
 	artTitle VARCHAR(100),
 	artSubtitle VARCHAR(100)
@@ -104,6 +118,7 @@ CREATE TABLE tbArt
 CREATE TABLE tbPhotography
 (
 	photoID INT IDENTITY (0,1) PRIMARY KEY,
+	postID INT FOREIGN KEY REFERENCES tbPost(postID),
 	photoLink VARCHAR(150),
 	photoTitle VARCHAR(100),
 	photoSubtitle VARCHAR(100)
@@ -112,6 +127,7 @@ CREATE TABLE tbPhotography
 CREATE TABLE tbVideo
 (
 	videoID INT IDENTITY (0,1) PRIMARY KEY,
+	postID INT FOREIGN KEY REFERENCES tbPost(postID),
 	videoLink VARCHAR(150),
 	videoTitle VARCHAR(100),
 	videoSubtitle VARCHAR(100)
@@ -122,7 +138,6 @@ CREATE TABLE tbVideo
 --	saleID INT IDENTITY (0,1) PRIMARY KEY,
 --	saleStatus VARCHAR(30)
 
---)
 
 --CREATE TABLE tbType
 --(
@@ -403,15 +418,15 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeletePost
-(
-	@postID INT
-)
-AS
-BEGIN
-	DELETE FROM tbPost WHERE postID = @postID
-END
-GO
+--CREATE PROCEDURE spDeletePost
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbPost WHERE postID = @postID
+--END
+--GO
 
 -------------------------------- COMMENT --------------------------------
 
@@ -459,7 +474,36 @@ CREATE PROCEDURE spDeleteComment
 )	
 AS
 BEGIN
+	INSERT INTO tbDeletedComments (commentID, postID, postCommentNumber, commentText, commentDate, username)
+	SELECT commentID, postID, postCommentNumber, commentText, commentDate, username
+	FROM tbComment
+	WHERE commentID = @commentID
+	
+	UPDATE tbDeletedComments SET
+	deletedCommentDate = GETDATE()
+	WHERE commentID = @commentID
+
 	DELETE FROM tbComment WHERE commentID = @commentID
+END
+GO
+
+CREATE PROCEDURE spReadDeletedComments
+(
+	@commentID INT = null
+)
+AS
+BEGIN
+	SELECT * FROM tbDeletedComments WHERE commentID = ISNULL (@commentID, commentID)
+END
+GO
+
+CREATE PROCEDURE spClearDeletedComments
+(
+	@deletedDate DATETIME
+)
+AS
+BEGIN
+	DELETE FROM tbDeletedComments WHERE deletedCommentDate < @deletedDate
 END
 GO
 
@@ -582,58 +626,337 @@ GO
 
 -------------------------------- WRITING --------------------------------
 
+CREATE PROCEDURE spCreateWriting
+(
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@writingText VARCHAR(3000),
+	@writingTitle VARCHAR(100),
+	@writingSubTitle VARCHAR(100)
+)
+AS
+BEGIN
+	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
+					(@rating, @postText, GETDATE(), @username)
+	INSERT INTO tbWriting (writingText, postID, writingTitle, writingSubTitle) VALUES
+					(@writingText, @@IDENTITY, @writingTitle, @writingSubTitle)
+END
+GO
 
+CREATE PROCEDURE spReadWriting
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPost WHERE postID = @postID
+	SELECT * FROM tbWriting WHERE postID = @postID
+END
+GO
 
+CREATE PROCEDURE spUpdateWriting
+(
+	@postID INT,
+	@rating INT,
+	@postText VARCHAR(800),
+	@postDate DATETIME,
+	@username VARCHAR(30),
+	@writingText VARCHAR(3000),
+	@writingTitle VARCHAR(100),
+	@writingSubTitle VARCHAR(100)
+)
+AS
+BEGIN
+	UPDATE tbPost SET
+	rating = @rating,
+	postText = @postText,
+	username = @username
+	WHERE postID = @postID
 
-	--writingID INT IDENTITY (0,1) PRIMARY KEY,
-	--writingText VARCHAR(3000),
-	--writingTitle VARCHAR(100),
-	--writingSubTitle VARCHAR(100)
+	UPDATE tbWriting SET
+	writingText = @writingText,
+	writingTitle  = @writingTitle,
+	writingSubTitle = @writingSubTitle
+	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spDeleteWriting
+(
+	@postID INT
+)
+AS
+BEGIN
+	DELETE FROM tbComment WHERE postID = @postID
+	DELETE FROM tbDeletedComments WHERE postID = @postID
+	DELETE FROM tbLike WHERE postID = @postID
+	DELETE FROM tbPostTag WHERE postID = @postID
+	DELETE FROM tbWriting WHERE postID = @postID
+	DELETE FROM tbPost WHERE postID = @postID
+END
+GO
+
+-------------------------------- ART --------------------------------
 	
+CREATE PROCEDURE spCreateArt
+(
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@artLink VARCHAR(150),
+	@artTitle VARCHAR(100),
+	@artSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
+					(@rating, @postText, GETDATE(), @username)
+	INSERT INTO tbArt (postID, artLink, artTitle, artSubtitle) VALUES
+					(@@IDENTITY, @artLink, @artTitle, @artSubtitle)
+END
+GO
+
+CREATE PROCEDURE spReadArt
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPost WHERE postID = @postID
+	SELECT * FROM tbArt WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spUpdateArt
+(
+	@postID INT,
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@artLink VARCHAR(150),
+	@artTitle VARCHAR(100),
+	@artSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	UPDATE tbPost SET
+	rating = @rating,
+	postText = @postText,
+	username = @username
+	WHERE postID = @postID
+
+	UPDATE tbArt SET
+	artLink = @artLink,
+	artTitle = @artTitle,
+	artSubtitle = @artSubtitle
+	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spDeleteArt
+(
+	@postID INT
+)
+AS
+BEGIN
+	DELETE FROM tbComment WHERE postID = @postID
+	DELETE FROM tbDeletedComments WHERE postID = @postID
+	DELETE FROM tbLike WHERE postID = @postID
+	DELETE FROM tbPostTag WHERE postID = @postID
+	DELETE FROM tbArt WHERE postID = @postID
+	DELETE FROM tbPost WHERE postID = @postID
+END
+GO
+
+-------------------------------- PHOTOGRAPHY --------------------------------
+
+CREATE PROCEDURE spCreatePhotography
+(
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@photoLink VARCHAR(150),
+	@photoTitle VARCHAR(100),
+	@photoSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
+					(@rating, @postText, GETDATE(), @username)
+	INSERT INTO tbPhotography (postID, photoLink, photoTitle, photoSubtitle) VALUES
+					(@@IDENTITY, @photoLink, @photoTitle, @photoSubtitle)
+END
+GO
+
+CREATE PROCEDURE spReadPhotography
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPost WHERE postID = @postID
+	SELECT * FROM tbPhotography WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spUpdatePhotography
+(
+	@postID INT,
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@photoLink VARCHAR(150),
+	@photoTitle VARCHAR(100),
+	@photoSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	UPDATE tbPost SET
+	rating = @rating,
+	postText = @postText,
+	username = @username
+	WHERE postID = @postID
+
+	UPDATE tbPhotography SET
+	photoLink = @photoLink,
+	photoTitle = @photoTitle,
+	photoSubtitle = @photoSubtitle
+	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spDeletePhotography
+(
+	@postID INT
+)
+AS
+BEGIN
+	DELETE FROM tbComment WHERE postID = @postID
+	DELETE FROM tbDeletedComments WHERE postID = @postID
+	DELETE FROM tbLike WHERE postID = @postID
+	DELETE FROM tbPostTag WHERE postID = @postID
+	DELETE FROM tbPhotography WHERE postID = @postID
+	DELETE FROM tbPost WHERE postID = @postID
+END
+GO
+
+-------------------------------- VIDEO --------------------------------
+
+CREATE PROCEDURE spCreateVideo
+(
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@videoLink VARCHAR(150),
+	@videoTitle VARCHAR(100),
+	@videoSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
+					(@rating, @postText, GETDATE(), @username)
+	INSERT INTO tbVideo (postID, videoLink, videoTitle, videoSubtitle) VALUES
+					(@@IDENTITY, @videoLink, @videoTitle, @videoSubtitle)
+END
+GO
+
+CREATE PROCEDURE spReadVideo
+(
+	@postID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbPost WHERE postID = @postID
+	SELECT * FROM tbVideo WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spUpdateVideo
+(
+	@postID INT,
+	@rating INT,
+	@postText VARCHAR(800),
+	@username VARCHAR(30),
+	@videoLink VARCHAR(150),
+	@videoTitle VARCHAR(100),
+	@videoSubtitle VARCHAR(100)
+)
+AS
+BEGIN
+	UPDATE tbPost SET
+	rating = @rating,
+	postText = @postText,
+	username = @username
+	WHERE postID = @postID
+
+	UPDATE tbVideo SET
+	videoLink = @videoLink,
+	videoTitle = @videoTitle,
+	videoSubtitle = @videoSubtitle
+	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spDeleteVideo
+(
+	@postID INT
+)
+AS
+BEGIN
+	DELETE FROM tbComment WHERE postID = @postID
+	DELETE FROM tbDeletedComments WHERE postID = @postID
+	DELETE FROM tbLike WHERE postID = @postID
+	DELETE FROM tbPostTag WHERE postID = @postID
+	DELETE FROM tbVideo WHERE postID = @postID
+	DELETE FROM tbPost WHERE postID = @postID
+END
+GO
 
 -------------------------------- USERS CREATED --------------------------------
 
-EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='', @active='1', @accessLevel='0'
-EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dancourcelles7@gmail.com', @firstName='', @lastName='', @dob='1990-09-07', @profileImage='', @active='1', @accessLevel='0'
-EXEC spCreateAccount @username='TruPhox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='', @active='1', @accessLevel='0'
-EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='', @active='1', @accessLevel='1'
-EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='', @active='1', @accessLevel='1'
-EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='', @active='1', @accessLevel='1'
+EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dancourcelles7@gmail.com', @firstName='', @lastName='', @dob='1990-09-07', @profileImage='', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='TruPhox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='', @active='1', @accessLevel='1';
 
 SELECT * FROM tbAccount
 GO
 
 ---------------------POSTS CREATED (WRITTING) -------------------
 
-EXEC spCreatePost @rating=0, @postText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @postDate='2018-10-18', @lastComment=0, @username='TruPhox'
-EXEC spCreatePost @rating=0, @postText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe ― Albert Einstein', @postDate='', @lastComment='', @username='wrenjay'
-EXEC spCreatePost @rating=0, @postText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerable ― C.S. Lewis, The Four Loves', @postDate='', @lastComment=3, @username='wrenjay'
-EXEC spCreatePost @rating=0, @postText='I''M TINY RICK!!', @postDate='', @lastComment=3, @username='CanadaGhost'
-EXEC spCreatePost @rating=0, @postText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...', @postDate='', @lastComment=3, @username='Person'
-EXEC spCreatePost @rating=0, @postText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.', @postDate='', @lastComment=3, @username='Person'
+EXEC spCreatePost @rating=0, @postText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @postDate='2018-10-18', @lastComment=0, @username='TruPhox';
+EXEC spCreatePost @rating=0, @postText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe ― Albert Einstein', @postDate='', @lastComment='', @username='wrenjay';
+EXEC spCreatePost @rating=0, @postText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerable ― C.S. Lewis, The Four Loves', @postDate='', @lastComment=3, @username='wrenjay';
+EXEC spCreatePost @rating=0, @postText='I''M TINY RICK!!', @postDate='', @lastComment=3, @username='CanadaGhost';
+EXEC spCreatePost @rating=0, @postText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...', @postDate='', @lastComment=3, @username='Person';
+EXEC spCreatePost @rating=0, @postText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.', @postDate='', @lastComment=3, @username='Person';
 
 ------------------POSTS CREATED (ART) -------------------
 
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
 
 ------------------POSTS CREATED (VIDEO) -------------------
 
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
 
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username=''
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
 
-SELECT * FROM tbPost
+SELECT * FROM tbPost;
+GO

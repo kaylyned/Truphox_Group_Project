@@ -82,5 +82,10 @@ namespace TruphoxGP
 
             return ds;
         }
+
+        public void clearParams()
+        {
+            _parms = new List<parms>();
+        }
     }
 }

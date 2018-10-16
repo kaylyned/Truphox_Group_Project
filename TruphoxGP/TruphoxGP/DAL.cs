@@ -40,8 +40,47 @@ namespace TruphoxGP
 
         public void execNonQuery()
         {
-
+            SqlCommand sc = new SqlCommand(_command, _Connection);
+            sc.CommandType = CommandType.StoredProcedure;
+            foreach (var parm in _parms)
+            {
+                _Connection.Open();
+                sc.ExecuteNonQuery();
+                _Connection.Close();
+            }
         }
 
+        public string execScalar()
+        {
+            SqlCommand sc = new SqlCommand(_command, _Connection);
+            sc.CommandType = CommandType.StoredProcedure;
+            foreach (var parm in _parms)
+            {
+                sc.Parameters.AddWithValue(parm._p, parm._v);
+            }
+            _Connection.Open();
+            string result = sc.ExecuteScalar().ToString();
+            _Connection.Close();
+
+            return result;
+        }
+
+        public DataSet getDataSet()
+        {
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(_command, _Connection);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+            foreach (var parm in _parms)
+            {
+                da.SelectCommand.Parameters.AddWithValue(parm._p, parm._v);
+            }
+
+            _Connection.Open();
+            da.Fill(ds);
+            _Connection.Close();
+
+            return ds;
+        }
     }
 }

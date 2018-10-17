@@ -239,17 +239,19 @@ CREATE PROCEDURE spLogin
 )
 AS
 BEGIN
-   IF EXISTS (SELECT * FROM tbAccount WHERE username = @username and userPassword=@userPassword)
+   IF EXISTS (SELECT * FROM tbAccount WHERE username = @username and userPassword = @userPassword)
 		BEGIN
 			SELECT 'valid' as MESSAGE, active, accessLevel, username FROM tbAccount WHERE username = @username and userPassword=@userPassword; 
 		END
    ELSE 
         BEGIN 
-	        SELECT '' AS MESSAGE
+	        SELECT 'invalid' AS MESSAGE, -1 as active, -1 as accessLevel, '' as username 
 	    END 
 END
 GO
 
+EXEC spLogin @username='CanadaGhost', @userPassword='admin';
+GO
 -------------------------------- RECOVER --------------------------------
 
 CREATE PROCEDURE spRecoverUsername

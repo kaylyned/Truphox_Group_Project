@@ -65,40 +65,6 @@ namespace TruphoxGP
             {
                 isLoggedIn = false;
             }
-
-
-            //username = Username;
-            //userPassword = UserPassword;
-            //SqlConnection conn = new SqlConnection("Data Source=localhost;Initial Catalog=dbTruphox;Integrated Security=SSPI");
-
-            ////Need a proc that loggs a person in 
-            //SqlDataAdapter cmd = new SqlDataAdapter("", conn);
-            //cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
-            //cmd.SelectCommand.Parameters.AddWithValue("username", username);
-            //cmd.SelectCommand.Parameters.AddWithValue("userPassword", userPassword);
-            //DataSet ds = new DataSet();
-
-            //conn.Open();
-            //cmd.Fill(ds);
-            //conn.Close();
-
-            //string message = ds.Tables[0].Rows[0]["message"].ToString();
-            //accessLevel = Convert.ToInt32(ds.Tables[0].Rows[0]["accessLevel"]);
-            //username = ds.Tables[0].Rows[0]["username"].ToString();
-
-            //if(message != "-1")
-            //{
-            //    isLoggedIn = true;
-            //    HttpContext.Current.Session["username"] = username;
-            //    HttpContext.Current.Session["userPassword"] = userPassword;
-            //    HttpContext.Current.Session["isLoggedIn"] = isLoggedIn;
-            //    HttpContext.Current.Session["accessLevel"] = accessLevel;
-
-            //}
-            //else
-            //{
-            //    isLoggedIn = false;
-            //}
         }
     }
 }

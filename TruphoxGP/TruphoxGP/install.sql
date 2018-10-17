@@ -48,7 +48,7 @@ CREATE TABLE tbNotification
 CREATE TABLE tbPost
 (
 	postID INT IDENTITY(0,1) PRIMARY KEY,
-	rating INT,
+	rating BIT,
 	postText VARCHAR(800),
 	postDate DATETIME,
 	lastComment INT,
@@ -374,7 +374,7 @@ GO
 
 CREATE PROCEDURE spCreatePost
 (
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@postDate DATETIME,
 	@lastComment INT,
@@ -400,7 +400,7 @@ GO
 CREATE PROCEDURE spUpdatePost
 (
 	@postID INT,
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(200),
 	@postDate DATETIME,
 	@lastComment INT,
@@ -628,7 +628,7 @@ GO
 
 CREATE PROCEDURE spCreateWriting
 (
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@writingText VARCHAR(3000),
@@ -658,7 +658,7 @@ GO
 CREATE PROCEDURE spUpdateWriting
 (
 	@postID INT,
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@postDate DATETIME,
 	@username VARCHAR(30),
@@ -701,7 +701,7 @@ GO
 	
 CREATE PROCEDURE spCreateArt
 (
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@artLink VARCHAR(150),
@@ -731,7 +731,7 @@ GO
 CREATE PROCEDURE spUpdateArt
 (
 	@postID INT,
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@artLink VARCHAR(150),
@@ -773,7 +773,7 @@ GO
 
 CREATE PROCEDURE spCreatePhotography
 (
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@photoLink VARCHAR(150),
@@ -803,7 +803,7 @@ GO
 CREATE PROCEDURE spUpdatePhotography
 (
 	@postID INT,
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@photoLink VARCHAR(150),
@@ -845,7 +845,7 @@ GO
 
 CREATE PROCEDURE spCreateVideo
 (
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@videoLink VARCHAR(150),
@@ -875,7 +875,7 @@ GO
 CREATE PROCEDURE spUpdateVideo
 (
 	@postID INT,
-	@rating INT,
+	@rating BIT,
 	@postText VARCHAR(800),
 	@username VARCHAR(30),
 	@videoLink VARCHAR(150),
@@ -915,32 +915,32 @@ GO
 
 -------------------------------- USERS CREATED --------------------------------
 
-EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dancourcelles7@gmail.com', @firstName='', @lastName='', @dob='1990-09-07', @profileImage='', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='TruPhox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dancourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
 
 SELECT * FROM tbAccount
 GO
 
 ---------------------POSTS CREATED (WRITTING) -------------------
 
-EXEC spCreatePost @rating=0, @postText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @postDate='2018-10-18', @lastComment=0, @username='TruPhox';
-EXEC spCreatePost @rating=0, @postText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe ― Albert Einstein', @postDate='', @lastComment='', @username='wrenjay';
-EXEC spCreatePost @rating=0, @postText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerable ― C.S. Lewis, The Four Loves', @postDate='', @lastComment=3, @username='wrenjay';
-EXEC spCreatePost @rating=0, @postText='I''M TINY RICK!!', @postDate='', @lastComment=3, @username='CanadaGhost';
-EXEC spCreatePost @rating=0, @postText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...', @postDate='', @lastComment=3, @username='Person';
-EXEC spCreatePost @rating=0, @postText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.', @postDate='', @lastComment=3, @username='Person';
-
+EXEC spCreateWriting @rating=0, @postText='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @writingTitle='WELCOME', @writingSubTitle='';
+EXEC spCreateWriting @rating=0, @postText='' , @username='wrenjay', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe',  @writingTitle='Albert Einstein', @writingSubTitle='Quotes';
+EXEC spCreateWriting @rating=0, @postText='', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.', @writingTitle='The Four Loves', @writingSubTitle='C.S. Lewis';
+EXEC spCreateWriting @rating=0, @postText='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!', @writingTitle='', @writingSubTitle='';
+EXEC spCreateWriting @rating=0, @postText='', @username='Person', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...',   @writingTitle='', @writingSubTitle='';
+EXEC spCreateWriting @rating=0, @postText='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.',  @writingTitle='', @writingSubTitle='';
+GO
 ------------------POSTS CREATED (ART) -------------------
 
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\dragon.png', @artTitle='Dragon', @artSubtitle=''; 
+EXEC spCreateArt @rating=1, @postText='', @username='Truphox', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\GP-Logo.png', @artTitle='Truphox', @artSubtitle=''; 
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Astro.jpg', @artTitle='Space', @artSubtitle='Inktober promt day 17'; 
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Dragon.jpg', @artTitle='Dragon', @artSubtitle=''; 
+EXEC spCreateArt @rating=0, @postText='', @username='CanadaGhost', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\RickMortyHP.jpg', @artTitle='Rick and Morty', @artSubtitle='Harry Potter'; 
 
 ------------------POSTS CREATED (VIDEO) -------------------
 
@@ -949,14 +949,18 @@ EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @userna
 EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
 EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
 EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-
+GO
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
-EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Debby.jpg', @photoTitle='Debby', @photoSubtitle='Crazy cat lady life';
+EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\pumkinK.jpg', @photoTitle='Pumkin #1', @photoSubtitle='K Karvings';
+EXEC spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\PumkinD.jpg', @photoTitle='Pumkin #2', @photoSubtitle='DCarvings';
+EXEC  spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Ruka.jpg', @photoTitle='Ruka', @photoSubtitle='My cainine.';
+EXEC  spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Sky.jpg', @photoTitle='', @photoSubtitle='';
+GO
 
-SELECT * FROM tbPost;
+SELECT * FROM tbPhotography
+SELECT * FROM tbArt
+SELECT * FROM tbWriting
+SELECT * FROM tbVideo
 GO

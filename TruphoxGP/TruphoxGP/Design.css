@@ -215,11 +215,13 @@ body {
 /*LOGIN PAGE*/
 
 .loginHeader{
-   text-align: center;
+  text-align: center;
 }
 
 .LoginTable {
     border: solid 2px;
-    margin: auto;    
+    margin: auto; 
     height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

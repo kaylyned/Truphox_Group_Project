@@ -13,7 +13,7 @@ namespace TruphoxGP
         {
             if (!IsPostBack)
             {
-
+                getCookie()
             }
         }
 

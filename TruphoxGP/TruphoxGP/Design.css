@@ -147,7 +147,6 @@ body {
     box-sizing:border-box;
 }
 
-
 .header {
     background-color: #f1f1f1;
     padding: 20px;
@@ -211,4 +210,16 @@ body {
     .carousel-caption {
         display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
     }
+}
+
+/*LOGIN PAGE*/
+
+.loginHeader{
+   text-align: center;
+}
+
+.LoginTable {
+    border: solid 2px;
+    margin: auto;    
+    height: 100px;
 }

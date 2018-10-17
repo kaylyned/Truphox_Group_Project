@@ -133,6 +133,12 @@ CREATE TABLE tbVideo
 	videoSubtitle VARCHAR(100)
 )
 
+Create Table tbPassRecovery
+(
+	email VARCHAR(60),
+	recoveryGuid VARCHAR(300),
+	recoveryDate date
+)
 --CREATE TABLE tbSale
 --(
 --	saleID INT IDENTITY (0,1) PRIMARY KEY,
@@ -235,7 +241,7 @@ AS
 BEGIN
    IF EXISTS (SELECT * FROM tbAccount WHERE username = @username and userPassword=@userPassword)
 		BEGIN
-			SELECT active, accessLevel FROM tbAccount WHERE username = @username and userPassword=@userPassword; 
+			SELECT 'valid' as MESSAGE, active, accessLevel, username FROM tbAccount WHERE username = @username and userPassword=@userPassword; 
 		END
    ELSE 
         BEGIN 
@@ -244,8 +250,81 @@ BEGIN
 END
 GO
 
---SELECT * FROM tbAccount 
---GO
+-------------------------------- RECOVER --------------------------------
+
+CREATE PROCEDURE spRecoverUsername
+(
+	@email VARCHAR(60)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbAccount WHERE email = @email)
+		BEGIN
+			SELECT 'VALID' AS MESSAGE, username
+			FROM tbAccount
+			WHERE email = @email
+		END
+END
+GO
+
+CREATE PROCEDURE spRecoverPassword
+(
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbAccount WHERE username = @username)
+		BEGIN
+			SELECT 'VALID' AS MESSAGE, userPassword, email
+			FROM tbAccount
+			WHERE username = @username
+		END
+END
+GO
+
+CREATE PROCEDURE spInsertGuid
+(
+	@recoveryGuid VARCHAR(300),
+	@email VARCHAR(60)
+)
+AS
+BEGIN
+	INSERT INTO tbPassRecovery (email, recoveryGuid, recoveryDate) VALUES
+								(@email, @recoveryGuid, GETDATE())
+END
+GO
+
+CREATE PROCEDURE spValidCheck
+(
+	@recoveryGuid VARCHAR(200)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbPassRecovery WHERE recoveryGuid = @recoveryGuid)
+		BEGIN
+			SELECT 'VALID' AS MESSAGE, username
+			FROM tbAccount a INNER JOIN tbPassRecovery r ON
+			a.email = r.email
+			WHERE r.recoveryGuid = @recoveryGuid
+
+			DELETE FROM tbPassRecovery
+			WHERE recoveryGuid = @recoveryGuid
+		END
+END
+GO
+
+CREATE PROCEDURE spResetPassword
+(
+	@username VARCHAR(30),
+	@userPassword VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE tbAccount SET
+	userPassword = @userPassword
+	WHERE username = @username
+END
+GO
 
 -------------------------------- FOLLOWING --------------------------------
 

@@ -13,6 +13,7 @@ namespace TruphoxGP
         public string userPassword { get; set; }
         public int accessLevel { get; set; }
         public bool isLoggedIn { get; set; }
+        public bool active { get; set; }
 
         DAL myDal;
 
@@ -23,6 +24,7 @@ namespace TruphoxGP
                 username = (string)HttpContext.Current.Session["username"];
                 userPassword = (string)HttpContext.Current.Session["userPassword"];
                 accessLevel = (int)HttpContext.Current.Session["accessLevel"];
+                active = (bool)HttpContext.Current.Session["active"];
                 isLoggedIn = true;
             }
             else
@@ -47,6 +49,7 @@ namespace TruphoxGP
             string message = ds.Tables[0].Rows[0]["message"].ToString();
             accessLevel = Convert.ToInt32(ds.Tables[0].Rows[0]["accessLevel"]);
             username = ds.Tables[0].Rows[0]["username"].ToString();
+            active = Convert.ToBoolean(ds.Tables[0].Rows[0]["active"]);
 
             if (message != "valid")
             {
@@ -55,6 +58,7 @@ namespace TruphoxGP
                 HttpContext.Current.Session["userPassword"] = userPassword;
                 HttpContext.Current.Session["isLoggedIn"] = isLoggedIn;
                 HttpContext.Current.Session["accessLevel"] = accessLevel;
+                HttpContext.Current.Session["active"] = active;
 
             }
             else

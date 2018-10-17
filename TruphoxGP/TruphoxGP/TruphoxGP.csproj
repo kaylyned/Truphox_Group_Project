@@ -71,7 +71,16 @@
   <ItemGroup>
     <Content Include="Artwork.aspx" />
     <Content Include="Form.aspx" />
+    <Content Include="Images\Astro.jpg" />
+    <Content Include="Images\Debby.jpg" />
+    <Content Include="Images\Dragon.jpg" />
+    <Content Include="Images\dragon.png" />
     <Content Include="Images\profilePict.jpg" />
+    <Content Include="Images\PumkinD.jpg" />
+    <Content Include="Images\pumkinK.jpg" />
+    <Content Include="Images\RickMortyHP.jpg" />
+    <Content Include="Images\Ruka.jpg" />
+    <Content Include="Images\Sky.jpg" />
     <Content Include="install.sql" />
     <Content Include="Register.aspx" />
     <Content Include="sample2.jpg" />

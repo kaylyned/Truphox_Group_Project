@@ -214,14 +214,55 @@ body {
 
 /*LOGIN PAGE*/
 
-.loginHeader{
-  text-align: center;
-}
-
 .LoginTable {
-    border: solid 2px;
-    margin: auto; 
-    height: 100px;
-    padding-left: 10px;
-    padding-right: 10px;
+    border-radius: 5px;
+    padding: 60px;
+}
+.login:focus{
+    border: 3px solid #555;
+}
+.btnLogin {
+    width: 675px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    .btnLogin:hover {
+        background-color: #45a049;
+    }
+.login {
+    width: 795px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    text-align: center;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+}
+.divLogin {
+    border-radius: 5px;
+    padding: 80px;
+    float: left;
+    left: 0;
+    top: 0%;
+}
+.loginForm {
+    left: 0;
+    top: 0%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+}
+.UOCenter {
+    text-align: center;
+    margin: auto;
+    width: 82%;
+    padding: 80px;
+    float: left;
+    margin-right:30px;
 }

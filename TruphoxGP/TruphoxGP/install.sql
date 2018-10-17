@@ -225,6 +225,28 @@ BEGIN
 END
 GO
 
+-------------------------------- LOGIN --------------------------------
+CREATE PROCEDURE spLogin
+(
+	@username VARCHAR(30),
+	@userPassword VARCHAR(30)
+)
+AS
+BEGIN
+   IF EXISTS (SELECT * FROM tbAccount WHERE username = @username and userPassword=@userPassword)
+		BEGIN
+			SELECT active, accessLevel FROM tbAccount WHERE username = @username and userPassword=@userPassword; 
+		END
+   ELSE 
+        BEGIN 
+	        SELECT '' AS MESSAGE
+	    END 
+END
+GO
+
+--SELECT * FROM tbAccount 
+--GO
+
 -------------------------------- FOLLOWING --------------------------------
 
 CREATE PROCEDURE spCreateFollow

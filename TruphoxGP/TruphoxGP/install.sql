@@ -826,10 +826,12 @@ CREATE PROCEDURE spReadArt
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = @postID
-	SELECT * FROM tbArt WHERE postID = @postID
+	SELECT * FROM tbPost, tbArt WHERE tbArt.postID = ISNULL(@postID, tbArt.postID)
 END
 GO
+
+--EXEC spReadArt @postID=7
+--GO
 
 CREATE PROCEDURE spUpdateArt
 (

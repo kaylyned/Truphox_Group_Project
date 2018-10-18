@@ -3,13 +3,25 @@
         <div id="band" class="container text-center">
         <h3>PHOTOGRAPHY</h3>
         <asp:DataList ID="dlPhotoTrending" runat="server">
-            <ItemTemplate></ItemTemplate>
+            <ItemTemplate>
+                  <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("photoLink") %>' />
+                <br />
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("photoTitle") %>'></asp:Label>
+            </ItemTemplate>
         </asp:DataList>
         <asp:DataList ID="dlPhotoRecent" runat="server">
-               <ItemTemplate></ItemTemplate>
+               <ItemTemplate>
+                 <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("photoLink") %>' />
+                <br />
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("photoTitle") %>'></asp:Label>
+               </ItemTemplate>
         </asp:DataList>
         <asp:DataList ID="dlPhotoFav" runat="server">
-               <ItemTemplate></ItemTemplate>
+               <ItemTemplate>
+                 <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("photoLink") %>' />
+                <br />
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("photoTitle") %>'></asp:Label>
+               </ItemTemplate>
         </asp:DataList>
     </div>
 </asp:Content>

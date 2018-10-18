@@ -83,6 +83,7 @@
     <Content Include="Images\Sky.jpg" />
     <Content Include="install.sql" />
     <Content Include="Login.aspx" />
+    <Content Include="Recover.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="sample2.jpg" />
     <Content Include="sample.jpg" />
@@ -198,6 +199,13 @@
     </Compile>
     <Compile Include="MasterSupreme.Master.designer.cs">
       <DependentUpon>MasterSupreme.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Recover.aspx.cs">
+      <DependentUpon>Recover.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recover.aspx.designer.cs">
+      <DependentUpon>Recover.aspx</DependentUpon>
     </Compile>
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

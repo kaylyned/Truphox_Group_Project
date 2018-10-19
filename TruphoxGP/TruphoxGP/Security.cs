@@ -42,8 +42,8 @@ namespace TruphoxGP
 
             //Add Log In Proc
             myDal = new DAL("spLogin");
-            myDal.addParm("username", username);
-            myDal.addParm("userPassword", userPassword);
+            myDal.addParm("username", username.ToString());
+            myDal.addParm("userPassword", userPassword.ToString());
             DataSet ds = myDal.getDataSet();
 
             string message = ds.Tables[0].Rows[0]["message"].ToString();

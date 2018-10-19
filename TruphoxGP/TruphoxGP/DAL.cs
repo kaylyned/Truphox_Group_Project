@@ -34,7 +34,7 @@ namespace TruphoxGP
         {
             parms myParms = new parms();
             myParms._p = p;
-            myParms._v = p;
+            myParms._v = v;
             _parms.Add(myParms);
         }
 

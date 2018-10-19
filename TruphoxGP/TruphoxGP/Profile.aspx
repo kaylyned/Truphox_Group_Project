@@ -98,7 +98,7 @@
                                 <p>Are you sure you didn't just grab this from Google images like the rest of us?</p>
                                 <asp:DataList ID="dlPhotots" runat="server">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="ibArt" runat="server" />
+                                        <asp:ImageButton ID="ibPhotography" runat="server" />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>

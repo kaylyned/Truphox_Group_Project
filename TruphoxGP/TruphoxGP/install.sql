@@ -749,12 +749,12 @@ GO
 
 CREATE PROCEDURE spReadWriting
 (
-	@postID INT
+	@postID INT=NULL
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = @postID
-	SELECT * FROM tbWriting WHERE postID = @postID
+	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
+	SELECT * FROM tbWriting WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -822,7 +822,7 @@ GO
 
 CREATE PROCEDURE spReadArt
 (
-	@postID INT
+	@postID INT=NULL
 )
 AS
 BEGIN
@@ -831,7 +831,7 @@ BEGIN
 END
 GO
 
-EXEC spReadArt @postID=7
+EXEC spReadArt 
 GO
 
 CREATE PROCEDURE spUpdateArt
@@ -897,12 +897,12 @@ GO
 
 CREATE PROCEDURE spReadPhotography
 (
-	@postID INT
+	@postID INT=NULL
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = @postID
-	SELECT * FROM tbPhotography WHERE postID = @postID
+	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
+	SELECT * FROM tbPhotography WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -969,12 +969,12 @@ GO
 
 CREATE PROCEDURE spReadVideo
 (
-	@postID INT
+	@postID INT=NULL
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = @postID
-	SELECT * FROM tbVideo WHERE postID = @postID
+	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
+	SELECT * FROM tbVideo WHERE postID = ISNULL(@postID, postID);
 END
 GO
 

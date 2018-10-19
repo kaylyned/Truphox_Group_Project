@@ -52,7 +52,7 @@
                     <label for="email"><b>DOB: </b></label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtDOB" placeholder="Enter Date of Birth" runat="server" Width="142px" TextMode="Date" ></asp:TextBox>
+                    <asp:TextBox ID="txtDOB" placeholder="Enter Date of Birth" runat="server" Width="142px" TextMode="Date"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -63,12 +63,8 @@
                     <asp:TextBox ID="txtEmail" placeholder="Enter Email" runat="server" Width="142px" TextMode="Email"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
-                </td>
-            </tr>
         </table>
+        <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         <br />
         <hr>
         <p>By creating an account you agree to our <a href="TAP.aspx">Terms & Privacy</a>.</p>

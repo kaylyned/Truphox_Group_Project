@@ -32,15 +32,31 @@ namespace TruphoxGP
                 myDal.addParm("firstName", txtFirst.Text);
                 myDal.addParm("lastName", txtLast.Text);
                 myDal.addParm("dob", txtDOB.Text);
-                DataSet ds = myDal.getDataSet();
-                               
+                myDal.getDataSet();
 
+                //Send email with confirmation link
+                //MailMessage emailMessage = new MailMessage();
+                //emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
+                //emailMessage.To.Add(new MailAddress(txtEmail.Text));
+                //emailMessage.Subject = "Confirmation Link";
+                //emailMessage.Body = "<h3>Welcome to Truphox!</h3>";
+                //emailMessage.IsBodyHtml = true;
+                //SmtpClient client = new SmtpClient();
+                //client.Host = "smtp.gmail.com";
+                //client.Port = 587;
+                //client.EnableSsl = true;
+                //client.Credentials = new
+                //System.Net.NetworkCredential("truphox@gmail.com", "ilovephp");
+                //client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                //client.Send(emailMessage);
+
+                lblMessage.Text = "A confirmation email has been sent to the email address provided. Please activate your account through the link in the email.";
             }
-   
+
             else
             {
                 lblMessage.Text = "Password do not match. Please recheck your password.";
-            }             
-        }       
+            }
+        }
     }
 }

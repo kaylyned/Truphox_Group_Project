@@ -827,7 +827,8 @@ CREATE PROCEDURE spReadArt
 AS
 BEGIN
 	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT * FROM tbArt WHERE postID = ISNULL(@postID, postID);
+	SELECT postID as 'postID', './Images/' + artLink  as 'artLink' , artTitle as'artTitle', artSubtitle as'artSubtitle' FROM tbArt 
+	WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -1042,11 +1043,11 @@ EXEC spCreateWriting @rating=0, @postText='', @username='Person', @writingText='
 GO
 ------------------POSTS CREATED (ART) -------------------
 
-EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\dragon.png', @artTitle='Dragon', @artSubtitle=''; 
-EXEC spCreateArt @rating=1, @postText='', @username='Truphox', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\GP-Logo.png', @artTitle='Truphox', @artSubtitle=''; 
-EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Astro.jpg', @artTitle='Space', @artSubtitle='Inktober promt day 17'; 
-EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Dragon.jpg', @artTitle='Dragon', @artSubtitle=''; 
-EXEC spCreateArt @rating=0, @postText='', @username='CanadaGhost', @artLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\RickMortyHP.jpg', @artTitle='Rick and Morty', @artSubtitle='Harry Potter'; 
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='dragon.png', @artTitle='Dragon', @artSubtitle=''; 
+EXEC spCreateArt @rating=1, @postText='', @username='Truphox', @artLink='GP-Logo.png', @artTitle='Truphox', @artSubtitle=''; 
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='Astro.jpg', @artTitle='Space', @artSubtitle='Inktober promt day 17'; 
+EXEC spCreateArt @rating=0, @postText='', @username='wrenjay', @artLink='Dragon.jpg', @artTitle='Dragon', @artSubtitle=''; 
+EXEC spCreateArt @rating=0, @postText='', @username='CanadaGhost', @artLink='RickMortyHP.jpg', @artTitle='Rick and Morty', @artSubtitle='Harry Potter'; 
 
 ------------------POSTS CREATED (VIDEO) -------------------
 
@@ -1058,11 +1059,11 @@ EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @userna
 GO
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
-EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Debby.jpg', @photoTitle='Debby', @photoSubtitle='Crazy cat lady life';
-EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\pumkinK.jpg', @photoTitle='Pumkin #1', @photoSubtitle='K Karvings';
-EXEC spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\PumkinD.jpg', @photoTitle='Pumkin #2', @photoSubtitle='DCarvings';
-EXEC  spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Ruka.jpg', @photoTitle='Ruka', @photoSubtitle='My cainine.';
-EXEC  spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\Sky.jpg', @photoTitle='', @photoSubtitle='';
+EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='Debby.jpg', @photoTitle='Debby', @photoSubtitle='Crazy cat lady life';
+EXEC spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='pumkinK.jpg', @photoTitle='Pumkin #1', @photoSubtitle='K Karvings';
+EXEC spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='PumkinD.jpg', @photoTitle='Pumkin #2', @photoSubtitle='DCarvings';
+EXEC  spCreatePhotography @rating=0, @postText='', @username='wrenjay', @photoLink='Ruka.jpg', @photoTitle='Ruka', @photoSubtitle='My cainine.';
+EXEC  spCreatePhotography @rating=0, @postText='', @username='CanadaGhost', @photoLink='Sky.jpg', @photoTitle='', @photoSubtitle='';
 GO
 
 SELECT * FROM tbPhotography

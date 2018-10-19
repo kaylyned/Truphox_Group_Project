@@ -57,6 +57,7 @@ namespace TruphoxGP
             dlArtTrending.SelectedIndex = e.Item.ItemIndex;
             DataListItem myDL = dlArtTrending.SelectedItem;
             Label lblPost = (Label)myDL.FindControl("postID");
+            Response.Redirect("Post.aspx");
         }
     }
 }

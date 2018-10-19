@@ -87,22 +87,38 @@
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
                                 <p>Your creative adventures are here!</p>
-                                <asp:DataList ID="dlArt" runat="server"></asp:DataList>
+                                <asp:DataList ID="dlArt" runat="server">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="ibArt" runat="server" />
+                                    </ItemTemplate>
+                                </asp:DataList>
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
-                                <p>Are you sure you didn't just grab this from Google imgages like the rest of us?</p>
-                                <asp:DataList ID="dlPhotots" runat="server"></asp:DataList>
+                                <p>Are you sure you didn't just grab this from Google images like the rest of us?</p>
+                                <asp:DataList ID="dlPhotots" runat="server">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="ibArt" runat="server" />
+                                    </ItemTemplate>
+                                </asp:DataList>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
                                 <p>You did something stupid? It's posted here!</p>
-                                <asp:DataList ID="dlVideos" runat="server"></asp:DataList>
+                                <asp:DataList ID="dlVideos" runat="server">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="ibVideos" runat="server" />
+                                    </ItemTemplate>
+                                </asp:DataList>
                             </div>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>WRITTING</h2>
                                 <p>What inspired you to write that book? Post it here!</p>
-                                <asp:DataList ID="dlWritting" runat="server"></asp:DataList>
+                                <asp:DataList ID="dlWritting" runat="server">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="ibWrite" runat="server" />
+                                    </ItemTemplate>
+                                </asp:DataList>
                             </div>
                         </div>
                     </div>
@@ -118,7 +134,8 @@
             </div>
         </div>
         <br />
-        <br /><br />
+        <br />
+        <br />
         <div class="col-sm-4">
             <div class="well">
                 <h2>TITLE</h2>

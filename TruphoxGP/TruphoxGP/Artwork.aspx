@@ -3,11 +3,11 @@
     <div id="band" class="container text-center">
         <h3>&nbsp;&nbsp;&nbsp; ARTWORK</h3>
         <hr />           
-        <asp:DataList ID="dlArtTrending" runat="server" Width="791px" RepeatDirection="Horizontal" OnItemCommand="dlArtTrending_ItemCommand" RepeatColumns="3" >
+        <asp:DataList ID="dlArtTrending" runat="server" Width="791px" RepeatDirection="Horizontal" OnItemCommand="dlArtTrending_ItemCommand" RepeatColumns="3" CssClass="dlATrend" >
             <ItemTemplate>
-               <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
+               <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>' ></asp:Label>
                 <br />
-                <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("artLink") %>' />
+                <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
             </ItemTemplate>
@@ -17,7 +17,7 @@
                <ItemTemplate>
                  <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                 <br />
-                <asp:ImageButton ID="imgARecent" runat="server" ImageUrl='<%#Eval("artLink") %>' />
+                <asp:ImageButton ID="imgARecent" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblARecent" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
                </ItemTemplate>
@@ -27,7 +27,7 @@
                <ItemTemplate>
                 <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                 <br />
-              <asp:ImageButton ID="imgAFav" runat="server" ImageUrl='<%#Eval("artLink") %>' />
+              <asp:ImageButton ID="imgAFav" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblAFav" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
                </ItemTemplate>

@@ -15,6 +15,8 @@ namespace TruphoxGP
     {
         DAL myDal;
 
+        DateTime dob { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -25,30 +27,32 @@ namespace TruphoxGP
 
             if (txtPassword.Text == txtpswRepeat.Text)
             {
+                dob = Convert.ToDateTime(txtDOB.Text);
+
                 myDal = new DAL("spCreateAccount");
                 myDal.addParm("username", txtUsername.Text);
                 myDal.addParm("userPassword", txtPassword.Text);
                 myDal.addParm("email", txtEmail.Text);
                 myDal.addParm("firstName", txtFirst.Text);
                 myDal.addParm("lastName", txtLast.Text);
-                myDal.addParm("dob", txtDOB.Text);
+                myDal.addParm("dob", dob);
                 myDal.getDataSet();
 
                 //Send email with confirmation link
-                //MailMessage emailMessage = new MailMessage();
-                //emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
-                //emailMessage.To.Add(new MailAddress(txtEmail.Text));
-                //emailMessage.Subject = "Confirmation Link";
-                //emailMessage.Body = "<h3>Welcome to Truphox!</h3>";
-                //emailMessage.IsBodyHtml = true;
-                //SmtpClient client = new SmtpClient();
-                //client.Host = "smtp.gmail.com";
-                //client.Port = 587;
-                //client.EnableSsl = true;
-                //client.Credentials = new
-                //System.Net.NetworkCredential("truphox@gmail.com", "ilovephp");
-                //client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                //client.Send(emailMessage);
+                MailMessage emailMessage = new MailMessage();
+                emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
+                emailMessage.To.Add(new MailAddress(txtEmail.Text));
+                emailMessage.Subject = "Confirmation Link";
+                emailMessage.Body = "<h3>Welcome to Truphox!</h3>";
+                emailMessage.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient();
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.Credentials = new
+                System.Net.NetworkCredential("truphox@gmail.com", "ilovephp");
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Send(emailMessage);
 
                 lblMessage.Text = "A confirmation email has been sent to the email address provided. Please activate your account through the link in the email.";
             }

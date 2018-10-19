@@ -9,7 +9,7 @@ namespace TruphoxGP
 {
     public partial class Reset : System.Web.UI.Page
     {
-        DAL myDal;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

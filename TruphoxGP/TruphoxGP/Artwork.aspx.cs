@@ -17,17 +17,47 @@ namespace TruphoxGP
             if(!IsPostBack)
             {
                 loadATrending();
+                loadARecent();
+                loadAFav();
+
             }
         }
         private void loadATrending()
         {
             mydal = new DAL("spReadArt");
             DataSet ds = mydal.getDataSet();
-            DataTable dt = ds.Tables[0];
+            DataTable dtA = ds.Tables[1];
 
-
-            dlArtTrending.DataSource = dt;
+            dlArtTrending.DataSource = dtA; 
             dlArtTrending.DataBind();
+        }
+
+        private void loadARecent()
+        {
+            mydal = new DAL("spReadArt");
+            DataSet ds = mydal.getDataSet();
+            DataTable dtA = ds.Tables[1];
+
+            dlArtTrending.DataSource = dtA;
+            dlArtTrending.DataBind();
+        }
+
+        private void loadAFav()
+        {
+            mydal = new DAL("spReadArt");
+            DataSet ds = mydal.getDataSet();
+            DataTable dtA = ds.Tables[1];
+
+            dlArtTrending.DataSource = dtA;
+            dlArtTrending.DataBind();
+        }
+
+        protected void dlArtTrending_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            dlArtTrending.SelectedIndex = e.Item.ItemIndex;
+            DataListItem myDL = dlArtTrending.SelectedItem;
+            Label lblPost = (Label)myDL.FindControl("postID");
+            Response.Redirect("Post.aspx");
         }
     }
 }

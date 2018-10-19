@@ -83,6 +83,7 @@
     <Content Include="Images\Sky.jpg" />
     <Content Include="install.sql" />
     <Content Include="Login.aspx" />
+    <Content Include="Post.aspx" />
     <Content Include="Recover.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Reset.aspx" />
@@ -185,6 +186,13 @@
     </Compile>
     <Compile Include="Photography.aspx.designer.cs">
       <DependentUpon>Photography.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Post.aspx.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Post.aspx.designer.cs">
+      <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>

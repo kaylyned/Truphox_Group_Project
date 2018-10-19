@@ -25,6 +25,7 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dt = ds.Tables[0];
 
+
             dlArtTrending.DataSource = dt;
             dlArtTrending.DataBind();
         }

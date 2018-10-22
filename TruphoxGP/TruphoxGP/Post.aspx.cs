@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TruphoxGP
 {
@@ -23,6 +25,7 @@ namespace TruphoxGP
                 {
                     //make artwork panel visible
                     pnlArtwork.Visible = true;
+                    loadArt(postID);
                 }
 
                 if (postType == "writing")
@@ -45,10 +48,14 @@ namespace TruphoxGP
             }
         }
 
-        private void loadPost(int postID)
-        {
+        private void loadArt(int PostID)
+        {          
             //load post
-            mydal = new DAL("")
+            mydal = new DAL("spReadWriting");
+            mydal.addParm("postID", PostID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+            lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
 
 
         }

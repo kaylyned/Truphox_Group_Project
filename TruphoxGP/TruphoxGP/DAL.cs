@@ -44,10 +44,11 @@ namespace TruphoxGP
             sc.CommandType = CommandType.StoredProcedure;
             foreach (var parm in _parms)
             {
-                _Connection.Open();
-                sc.ExecuteNonQuery();
-                _Connection.Close();
+                sc.Parameters.AddWithValue(parm._p, parm._v);
             }
+            _Connection.Open();
+            sc.ExecuteNonQuery();
+            _Connection.Close();
         }
 
         public string execScalar()

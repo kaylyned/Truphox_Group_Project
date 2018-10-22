@@ -4,7 +4,7 @@
     <br />
     <h2>Reset Password</h2>
     <div>
-        <asp:Button ID="btnHome" runat="server" Text="Back to Home" Visible="false" />
+        <asp:Button ID="btnHome" runat="server" Text="Back to Home" Visible="false" OnClick="btnHome_Click" />
         <br />
 
         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
@@ -27,7 +27,7 @@
                         </td>
                     </tr>
             </table>
-            <asp:Button ID="btnReset" runat="server" Text="Reset Password" />
+            <asp:Button ID="btnReset" runat="server" Text="Reset Password" OnClick="btnReset_Click" />
         </asp:Panel>
     </div>
 </asp:Content>

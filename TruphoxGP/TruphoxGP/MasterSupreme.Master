@@ -45,7 +45,7 @@
                             <li><a href="Login.aspx">LOGIN</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a><span class="glyphicon glyphicon-search"><asp:Button ID="btnSearch" runat="server"  /></span></a></li>
                 </ul>
             </div>
         </div>

@@ -59,7 +59,6 @@ namespace TruphoxGP
             myDal.addParm("username", txtUsername.Text);
             DataSet ds = myDal.getDataSet();
 
-
             string message = ds.Tables[0].Rows[0]["MESSAGE"].ToString();
             string email = ds.Tables[0].Rows[0]["email"].ToString();
 
@@ -68,7 +67,7 @@ namespace TruphoxGP
             {
                 Guid recoveryGuid = Guid.NewGuid();
 
-                myDal = new DAL("spRecoverPassword");
+                myDal = new DAL("spInsertGuid");
                 myDal.addParm("email", email);
                 myDal.addParm("recoveryGuid", recoveryGuid.ToString());
 
@@ -78,7 +77,7 @@ namespace TruphoxGP
                 emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
                 emailMessage.To.Add(new MailAddress(email));
                 emailMessage.Subject = "Password Reset";
-                emailMessage.Subject = "You have requested to reset your password. Please click the following link. http://localhost:63156/Reset.aspx?g=" + recoveryGuid.ToString();
+                emailMessage.Body = "You have requested to reset your password. Please click the following link. http://localhost:63156/Reset.aspx?g=" + recoveryGuid.ToString();
                 SmtpClient client = new SmtpClient();
                 client.Host = "smtp.gmail.com";
                 client.Port = 587;

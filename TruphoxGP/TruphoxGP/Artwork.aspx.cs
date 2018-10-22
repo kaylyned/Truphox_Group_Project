@@ -58,7 +58,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=art");               
+                string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
                 Response.Redirect(postDet);
             }      
         }

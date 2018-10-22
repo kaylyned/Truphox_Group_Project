@@ -15,19 +15,20 @@
                     <asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label>
 
                     <%-- Artwork --%>
-                    <asp:Panel ID="pnlArtwork" runat="server">
+                    <asp:Panel ID="pnlArtwork" runat="server" Visible="false">
+                        <asp:Image ID="imgArtwork" runat="server" />
                     </asp:Panel>
 
                     <%-- Writing --%>
-                    <asp:Panel ID="pnlWriting" runat="server">
+                    <asp:Panel ID="pnlWriting" runat="server" Visible="false">
                     </asp:Panel>
 
                     <%-- Photography --%>
-                    <asp:Panel ID="pnlPhotography" runat="server">
+                    <asp:Panel ID="pnlPhotography" runat="server" Visible="false">
                     </asp:Panel>
 
                     <%-- Video --%>
-                    <asp:Panel ID="pnlVideo" runat="server">
+                    <asp:Panel ID="pnlVideo" runat="server" Visible="false">
                     </asp:Panel>
 
                     <div class="row">

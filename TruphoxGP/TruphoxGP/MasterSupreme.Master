@@ -45,16 +45,27 @@
                                 <li><a href="Login.aspx">LOGIN</a></li>
                             </ul>
                         </li>
-                        <li><input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" /></li>
-                        <li><button runat="server" id="btnSearch" style = "height: 45px; width:30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span> </button></li>
+                        <li>
+                            <input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" placeholder="Search..." /></li>
+                        <li>
+                            <button runat="server" id="btnSearch" style="height: 45px; width: 30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <br /><br />
+        <ul id="wraper">
+            <li><a href="#">Phox Solutions</a></li>
+            <li><a href="#">Photography</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Video</a></li>
+        </ul>
         <script>
             $(document).ready(function () {
                 // Initialize Tooltip
                 $('[data-toggle="tooltip"]').tooltip();
+                Search();
 
                 // Add smooth scrolling to all links in navbar + footer link
                 $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
@@ -79,6 +90,24 @@
                         });
                     } // End if
                 });
+                function Search() {
+                    var input, filter, ul, li, a, i;
+
+                    input = document.getElementById('txtSearch');
+                    filter = input.nodeValue.toLowerCase;
+                    ul = document.getElementById('wrapper');
+                    li = ul.getElementsByTagName('li');
+
+                    for (i = 0; i < li.length; i++) {
+                        a = li[i].getElementsByTagName('a')[0];
+                        if (a.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                            li[i].style.display = "";
+                        }
+                        else {
+                            li[i].style.display = "none";
+                        }
+                    }
+                }
             })
         </script>
 

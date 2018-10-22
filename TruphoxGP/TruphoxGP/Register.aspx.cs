@@ -35,7 +35,7 @@ namespace TruphoxGP
                 myDal.addParm("email", txtEmail.Text);
                 myDal.addParm("firstName", txtFirst.Text);
                 myDal.addParm("lastName", txtLast.Text);
-                myDal.addParm("dob", dob);
+                myDal.addParm("dob", Convert.ToString(dob.Date));
                 myDal.getDataSet();
 
                 //Send email with confirmation link

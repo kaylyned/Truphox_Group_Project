@@ -56,8 +56,12 @@ namespace TruphoxGP
         {
             dlArtTrending.SelectedIndex = e.Item.ItemIndex;
             DataListItem myDL = dlArtTrending.SelectedItem;
+
             Label lblPost = (Label)myDL.FindControl("postID");
-            Response.Redirect("Post.aspx");
+            Image imgATrend = (Image)myDL.FindControl("artLink");
+
+            string postDet = ("Post.aspx?postID =" + lblPost.Text + "&artLink" + imgATrend.ImageUrl);
+            Response.Redirect("postDet");
         }
     }
 }

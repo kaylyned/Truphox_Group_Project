@@ -3,11 +3,11 @@
     <div id="band" class="container text-center">
         <h3>&nbsp;&nbsp;&nbsp; ARTWORK</h3>
         <hr />           
-        <asp:DataList ID="dlArtTrending" runat="server" Width="791px" RepeatDirection="Horizontal" OnItemCommand="dlArtTrending_ItemCommand" RepeatColumns="3" CssClass="dlATrend" >
+        <asp:DataList ID="dlArtTrending" runat="server" Width="791px" RepeatDirection="Horizontal" OnItemCommand="dlArtTrending_ItemCommand" RepeatColumns="3" CssClass="dlATrend" DataKeyField="postID" >
             <ItemTemplate>
                <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>' ></asp:Label>
                 <br />
-                <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                <asp:ImageButton ID="imgATrend" CommandName="Select" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
             </ItemTemplate>

@@ -54,14 +54,13 @@ namespace TruphoxGP
 
         protected void dlArtTrending_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            dlArtTrending.SelectedIndex = e.Item.ItemIndex;
-            DataListItem myDL = dlArtTrending.SelectedItem;
+            int itemID = Convert.ToInt32(dlArtTrending.DataKeys[e.Item.ItemIndex]);
 
-            Label lblPost = (Label)myDL.FindControl("postID");
-            Image imgATrend = (Image)myDL.FindControl("artLink");
-
-            string postDet = ("Post.aspx?postID =" + lblPost.Text + "&artLink" + imgATrend.ImageUrl);
-            Response.Redirect("postDet");
+            if (e.CommandName == "Select")
+            {
+                string postDet = ("Post.aspx?postID=" + itemID.ToString());               
+                Response.Redirect(postDet);
+            }      
         }
     }
 }

@@ -8,13 +8,13 @@ using System.Web.UI.WebControls;
 using TruphoxGP;
 
 namespace TruphoxGP
-{ 
+{
     public partial class Art : System.Web.UI.Page
     {
-        DAL mydal; 
+        DAL mydal;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 loadATrending();
                 loadARecent();
@@ -28,7 +28,7 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[1];
 
-            dlArtTrending.DataSource = dtA; 
+            dlArtTrending.DataSource = dtA;
             dlArtTrending.DataBind();
         }
 
@@ -56,12 +56,11 @@ namespace TruphoxGP
         {
             dlArtTrending.SelectedIndex = e.Item.ItemIndex;
             DataListItem myDL = dlArtTrending.SelectedItem;
-
-            Label lblPost = (Label)myDL.FindControl("postID");
+            Label lblpostID = (Label)myDL.FindControl("postID");
             Image imgATrend = (Image)myDL.FindControl("artLink");
 
-            string postDet = ("Post.aspx?postID =" + lblPost.Text + "&artLink" + imgATrend.ImageUrl);
-            Response.Redirect("postDet");
+            string postDet = ("Post.aspx?postID=" + lblpostID.Text + "&artLink" + imgATrend.ImageUrl);
+            Response.Redirect(postDet);
         }
     }
 }

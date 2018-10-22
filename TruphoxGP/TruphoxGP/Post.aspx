@@ -10,8 +10,26 @@
             <br />
             <div class="row content">
                 <div class="leftcolumn">
-                    <h2>POST HERE</h2>
-                    <h5>SOME DESCRIPTION, 2018</h5>
+                    <asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label>
+                    <br />
+                    <asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label>
+
+                    <%-- Artwork --%>
+                    <asp:Panel ID="pnlArtwork" runat="server">
+                    </asp:Panel>
+
+                    <%-- Writing --%>
+                    <asp:Panel ID="pnlWriting" runat="server">
+                    </asp:Panel>
+
+                    <%-- Photography --%>
+                    <asp:Panel ID="pnlPhotography" runat="server">
+                    </asp:Panel>
+
+                    <%-- Video --%>
+                    <asp:Panel ID="pnlVideo" runat="server">
+                    </asp:Panel>
+
                     <div class="row">
                         <div class="col-sm-4">
                             <p></p>

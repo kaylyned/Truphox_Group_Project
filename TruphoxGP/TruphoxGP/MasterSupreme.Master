@@ -17,73 +17,71 @@
     <link href="Design.css" rel="stylesheet" />
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="Home.aspx">Logo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="Artwork.aspx">ARTWORK</a></li>
-                    <li><a href="Photography.aspx">PHOTOGRAPHY</a></li>
-                    <li><a href="Video.aspx">VIDEOS</a></li>
-                    <li><a href="Writting.aspx">WRITING</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
-          <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="Profile.aspx">PROFILE</a></li>
-                            <li><a href="#">STORE</a></li>
-                            <li><a href="Form.aspx">FORMS</a></li>
-                            <li><a href="Register.aspx">REGISTER</a></li>
-                            <li><a href="Login.aspx">LOGIN</a></li>
-                        </ul>
-                    </li>
-                    <li><a><span class="glyphicon glyphicon-search"><asp:Button ID="btnSearch" runat="server"  /></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <script>
-        $(document).ready(function () {
-            // Initialize Tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Add smooth scrolling to all links in navbar + footer link
-            $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
-
-                // Make sure this.hash has a value before overriding default behavior
-                if (this.hash !== "") {
-
-                    // Prevent default anchor click behavior
-                    event.preventDefault();
-
-                    // Store hash
-                    var hash = this.hash;
-
-                    // Using jQuery's animate() method to add smooth page scroll
-                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 900, function () {
-
-                        // Add hash (#) to URL when done scrolling (default click behavior)
-                        window.location.hash = hash;
-                    });
-                } // End if
-            });
-        })
-    </script>
-
     <form id="form1" runat="server">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="Home.aspx">Logo</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="Artwork.aspx">ARTWORK</a></li>
+                        <li><a href="Photography.aspx">PHOTOGRAPHY</a></li>
+                        <li><a href="Video.aspx">VIDEOS</a></li>
+                        <li><a href="Writting.aspx">WRITING</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+          <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Profile.aspx">PROFILE</a></li>
+                                <li><a href="#">STORE</a></li>
+                                <li><a href="Form.aspx">FORMS</a></li>
+                                <li><a href="Register.aspx">REGISTER</a></li>
+                                <li><a href="Login.aspx">LOGIN</a></li>
+                            </ul>
+                        </li>
+                        <li><input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" /></li>
+                        <li><button runat="server" id="btnSearch" style = "height: 45px; width:30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span> </button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script>
+            $(document).ready(function () {
+                // Initialize Tooltip
+                $('[data-toggle="tooltip"]').tooltip();
+
+                // Add smooth scrolling to all links in navbar + footer link
+                $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+
+                        // Store hash
+                        var hash = this.hash;
+
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 900, function () {
+
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+            })
+        </script>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

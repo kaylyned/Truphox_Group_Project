@@ -19,6 +19,7 @@ CREATE TABLE tbAccount
 	dob DATETIME,
 	profileImage VARCHAR(150),
 	bio VARCHAR(400),
+	joinDate DATETIME,
 	active BIT,
 	accessLevel INT
 )
@@ -168,6 +169,7 @@ CREATE PROCEDURE spCreateAccount
 	@dob DATETIME,
 	@bio VARCHAR(400) = null,
 	@profileImage VARCHAR(150) = null,
+	@joinDate DATETIME,
 	@active BIT = 1,
 	@accessLevel INT = 1
 )
@@ -179,8 +181,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, bio, profileImage, active, accessLevel) VALUES
-						(@username, @userPassword, @email, @firstName, @lastName, @dob, @bio, @profileImage, @active, @accessLevel)
+			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, bio, profileImage, joinDate, active, accessLevel) VALUES
+						(@username, @userPassword, @email, @firstName, @lastName, @dob, @bio, @profileImage, @joinDate, @active, @accessLevel)
 		END
 END
 GO

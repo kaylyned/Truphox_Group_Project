@@ -756,8 +756,9 @@ CREATE PROCEDURE spReadWriting
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT * FROM tbWriting WHERE postID = ISNULL(@postID, postID);
+	SELECT p.postTitle, p.postSubTitle, w.writingText
+	FROM tbPost p INNER JOIN tbWriting w ON
+	p.postID = w.postID
 END
 GO
 
@@ -828,7 +829,7 @@ CREATE PROCEDURE spReadArt
 )
 AS
 BEGIN
-	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle
+	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle, postSubTitle
 	FROM tbPost p INNER JOIN tbArt a ON
 	p.postID = a.postID
 	WHERE a.postID = ISNULL(@postID, a.postID);

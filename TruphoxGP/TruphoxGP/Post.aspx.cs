@@ -32,6 +32,7 @@ namespace TruphoxGP
                 {
                     //make artwork panel visible
                     pnlWriting.Visible = true;
+                    loadWriting(postID);
                 }
 
                 if (postType == "photography")
@@ -51,13 +52,25 @@ namespace TruphoxGP
         private void loadArt(int PostID)
         {          
             //load post
+            mydal = new DAL("spReadArt");
+            mydal.addParm("postID", PostID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+            lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+            lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+            imgArtwork.ImageUrl = ds.Tables[0].Rows[0]["artLink"].ToString();
+        }
+
+        private void loadWriting(int PostID)
+        {
+            //load post
             mydal = new DAL("spReadWriting");
             mydal.addParm("postID", PostID.ToString());
             DataSet ds = mydal.getDataSet();
 
             lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-
-
+            lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+            lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();           
         }
     }
 }

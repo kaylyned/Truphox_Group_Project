@@ -21,14 +21,20 @@
 
                     <%-- Writing --%>
                     <asp:Panel ID="pnlWriting" runat="server" Visible="false">
+                        <p>
+                            <asp:Label ID="lblWriting" runat="server" Text=""></asp:Label>
+                        </p>
                     </asp:Panel>
 
                     <%-- Photography --%>
                     <asp:Panel ID="pnlPhotography" runat="server" Visible="false">
+                        <asp:Image ID="imgPhotography" runat="server" />
                     </asp:Panel>
 
                     <%-- Video --%>
                     <asp:Panel ID="pnlVideo" runat="server" Visible="false">
+                        <video id="postVideo" controls="controls">
+                        </video>
                     </asp:Panel>
 
                     <div class="row">

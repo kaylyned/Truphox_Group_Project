@@ -18,6 +18,7 @@ CREATE TABLE tbAccount
 	lastName VARCHAR (40),
 	dob DATETIME,
 	profileImage VARCHAR(150),
+	bio VARCHAR(400),
 	active BIT,
 	accessLevel INT
 )
@@ -49,6 +50,8 @@ CREATE TABLE tbPost
 (
 	postID INT IDENTITY(0,1) PRIMARY KEY,
 	rating BIT,
+	postTitle VARCHAR(50),
+	postSubTitle VARCHAR(50),
 	postText VARCHAR(800),
 	postDate DATETIME,
 	lastComment INT,
@@ -101,36 +104,28 @@ CREATE TABLE tbWriting
 (
 	writingID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	writingText VARCHAR(3000),
-	writingTitle VARCHAR(100),
-	writingSubTitle VARCHAR(100)
+	writingText VARCHAR(3000)
 )
 
 CREATE TABLE tbArt
 (
 	artID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	artLink VARCHAR(150),
-	artTitle VARCHAR(100),
-	artSubtitle VARCHAR(100)
+	artLink VARCHAR(150)
 )
 
 CREATE TABLE tbPhotography
 (
 	photoID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	photoLink VARCHAR(150),
-	photoTitle VARCHAR(100),
-	photoSubtitle VARCHAR(100)
+	photoLink VARCHAR(150)
 )
 
 CREATE TABLE tbVideo
 (
 	videoID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	videoLink VARCHAR(150),
-	videoTitle VARCHAR(100),
-	videoSubtitle VARCHAR(100)
+	videoLink VARCHAR(150)
 )
 
 Create Table tbPassRecovery
@@ -171,6 +166,7 @@ CREATE PROCEDURE spCreateAccount
 	@firstName VARCHAR(40),
 	@lastName VARCHAR (40),
 	@dob DATETIME,
+	@bio VARCHAR(400) = null,
 	@profileImage VARCHAR(150) = null,
 	@active BIT = 1,
 	@accessLevel INT = 1
@@ -183,8 +179,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, profileImage, active, accessLevel) VALUES
-						(@username, @userPassword, @email, @firstName, @lastName, @dob, @profileImage, @active, @accessLevel)
+			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, bio, profileImage, active, accessLevel) VALUES
+						(@username, @userPassword, @email, @firstName, @lastName, @dob, @bio, @profileImage, @active, @accessLevel)
 		END
 END
 GO
@@ -480,13 +476,15 @@ CREATE PROCEDURE spCreatePost
 	@rating BIT,
 	@postText VARCHAR(800),
 	@postDate DATETIME,
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@lastComment INT,
 	@username VARCHAR(30)
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, lastComment, username) VALUES
-					(@rating, @postText, GETDATE(), @lastComment, @username)
+	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, lastComment, username) VALUES
+					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle, @lastComment, @username)
 END
 GO
 
@@ -515,6 +513,8 @@ BEGIN
 	rating = @rating,
 	postText = @postText,
 	postDate = @postDate,
+	postTitle = @postTitle,
+	postSubtitle = @postSubTitle,
 	lastComment = @lastComment,
 	username = @username
 	WHERE postID = @postID
@@ -733,17 +733,17 @@ CREATE PROCEDURE spCreateWriting
 (
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubtitle VARCHAR(50),
 	@username VARCHAR(30),
-	@writingText VARCHAR(3000),
-	@writingTitle VARCHAR(100),
-	@writingSubTitle VARCHAR(100)
+	@writingText VARCHAR(3000)
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
-					(@rating, @postText, GETDATE(), @username)
-	INSERT INTO tbWriting (writingText, postID, writingTitle, writingSubTitle) VALUES
-					(@writingText, @@IDENTITY, @writingTitle, @writingSubTitle)
+	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubtitle, username) VALUES
+					(@rating, @postText, GETDATE(), @postTitle, @postSubtitle, @username)
+	INSERT INTO tbWriting (writingText, postID) VALUES
+					(@writingText, @@IDENTITY)
 END
 GO
 
@@ -763,24 +763,23 @@ CREATE PROCEDURE spUpdateWriting
 	@postID INT,
 	@rating BIT,
 	@postText VARCHAR(800),
-	@postDate DATETIME,
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@writingText VARCHAR(3000),
-	@writingTitle VARCHAR(100),
-	@writingSubTitle VARCHAR(100)
+	@writingText VARCHAR(3000)
 )
 AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
 	postText = @postText,
+	postTitle = @postTitle,
+	postSubtitle = @postSubTitle,
 	username = @username
 	WHERE postID = @postID
 
 	UPDATE tbWriting SET
-	writingText = @writingText,
-	writingTitle  = @writingTitle,
-	writingSubTitle = @writingSubTitle
+	writingText = @writingText
 	WHERE postID = @postID
 END
 GO
@@ -806,17 +805,17 @@ CREATE PROCEDURE spCreateArt
 (
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@artLink VARCHAR(150),
-	@artTitle VARCHAR(100),
-	@artSubtitle VARCHAR(100)
+	@artLink VARCHAR(150)
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
-					(@rating, @postText, GETDATE(), @username)
-	INSERT INTO tbArt (postID, artLink, artTitle, artSubtitle) VALUES
-					(@@IDENTITY, @artLink, @artTitle, @artSubtitle)
+	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating, @postText, GETDATE(),@postTitle, @postSubTitle, @username)
+	INSERT INTO tbArt (postID, artLink) VALUES
+					(@@IDENTITY, @artLink)
 END
 GO
 
@@ -827,7 +826,7 @@ CREATE PROCEDURE spReadArt
 AS
 BEGIN
 	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT postID as 'postID', './Images/' + artLink  as 'artLink' , artTitle as'artTitle', artSubtitle as'artSubtitle' FROM tbArt 
+	SELECT postID as 'postID', './Images/' + artLink  as 'artLink' FROM tbArt 
 	WHERE postID = ISNULL(@postID, postID);
 END
 GO
@@ -840,23 +839,23 @@ CREATE PROCEDURE spUpdateArt
 	@postID INT,
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@artLink VARCHAR(150),
-	@artTitle VARCHAR(100),
-	@artSubtitle VARCHAR(100)
+	@artLink VARCHAR(150)
 )
 AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
 	postText = @postText,
+	postTitle = @postTitle,
+	postSubtitle = @postSubTitle,
 	username = @username
 	WHERE postID = @postID
 
 	UPDATE tbArt SET
-	artLink = @artLink,
-	artTitle = @artTitle,
-	artSubtitle = @artSubtitle
+	artLink = @artLink
 	WHERE postID = @postID
 END
 GO
@@ -882,17 +881,18 @@ CREATE PROCEDURE spCreatePhotography
 (
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@photoLink VARCHAR(150),
-	@photoTitle VARCHAR(100),
-	@photoSubtitle VARCHAR(100)
+	@photoLink VARCHAR(150)
+
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
-					(@rating, @postText, GETDATE(), @username)
-	INSERT INTO tbPhotography (postID, photoLink, photoTitle, photoSubtitle) VALUES
-					(@@IDENTITY, @photoLink, @photoTitle, @photoSubtitle)
+	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle,  @username)
+	INSERT INTO tbPhotography (postID, photoLink) VALUES
+					(@@IDENTITY, @photoLink)
 END
 GO
 
@@ -912,23 +912,23 @@ CREATE PROCEDURE spUpdatePhotography
 	@postID INT,
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@photoLink VARCHAR(150),
-	@photoTitle VARCHAR(100),
-	@photoSubtitle VARCHAR(100)
+	@photoLink VARCHAR(150)
 )
 AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
 	postText = @postText,
+	postTitle = @postTitle,
+	postSubtitle = @postSubTitle,
 	username = @username
 	WHERE postID = @postID
 
 	UPDATE tbPhotography SET
-	photoLink = @photoLink,
-	photoTitle = @photoTitle,
-	photoSubtitle = @photoSubtitle
+	photoLink = @photoLink
 	WHERE postID = @postID
 END
 GO
@@ -954,17 +954,17 @@ CREATE PROCEDURE spCreateVideo
 (
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@videoLink VARCHAR(150),
-	@videoTitle VARCHAR(100),
-	@videoSubtitle VARCHAR(100)
+	@videoLink VARCHAR(150)
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, username) VALUES
+	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
 					(@rating, @postText, GETDATE(), @username)
-	INSERT INTO tbVideo (postID, videoLink, videoTitle, videoSubtitle) VALUES
-					(@@IDENTITY, @videoLink, @videoTitle, @videoSubtitle)
+	INSERT INTO tbVideo (postID, videoLink) VALUES
+					(@@IDENTITY, @videoLink)
 END
 GO
 
@@ -984,23 +984,23 @@ CREATE PROCEDURE spUpdateVideo
 	@postID INT,
 	@rating BIT,
 	@postText VARCHAR(800),
+	@postTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
-	@videoLink VARCHAR(150),
-	@videoTitle VARCHAR(100),
-	@videoSubtitle VARCHAR(100)
+	@videoLink VARCHAR(150)
 )
 AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
 	postText = @postText,
+	postTitle = @postTitle,
+	postSubtitle = @postSubTitle,
 	username = @username
 	WHERE postID = @postID
 
 	UPDATE tbVideo SET
-	videoLink = @videoLink,
-	videoTitle = @videoTitle,
-	videoSubtitle = @videoSubtitle
+	videoLink = @videoLink
 	WHERE postID = @postID
 END
 GO

@@ -5,13 +5,10 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <h1>PROFILE</h1>
+                <h1><asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
                     <asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" OnClick="btnLogout_Click" />
                     <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Edit" />
-                    <asp:Panel runat="server" Visible="false">
-                        <asp:Button ID="btnFollow" CssClass="btn btn-secondary" runat="server" Text="Follow" />
-                    </asp:Panel>
                 </div>
             </div>
             <br />
@@ -24,24 +21,24 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo" data-toggle="collapse">
-                                    <img src="Images/profilePict.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                                    <asp:Image ID="imgRecent1" runat="server" src="" class="img-circle person"  width="255" height="255" />
                                 </a>
                                 <div id="demo" class="collapse">
                                     <p>
-                                        <input id="Text1" type="text" />
+                                        <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
                                     </p>
                                     <p>
-                                        <input id="Text2" type="text" />
+                                        <asp:Label ID="lblSubTitle" runat="server" Text=""></asp:Label> 
                                     </p>
                                     <p>
-                                        <input id="Text3" type="text" />
+                                        <asp:Label ID="lblDateCreated" runat="server" Text=""></asp:Label>
                                     </p>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo2" data-toggle="collapse">
-                                    <img src="Images/profilePict.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                                   <asp:Image ID="imgRecent2" runat="server" src="" class="img-circle person"  width="255" height="255" />
                                 </a>
                                 <div id="demo2" class="collapse">
                                     <p>
@@ -58,7 +55,7 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo3" data-toggle="collapse">
-                                    <img src="Images/profilePict.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+                                      <asp:Image ID="imgRecent3" runat="server" src="" class="img-circle person"  width="255" height="255" />
                                 </a>
                                 <div id="demo3" class="collapse">
                                     <p>

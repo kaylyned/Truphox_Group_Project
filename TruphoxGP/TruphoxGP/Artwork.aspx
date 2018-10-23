@@ -9,7 +9,7 @@
                 <br />
                 <asp:ImageButton ID="imgATrend" CommandName="Select" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
-                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("postTile") %>'></asp:Label>
             </ItemTemplate>
         </asp:DataList>
         <hr />
@@ -19,7 +19,7 @@
                 <br />
                 <asp:ImageButton ID="imgARecent" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
-                <asp:Label ID="lblARecent" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
+                <asp:Label ID="lblARecent" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>
         </asp:DataList>
         <hr />
@@ -29,7 +29,7 @@
                 <br />
               <asp:ImageButton ID="imgAFav" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
-                <asp:Label ID="lblAFav" runat="server" Text='<%#Eval("artTitle") %>'></asp:Label>
+                <asp:Label ID="lblAFav" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>
         </asp:DataList>
     </div>

@@ -169,7 +169,6 @@ CREATE PROCEDURE spCreateAccount
 	@dob DATETIME,
 	@bio VARCHAR(400) = null,
 	@profileImage VARCHAR(150) = null,
-	@joinDate DATETIME,
 	@active BIT = 1,
 	@accessLevel INT = 1
 )
@@ -182,7 +181,7 @@ BEGIN
 	ELSE
 		BEGIN
 			INSERT INTO tbAccount (username, userPassword, email, firstName, lastName, dob, bio, profileImage, joinDate, active, accessLevel) VALUES
-						(@username, @userPassword, @email, @firstName, @lastName, @dob, @bio, @profileImage, @joinDate, @active, @accessLevel)
+						(@username, @userPassword, @email, @firstName, @lastName, @dob, @bio, @profileImage, GETDATE(), @active, @accessLevel)
 		END
 END
 GO
@@ -829,14 +828,13 @@ CREATE PROCEDURE spReadArt
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT postID as 'postID', './Images/' + artLink  as 'artLink' FROM tbArt 
-	WHERE postID = ISNULL(@postID, postID);
+	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle
+	FROM tbPost p INNER JOIN tbArt a ON
+	p.postID = a.postID
+	WHERE a.postID = ISNULL(@postID, a.postID);
 END
 GO
 
-EXEC spReadArt 
-GO
 
 CREATE PROCEDURE spUpdateArt
 (

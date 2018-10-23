@@ -125,6 +125,7 @@
     <Content Include="Settings.aspx" />
     <Content Include="TAP.aspx" />
     <Content Include="Video.aspx" />
+    <Content Include="viewProfile.aspx" />
     <Content Include="Writting.aspx" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
@@ -251,6 +252,13 @@
     </Compile>
     <Compile Include="Video.aspx.designer.cs">
       <DependentUpon>Video.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="viewProfile.aspx.cs">
+      <DependentUpon>viewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="viewProfile.aspx.designer.cs">
+      <DependentUpon>viewProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Writting.aspx.cs">
       <DependentUpon>Writting.aspx</DependentUpon>

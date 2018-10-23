@@ -55,12 +55,12 @@
             </div>
         </nav>
         <br /><br />
-        <ul id="wraper">
+<%--        <ul id="wraper">
             <li><a href="#">Phox Solutions</a></li>
             <li><a href="#">Photography</a></li>
             <li><a href="#">Art</a></li>
             <li><a href="#">Video</a></li>
-        </ul>
+        </ul>--%>
         <script>
             $(document).ready(function () {
                 // Initialize Tooltip

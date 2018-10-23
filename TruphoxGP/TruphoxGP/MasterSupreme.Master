@@ -41,8 +41,9 @@
                                 <li><a href="Profile.aspx">PROFILE</a></li>
                                 <li><a href="#">STORE</a></li>
                                 <li><a href="Form.aspx">FORMS</a></li>
-                                <li><a href="Register.aspx">REGISTER</a></li>
-                                <li><a href="Login.aspx">LOGIN</a></li>
+                                <asp:Panel ID="pnlRegister" runat="server" Visible="false"><li><a href="Register.aspx">REGISTER</a></li></asp:Panel>
+                                <asp:Panel ID="pnlLogin" runat="server" Visible="false"><li><a href="Login.aspx">LOGIN</a></li></asp:Panel>
+                                <asp:Panel ID="pnlLogout" runat="server" Visible="false"><li><asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" /></li></asp:Panel>
                             </ul>
                         </li>
                         <li>
@@ -54,8 +55,9 @@
                 </div>
             </div>
         </nav>
-        <br /><br />
-<%--        <ul id="wraper">
+        <br />
+        <br />
+        <%--        <ul id="wraper">
             <li><a href="#">Phox Solutions</a></li>
             <li><a href="#">Photography</a></li>
             <li><a href="#">Art</a></li>

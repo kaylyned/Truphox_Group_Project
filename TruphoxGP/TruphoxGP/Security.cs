@@ -40,10 +40,10 @@ namespace TruphoxGP
             username = Username;
             userPassword = UserPassword;
 
-            //Add Log In Proc
+            //Add Login Proc
             myDal = new DAL("spLogin");
-            myDal.addParm("username", username.ToString());
-            myDal.addParm("userPassword", userPassword.ToString());
+            myDal.addParm("username", username);
+            myDal.addParm("userPassword", userPassword);
             DataSet ds = myDal.getDataSet();
 
             string message = ds.Tables[0].Rows[0]["message"].ToString();
@@ -51,7 +51,7 @@ namespace TruphoxGP
             username = ds.Tables[0].Rows[0]["username"].ToString();
             active = Convert.ToBoolean(ds.Tables[0].Rows[0]["active"]);
 
-            if (message != "valid")
+            if (message != "invalid")
             {
                 isLoggedIn = true;
                 HttpContext.Current.Session["username"] = username;

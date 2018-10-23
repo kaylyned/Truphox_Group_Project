@@ -25,7 +25,7 @@ namespace TruphoxGP
                 {
                     //make artwork panel visible
                     pnlArtwork.Visible = true;
-                    //loadArt(postID);
+                    loadArt(postID);
                 }
 
                 if (postType == "writing")

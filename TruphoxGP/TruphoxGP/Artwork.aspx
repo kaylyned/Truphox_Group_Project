@@ -9,7 +9,7 @@
                 <br />
                 <asp:ImageButton ID="imgATrend" CommandName="Select" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
-                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("postTile") %>'></asp:Label>
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
             </ItemTemplate>
         </asp:DataList>
         <hr />

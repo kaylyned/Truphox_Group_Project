@@ -26,7 +26,7 @@ namespace TruphoxGP
         {
             mydal = new DAL("spReadArt");
             DataSet ds = mydal.getDataSet();
-            DataTable dtA = ds.Tables[1];
+            DataTable dtA = ds.Tables[0];
 
             dlArtTrending.DataSource = dtA; 
             dlArtTrending.DataBind();
@@ -36,7 +36,7 @@ namespace TruphoxGP
         {
             mydal = new DAL("spReadArt");
             DataSet ds = mydal.getDataSet();
-            DataTable dtA = ds.Tables[1];
+            DataTable dtA = ds.Tables[0];
 
             dlArtTrending.DataSource = dtA;
             dlArtTrending.DataBind();
@@ -46,7 +46,7 @@ namespace TruphoxGP
         {
             mydal = new DAL("spReadArt");
             DataSet ds = mydal.getDataSet();
-            DataTable dtA = ds.Tables[1];
+            DataTable dtA = ds.Tables[0];
 
             dlArtTrending.DataSource = dtA;
             dlArtTrending.DataBind();

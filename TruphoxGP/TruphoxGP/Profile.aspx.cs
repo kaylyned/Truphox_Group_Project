@@ -41,28 +41,28 @@ namespace TruphoxGP
             lblDateJoined.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["joinDate"]).ToString();
 
         }
-        private void loadRecentlyAdded()
-        {
-            myDal = new DAL("spReadArt");
-            myDal.addParm("postID");
-            DataSet ds = myDal.getDataSet();
+        //private void loadRecentlyAdded()
+        //{
+        //    myDal = new DAL("spReadArt");
+        //    myDal.addParm("postID");
+        //    DataSet ds = myDal.getDataSet();
 
-            imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
+        //    imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
 
-            lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+        //    lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+        //    lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+        //    lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            imgRecent2.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
+        //    imgRecent2.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
 
-            lblTitle2.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle2.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated2.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+        //    lblTitle2.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+        //    lblSubTitle2.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+        //    lblDateCreated2.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
-            lblTitle3.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle3.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated3.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
-        }
+        //    imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
+        //    lblTitle3.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+        //    lblSubTitle3.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+        //    lblDateCreated3.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+        //}
     }
 }

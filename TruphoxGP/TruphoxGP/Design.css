@@ -194,6 +194,21 @@ body {
     }
 }
 
+.userWriting {
+    max-width: 650px;
+    overflow: auto;
+}
+
+.literature {
+    width: 400px;
+    height: 300px;
+    padding: 0px 30px;
+    border-radius: 0;
+    overflow: auto;
+}
+
+
+
 /*HOME PAGE... has trending flip pages*/
 .carousel-inner img {
     -webkit-filter: grayscale(90%);
@@ -268,8 +283,8 @@ body {
 }
 
 /*ARTWORK*/
-.dlATrend{
-}
+/*.dlATrend{
+}*/
 .ATrendImages{
     width:300px;
     height:300px;

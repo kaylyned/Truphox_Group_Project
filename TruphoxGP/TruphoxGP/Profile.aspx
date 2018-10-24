@@ -118,13 +118,16 @@
                             </div>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" >
                                     <ItemTemplate>
+                                        <div class="fakeimg, literature" style="overflow:auto;">
                                         <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
-                                        <br />
-                                        <asp:Label ID="ibWriting" runat="server" Text="<%#Eval ('writingText') %>"></asp:Label>
+                                            <br />
+                                        <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>'></asp:Label>
+                                            </div>
                                         <br />
                                     </ItemTemplate>
+                                    <SeparatorStyle BorderStyle="Ridge" />
                                 </asp:DataList>
                             </div>
                         </div>

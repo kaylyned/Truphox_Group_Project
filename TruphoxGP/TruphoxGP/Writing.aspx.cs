@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TruphoxGP
 {
-    public partial class Writting : System.Web.UI.Page
+    public partial class Writing : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

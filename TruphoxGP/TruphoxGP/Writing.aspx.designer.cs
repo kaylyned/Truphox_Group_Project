@@ -10,7 +10,7 @@
 namespace TruphoxGP {
     
     
-    public partial class Writting {
+    public partial class Writing {
         
         /// <summary>
         /// dlWriteTrending control.

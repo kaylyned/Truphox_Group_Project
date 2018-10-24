@@ -159,7 +159,7 @@
     <Compile Include="Artwork.aspx.designer.cs">
       <DependentUpon>Artwork.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Comment.cs" />
+    <Compile Include="comment.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Form.aspx.cs">
       <DependentUpon>Form.aspx</DependentUpon>
@@ -196,6 +196,7 @@
     <Compile Include="Post.aspx.designer.cs">
       <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
+    <Compile Include="post.cs" />
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

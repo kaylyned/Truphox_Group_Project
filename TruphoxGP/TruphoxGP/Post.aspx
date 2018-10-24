@@ -52,7 +52,9 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>COMMENT SYSTEM HERE</h2>
-                                <p>COMMENT SYSTEM HERE</p>
+                                <div id="divComments" runat="server">
+
+                                </div>
                             </div>
                         </div>
                     </div>

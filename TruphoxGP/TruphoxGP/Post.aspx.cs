@@ -75,7 +75,29 @@ namespace TruphoxGP
 
         private void loadComments(int postID)
         {
+            post loadComments = new post();
+            List<comment> comments;
+            comments = loadComments.getComments();
 
+            Panel pnlComments = new Panel();
+            divComments.Controls.Add(pnlComments);
+
+            foreach (comment comment in comments)
+            {
+                Label commentLabel = new Label();
+                commentLabel.Text = comment.commentText;
+                pnlComments.Controls.Add(new LiteralControl("<br />"));
+
+                Label commentDate = new Label();
+                commentDate.Text = (comment.commentDate).ToString();
+                pnlComments.Controls.Add(commentDate);
+                pnlComments.Controls.Add(new LiteralControl("<br />"));
+                Button btnLike = new Button();
+                btnLike.Text = "Like";
+                pnlComments.Controls.Add(btnLike);
+                pnlComments.Controls.Add(new LiteralControl("<br />"));
+                pnlComments.Controls.Add(new LiteralControl("<br />"));
+            }
         }
     }
 }

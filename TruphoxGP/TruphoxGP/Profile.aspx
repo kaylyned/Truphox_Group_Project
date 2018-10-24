@@ -85,45 +85,46 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
-                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
+                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArt_ItemCommand"  DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblApostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibArt" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibArt" runat="server" ImageUrl='<%#Eval("artLink") %>' CommandName="Select" CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
-                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
+                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlPhotots_ItemCommand"  DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("photoLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("photoLink") %>' CommandName="Select"  CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
-                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
+                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlVideos_ItemCommand"  DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("videoLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("videoLink") %>' CommandName="Select" CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
+                                                     <%-- TURN LITERATURE INTO A PHOTO...???--%>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" >
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand"   DataKeyField="postID">
                                     <ItemTemplate>
                                         <div class="fakeimg, literature" style="overflow:auto;">
                                         <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                             <br />
-                                        <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>'></asp:Label>
+                                        <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>' CommandName="Select"></asp:Label>
                                             </div>
                                         <br />
                                     </ItemTemplate>

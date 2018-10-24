@@ -130,5 +130,49 @@ namespace TruphoxGP
             dlWriting.DataSource = dtA;
             dlWriting.DataBind();
         }
+
+        protected void dlArt_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlArt.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+            }
+        }
+
+        protected void dlPhotots_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlPhotots.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+            }
+        }
+
+        protected void dlWriting_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlWriting.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+            }
+        }
+
+        protected void dlVideos_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+            }
+        }
     }
 }

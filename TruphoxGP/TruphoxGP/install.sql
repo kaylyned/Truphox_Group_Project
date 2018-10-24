@@ -1025,12 +1025,12 @@ GO
 
 -------------------------------- USERS CREATED --------------------------------
 
-EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @bio='',  @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 
 SELECT * FROM tbAccount
 GO

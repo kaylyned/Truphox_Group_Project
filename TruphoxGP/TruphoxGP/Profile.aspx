@@ -144,7 +144,7 @@
         <div class="col-sm-4">
             <div class="well">
                 <p><asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label><asp:Label ID="lblLastName" runat="server" Text=""></asp:Label></p>
-                <p><asp:TextBox ID="txtBio" ReadOnly="true" runat="server" style="height: 100px;"></asp:TextBox> </p>
+                <p><asp:TextBox ID="txtBio" ReadOnly="true" runat="server" style="height: 100px;" TextMode="MultiLine"></asp:TextBox> </p>
                 <p><asp:Label ID="lblDOB" runat="server" Text=""></asp:Label></p>
                 <p><asp:Label ID="lblEmail" runat="server" Text=""></asp:Label></p>
                 <p><asp:Label ID="lblDateJoined" runat="server" Text=""></asp:Label></p>

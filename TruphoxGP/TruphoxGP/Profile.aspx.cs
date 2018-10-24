@@ -32,13 +32,13 @@ namespace TruphoxGP
             myDal.addParm("username", sec.username);
             DataSet ds = myDal.getDataSet();
 
-            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
+            lblUsername.Text = HttpContext.Current.Session["username"].ToString();
             lblFirstName.Text = ds.Tables[0].Rows[0]["firstName"].ToString();
             lblLastName.Text = ds.Tables[0].Rows[0]["lastName"].ToString();
-            //txtBio.Text = ds.Tables[0].Rows[0]["bio"].ToString();
+            txtBio.Text = ds.Tables[0].Rows[0]["bio"].ToString();
             lblDOB.Text = ds.Tables[0].Rows[0]["dob"].ToString();
             lblEmail.Text = ds.Tables[0].Rows[0]["email"].ToString();
-            //lblDateJoined.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["joinDate"]).ToString();
+            lblDateJoined.Text= Convert.ToDateTime(ds.Tables[0].Rows[0]["joinDate"]).ToString();
 
         }
     }

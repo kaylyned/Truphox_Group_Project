@@ -1080,15 +1080,95 @@ GO
 
 CREATE PROCEDURE spRecentlyAdded
 (
-@postID INT=null
+@postID INT=NULL,
+@username VARCHAR(30)
 )
 AS
 BEGIN
-	SELECT TOP 10  * FROM tbPost  ORDER BY username, postDate DESC 
+	SELECT TOP 10  * FROM tbPost  
+	WHERE username = @username 
+	ORDER BY  postDate DESC
 END
 GO
 
-EXEC spRecentlyAdded 
+EXEC spRecentlyAdded @username='wrenjay'
+GO
+
+------------------USER ART -------------------
+
+CREATE PROCEDURE spReadUserArt
+(
+@postID INT=NULL,
+@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle, postSubTitle FROM tbPost p INNER JOIN tbArt a ON 
+	a.postID = p.postID
+	WHERE username = @username 
+	ORDER BY  postDate ASC
+END
+GO
+
+EXEC spReadUserArt @username='wrenjay'
+GO
+
+------------------USER PHOTOGRAPHY -------------------
+
+CREATE PROCEDURE spReadUserPhotography
+(
+@postID INT=NULL,
+@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT p.postID as 'postID', './Images/' + photoLink  as 'photoLink', postTitle, postSubTitle 
+	FROM tbPost p INNER JOIN tbPhotography ph ON 
+	ph.postID = p.postID
+	WHERE username = @username 
+	ORDER BY  postDate ASC
+END
+GO
+
+EXEC spReadUserPhotography @username='wrenjay'
+GO
+
+------------------USER VIDEOS -------------------
+
+CREATE PROCEDURE spReadUserVideo
+(
+@postID INT=NULL,
+@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT  * FROM tbPost p INNER JOIN tbVideo v ON 
+	v.postID = p.postID
+	WHERE username = @username 
+	ORDER BY  postDate ASC
+END
+GO
+
+EXEC spReadUserVideo @username='wrenjay'
+GO
+
+------------------USER WRITING -------------------
+
+CREATE PROCEDURE spReadUserWriting
+(
+@postID INT=NULL,
+@username VARCHAR(30)
+)
+AS
+BEGIN
+	SELECT  * FROM tbPost p INNER JOIN tbWriting w ON 
+	w.postID = p.postID
+	WHERE username = @username 
+	ORDER BY  postDate ASC
+END
+GO
+
+EXEC spReadUserWriting @username='wrenjay'
 GO
 
 ------------------SEARCH PROC -------------------

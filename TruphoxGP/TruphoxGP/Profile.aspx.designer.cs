@@ -193,13 +193,13 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.DataList dlVideos;
         
         /// <summary>
-        /// dlWritting control.
+        /// dlWriting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlWritting;
+        protected global::System.Web.UI.WebControls.DataList dlWriting;
         
         /// <summary>
         /// lblFirstName control.

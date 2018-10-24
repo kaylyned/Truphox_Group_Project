@@ -27,6 +27,7 @@ namespace TruphoxGP
                 active = (bool)HttpContext.Current.Session["active"];
                 isLoggedIn = true;
             }
+
             else
             {
                 username ="";
@@ -35,6 +36,7 @@ namespace TruphoxGP
                 isLoggedIn = false;
             }
         }
+
         public Security(string Username, string UserPassword)
         {
             username = Username;

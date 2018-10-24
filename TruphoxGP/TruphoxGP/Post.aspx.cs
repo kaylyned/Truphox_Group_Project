@@ -12,13 +12,11 @@ namespace TruphoxGP
     public partial class Post : System.Web.UI.Page
     {
         DAL mydal;
-        public int postID { get; set; }
-
-        Security mySecurity;
+        public int postID { get; set; }        
 
         protected void Page_Load(object sender, EventArgs e)
-        {          
-
+        {
+            
             if (!IsPostBack)
             {
                 //retrieve info from query sting
@@ -107,10 +105,20 @@ namespace TruphoxGP
             }
         }
 
+        private void loadLikes(int PostID)
+        {
+            mydal = new DAL("spReadLike");
+            mydal.addParm("postID", postID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+
+
+        }
 
 
         protected void btnLike_Click(object sender, EventArgs e)
         {
+            Security mySecurity = new Security();
 
             if (mySecurity.isLoggedIn == true)
             {
@@ -123,8 +131,8 @@ namespace TruphoxGP
             {
 
             }
-            
 
+            loadComments(postID);          
         }
     }
 }

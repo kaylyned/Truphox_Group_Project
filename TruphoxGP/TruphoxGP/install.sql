@@ -1089,3 +1089,27 @@ END
 GO
 
 EXEC spRecentlyAdded 
+GO
+
+------------------SEARCH PROC -------------------
+
+CREATE PROCEDURE spSearch
+(
+ @input VARCHAR (150)=NULL
+)
+AS
+BEGIN
+		SELECT postTitle, postSubTitle, postText from tbPost  p INNER JOIN tbArt a ON 
+	     a.postID = p.postID
+         INNER JOIN tbWriting w ON 
+	     w.postID = p.postID 
+		 INNER JOIN tbPhotography ph ON 
+	   	 ph.postID = p.postID 
+	     INNER JOIN tbVideo v ON 
+	     v.postID = p.postID
+	WHERE postTitle  like '%' + trim(@input) + '%'
+END
+GO
+
+EXEC spSearch 
+GO

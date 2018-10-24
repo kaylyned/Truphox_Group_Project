@@ -39,6 +39,8 @@
 
                     <div class="row">
                         <div class="col-sm-4">
+                            <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
+                            <br />
                             <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
                             <asp:Button ID="btnComment" runat="server" Text="Comment" />                            
                             <p></p>

@@ -14,6 +14,8 @@ namespace TruphoxGP
         DAL mydal;
         public int postID { get; set; }
 
+        Security mySecurity;
+
         protected void Page_Load(object sender, EventArgs e)
         {          
 
@@ -105,10 +107,24 @@ namespace TruphoxGP
             }
         }
 
+
+
         protected void btnLike_Click(object sender, EventArgs e)
         {
-            mydal = new DAL("spCreateLike");
-            mydal.addParm("username", )
+
+            if (mySecurity.isLoggedIn == true)
+            {
+                mydal = new DAL("spCreateLike");
+                mydal.addParm("username", mySecurity.username);
+                mydal.addParm("postID", postID.ToString());
+                mydal.execNonQuery();
+            }
+            else
+            {
+
+            }
+            
+
         }
     }
 }

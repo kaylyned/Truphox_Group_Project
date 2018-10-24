@@ -16,12 +16,11 @@
                 <div class="leftcolumn">
                     <div class="well">
                         <h2>Recently Added</h2>
-                        <h5>SOME DESCRIPTION, 2018</h5>
                         <div class="row">
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent1" runat="server" src="" class="img-circle person" Width="255" Height="255" />
+                                    <asp:Image ID="imgRecent" runat="server" src="" class="img-circle person" Width="255" Height="255" />
                                 </a>
                                 <div id="demo" class="collapse">
                                     <p>
@@ -78,7 +77,7 @@
                             <li class="active"><a data-toggle="tab" href="#home">ART</a></li>
                             <li><a data-toggle="tab" href="#menu1">PHOTOGRAPHY</a></li>
                             <li><a data-toggle="tab" href="#menu2">VIDEO</a></li>
-                            <li><a data-toggle="tab" href="#menu3">WRITTING</a></li>
+                            <li><a data-toggle="tab" href="#menu3">LITERATURE</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
@@ -98,7 +97,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblPpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("photoLink") %>' CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
@@ -109,18 +108,18 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("videoLink") %>' CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
                             <div id="menu3" class="tab-pane fade">
-                                <h2>PHOX FORMS</h2>
+                                <h2>LITERATURE</h2>
                                 <asp:DataList ID="dlWritting" runat="server">
                                     <ItemTemplate>
                                         <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibWritting" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibWritting" runat="server" ImageUrl='<%#Eval("writingText") %>' CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>

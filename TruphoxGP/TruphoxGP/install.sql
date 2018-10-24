@@ -643,7 +643,7 @@ CREATE PROCEDURE spReadLike
 )
 AS
 BEGIN
-	SELECT * FROM tbLike WHERE postID = ISNULL (@postID, postID)
+	SELECT count(postID) as 'count' FROM tbLike WHERE postID = ISNULL (@postID, postID)
 END
 GO
 

@@ -541,13 +541,16 @@ CREATE PROCEDURE spCreateComment
 	@postID INT,
 	@postCommentNumber INT,
 	@commentText VARCHAR(100),
-	@commentDate DATETIME,
 	@username VARCHAR(30)
 )
 AS
 BEGIN
 	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
 						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
+
+	UPDATE tbPost SET
+	lastComment = @postCommentNumber
+	WHERE postID = @postID
 END
 GO
 
@@ -1028,7 +1031,7 @@ GO
 EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg', @bio='',  @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='TruPhox', @lastName='Admin', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='GigglesMcPhee', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='GigglesMcklown', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='C:\Users\WrenJ\Source\Repos\GroupProj3\TruphoxGP\TruphoxGP\Images\profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 
@@ -1070,10 +1073,18 @@ EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='Ruka', @postSubTi
 EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
+EXEC spCreateComment @postID=7, @postCommentNumber=0, @commentText='Cool logo!', @username='CanadaGhost';
+EXEC spCreateComment @postID=7, @postCommentNumber=1, @commentText='We thought so!', @username='Truphox';
+EXEC spCreateComment @postID=7, @postCommentNumber=2, @commentText='Drew it myself!', @username='wrenjay';
+EXEC spCreateComment @postID=7, @postCommentNumber=3, @commentText='I am person.', @username='Person';
+EXEC spCreateComment @postID=7, @postCommentNumber=4, @commentText='Truphox da best #truphox', @username='CanadaGhost';
+GO
+
 SELECT * FROM tbPhotography
 SELECT * FROM tbArt
 SELECT * FROM tbWriting
 SELECT * FROM tbVideo
+SELECT * FROM tbComment
 GO
 
 ------------------RECENTLY ADDED... PROFILE--------------------

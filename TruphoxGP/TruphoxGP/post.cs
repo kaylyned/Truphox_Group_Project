@@ -11,8 +11,6 @@ namespace TruphoxGP
     {
         DAL myDal;
 
-        int globalPostID = 0;
-
         public string postText { get; set; }
         public DateTime postDate { get; set; }
 
@@ -33,10 +31,10 @@ namespace TruphoxGP
         //    myDal.execNonQuery();
         //}
 
-        public List<comment> getComments()
+        public List<comment> getComments(int postID)
         {
             myDal = new DAL("spReadComment");
-            myDal.addParm("postID", globalPostID.ToString());
+            myDal.addParm("postID", postID.ToString());
             DataSet ds = myDal.getDataSet();
 
             DataTable dt = new DataTable();

@@ -12,9 +12,11 @@ namespace TruphoxGP
     public partial class Post : System.Web.UI.Page
     {
         DAL mydal;
+        public int postID { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {          
+
             if (!IsPostBack)
             {
                 //retrieve info from query sting
@@ -45,8 +47,9 @@ namespace TruphoxGP
                 {
                     //make artwork panel visible
                     pnlVideo.Visible = true;
-                }
+                }               
             }
+            loadComments(postID);
         }
 
         private void loadArt(int PostID)
@@ -77,7 +80,7 @@ namespace TruphoxGP
         {
             post loadComments = new post();
             List<comment> comments;
-            comments = loadComments.getComments();
+            comments = loadComments.getComments(postID);
 
             Panel pnlComments = new Panel();
             divComments.Controls.Add(pnlComments);
@@ -86,18 +89,26 @@ namespace TruphoxGP
             {
                 Label commentLabel = new Label();
                 commentLabel.Text = comment.commentText;
+                pnlComments.Controls.Add(commentLabel);
                 pnlComments.Controls.Add(new LiteralControl("<br />"));
 
                 Label commentDate = new Label();
                 commentDate.Text = (comment.commentDate).ToString();
                 pnlComments.Controls.Add(commentDate);
                 pnlComments.Controls.Add(new LiteralControl("<br />"));
+
                 Button btnLike = new Button();
                 btnLike.Text = "Like";
                 pnlComments.Controls.Add(btnLike);
                 pnlComments.Controls.Add(new LiteralControl("<br />"));
                 pnlComments.Controls.Add(new LiteralControl("<br />"));
             }
+        }
+
+        protected void btnLike_Click(object sender, EventArgs e)
+        {
+            mydal = new DAL("spCreateLike");
+            mydal.addParm("username", )
         }
     }
 }

@@ -72,5 +72,10 @@ namespace TruphoxGP
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();           
         }
+
+        private void loadComments(int postID)
+        {
+
+        }
     }
 }

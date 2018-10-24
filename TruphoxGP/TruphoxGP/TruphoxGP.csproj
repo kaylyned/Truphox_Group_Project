@@ -159,6 +159,7 @@
     <Compile Include="Artwork.aspx.designer.cs">
       <DependentUpon>Artwork.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Comment.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Form.aspx.cs">
       <DependentUpon>Form.aspx</DependentUpon>

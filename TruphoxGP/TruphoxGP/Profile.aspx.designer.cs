@@ -40,6 +40,15 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Image imgRecent;
         
         /// <summary>
+        /// lblpostID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpostID;
+        
+        /// <summary>
         /// lblTitle control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Image imgRecent2;
         
         /// <summary>
+        /// lblpostID2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpostID2;
+        
+        /// <summary>
         /// lblTitle2 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace TruphoxGP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgRecent3;
+        
+        /// <summary>
+        /// lblpostID3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpostID3;
         
         /// <summary>
         /// lblTitle3 control.

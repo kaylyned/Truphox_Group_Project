@@ -23,6 +23,7 @@
                                     <asp:Image ID="imgRecent" runat="server" src="" class="img-circle person" Width="255" Height="255" />
                                 </a>
                                 <div id="demo" class="collapse">
+                                    <p><asp:Label ID="lblpostID" runat="server" Text=""></asp:Label></p>
                                     <p>
                                         <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
                                     </p>
@@ -40,6 +41,7 @@
                                     <asp:Image ID="imgRecent2" runat="server" src="" class="img-circle person" Width="255" Height="255" />
                                 </a>
                                 <div id="demo2" class="collapse">
+                                        <p><asp:Label ID="lblpostID2" runat="server" Text=""></asp:Label></p>
                                     <p>
                                         <asp:Label ID="lblTitle2" runat="server" Text=""></asp:Label>
                                     </p>
@@ -57,6 +59,7 @@
                                     <asp:Image ID="imgRecent3" runat="server" src="" class="img-circle person" Width="255" Height="255" />
                                 </a>
                                 <div id="demo3" class="collapse">
+                                        <p><asp:Label ID="lblpostID3" runat="server" Text=""></asp:Label></p>
                                     <p>
                                         <asp:Label ID="lblTitle3" runat="server" Text=""></asp:Label>
                                     </p>

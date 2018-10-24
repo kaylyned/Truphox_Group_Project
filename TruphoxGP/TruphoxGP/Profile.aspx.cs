@@ -44,21 +44,24 @@ namespace TruphoxGP
         private void loadRecentlyAdded()
         {
             myDal = new DAL("spReadArt");
-            myDal.addParm("postID");
+           // myDal.addParm("postID", postID);
             DataSet ds = myDal.getDataSet();
 
             imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
 
+            lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
             imgRecent2.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
 
+            lblpostID2.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             lblTitle2.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle2.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblDateCreated2.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
+            lblpostID3.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
             lblTitle3.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle3.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();

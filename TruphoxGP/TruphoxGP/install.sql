@@ -1075,3 +1075,17 @@ SELECT * FROM tbArt
 SELECT * FROM tbWriting
 SELECT * FROM tbVideo
 GO
+
+------------------RECENTLY ADDED... PROFILE--------------------
+
+CREATE PROCEDURE spRecentlyAdded
+(
+@postID INT=null
+)
+AS
+BEGIN
+	SELECT TOP 10  * FROM tbPost  ORDER BY username, postDate DESC 
+END
+GO
+
+EXEC spRecentlyAdded 

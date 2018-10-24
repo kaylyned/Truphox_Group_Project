@@ -23,6 +23,7 @@ namespace TruphoxGP
             if (!IsPostBack)
             {
                 loadUser();
+                loadRecentlyAdded();
             }
         }
         private void loadUser()

@@ -20,16 +20,16 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent" runat="server" src="" class="img-circle person" Width="255" Height="255" />
+                                    <asp:Image ID="imgRecent"  runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo" class="collapse">
                                     <p><asp:Label ID="lblpostID" runat="server" Text=""></asp:Label></p>
-                                    <p>
+                                      <h2>
                                         <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
-                                    </p>
+                                   </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle" runat="server" Text=""></asp:Label>
-                                    </p>
+                                    <p>
                                     <p>
                                         <asp:Label ID="lblDateCreated" runat="server" Text=""></asp:Label>
                                     </p>
@@ -38,13 +38,13 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo2" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent2" runat="server" src="" class="img-circle person" Width="255" Height="255" />
+                                    <asp:Image ID="imgRecent2"  runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo2" class="collapse">
                                         <p><asp:Label ID="lblpostID2" runat="server" Text=""></asp:Label></p>
-                                    <p>
+                                    <h2>
                                         <asp:Label ID="lblTitle2" runat="server" Text=""></asp:Label>
-                                    </p>
+                                 </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle2" runat="server" Text=""></asp:Label>
                                     </p>
@@ -56,13 +56,13 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo3" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent3" runat="server" src="" class="img-circle person" Width="255" Height="255" />
+                                    <asp:Image ID="imgRecent3" runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo3" class="collapse">
                                         <p><asp:Label ID="lblpostID3" runat="server" Text=""></asp:Label></p>
-                                    <p>
+                                    <h2>
                                         <asp:Label ID="lblTitle3" runat="server" Text=""></asp:Label>
-                                    </p>
+                              </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle3" runat="server" Text=""></asp:Label>
                                     </p>
@@ -85,7 +85,7 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
-                                <asp:DataList ID="dlArt" runat="server">
+                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
                                     <ItemTemplate>
                                         <asp:Label ID="lblApostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -96,7 +96,7 @@
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
-                                <asp:DataList ID="dlPhotots" runat="server">
+                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -107,7 +107,7 @@
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
-                                <asp:DataList ID="dlVideos" runat="server">
+                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -118,11 +118,11 @@
                             </div>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWritting" runat="server">
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="3">
                                     <ItemTemplate>
                                         <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibWritting" runat="server" ImageUrl='<%#Eval("writingText") %>' CssClass="ATrendImages" />
+                                        <asp:Label ID="ibWriting" runat="server" Text="<%#Eval ('writingText') %>"></asp:Label>
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>

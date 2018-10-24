@@ -20,10 +20,17 @@ namespace TruphoxGP
             {
                 Response.Redirect("Login.aspx");
             }
-            if (!IsPostBack)
+            else
             {
-                loadUser();
-                loadRecentlyAdded();
+                if (!IsPostBack)
+                {
+                    loadUser();
+                    loadRecentlyAdded();
+                    loadArt();
+                    loadPhotography();
+                    loadWriting();
+                    loadVideo();
+                }
             }
         }
         private void loadUser()
@@ -44,29 +51,84 @@ namespace TruphoxGP
         }
         private void loadRecentlyAdded()
         {
-            myDal = new DAL("spReadArt");
-           // myDal.addParm("postID", postID);
+            Security sec = new Security();
+
+            myDal = new DAL("spRecentlyAdded");
+            myDal.addParm("username", sec.username);
+
             DataSet ds = myDal.getDataSet();
 
-            imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
+            //imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
 
             lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            imgRecent2.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
+            //imgRecent2.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
 
-            lblpostID2.Text = ds.Tables[0].Rows[0]["postID"].ToString();
-            lblTitle2.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle2.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated2.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+            lblpostID2.Text = ds.Tables[0].Rows[1]["postID"].ToString();
+            lblTitle2.Text = ds.Tables[0].Rows[1]["postTitle"].ToString();
+            lblSubTitle2.Text = ds.Tables[0].Rows[1]["postSubTitle"].ToString();
+            lblDateCreated2.Text = ds.Tables[0].Rows[1]["postDate"].ToString();
 
-            lblpostID3.Text = ds.Tables[0].Rows[0]["postID"].ToString();
-            imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
-            lblTitle3.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle3.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated3.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+            // imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
+
+            lblpostID3.Text = ds.Tables[0].Rows[2]["postID"].ToString();
+            lblTitle3.Text = ds.Tables[0].Rows[2]["postTitle"].ToString();
+            lblSubTitle3.Text = ds.Tables[0].Rows[2]["postSubTitle"].ToString();
+            lblDateCreated3.Text = ds.Tables[0].Rows[2]["postDate"].ToString();
+        }
+
+        private void loadArt()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadUserArt");
+            myDal.addParm("username", sec.username);
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlArt.DataSource = dtA;
+            dlArt.DataBind();
+        }
+
+        private void loadPhotography()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadUserPhotography");
+            myDal.addParm("username", sec.username);
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlPhotots.DataSource = dtA;
+            dlPhotots.DataBind();
+        }
+        private void loadVideo()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadUserVideo");
+            myDal.addParm("username", sec.username);
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlVideos.DataSource = dtA;
+            dlVideos.DataBind();
+        }
+
+        private void loadWriting()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadUserWriting");
+            myDal.addParm("username", sec.username);
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlWriting.DataSource = dtA;
+            dlWriting.DataBind();
         }
     }
 }

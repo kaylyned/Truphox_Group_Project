@@ -30,6 +30,7 @@ namespace TruphoxGP
                     loadPhotography();
                     loadWriting();
                     loadVideo();
+                    loadFollow();
                 }
             }
         }
@@ -172,6 +173,28 @@ namespace TruphoxGP
             {
                 //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+            }
+        }
+        private void loadFollow()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadFollow");
+            myDal.addParm("username", sec.username);
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlFollowing.DataSource = dtA;
+            dlFollowing.DataBind();
+        }
+
+        protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+                Response.Redirect("vieProfile.aspx?username=" + itemID.ToString() + "&postType=artwork");
             }
         }
     }

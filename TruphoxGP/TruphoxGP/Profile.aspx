@@ -157,17 +157,13 @@
             </div>
             <div class="well">
                 <h3>FOLLOWING</h3>
-                <div class="fakeimg">
-                    <asp:Image ID="imgFollow" runat="server" />
-                    <p><asp:HyperLink ID="hlFollow" runat="server"><asp:Label ID="lblFollow" runat="server" Text=""></asp:Label></asp:HyperLink></p>
-                </div>
-                <div class="fakeimg">
-                      <asp:Image ID="imgFollow2" runat="server" />
-                    <p><asp:HyperLink ID="hlFollow2" runat="server"><asp:Label ID="lblFollow2" runat="server" Text=""></asp:Label></asp:HyperLink></p>
-                </div>
-                <div class="fakeimg">
-                     <asp:Image ID="imgFollow3" runat="server" />
-                    <p><asp:HyperLink ID="hlFollow3" runat="server"><asp:Label ID="lblFollow3" runat="server" Text=""></asp:Label></asp:HyperLink></p>
+                <div class="Following">
+                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" CssClass="dlATrend" DataKeyField="followedUser" >
+                        <ItemTemplate>
+                            <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>' ></asp:Label>
+                            <br />
+                       </ItemTemplate>
+                    </asp:DataList>
                 </div>
                 <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link" />
             </div>

@@ -38,8 +38,8 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            dlArtTrending.DataSource = dtA;
-            dlArtTrending.DataBind();
+            dlArtRecent.DataSource = dtA;
+            dlArtRecent.DataBind();
         }
 
         private void loadAFav()
@@ -48,8 +48,8 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            dlArtTrending.DataSource = dtA;
-            dlArtTrending.DataBind();
+            dlArtFav.DataSource = dtA;
+            dlArtFav.DataBind();
         }
 
         protected void dlArtTrending_ItemCommand(object source, DataListCommandEventArgs e)
@@ -57,8 +57,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlArtTrending.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {
-                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+            {                               
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }      
         }

@@ -58,6 +58,7 @@
                                 <asp:TextBox ID="txtComment" runat="server" Height="100px" Width="100%" TextMode="MultiLine"></asp:TextBox>
                                 <br />
                                 <asp:Button ID="btnSumbitComment" runat="server" Text="Submit Comment" OnClick="btnSumbitComment_Click" />
+                                <br />
                                 <div id="divComments" runat="server">
 
                                 </div>

@@ -47,6 +47,7 @@ namespace TruphoxGP
                 newComment.commentDate = Convert.ToDateTime(dr["commentDate"].ToString());
                 newComment.postCommentNumber = Convert.ToInt32(dr["postCommentNumber"].ToString());
                 newComment.postID = Convert.ToInt32(dr["postID"].ToString());
+                newComment.username = dr["username"].ToString();
 
                 comments.Add(newComment);
             }

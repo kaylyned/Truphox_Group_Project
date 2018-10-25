@@ -550,7 +550,7 @@ BEGIN
 						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
 
 	UPDATE tbPost SET
-	lastComment = @postCommentNumber
+	lastComment = @postCommentNumber + 1
 	WHERE postID = @postID
 END
 GO
@@ -561,9 +561,20 @@ CREATE PROCEDURE spReadComment
 )
 AS
 BEGIN
-	SELECT * FROM tbComment WHERE postID = ISNULL (@postID, postID)
+	SELECT postID, postCommentNumber, commentText, commentDate, username FROM tbComment WHERE postID = ISNULL (@postID, postID)
+	ORDER BY postCommentNumber DESC	
 END
 GO
+
+EXEC spReadComment @postID=7;
+GO
+
+	--commentID INT IDENTITY (0,1) PRIMARY KEY,
+	--postID INT FOREIGN KEY REFERENCES tbPost(postID),
+	--postCommentNumber INT,
+	--commentText VARCHAR(100),
+	--commentDate DATETIME,
+	--username VARCHAR(30)
 
 CREATE PROCEDURE spUpdateComment
 (

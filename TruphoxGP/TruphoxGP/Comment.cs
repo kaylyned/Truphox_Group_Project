@@ -14,6 +14,7 @@ namespace TruphoxGP
         public string commentText { get; set; }
         public DateTime commentDate { get; set; }
         public int postCommentNumber { get; set; }
+        public string username { get; set; }
 
         DAL myDal;
 
@@ -32,27 +33,18 @@ namespace TruphoxGP
 
         public void newComment(int PostID, string CommentText, string Username)
         {
-            myDal = new DAL("spReadComment");
+            myDal = new DAL("spReadPost");
             myDal.addParm("postID", PostID.ToString());
             DataSet ds = myDal.getDataSet();
 
-            postCommentNumber = Convert.ToInt32(ds.Tables[0].Rows[0]["postCommentNumber"].ToString());
+            postCommentNumber = Convert.ToInt32(ds.Tables[0].Rows[0]["lastComment"].ToString());
 
             myDal = new DAL("spCreateComment");
             myDal.addParm("postID", PostID.ToString());
             myDal.addParm("postCommentNumber", postCommentNumber.ToString());
             myDal.addParm("commentText", CommentText);
             myDal.addParm("username", Username);
-            myDal.execNonQuery();
-            
-
-            //@postID INT,
-            //@postCommentNumber INT,
-            //@commentText VARCHAR(100),
-            //@username VARCHAR(30)
-
-
+            myDal.execNonQuery();            
         }
-
     }
 }

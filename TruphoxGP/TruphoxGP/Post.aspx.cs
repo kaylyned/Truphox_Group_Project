@@ -44,7 +44,12 @@ namespace TruphoxGP
                 //make artwork panel visible
                 pnlVideo.Visible = true;
             }
-            loadComments(postID);
+
+            if (!IsPostBack)
+            {
+                loadComments(postID);
+                loadLikes(postID);
+            }            
         }
 
         private void loadArt(int PostID)
@@ -87,6 +92,11 @@ namespace TruphoxGP
                 pnlComments.Controls.Add(commentLabel);
                 pnlComments.Controls.Add(new LiteralControl("<br />"));
 
+                Label commentUser = new Label();
+                commentUser.Text = comment.username;
+                pnlComments.Controls.Add(commentUser);
+                pnlComments.Controls.Add(new LiteralControl("<br />"));
+
                 Label commentDate = new Label();
                 commentDate.Text = (comment.commentDate).ToString();
                 pnlComments.Controls.Add(commentDate);
@@ -127,12 +137,7 @@ namespace TruphoxGP
             }
 
             loadLikes(postID);
-        }
-
-        protected void btnComment_Click(object sender, EventArgs e)
-        {
-            txtComment.Visible = true;
-            btnSumbitComment.Visible = true;
+            loadComments(postID);
         }
 
         protected void btnSumbitComment_Click(object sender, EventArgs e)
@@ -140,7 +145,9 @@ namespace TruphoxGP
             Security mySecurity = new Security();
 
             comment newComment = new comment();
-            newComment.newComment(postID, txtComment.Text, mySecurity.username);       
+            newComment.newComment(postID, txtComment.Text, mySecurity.username);
+            txtComment.Text = "";
+            loadComments(postID);
         }
     }
 }

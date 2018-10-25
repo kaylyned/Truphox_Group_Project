@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TruphoxGP
 {
@@ -13,6 +14,8 @@ namespace TruphoxGP
         public string commentText { get; set; }
         public DateTime commentDate { get; set; }
         public int postCommentNumber { get; set; }
+
+        DAL myDal;
 
         public comment(int PostID, string CommentText, DateTime CommentDate, int PostCommentNumber)
         {
@@ -26,6 +29,30 @@ namespace TruphoxGP
         {
            
         }      
+
+        public void newComment(int PostID, string CommentText, string Username)
+        {
+            myDal = new DAL("spReadComment");
+            myDal.addParm("postID", PostID.ToString());
+            DataSet ds = myDal.getDataSet();
+
+            postCommentNumber = Convert.ToInt32(ds.Tables[0].Rows[0]["postCommentNumber"].ToString());
+
+            myDal = new DAL("spCreateComment");
+            myDal.addParm("postID", PostID.ToString());
+            myDal.addParm("postCommentNumber", postCommentNumber.ToString());
+            myDal.addParm("commentText", CommentText);
+            myDal.addParm("username", Username);
+            myDal.execNonQuery();
+            
+
+            //@postID INT,
+            //@postCommentNumber INT,
+            //@commentText VARCHAR(100),
+            //@username VARCHAR(30)
+
+
+        }
 
     }
 }

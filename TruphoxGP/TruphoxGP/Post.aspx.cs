@@ -12,48 +12,43 @@ namespace TruphoxGP
     public partial class Post : System.Web.UI.Page
     {
         DAL mydal;
-        public int postID { get; set; }        
+        public int postID { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (!IsPostBack)
+            postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
+            string postType = Request.QueryString["postType"].ToString();
+
+            if (postType == "artwork")
             {
-                //retrieve info from query sting
-                int postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
-                string postType = Request.QueryString["postType"].ToString();
+                //make artwork panel visible
+                pnlArtwork.Visible = true;
+                loadArt(postID);
+            }
 
-                if (postType == "artwork")
-                {
-                    //make artwork panel visible
-                    pnlArtwork.Visible = true;
-                    loadArt(postID);
-                }
+            if (postType == "writing")
+            {
+                //make artwork panel visible
+                pnlWriting.Visible = true;
+                loadWriting(postID);
+            }
 
-                if (postType == "writing")
-                {
-                    //make artwork panel visible
-                    pnlWriting.Visible = true;
-                    loadWriting(postID);
-                }
+            if (postType == "photography")
+            {
+                //make artwork panel visible
+                pnlPhotography.Visible = true;
+            }
 
-                if (postType == "photography")
-                {
-                    //make artwork panel visible
-                    pnlPhotography.Visible = true;
-                }
-
-                if (postType == "video")
-                {
-                    //make artwork panel visible
-                    pnlVideo.Visible = true;
-                }               
+            if (postType == "video")
+            {
+                //make artwork panel visible
+                pnlVideo.Visible = true;
             }
             loadComments(postID);
         }
 
         private void loadArt(int PostID)
-        {          
+        {
             //load post
             mydal = new DAL("spReadArt");
             mydal.addParm("postID", PostID.ToString());
@@ -73,14 +68,14 @@ namespace TruphoxGP
 
             lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();           
+            lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
         }
 
-        private void loadComments(int postID)
+        private void loadComments(int PostID)
         {
             post loadComments = new post();
             List<comment> comments;
-            comments = loadComments.getComments(postID);
+            comments = loadComments.getComments(PostID);
 
             Panel pnlComments = new Panel();
             divComments.Controls.Add(pnlComments);
@@ -108,11 +103,10 @@ namespace TruphoxGP
         private void loadLikes(int PostID)
         {
             mydal = new DAL("spReadLike");
-            mydal.addParm("postID", postID.ToString());
+            mydal.addParm("postID", PostID.ToString());
             DataSet ds = mydal.getDataSet();
 
-
-
+            lblLikes.Text = ds.Tables[0].Rows[0]["count"].ToString() + " Likes";
         }
 
 
@@ -132,7 +126,21 @@ namespace TruphoxGP
 
             }
 
-            loadComments(postID);          
+            loadLikes(postID);
+        }
+
+        protected void btnComment_Click(object sender, EventArgs e)
+        {
+            txtComment.Visible = true;
+            btnSumbitComment.Visible = true;
+        }
+
+        protected void btnSumbitComment_Click(object sender, EventArgs e)
+        {
+            Security mySecurity = new Security();
+
+            comment newComment = new comment();
+            newComment.newComment(postID, txtComment.Text, mySecurity.username);       
         }
     }
 }

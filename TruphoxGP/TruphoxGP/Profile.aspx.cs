@@ -183,8 +183,8 @@ namespace TruphoxGP
             DataSet ds = myDal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            dlFollowing.DataSource = dtA;
-            dlFollowing.DataBind();
+            repFollowing.DataSource = dtA;
+            repFollowing.DataBind();
         }
 
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
@@ -196,6 +196,11 @@ namespace TruphoxGP
                 //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
                 Response.Redirect("vieProfile.aspx?username=" + itemID.ToString() + "&postType=artwork");
             }
+        }
+
+        protected void btnMore_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

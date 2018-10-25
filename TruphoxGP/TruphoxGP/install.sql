@@ -1042,7 +1042,7 @@ GO
 ---------------------POSTS CREATED (WRITTING) -------------------
 
 EXEC spCreateWriting @rating=0, @postText='', @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='wrenjay', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
+EXEC spCreateWriting @rating=0, @postText='', @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
 EXEC spCreateWriting @rating=0, @postText='', @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
 EXEC spCreateWriting @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
 EXEC spCreateWriting @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
@@ -1052,6 +1052,7 @@ GO
 ------------------POSTS CREATED (ART) -------------------
 
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='dragon.png'; 
+EXEC spCreateArt @rating=0, @postText='', @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
 EXEC spCreateArt @rating=1, @postText='', @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png'; 
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
@@ -1071,6 +1072,7 @@ EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Debby', @postSubTi
 EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Pumkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumkinK.jpg';
 EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
 EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
+EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
 EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 

@@ -256,13 +256,13 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Label lblDateJoined;
         
         /// <summary>
-        /// dlFollowing control.
+        /// repFollowing control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlFollowing;
+        protected global::System.Web.UI.WebControls.Repeater repFollowing;
         
         /// <summary>
         /// btnMore control.

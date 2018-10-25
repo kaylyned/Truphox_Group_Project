@@ -119,16 +119,15 @@
                                                      <%-- TURN LITERATURE INTO A PHOTO...???--%>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand"   DataKeyField="postID">
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand"   DataKeyField="postID" RepeatLayout="Flow">
                                     <ItemTemplate>
-                                        <div class="fakeimg, literature" style="overflow:auto;">
+                                        <div class="literature" <%--style="overflow:auto;"--%>>
                                         <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                             <br />
                                         <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>' CommandName="Select"></asp:Label>
                                             </div>
-                                        <br />
                                     </ItemTemplate>
-                                    <SeparatorStyle BorderStyle="Ridge" />
+                                                 <%--  <SeparatorStyle BorderStyle="Ridge" />--%>
                                 </asp:DataList>
                             </div>
                         </div>
@@ -158,14 +157,15 @@
             <div class="well">
                 <h3>FOLLOWING</h3>
                 <div class="Following">
-                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" CssClass="dlATrend" DataKeyField="followedUser" >
-                        <ItemTemplate>
-                            <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>' ></asp:Label>
+               <asp:Repeater ID="repFollowing" runat="server">
+                   <ItemTemplate>
+                           <br />
+                          <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>' ></asp:Label>
                             <br />
-                       </ItemTemplate>
-                    </asp:DataList>
+                   </ItemTemplate>
+               </asp:Repeater>
                 </div>
-                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link" />
+                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link btnMore" OnClick="btnMore_Click" />
             </div>
             <div class="well">
                 <h3>OTHER</h3>

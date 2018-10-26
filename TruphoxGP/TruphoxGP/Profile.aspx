@@ -5,10 +5,12 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
+                <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155" />
                 <h1>
                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
-                    <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Edit" Width="184px" />
+                    <asp:Button ID="btnPictureEdit" CssClass="btn btn-secondary" runat="server" Text="Profile Picture" Width="184px" OnClick="btnPictureEdit_Click" />
+                    <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Settings" Width="184px" OnClick="btnEdit_Click" />
                 </div>
             </div>
             <br />
@@ -20,13 +22,15 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent"  runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
+                                    <asp:Image ID="imgRecent" runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo" class="collapse">
-                                    <p><asp:Label ID="lblpostID" runat="server" Text=""></asp:Label></p>
-                                      <h2>
+                                    <p>
+                                        <asp:Label ID="lblpostID" runat="server" Text=""></asp:Label>
+                                    </p>
+                                    <h2>
                                         <asp:Label ID="lblTitle" runat="server" Text=""></asp:Label>
-                                   </h2>
+                                    </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle" runat="server" Text=""></asp:Label>
                                     <p>
@@ -38,13 +42,15 @@
                             <div class="col-sm-4">
                                 <br>
                                 <a href="#demo2" data-toggle="collapse">
-                                    <asp:Image ID="imgRecent2"  runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
+                                    <asp:Image ID="imgRecent2" runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo2" class="collapse">
-                                        <p><asp:Label ID="lblpostID2" runat="server" Text=""></asp:Label></p>
+                                    <p>
+                                        <asp:Label ID="lblpostID2" runat="server" Text=""></asp:Label>
+                                    </p>
                                     <h2>
                                         <asp:Label ID="lblTitle2" runat="server" Text=""></asp:Label>
-                                 </h2>
+                                    </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle2" runat="server" Text=""></asp:Label>
                                     </p>
@@ -59,10 +65,12 @@
                                     <asp:Image ID="imgRecent3" runat="server" src="Images/phox.jpg" class="img-circle person" Width="155" Height="155" />
                                 </a>
                                 <div id="demo3" class="collapse">
-                                        <p><asp:Label ID="lblpostID3" runat="server" Text=""></asp:Label></p>
+                                    <p>
+                                        <asp:Label ID="lblpostID3" runat="server" Text=""></asp:Label>
+                                    </p>
                                     <h2>
                                         <asp:Label ID="lblTitle3" runat="server" Text=""></asp:Label>
-                              </h2>
+                                    </h2>
                                     <p>
                                         <asp:Label ID="lblSubTitle3" runat="server" Text=""></asp:Label>
                                     </p>
@@ -85,7 +93,7 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
-                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArt_ItemCommand"  DataKeyField="postID">
+                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArt_ItemCommand" DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblApostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -96,18 +104,18 @@
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
-                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlPhotots_ItemCommand"  DataKeyField="postID">
+                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlPhotots_ItemCommand" DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("photoLink") %>' CommandName="Select"  CssClass="ATrendImages" />
+                                        <asp:ImageButton ID="ibPhotography" runat="server" ImageUrl='<%#Eval("photoLink") %>' CommandName="Select" CssClass="ATrendImages" />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
-                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlVideos_ItemCommand"  DataKeyField="postID">
+                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlVideos_ItemCommand" DataKeyField="postID">
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -116,56 +124,139 @@
                                     </ItemTemplate>
                                 </asp:DataList>
                             </div>
-                                                     <%-- TURN LITERATURE INTO A PHOTO...???--%>
+                            <%-- TURN LITERATURE INTO A PHOTO...???--%>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand"   DataKeyField="postID" RepeatLayout="Flow">
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand" DataKeyField="postID" RepeatLayout="Flow">
                                     <ItemTemplate>
                                         <div class="literature" <%--style="overflow:auto;"--%>>
-                                        <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
+                                            <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                             <br />
-                                        <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>' CommandName="Select"></asp:Label>
-                                            </div>
+                                            <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>' CommandName="Select"></asp:Label>
+                                        </div>
                                     </ItemTemplate>
-                                                 <%--  <SeparatorStyle BorderStyle="Ridge" />--%>
+                                    <%--  <SeparatorStyle BorderStyle="Ridge" />--%>
                                 </asp:DataList>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-10">
+            <%--            <div class="col-sm-10">
                 <div class="well">
                     <p>WORDS</p>
                 </div>
                 <div class="well">
                     <p>WORDS</p>
                 </div>
-            </div>
+            </div>--%>
         </div>
         <br />
         <br />
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <p><asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label><asp:Label ID="lblLastName" runat="server" Text=""></asp:Label></p>
-                <p><asp:TextBox ID="txtBio" ReadOnly="true" runat="server" style="height: 100px;" TextMode="MultiLine"></asp:TextBox> </p>
-                <p><asp:Label ID="lblDOB" runat="server" Text=""></asp:Label></p>
-                <p><asp:Label ID="lblEmail" runat="server" Text=""></asp:Label></p>
-                <p><asp:Label ID="lblDateJoined" runat="server" Text=""></asp:Label></p>
+                <p>
+                    <asp:Label ID="lblFirstName" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lblLastName" runat="server" Text=""></asp:Label>
+                </p>
+                <p>
+                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" Style="height: 100px;" TextMode="MultiLine"></asp:TextBox>
+                </p>
+                <p>
+                    <asp:Label ID="lblDOB" runat="server" Text=""></asp:Label>
+                </p>
+                <p>
+                    <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
+                </p>
+                <p>
+                    <asp:Label ID="lblDateJoined" runat="server" Text=""></asp:Label>
+                </p>
             </div>
+            <asp:Panel ID="pnlEdit" runat="server" Visible="false">
+                <div class="well">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblBio" runat="server" Text="Bio"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtBioEdit" runat="server" TextMode="MultiLine" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblUsernameEdit" runat="server" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>First Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtFirstNameEdit" runat="server" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtLastNameEdit" runat="server" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>DOB:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtDOBEdit" runat="server" TextMode="Date" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtEmailEdit" runat="server" TextMode="Email" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtPassEdit" runat="server" TextMode="Password" Width="192px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Pass:
+                            </td>
+                            <td>
+                                <asp:CompareValidator ID="cvPasswords" EnableClientScript="false" runat="server" ErrorMessage="Passwords must Match" ControlToCompare="txtPassConfirm" ControlToValidate="txtPassEdit"></asp:CompareValidator>
+                                <asp:TextBox ID="txtPassConfirm" runat="server" TextMode="Password" Width="184px"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <asp:Button ID="btnSave" CssClass="btn" runat="server" Text="Save" Width="192px" OnClick="btnSave_Click" />
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="pnlImgChanges" runat="server" Visible="false">
+                <div class="well">
+                    <input type='file' id="imgInp" />
+                    <img id="profileImgFU" src="#" alt="your image"  class="img-circle person" Width="155" Height="155" />
+                   <asp:Button ID="btnSaveProfilePicture" CssClass="btn" runat="server" Text="Save" Width="192px" />
+                </div>
+            </asp:Panel>
             <div class="well">
                 <h3>FOLLOWING</h3>
                 <div class="Following">
-               <asp:Repeater ID="repFollowing" runat="server">
-                   <ItemTemplate>
-                           <br />
-                          <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>' ></asp:Label>
+                    <asp:Repeater ID="repFollowing" runat="server">
+                        <ItemTemplate>
                             <br />
-                   </ItemTemplate>
-               </asp:Repeater>
+                            <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>'></asp:Label>
+                            <br />
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </div>
-                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link btnMore" OnClick="btnMore_Click" />
+                <br />
+                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link" OnClick="btnMore_Click" Width="192px"/>
             </div>
             <div class="well">
                 <h3>OTHER</h3>
@@ -173,4 +264,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profileImgFU').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+    </script>
 </asp:Content>

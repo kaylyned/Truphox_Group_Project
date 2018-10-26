@@ -69,7 +69,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angularjs.html" />
     <Content Include="Artwork.aspx" />
+    <Content Include="basic-plus.html" />
+    <Content Include="basic.html" />
+    <Content Include="bower-version-update.js" />
     <Content Include="Form.aspx" />
     <Content Include="Images\Astro.jpg" />
     <Content Include="Images\DAngel.jpg" />
@@ -84,7 +88,10 @@
     <Content Include="Images\Ruka.jpg" />
     <Content Include="Images\Sky.jpg" />
     <Content Include="Images\WpgSky.jpg" />
+    <Content Include="index.html" />
     <Content Include="install.sql" />
+    <Content Include="jquery-ui.html" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Login.aspx" />
     <Content Include="Post.aspx" />
     <Content Include="Recover.aspx" />
@@ -125,16 +132,23 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include=".gitignore" />
+    <Content Include=".jshintrc" />
+    <Content Include=".npmignore" />
+    <Content Include="bower.json" />
+    <Content Include="CONTRIBUTING.md" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Settings.aspx" />
     <Content Include="TAP.aspx" />
     <Content Include="Video.aspx" />
     <Content Include="viewProfile.aspx" />
     <Content Include="Writing.aspx" />
-    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
-    <Content Include="Scripts\jquery-3.0.0.js" />
-    <Content Include="Scripts\jquery-3.0.0.min.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.js" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -276,8 +290,10 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="MasterSupreme.Master" />
-    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="SECURITY.md" />
+    <Content Include="VULNERABILITIES.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

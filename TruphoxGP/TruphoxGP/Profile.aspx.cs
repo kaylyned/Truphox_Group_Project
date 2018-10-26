@@ -41,6 +41,9 @@ namespace TruphoxGP
             myDal.addParm("username", sec.username);
             DataSet ds = myDal.getDataSet();
 
+            imgProfilePicture.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
+            //profileImgFU.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
+
             lblUsername.Text = HttpContext.Current.Session["username"].ToString();
             lblFirstName.Text = ds.Tables[0].Rows[0]["firstName"].ToString();
             lblLastName.Text = ds.Tables[0].Rows[0]["lastName"].ToString();
@@ -48,8 +51,8 @@ namespace TruphoxGP
             lblDOB.Text = ds.Tables[0].Rows[0]["dob"].ToString();
             lblEmail.Text = ds.Tables[0].Rows[0]["email"].ToString();
             lblDateJoined.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["joinDate"]).ToString();
-
         }
+      
         private void loadRecentlyAdded()
         {
             Security sec = new Security();
@@ -202,5 +205,59 @@ namespace TruphoxGP
         {
 
         }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            pnlEdit.Visible = true;
+            pnlImgChanges.Visible = false;
+
+            Security sec = new Security();
+            myDal = new DAL("spReadAccount");
+            myDal.addParm("username", sec.username);
+            DataSet ds = myDal.getDataSet();
+
+            lblUsernameEdit.Text = HttpContext.Current.Session["username"].ToString();
+            txtPassEdit.Text = ds.Tables[0].Rows[0]["userPassword"].ToString();
+            txtPassConfirm.Text = ds.Tables[0].Rows[0]["userPassword"].ToString();
+
+            txtFirstNameEdit.Text = ds.Tables[0].Rows[0]["firstName"].ToString();
+            txtLastNameEdit.Text = ds.Tables[0].Rows[0]["lastName"].ToString();
+            txtBioEdit.Text = ds.Tables[0].Rows[0]["bio"].ToString();
+            txtDOBEdit.Text = ds.Tables[0].Rows[0]["dob"].ToString();
+            txtEmailEdit.Text = ds.Tables[0].Rows[0]["email"].ToString();
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spUpdateAccount");
+            myDal.addParm("username", sec.username);
+
+            myDal.addParm("firstName", txtFirstNameEdit.Text);
+            myDal.addParm("lastName", txtLastNameEdit.Text);
+            myDal.addParm("bio", txtBioEdit.Text);
+            myDal.addParm("dob", txtDOBEdit.Text);
+            myDal.addParm("email", txtEmailEdit.Text);
+            myDal.addParm("userPassword", txtPassConfirm.Text);
+
+            DataSet ds = myDal.getDataSet();
+            loadUser();
+            pnlEdit.Visible = false;
+        }
+
+        protected void btnPictureEdit_Click(object sender, EventArgs e)
+        {
+            pnlImgChanges.Visible = true;
+            pnlEdit.Visible = false;
+        }
+
+        //protected void btnSaveProfilePicture_Click(object sender, EventArgs e)
+        //{
+        //    Security sec = new Security();
+        //    myDal = new DAL("spUpdateProfilePict");
+        //    myDal.addParm("username", sec.username);
+        //    myDal.addParm("profileImage", profileImgFU.ToString());
+        //    DataSet ds = myDal.getDataSet();
+        //}
     }
 }

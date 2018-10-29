@@ -91,7 +91,6 @@
     <Content Include="index.html" />
     <Content Include="install.sql" />
     <Content Include="jquery-ui.html" />
-    <Content Include="LICENSE.txt" />
     <Content Include="Login.aspx" />
     <Content Include="Post.aspx" />
     <Content Include="Recover.aspx" />
@@ -136,9 +135,7 @@
     <Content Include=".jshintrc" />
     <Content Include=".npmignore" />
     <Content Include="bower.json" />
-    <Content Include="CONTRIBUTING.md" />
     <Content Include="package.json" />
-    <Content Include="README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -292,8 +289,6 @@
     <Content Include="MasterSupreme.Master" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="SECURITY.md" />
-    <Content Include="VULNERABILITIES.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

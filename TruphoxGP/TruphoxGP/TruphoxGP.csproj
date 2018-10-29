@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PhoxFourms.aspx" />
     <Content Include="Useless\angularjs.html" />
     <Content Include="Artwork.aspx" />
     <Content Include="Useless\basic-plus.html" />
@@ -203,6 +204,13 @@
     <Compile Include="Photography.aspx.designer.cs">
       <DependentUpon>Photography.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PhoxFourms.aspx.cs">
+      <DependentUpon>PhoxFourms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhoxFourms.aspx.designer.cs">
+      <DependentUpon>PhoxFourms.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -285,7 +293,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Useless\packages.config" />
     <Content Include="MasterSupreme.Master" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />

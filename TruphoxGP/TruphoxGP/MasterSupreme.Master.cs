@@ -9,9 +9,25 @@ namespace TruphoxGP
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
+        DAL myDal;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Security sec = new Security();
+            if (!sec.isLoggedIn)
+            {
+                pnlRegister.Visible = true;
+                pnlLogin.Visible = true;
+                pnlLogout.Visible = false;
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
+                    pnlRegister.Visible = false;
+                    pnlLogin.Visible = false;
+                    pnlLogout.Visible = true;
+                }
+            }
         }
     }
 }

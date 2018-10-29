@@ -5,7 +5,7 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155" />
+                <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155"  />
                 <h1>
                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
@@ -93,7 +93,7 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <h2>ARTWORK</h2>
-                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArt_ItemCommand" DataKeyField="postID">
+                                <asp:DataList ID="dlArt" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" OnItemCommand="dlArt_ItemCommand" DataKeyField="postID" CssClass="profileDL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblApostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -104,7 +104,7 @@
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h2>PHOTOGRAPHY</h2>
-                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlPhotots_ItemCommand" DataKeyField="postID">
+                                <asp:DataList ID="dlPhotots" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" OnItemCommand="dlPhotots_ItemCommand" DataKeyField="postID" CssClass="profileDL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblPpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -115,7 +115,7 @@
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <h2>VIDEOS</h2>
-                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlVideos_ItemCommand" DataKeyField="postID">
+                                <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" OnItemCommand="dlVideos_ItemCommand" DataKeyField="postID" CssClass="profileDL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
@@ -127,7 +127,7 @@
                             <%-- TURN LITERATURE INTO A PHOTO...???--%>
                             <div id="menu3" class="tab-pane fade">
                                 <h2>LITERATURE</h2>
-                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting" OnItemCommand="dlWriting_ItemCommand" DataKeyField="postID" RepeatLayout="Flow">
+                                <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting, profileDL" OnItemCommand="dlWriting_ItemCommand" DataKeyField="postID" RepeatLayout="Flow">
                                     <ItemTemplate>
                                         <div class="literature" <%--style="overflow:auto;"--%>>
                                             <asp:Label ID="lblWpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
@@ -161,7 +161,7 @@
                     <asp:Label ID="lblLastName" runat="server" Text=""></asp:Label>
                 </p>
                 <p>
-                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" Style="height: 100px;" TextMode="MultiLine"></asp:TextBox>
+                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox>
                 </p>
                 <p>
                     <asp:Label ID="lblDOB" runat="server" Text=""></asp:Label>
@@ -239,9 +239,13 @@
             </asp:Panel>
             <asp:Panel ID="pnlImgChanges" runat="server" Visible="false">
                 <div class="well">
+                    Preview Image: 
                     <input type='file' id="imgInp" />
                     <img id="profileImgFU" src="#" alt="your image"  class="img-circle person" Width="155" Height="155" />
-                   <asp:Button ID="btnSaveProfilePicture" CssClass="btn" runat="server" Text="Save" Width="192px" />
+                    <br />
+                    Upload Image: 
+                      <asp:FileUpload ID="fuProfileImage" runat="server" />
+                   <asp:Button ID="btnSaveProfilePicture" CssClass="btn"  runat="server" Text="Save" Width="192px" OnClick="btnSaveProfilePicture_Click" />
                 </div>
             </asp:Panel>
             <div class="well">

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TruphoxGP;
 using System.Data;
+using System.Web.Security;
 using System.Data.SqlClient;
 
 namespace TruphoxGP
@@ -13,6 +14,7 @@ namespace TruphoxGP
     public partial class Profile : System.Web.UI.Page
     {
         DAL myDal;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Security sec = new Security();
@@ -52,7 +54,7 @@ namespace TruphoxGP
             lblEmail.Text = ds.Tables[0].Rows[0]["email"].ToString();
             lblDateJoined.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["joinDate"]).ToString();
         }
-      
+
         private void loadRecentlyAdded()
         {
             Security sec = new Security();
@@ -251,13 +253,24 @@ namespace TruphoxGP
             pnlEdit.Visible = false;
         }
 
-        //protected void btnSaveProfilePicture_Click(object sender, EventArgs e)
-        //{
-        //    Security sec = new Security();
-        //    myDal = new DAL("spUpdateProfilePict");
-        //    myDal.addParm("username", sec.username);
-        //    myDal.addParm("profileImage", profileImgFU.ToString());
-        //    DataSet ds = myDal.getDataSet();
-        //}
+        protected void btnSaveProfilePicture_Click(object sender, EventArgs e)
+        {
+            Security sec = new Security();
+
+            myDal = new DAL("spUpdateProfilePict");
+            myDal.addParm("username", sec.username);
+            myDal.addParm("profileImage", fuProfileImage.FileName);
+
+            string profileImage = Server.MapPath(".") + "\\Images\\";
+            string fileName = fuProfileImage.FileName;
+            string pathAfile = profileImage + fileName;
+            fuProfileImage.PostedFile.SaveAs(pathAfile);
+
+            DataSet ds = myDal.getDataSet();
+
+            loadUser();
+            pnlImgChanges.Visible = false;
+
+        }
     }
 }

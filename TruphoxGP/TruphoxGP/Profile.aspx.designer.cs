@@ -391,6 +391,15 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Panel pnlImgChanges;
         
         /// <summary>
+        /// fuProfileImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuProfileImage;
+        
+        /// <summary>
         /// btnSaveProfilePicture control.
         /// </summary>
         /// <remarks>

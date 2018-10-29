@@ -14,7 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://github.com/blueimp/jQuery-File-Upload.git"></script>
-
     <link href="Design.css" rel="stylesheet" />
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -40,8 +39,8 @@
           <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Profile.aspx">PROFILE</a></li>
-                                <li><a href="#">STORE</a></li>
-                                <li><a href="Form.aspx">PHOX FORMS</a></li>
+                                <%--<li><a href="#">STORE</a></li>--%>
+                                <li><a href="Form.aspx">PHOX FOURMS</a></li>
                                 <asp:Panel ID="pnlRegister" runat="server" Visible="false"><li><a href="Register.aspx">REGISTER</a></li></asp:Panel>
                                 <asp:Panel ID="pnlLogin" runat="server" Visible="false"><li><a href="Login.aspx">LOGIN</a></li></asp:Panel>
                                 <asp:Panel ID="pnlLogout" runat="server" Visible="false"><li><asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" /></li></asp:Panel>

@@ -219,7 +219,16 @@ body {
     text-align:justify;
 }
 
+.profileDL {
+    overflow-y:scroll;
+    overflow-x:scroll;
+    max-width: 100px;
+}
 
+.profileBio {
+    height: 100px;
+    box-sizing: border-box;
+}
 
 /*HOME PAGE... has trending flip pages*/
 
@@ -309,4 +318,10 @@ body {
     width: 750px;
     height: 100%;
     padding: 20px;
+}
+
+
+/*FOURM PAGE*/
+
+.fourm {
 }

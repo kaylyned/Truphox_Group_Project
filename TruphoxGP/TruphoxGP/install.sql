@@ -17,7 +17,7 @@ CREATE TABLE tbAccount
 	firstName VARCHAR(40),
 	lastName VARCHAR (40),
 	dob DATETIME,
-	profileImage VARCHAR(150),
+	profileImage VARCHAR(1200),
 	bio VARCHAR(400),
 	joinDate DATETIME,
 	active BIT,
@@ -167,8 +167,8 @@ CREATE PROCEDURE spCreateAccount
 	@firstName VARCHAR(40),
 	@lastName VARCHAR (40),
 	@dob DATETIME,
-	@bio VARCHAR(400) = null,
-	@profileImage VARCHAR(150) = null,
+	@bio VARCHAR(400) = NULL,
+	@profileImage VARCHAR(1200) = NULL,
 	@active BIT = 1,
 	@accessLevel INT = 1
 )
@@ -226,7 +226,7 @@ GO
 CREATE PROCEDURE spUpdateProfilePict
 (
     @username VARCHAR(30), 
-	@profileImage VARCHAR(150)
+	@profileImage VARCHAR(1200)
 )
 AS
 BEGIN
@@ -1085,7 +1085,7 @@ GO
 
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='dragon.png'; 
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
-EXEC spCreateArt @rating=1, @postText='', @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png'; 
+EXEC spCreateArt @rating=1, @postText='', @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png';  
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
 EXEC spCreateArt @rating=0, @postText='', @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
@@ -1251,3 +1251,4 @@ GO
 
 EXEC spReadFollow @username='wrenjay'
 GO
+SELECT * FROM tbAccount;

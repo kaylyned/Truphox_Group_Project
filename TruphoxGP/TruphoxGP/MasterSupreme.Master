@@ -37,13 +37,14 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
+                            
                             <ul class="dropdown-menu">
                                 <li><a href="Profile.aspx">PROFILE</a></li>
                                 <%--<li><a href="#">STORE</a></li>--%>
                                 <li><a href="Form.aspx">PHOX FOURMS</a></li>
-                                <asp:Panel ID="pnlRegister" runat="server" Visible="false"><li><a href="Register.aspx">REGISTER</a></li></asp:Panel>
-                                <asp:Panel ID="pnlLogin" runat="server" Visible="false"><li><a href="Login.aspx">LOGIN</a></li></asp:Panel>
-                                <asp:Panel ID="pnlLogout" runat="server" Visible="false"><li><asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" /></li></asp:Panel>
+                               <li><asp:Panel ID="pnlRegister" runat="server" Visible="false">&nbsp&nbsp<a href="Register.aspx">REGISTER</a></asp:Panel></li>
+                                 <li><asp:Panel ID="pnlLogin" runat="server" Visible="false">&nbsp&nbsp<a href="Login.aspx">LOGIN</a></asp:Panel></li>
+                                <li><asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" CssClass="btn btn-secondary" runat="server" Text="Logout" /></asp:Panel></li>
                             </ul>
                         </li>
                         <li>

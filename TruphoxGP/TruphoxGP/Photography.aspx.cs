@@ -60,7 +60,7 @@ namespace TruphoxGP
 
         protected void dlPhotoRecent_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int itemID = Convert.ToInt32(dlPhotoTrending.DataKeys[e.Item.ItemIndex]);
+            int itemID = Convert.ToInt32(dlPhotoRecent.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
             {
@@ -70,7 +70,7 @@ namespace TruphoxGP
 
         protected void dlPhotoFav_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int itemID = Convert.ToInt32(dlPhotoTrending.DataKeys[e.Item.ItemIndex]);
+            int itemID = Convert.ToInt32(dlPhotoFav.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
             {

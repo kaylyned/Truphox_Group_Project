@@ -69,7 +69,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PhoxFourms.aspx" />
+    <Content Include="PhoxForums.aspx" />
+    <Content Include="Results.aspx" />
     <Content Include="Useless\angularjs.html" />
     <Content Include="Artwork.aspx" />
     <Content Include="Useless\basic-plus.html" />
@@ -204,12 +205,12 @@
     <Compile Include="Photography.aspx.designer.cs">
       <DependentUpon>Photography.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PhoxFourms.aspx.cs">
-      <DependentUpon>PhoxFourms.aspx</DependentUpon>
+    <Compile Include="PhoxForums.aspx.cs">
+      <DependentUpon>PhoxForums.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PhoxFourms.aspx.designer.cs">
-      <DependentUpon>PhoxFourms.aspx</DependentUpon>
+    <Compile Include="PhoxForums.aspx.designer.cs">
+      <DependentUpon>PhoxForums.aspx</DependentUpon>
     </Compile>
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="Reset.aspx.designer.cs">
       <DependentUpon>Reset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Results.aspx.cs">
+      <DependentUpon>Results.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Results.aspx.designer.cs">
+      <DependentUpon>Results.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="Settings.aspx.cs">

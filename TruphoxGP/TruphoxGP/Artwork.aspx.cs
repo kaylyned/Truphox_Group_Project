@@ -58,8 +58,28 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {                               
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=photography");
             }      
+        }
+
+        protected void dlArtRecent_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlArtTrending.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=photography");
+            }
+        }
+
+        protected void dlArtFav_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int itemID = Convert.ToInt32(dlArtTrending.DataKeys[e.Item.ItemIndex]);
+
+            if (e.CommandName == "Select")
+            {
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=photography");
+            }
         }
     }
 }

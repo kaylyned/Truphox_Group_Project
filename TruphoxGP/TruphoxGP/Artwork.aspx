@@ -13,21 +13,21 @@
             </ItemTemplate>
         </asp:DataList>
         <hr />
-        <asp:DataList ID="dlArtRecent" runat="server" Width="791px" RepeatDirection="Horizontal" RepeatColumns="3">
+        <asp:DataList ID="dlArtRecent" runat="server" Width="791px" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArtRecent_ItemCommand">
                <ItemTemplate>
                  <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                 <br />
-                <asp:ImageButton ID="imgARecent" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+                <asp:ImageButton ID="imgARecent" runat="server" CommandName="Select" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblARecent" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>
         </asp:DataList>
         <hr />
-        <asp:DataList ID="dlArtFav" runat="server" Width="791px" RepeatDirection="Horizontal" RepeatColumns="3">
+        <asp:DataList ID="dlArtFav" runat="server" Width="791px" RepeatDirection="Horizontal" RepeatColumns="3" OnItemCommand="dlArtFav_ItemCommand">
                <ItemTemplate>
                 <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                 <br />
-              <asp:ImageButton ID="imgAFav" runat="server" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
+              <asp:ImageButton ID="imgAFav" runat="server" CommandName="Select" ImageUrl='<%#Eval("artLink") %>' CssClass="ATrendImages" />
                 <br />
                 <asp:Label ID="lblAFav" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>

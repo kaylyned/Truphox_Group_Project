@@ -58,7 +58,7 @@
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
                                 <section id="comments">
-
+                                    <%-- Section created for grabElementByID in Javascript section. Comments will be loaded here --%>
                                 </section>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
         function getComments() {
             $.ajax({
                 type: "GET",
-                url: "",
+                url: "readComment.ashx",//handler
                 cache: false,
                 data: {};
                 success: function (data) {
@@ -110,9 +110,11 @@
         }
 
         function comments(data) {
+            //Get comment section created that will be used to append comment HTML created
             var sectionComments = document.getElementById("comments");
             var comment = JSON.parse(data);
 
+            //loop through each comment for the post and create required elements for a comment
             for (i in comment.Table) {
                 c = comment.Table[i];
                 var divComments = document.createElement("div");
@@ -125,10 +127,39 @@
             }
         }
 
-        function 
+        function getCommentReplies(parentCommentID, i) {
+            $.ajax({
+                type: "POST",
+                url: "readcommentReply", //handler
+                cache: false,
+                data: { "parentCommentID": parentCommentID },
+                success: function (data) {
+                    commentReplies(data, i, parentCommentID);
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
+        }
 
+        function commentReplies(data, i, parentCommentID) {
+            if (data != null) {
+                //Get created reply div from comments method using i to find associated comment for replies
+                var parentComment = document.getElementById('r', i);
+                var commentReply = JSON.parse(data);
 
+                //loop through each comment reply for the post and create required elements for a comment
+                for (a in commentReply.Table) {
+                    cr = commentReply.Table[a];
+                    var divCommentReplies = document.createElement("div");
+                    divCommentReplies.setAttribute('id', 'cr' + a);
+                    //comment class setattribute here
+                    //comment reply requirements
 
-    </script>
-    <script>//For the pleasure of Child Dan</script>    
+                    parentComment.appendChild(divCommentReplies);
+                }
+            }
+        }
+        
+    </script>      
 </asp:Content>

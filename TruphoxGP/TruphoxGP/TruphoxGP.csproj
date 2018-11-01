@@ -138,6 +138,8 @@
     <Content Include="Useless\.npmignore" />
     <Content Include="Useless\bower.json" />
     <Content Include="Useless\package.json" />
+    <Content Include="readComment.ashx" />
+    <Content Include="readCommentReply.ashx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -234,6 +236,12 @@
     </Compile>
     <Compile Include="MasterSupreme.Master.designer.cs">
       <DependentUpon>MasterSupreme.Master</DependentUpon>
+    </Compile>
+    <Compile Include="readComment.ashx.cs">
+      <DependentUpon>readComment.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="readCommentReply.ashx.cs">
+      <DependentUpon>readCommentReply.ashx</DependentUpon>
     </Compile>
     <Compile Include="Recover.aspx.cs">
       <DependentUpon>Recover.aspx</DependentUpon>

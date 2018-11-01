@@ -49,12 +49,17 @@
                     <br>
                     <div style="padding: 30px">
                         <h3 class="text-center">COMMENTS</h3>
+                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
+                        <br />
+                        <asp:Button ID="btnComment" runat="server" Text="Comment" />
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#home">RECENT</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
+                                <section id="comments">
 
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -84,4 +89,46 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            getComments();
+        });
+
+        function getComments() {
+            $.ajax({
+                type: "GET",
+                url: "",
+                cache: false,
+                data: {};
+                success: function (data) {
+                    comments(data);
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
+        }
+
+        function comments(data) {
+            var sectionComments = document.getElementById("comments");
+            var comment = JSON.parse(data);
+
+            for (i in comment.Table) {
+                c = comment.Table[i];
+                var divComments = document.createElement("div");
+                divComments.setAttribute('id', 'c' + i);
+                divComments.innerHTML = (
+                    //comment requirements here
+                    )
+                getCommentReplies(c.parentCommentID, i);
+                sectionComments.appendChild(divComments);
+            }
+        }
+
+        function 
+
+
+
+    </script>
+    <script>//For the pleasure of Child Dan</script>    
 </asp:Content>

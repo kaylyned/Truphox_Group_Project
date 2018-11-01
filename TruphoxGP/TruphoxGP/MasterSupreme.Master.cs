@@ -9,7 +9,7 @@ namespace TruphoxGP
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
-        DAL myDal;
+        //DAL myDal;
         protected void Page_Load(object sender, EventArgs e)
         {
             Security sec = new Security();

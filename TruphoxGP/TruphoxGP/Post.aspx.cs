@@ -47,7 +47,7 @@ namespace TruphoxGP
 
             if (!IsPostBack)
             {
-                loadComments(postID);
+                
                 loadLikes(postID);
             }            
         }
@@ -74,41 +74,7 @@ namespace TruphoxGP
             lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
-        }
-
-        private void loadComments(int PostID)
-        {
-            post loadComments = new post();
-            List<comment> comments;
-            comments = loadComments.getComments(PostID);
-
-            Panel pnlComments = new Panel();
-            divComments.Controls.Add(pnlComments);
-
-            foreach (comment comment in comments)
-            {
-                Label commentLabel = new Label();
-                commentLabel.Text = comment.commentText;
-                pnlComments.Controls.Add(commentLabel);
-                pnlComments.Controls.Add(new LiteralControl("<br />"));
-
-                Label commentUser = new Label();
-                commentUser.Text = comment.username;
-                pnlComments.Controls.Add(commentUser);
-                pnlComments.Controls.Add(new LiteralControl("<br />"));
-
-                Label commentDate = new Label();
-                commentDate.Text = (comment.commentDate).ToString();
-                pnlComments.Controls.Add(commentDate);
-                pnlComments.Controls.Add(new LiteralControl("<br />"));
-
-                Button btnLike = new Button();
-                btnLike.Text = "Like";
-                pnlComments.Controls.Add(btnLike);
-                pnlComments.Controls.Add(new LiteralControl("<br />"));
-                pnlComments.Controls.Add(new LiteralControl("<br />"));
-            }
-        }
+        } 
 
         private void loadLikes(int PostID)
         {
@@ -136,18 +102,49 @@ namespace TruphoxGP
 
             }
 
-            loadLikes(postID);
-            loadComments(postID);
+            loadLikes(postID);            
         }
 
-        protected void btnSumbitComment_Click(object sender, EventArgs e)
-        {
-            Security mySecurity = new Security();
+        //private void loadComments(int PostID)
+        //{
+        //    post loadComments = new post();
+        //    List<comment> comments;
+        //    comments = loadComments.getComments(PostID);
 
-            comment newComment = new comment();
-            newComment.newComment(postID, txtComment.Text, mySecurity.username);
-            txtComment.Text = "";
-            loadComments(postID);
-        }
+        //    Panel pnlComments = new Panel();
+        //    divComments.Controls.Add(pnlComments);
+
+        //    foreach (comment comment in comments)
+        //    {
+        //        pnlComments.Controls.Add(new LiteralControl("<br />"));
+        //        Label commentLabel = new Label();
+        //        commentLabel.Text = comment.commentText;
+        //        pnlComments.Controls.Add(commentLabel);
+        //        pnlComments.Controls.Add(new LiteralControl("<br />"));
+        //        pnlComments.Controls.Add(new LiteralControl("<br />"));
+
+        //        Label commentUser = new Label();
+        //        commentUser.Text = comment.username;
+        //        pnlComments.Controls.Add(commentUser);
+        //        pnlComments.Controls.Add(new LiteralControl("<br />"));
+
+        //        Label commentDate = new Label();
+        //        commentDate.Text = (comment.commentDate).ToString();
+        //        pnlComments.Controls.Add(commentDate);
+        //        pnlComments.Controls.Add(new LiteralControl("<br />"));
+        //    }
+        //}
+
+        //protected void btnSumbitComment_Click(object sender, EventArgs e)
+        //{
+        //    Security mySecurity = new Security();
+
+        //    comment newComment = new comment();
+        //    newComment.newComment(postID, txtComment.Text, mySecurity.username);
+        //    txtComment.Text = "";
+        //    loadComments(postID);
+        //}
+
+
     }
 }

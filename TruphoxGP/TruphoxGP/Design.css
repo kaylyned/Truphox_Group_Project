@@ -226,8 +226,12 @@ body {
 }
 
 .profileBio {
-    height: 100px;
-    box-sizing: border-box;
+    height: auto;
+    width: 350px;
+    max-height: 200px;
+    max-width: 300px;
+    background-color: #f1f1f1;
+    border: 10px transparent;
 }
 
 /*HOME PAGE... has trending flip pages*/

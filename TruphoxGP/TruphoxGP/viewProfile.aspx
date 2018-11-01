@@ -7,7 +7,7 @@
                           <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155"  />
                    <h1><asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
-                        <asp:Button ID="btnFollow" CssClass="btn btn-secondary" runat="server" Text="Follow" />
+                        <asp:Button ID="btnFollow" CssClass="btn btn-secondary" runat="server" Text="Follow" OnClick="btnFollow_Click" />
                 </div>
             </div>
             <br />

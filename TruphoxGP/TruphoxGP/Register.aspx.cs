@@ -61,6 +61,17 @@ namespace TruphoxGP
             {
                 lblMessage.Text = "Password do not match. Please recheck your password.";
             }
+
+            followTruphox(txtUsername.Text);
+            
+        }
+
+        private void followTruphox(string username)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spCreateFollow");
+            myDal.addParm("username", username);
+            myDal.addParm("followedUser", "Truphox");
         }
     }
 }

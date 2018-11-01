@@ -11,13 +11,14 @@ namespace TruphoxGP
     public partial class viewProfile : System.Web.UI.Page
     {
         DAL myDal;
+        string viewUser;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (Request.QueryString["followedUser"] != null)
                 {
-                    string viewUser = Request.QueryString["followedUser"].ToString();
+                    viewUser = Request.QueryString["followedUser"].ToString();
                     loadOtherUser(viewUser);
                     loadRecentlyAdded(viewUser);
                     loadArt(viewUser);
@@ -171,6 +172,18 @@ namespace TruphoxGP
             {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
+        }
+
+        protected void btnFollow_Click(object sender, EventArgs e)
+        {
+            followUser(viewUser);
+        }
+        private void followUser(string ViewUser)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spCreateFollow");
+            myDal.addParm("username", sec.username);
+            myDal.addParm("followedUser",ViewUser);
         }
     }
 }

@@ -9,7 +9,7 @@
                 <h1>
                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
-                    <asp:Button ID="btnPictureEdit" CssClass="btn btn-secondary" runat="server" Text="Profile Picture" Width="184px" OnClick="btnPictureEdit_Click" />
+                    <asp:Button ID="btnPictureEdit" CssClass="btn btn-secondary" runat="server" Text="Profile Picture"  Width="184px" OnClick="btnPictureEdit_Click" />
                     <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Settings" Width="184px" OnClick="btnEdit_Click" />
                 </div>
             </div>

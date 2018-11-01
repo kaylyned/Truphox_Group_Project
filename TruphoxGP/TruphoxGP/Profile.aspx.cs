@@ -44,7 +44,6 @@ namespace TruphoxGP
             DataSet ds = myDal.getDataSet();
 
             imgProfilePicture.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
-            //profileImgFU.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
 
             lblUsername.Text = HttpContext.Current.Session["username"].ToString();
             lblFirstName.Text = ds.Tables[0].Rows[0]["firstName"].ToString();
@@ -64,21 +63,15 @@ namespace TruphoxGP
 
             DataSet ds = myDal.getDataSet();
 
-            //imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
-
             lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            //imgRecent2.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
-
             lblpostID2.Text = ds.Tables[0].Rows[1]["postID"].ToString();
             lblTitle2.Text = ds.Tables[0].Rows[1]["postTitle"].ToString();
             lblSubTitle2.Text = ds.Tables[0].Rows[1]["postSubTitle"].ToString();
             lblDateCreated2.Text = ds.Tables[0].Rows[1]["postDate"].ToString();
-
-            // imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
 
             lblpostID3.Text = ds.Tables[0].Rows[2]["postID"].ToString();
             lblTitle3.Text = ds.Tables[0].Rows[2]["postTitle"].ToString();
@@ -153,8 +146,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlPhotots.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {
-                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+            {        
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -164,8 +156,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlWriting.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {
-                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+            {       
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -175,8 +166,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {
-                //string postDet = ("Post.aspx?postID=" + itemID.ToString() + "postType=artwork");               
+            {             
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }

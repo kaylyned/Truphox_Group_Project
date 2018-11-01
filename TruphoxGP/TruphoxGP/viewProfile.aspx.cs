@@ -13,30 +13,22 @@ namespace TruphoxGP
         DAL myDal;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Security sec = new Security();
-            if (!sec.isLoggedIn)
+            if (!IsPostBack)
             {
-                //Response.Redirect("Login.aspx");
-            }
-            else
-            {
-                if (!IsPostBack)
+                if (Request.QueryString["followedUser"] != null)
                 {
-                    if (Request.QueryString["viewUser"] != null)
-                    {
-                        string viewUser = Request.QueryString["viewUser"].ToString();
-                        loadOtherUser(viewUser);
-                        loadRecentlyAdded(viewUser);
-                        loadArt(viewUser);
-                        loadPhotography(viewUser);
-                        loadWriting(viewUser);
-                        loadVideo(viewUser);
-                        loadFollowed(viewUser);
-                    }
-                    else
-                    {
+                    string viewUser = Request.QueryString["followedUser"].ToString();
+                    loadOtherUser(viewUser);
+                    loadRecentlyAdded(viewUser);
+                    loadArt(viewUser);
+                    loadPhotography(viewUser);
+                    loadWriting(viewUser);
+                    loadVideo(viewUser);
+                    loadFollowed(viewUser);
+                }
+                else
+                {
 
-                    }
                 }
             }
         }
@@ -44,12 +36,12 @@ namespace TruphoxGP
         {
             Security sec = new Security();
             myDal = new DAL("spReadAccount");
-          myDal.addParm("username", viewUser );
+            myDal.addParm("username", viewUser);
             DataSet ds = myDal.getDataSet();
 
             imgProfilePicture.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
 
-            lblUsername.Text = HttpContext.Current.Session["username"].ToString();
+            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
             lblFirstName.Text = ds.Tables[0].Rows[0]["firstName"].ToString();
             lblLastName.Text = ds.Tables[0].Rows[0]["lastName"].ToString();
             txtBio.Text = ds.Tables[0].Rows[0]["bio"].ToString();
@@ -62,25 +54,19 @@ namespace TruphoxGP
             Security sec = new Security();
 
             myDal = new DAL("spRecentlyAdded");
-             myDal.addParm("username", viewUser );
+            myDal.addParm("username", viewUser);
 
             DataSet ds = myDal.getDataSet();
-
-            //imgRecent.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
 
             lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            //imgRecent2.ImageUrl = ds.Tables[0].Rows[0][""].ToString();
-
             lblpostID2.Text = ds.Tables[0].Rows[1]["postID"].ToString();
             lblTitle2.Text = ds.Tables[0].Rows[1]["postTitle"].ToString();
             lblSubTitle2.Text = ds.Tables[0].Rows[1]["postSubTitle"].ToString();
             lblDateCreated2.Text = ds.Tables[0].Rows[1]["postDate"].ToString();
-
-            // imgRecent3.ImageUrl = ds.Tables[0].Rows[0]["lastName"].ToString();
 
             lblpostID3.Text = ds.Tables[0].Rows[2]["postID"].ToString();
             lblTitle3.Text = ds.Tables[0].Rows[2]["postTitle"].ToString();
@@ -152,7 +138,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlArt.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {        
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -162,7 +148,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlPhotots.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {         
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -172,7 +158,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {             
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -182,7 +168,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlWriting.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {              
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }

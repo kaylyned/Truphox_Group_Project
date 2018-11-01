@@ -41,7 +41,7 @@
                         <div class="col-sm-4">
                             <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
                             <br />
-                            <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />                        
+                            <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
                             <p></p>
                             <br>
                         </div>
@@ -54,14 +54,7 @@
                         </ul>
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
-                                <h2>COMMENT SYSTEM HERE</h2>
-                                <asp:TextBox ID="txtComment" runat="server" Height="100px" Width="100%" TextMode="MultiLine"></asp:TextBox>
-                                <br />
-                                <asp:Button ID="btnSumbitComment" runat="server" Text="Submit Comment" OnClick="btnSumbitComment_Click" />
-                                <br />
-                                <div id="divComments" runat="server">
 
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -198,7 +198,7 @@ GO
 
 CREATE PROCEDURE spReadAccount
 (
-	@username VARCHAR(30)
+	@username VARCHAR(30)=NULL
 )
 AS
 BEGIN

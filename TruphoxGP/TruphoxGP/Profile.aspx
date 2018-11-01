@@ -5,7 +5,7 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155"  />
+                <asp:Image ID="imgProfilePicture" runat="server" ImageUrl='<%#Eval("profileImage") %>' CssClass="img-circle person" Width="155" Height="155" />
                 <h1>
                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
@@ -241,32 +241,31 @@
                 <div class="well">
                     Preview Image: 
                     <input type='file' id="imgInp" />
-                    <img id="profileImgFU" src="#" alt="your image"  class="img-circle person" Width="155" Height="155" />
+                    <img id="profileImgFU" src="#" alt="your image" class="img-circle person" width="155" height="155" />
                     <br />
                     Upload Image: 
                       <asp:FileUpload ID="fuProfileImage" runat="server" />
-                   <asp:Button ID="btnSaveProfilePicture" CssClass="btn"  runat="server" Text="Save" Width="192px" OnClick="btnSaveProfilePicture_Click" />
+                    <asp:Button ID="btnSaveProfilePicture" CssClass="btn" runat="server" Text="Save" Width="192px" OnClick="btnSaveProfilePicture_Click" />
                 </div>
             </asp:Panel>
             <div class="well">
                 <h3>FOLLOWING</h3>
                 <div class="Following">
-                    <asp:Repeater ID="repFollowing" runat="server">
+                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" >
                         <ItemTemplate>
-                            <br />
-                            <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>'></asp:Label>
-                            <br />
+                            <asp:LinkButton ID="lnkFollowed" runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:LinkButton>
+                     <%--       <asp:Label ID="lblFollow"  runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:Label>--%>
                         </ItemTemplate>
-                    </asp:Repeater>
+                    </asp:DataList>
                 </div>
-                <br />
-                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link" OnClick="btnMore_Click" Width="192px"/>
-            </div>
-            <div class="well">
-                <h3>OTHER</h3>
-                <p>MORE TEXT....</p>
-            </div>
+            <br />
+            <%--<asp:Button ID="btnMore" runat="server" Text="More..."CssClass="btn btn-link" OnClick="btnMore_Click" Width="192px" />--%>
         </div>
+        <div class="well">
+            <h3>OTHER</h3>
+            <p>MORE TEXT....</p>
+        </div>
+    </div>
     </div>
     <script>
         function readURL(input) {

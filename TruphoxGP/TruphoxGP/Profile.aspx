@@ -251,7 +251,7 @@
             <div class="well">
                 <h3>FOLLOWING</h3>
                 <div class="Following">
-                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" >
+                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" DataKeyField="followedUser"  >
                         <ItemTemplate>
                             <asp:LinkButton ID="lnkFollowed" runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:LinkButton>
                      <%--       <asp:Label ID="lblFollow"  runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:Label>--%>

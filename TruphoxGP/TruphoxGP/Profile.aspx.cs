@@ -259,11 +259,11 @@ namespace TruphoxGP
 
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
+            string viewUser = dlFollowing.DataKeys[e.Item.ItemIndex].ToString();
 
             if (e.CommandName == "Select")
             {         
-                Response.Redirect("viewProfile.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
             }
         }
     }

@@ -320,8 +320,10 @@ body {
     padding: 20px;
 }
 
+.commentTextBox{
+    width: 100%;
+}
 
-/*FOURM PAGE*/
-
-.fourm {
+/*FORUM PAGE*/
+.forum {
 }

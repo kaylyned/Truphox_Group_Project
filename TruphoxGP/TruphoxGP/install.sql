@@ -586,13 +586,27 @@ BEGIN
 END
 GO
 
+--CREATE PROCEDURE spReadComment
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	SELECT postID, postCommentNumber, commentText, commentDate, username FROM tbComment WHERE postID = ISNULL (@postID, postID)
+--	ORDER BY postCommentNumber DESC	
+--END
+--GO
+
 CREATE PROCEDURE spReadComment
 (
 	@postID INT
 )
 AS
 BEGIN
-	SELECT postID, postCommentNumber, commentText, commentDate, username FROM tbComment WHERE postID = ISNULL (@postID, postID)
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage 
+	FROM tbComment c INNER JOIN tbAccount a ON
+	c.username = a.username
+	WHERE postID = ISNULL (@postID, postID)
 	ORDER BY postCommentNumber DESC	
 END
 GO

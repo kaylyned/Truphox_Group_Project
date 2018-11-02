@@ -71,31 +71,36 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2><asp:HyperLink ID="hlUsername" runat="server"></asp:HyperLink></h2>
-                 <p><asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox></p>
+                <h2>
+                    <asp:HyperLink ID="hlUsername" runat="server"></asp:HyperLink></h2>
+                <p>
+                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox></p>
                 <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
             <div class="well">
                 <h3>MORE FROM USER</h3>
-                <p><asp:DataList ID="dlMoreUser" runat="server"></asp:DataList></p>
+                <p>
+                    <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList></p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p><asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList></p>
+                <p>
+                    <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList></p>
             </div>
         </div>
     </div>
     <script>
         $(document).ready(function () {
-            getComments();
+            var postID = getUrlParameter('postID');
+            getComments(postID);
         });
 
-        function getComments() {
+        function getComments(postID) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "readComment.ashx",//handler
                 cache: false,
-                data: {};
+                data: { "postID": postID },
                 success: function (data) {
                     comments(data);
                 },
@@ -115,10 +120,10 @@
                 c = comment.Table[i];
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
-                divComments.innerHTML = (
-                    c.profileImage + "<br />" +
-
-                    )
+                divComments.innerHTML = (                    
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br />" +
+                    "<a href=''>" + c.username + "</a>"
+                )
                 getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);
             }
@@ -127,7 +132,7 @@
         function getCommentReplies(parentCommentID, i) {
             $.ajax({
                 type: "POST",
-                url: "readcommentReply", //handler
+                url: "readCommentReply.ashx", //handler
                 cache: false,
                 data: { "parentCommentID": parentCommentID },
                 success: function (data) {
@@ -157,6 +162,13 @@
                 }
             }
         }
-        
-    </script>      
+
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+    </script>
 </asp:Content>

@@ -13,11 +13,18 @@ namespace TruphoxGP
     /// </summary>
     public class readComment : IHttpHandler
     {
+        int postID;
         DAL mydal;
         public void ProcessRequest(HttpContext context)
-        {
-            mydal = new DAL(""); //add read comment reply proc
-            //add param postID
+        {      
+            context.Response.ContentType = "text/plain";
+            if (context.Request.HttpMethod == "POST")
+            {
+                postID = Convert.ToInt32(context.Request.Form["postID"].ToString());
+            }
+
+            mydal = new DAL("spReadComment"); //add read comment reply proc
+            mydal.addParm("postID", postID.ToString());
             DataSet ds = mydal.getDataSet();
 
             string result = GetJSONString(ds.Tables[0]);

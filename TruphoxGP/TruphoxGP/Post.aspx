@@ -116,7 +116,8 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    //comment requirements here
+                    c.profileImage + "<br />" +
+
                     )
                 getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);

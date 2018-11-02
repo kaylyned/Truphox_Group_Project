@@ -71,21 +71,17 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2>USERNAME</h2>
-                <p>Clickable username to see their profile</p>
-                <p>user info</p>
-                <p>more user info</p>
-                <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" />
+                <h2><asp:HyperLink ID="hlUsername" runat="server"></asp:HyperLink></h2>
+                 <p><asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox></p>
+                <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
             <div class="well">
                 <h3>MORE FROM USER</h3>
-                <p>other post</p>
-                <p>other posts</p>
-                <p>other post</p>
+                <p><asp:DataList ID="dlMoreUser" runat="server"></asp:DataList></p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>MORE POSTS.... IN A DATALIST</p>
+                <p><asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList></p>
             </div>
         </div>
     </div>

@@ -105,6 +105,12 @@ namespace TruphoxGP
             loadLikes(postID);            
         }
 
+        protected void btnFollow_Click(object sender, EventArgs e)
+        {
+            //string viewUser = dlFollowing.DataKeys[e.Item.ItemIndex].ToString();
+            //Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+        }
+
         //private void loadComments(int PostID)
         //{
         //    post loadComments = new post();

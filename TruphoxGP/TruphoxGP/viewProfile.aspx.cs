@@ -180,10 +180,11 @@ namespace TruphoxGP
         }
         private void followUser(string ViewUser)
         {
-            Security sec = new Security();
-            myDal = new DAL("spCreateFollow");
-            myDal.addParm("username", sec.username);
-            myDal.addParm("followedUser",ViewUser);
+               Security sec = new Security();
+                myDal = new DAL("spCreateFollow");
+                myDal.addParm("username", sec.username);
+                myDal.addParm("followedUser", ViewUser);
+   
         }
     }
 }

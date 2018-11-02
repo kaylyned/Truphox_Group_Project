@@ -22,13 +22,6 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2>USERNAME</h2>
-                <p>Clickable username to see their profile</p>
-                <p>user info</p>
-                <p>more user info</p>
-                <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" />
-            </div>
-            <div class="well">
                 <h3>MORE FROM USER</h3>
                 <p>other post</p>
                 <p>other posts</p>

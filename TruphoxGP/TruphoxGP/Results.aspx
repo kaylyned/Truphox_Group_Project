@@ -8,9 +8,11 @@
             <br />
             <div class="row content">
                 <div class="leftcolumn">
-              <asp:DataList ID="dlSearchResult" runat="server">
+              <asp:DataList ID="dlSearchResult" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="postID" OnItemCommand="dlSearchResult_ItemCommand">
                   <ItemTemplate>
-                      <asp:ImageButton ID="imgSearch" runat="server" ImageUrl='<%#Eval("image") %>' />
+                   <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>' ></asp:Label>
+                     <br />
+                      <asp:ImageButton ID="imgSearch" CommandName="Select" runat="server" ImageUrl='<%#Eval("image") %>' />
                   </ItemTemplate>
               </asp:DataList>
                     <br>
@@ -21,12 +23,6 @@
         <br />
         <br />
         <div class="col-sm-4">
-            <div class="well">
-                <h3>MORE FROM USER</h3>
-                <p>other post</p>
-                <p>other posts</p>
-                <p>other post</p>
-            </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>MORE POSTS.... IN A DATALIST</p>

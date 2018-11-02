@@ -16,14 +16,14 @@ namespace TruphoxGP
         DAL mydal;
         public void ProcessRequest(HttpContext context)
         {
-            mydal = new DAL("spReadComment");
-            //add params
-            DataSet ds = mydal.getDataSet();
+            //mydal = new DAL("spReadComment");
+            ////add params
+            //DataSet ds = mydal.getDataSet();
 
-            string result = GetJSONString(ds.Tables[0]);
+            //string result = GetJSONString(ds.Tables[0]);
 
-            context.Response.ContentType = "text/javascript";
-            context.Response.Write(result);
+            //context.Response.ContentType = "text/javascript";
+            //context.Response.Write(result);
         }
 
         public static string GetJSONString(DataTable Dt)

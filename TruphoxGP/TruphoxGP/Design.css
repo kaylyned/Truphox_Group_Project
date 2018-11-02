@@ -328,6 +328,10 @@ body {
     width: 100%;
 }
 
+.commentPic{
+    height:50px;
+}
+
 /*FORUM PAGE*/
 .forum {
 }

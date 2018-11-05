@@ -55,11 +55,18 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#home">RECENT</a></li>
                         </ul>
-                        <div class="tab-content">
-                            <div id="home" class="tab-pane fade in active">
-                                <section id="comments">
-                                    <%-- Section created for grabElementByID in Javascript section. Comments will be loaded here --%>
-                                </section>
+
+                        <div class="container-fluid text-center">
+                            <%-- Div created for grabElementByID in Javascript section. Comments will be loaded here --%>
+                            <div class="row content">
+                                <div class="leftcolumn">
+                                    <div class='row'>
+                                        <div id="comments" class="col-sm-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="commentText" class="col-sm-8">
                             </div>
                         </div>
                     </div>
@@ -74,18 +81,21 @@
                 <h2>
                     <asp:HyperLink ID="hlUsername" runat="server"></asp:HyperLink></h2>
                 <p>
-                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox></p>
+                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox>
+                </p>
                 <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
             <div class="well">
                 <h3>MORE FROM USER</h3>
                 <p>
-                    <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList></p>
+                    <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
+                </p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>
-                    <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList></p>
+                    <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList>
+                </p>
             </div>
         </div>
     </div>
@@ -113,32 +123,35 @@
         function comments(data) {
             //Get comment section created that will be used to append comment HTML created
             var sectionComments = document.getElementById("comments");
-            var comment = JSON.parse(data);          
+            var commentText = document.getElementById("commentText");
+            var comment = JSON.parse(data);
 
             //loop through each comment for the post and create required elements for a comment
             for (i in comment.Table) {
-                c = comment.Table[i];              
+                c = comment.Table[i];
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
-                divComments.innerHTML = (                    
-                    "<div>" +
+                divComments.innerHTML = (
                     "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" +
-                    c.commentText + 
-                    "<br />" + "<a href=''>" + c.username + "</a>" + "</div>" 
+                    "<br />" + "<a href=''>" + c.username + "</a><br />"
+                    //+ "<div class='col-sm-8'" + "<div class='well'>" +
+                    //c.commentText
+                    //+ "</div></div>" + "<br />"
                 )
                 //getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);
-            } 
+            }
 
-            //for (i in comment2.Table) {
-            //    c2 = comment2.Table[i];
-            //    var divCommentText = document.createElement("div");
-            //    divCommentText.setAttribute('id', 'ct' + i);
-            //    divCommentText.innerHTML(
-            //        "<div class='left column'><div class='col-lg-10'><div class='well'>" + c2.commentText + "</div></div></div>"
-            //    )
-            //    sectionComments.appendChild(divCommentText);
-            //}
+            for (i in comment.Table) {
+                c = comment.Table[i];
+                var divComments = document.createElement("div");
+                divComments.setAttribute('id', 'ct' + i);
+                divComments.innerHTML = (
+                    "<div class='well'>" + c.commentText + "</div><br />"
+                )
+                //getCommentReplies(c.parentCommentID, i);
+                commentText.appendChild(divComments);
+            }
         }
 
         function getCommentReplies(parentCommentID, i) {

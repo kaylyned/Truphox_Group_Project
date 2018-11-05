@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <title>Truphox</title>
-   <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -32,7 +32,6 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
-
                             <ul class="dropdown-menu">
                                 <li><a href="Profile.aspx">PROFILE</a></li>
                                 <%--<li><a href="#">STORE</a></li>--%>
@@ -50,8 +49,16 @@
                         </li>
                         <li>
                             <input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" placeholder="Search..." /></li>
+                        <li class="ddlSearchFilerDrop">
+                            <asp:DropDownList ID="ddlSearchFilter" CssClass="ddlSearchFilter" runat="server">
+                                <asp:ListItem>Users</asp:ListItem>
+                                <asp:ListItem>Art</asp:ListItem>
+                                <asp:ListItem>Photography</asp:ListItem>
+                                <asp:ListItem>Videos</asp:ListItem>
+                                <asp:ListItem>Literature</asp:ListItem>
+                            </asp:DropDownList></li>
                         <li>
-                            <button id="btnSearch" runat="server" style="height: 45px; width: 30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>                      
+                            <button id="btnSearch" runat="server" style="height: 45px; width: 30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
                         </li>
                     </ul>
                 </div>
@@ -63,15 +70,15 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-  </form>
-            <script>
-                var result = document.getElementById("txtSearch").value;
+    </form>
+    <script>
+        var result = document.getElementById("txtSearch").value;
 
-            function Search() {
-               // alert("hate this");
-                window.location.replace("./Results.aspx?result" + result);
-                return false;
-                }
-        </script>
+        function Search() {
+            // alert("hate this");
+            window.location.replace("./Results.aspx?result" + result);
+            return false;
+        }
+    </script>
 </body>
 </html>

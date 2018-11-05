@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\abstract.jpg" />
     <Content Include="PhoxForums.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="Useless\angularjs.html" />

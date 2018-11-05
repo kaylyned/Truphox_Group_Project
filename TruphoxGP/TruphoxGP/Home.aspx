@@ -11,7 +11,7 @@
     </ol>
            <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="sample.jpg" alt="Art" width="1200" height="700">
+        <img src="abstract.jpg" alt="Art" width="1200" height="700">
         <div class="carousel-caption">
           <h3>ART</h3>
           <p>Share your creative adventures here!</p>

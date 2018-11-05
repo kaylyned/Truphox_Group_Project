@@ -138,13 +138,28 @@ textarea {
     resize: none;
 }
 
+.ddlSearchFilter {
+    /*display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;*/
+    padding: 14.5px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.ddlSearchFilerDrop {
+    position: relative;
+    display: inline-block;
+}
 
 /*PROFILE PAGE*/
 body {
     font-family: Arial;
     padding: 1px;
     background: #f1f1f1;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 .header {
@@ -197,6 +212,8 @@ body {
 .userWriting {
     max-width: 650px;
     overflow: auto;
+    text-wrap:normal;
+    text-space-collapse:collapse;
 }
 
 .literature {

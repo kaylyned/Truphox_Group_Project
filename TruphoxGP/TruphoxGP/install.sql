@@ -53,7 +53,6 @@ CREATE TABLE tbPost
 	rating BIT,
 	postTitle VARCHAR(50),
 	postSubTitle VARCHAR(50),
-	postText VARCHAR(800),
 	postDate DATETIME,
 	lastComment INT,
 	username VARCHAR(30) FOREIGN KEY REFERENCES tbAccount(username)
@@ -535,7 +534,6 @@ CREATE PROCEDURE spUpdatePost
 (
 	@postID INT,
 	@rating BIT,
-	@postText VARCHAR(200),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@postDate DATETIME,
@@ -546,7 +544,6 @@ AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
-	postText = @postText,
 	postDate = @postDate,
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
@@ -788,7 +785,6 @@ GO
 CREATE PROCEDURE spCreateWriting
 (
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubtitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -796,8 +792,8 @@ CREATE PROCEDURE spCreateWriting
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubtitle, username) VALUES
-					(@rating, @postText, GETDATE(), @postTitle, @postSubtitle, @username)
+	INSERT INTO tbPost (rating, postDate, postTitle, postSubtitle, username) VALUES
+					(@rating, GETDATE(), @postTitle, @postSubtitle, @username)
 	INSERT INTO tbWriting (writingText, postID) VALUES
 					(@writingText, @@IDENTITY)
 END
@@ -819,7 +815,6 @@ CREATE PROCEDURE spUpdateWriting
 (
 	@postID INT,
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -829,7 +824,6 @@ AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
-	postText = @postText,
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
@@ -861,7 +855,6 @@ GO
 CREATE PROCEDURE spCreateArt
 (
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -869,8 +862,8 @@ CREATE PROCEDURE spCreateArt
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
-					(@rating, @postText, GETDATE(),@postTitle, @postSubTitle, @username)
+	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating,  GETDATE(),@postTitle, @postSubTitle, @username)
 	INSERT INTO tbArt (postID, artLink) VALUES
 					(@@IDENTITY, @artLink)
 END
@@ -894,7 +887,6 @@ CREATE PROCEDURE spUpdateArt
 (
 	@postID INT,
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -904,7 +896,6 @@ AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
-	postText = @postText,
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
@@ -936,7 +927,6 @@ GO
 CREATE PROCEDURE spCreatePhotography
 (
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -945,8 +935,8 @@ CREATE PROCEDURE spCreatePhotography
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
-					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle,  @username)
+	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating,  GETDATE(), @postTitle, @postSubTitle,  @username)
 	INSERT INTO tbPhotography (postID, photoLink) VALUES
 					(@@IDENTITY, @photoLink)
 END
@@ -967,7 +957,6 @@ CREATE PROCEDURE spUpdatePhotography
 (
 	@postID INT,
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -977,7 +966,6 @@ AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
-	postText = @postText,
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
@@ -1009,7 +997,6 @@ GO
 CREATE PROCEDURE spCreateVideo
 (
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -1017,8 +1004,8 @@ CREATE PROCEDURE spCreateVideo
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, username) VALUES
-					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle, @username)
+	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating, GETDATE(), @postTitle, @postSubTitle, @username)
 	INSERT INTO tbVideo (postID, videoLink) VALUES
 					(@@IDENTITY, @videoLink)
 END
@@ -1039,7 +1026,6 @@ CREATE PROCEDURE spUpdateVideo
 (
 	@postID INT,
 	@rating BIT,
-	@postText VARCHAR(800),
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50),
 	@username VARCHAR(30),
@@ -1049,7 +1035,6 @@ AS
 BEGIN
 	UPDATE tbPost SET
 	rating = @rating,
-	postText = @postText,
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
@@ -1171,28 +1156,34 @@ GO
 EXEC spReadUserWriting @username='wrenjay'
 GO
 
-------------------SEARCH PROC -------------------
+------------------UNION  PROC -------------------
+CREATE PROCEDURE spSearchUnion
+AS 
+BEGIN --WRITING 
+     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'Images', 'Writing' AS TYPE 
+  FROM tbWriting w INNER JOIN tbPost po ON 
+  w.postID = po.postID
 
-CREATE PROCEDURE spSearch
-(
- @input VARCHAR (150)=NULL
-)
-AS
-BEGIN
-		SELECT postTitle, postSubTitle, postText from tbPost  p INNER JOIN tbArt a ON 
-	     a.postID = p.postID
-         INNER JOIN tbWriting w ON 
-	     w.postID = p.postID 
-		 INNER JOIN tbPhotography ph ON 
-	   	 ph.postID = p.postID 
-	     INNER JOIN tbVideo v ON 
-	     v.postID = p.postID
-	WHERE postTitle  like '%' + trim(@input) + '%'
-END
+UNION --ART 
+      SELECT a.postID, rating, postTitle, postSubTitle, username,'./Images' + artLink AS 'Images', 'Art' AS TYPE 
+ FROM tbArt a INNER JOIN tbPost po ON 
+  a.postID = po.postID
+
+UNION --PHOTOGRAPHY 
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images' + photoLink AS 'Images', 'Photography' AS TYPE  
+ FROM tbPhotography ph INNER JOIN tbPost po ON 
+  ph.postID = po.postID
+
+UNION --VIDEO 
+      SELECT v.postID, rating, postTitle, postSubTitle, username, './Images' + videoLink AS 'Images', 'Video' AS TYPE 
+ FROM tbVideo v INNER JOIN tbPost po ON 
+  v.postID = po.postID
+
+END 
+GO
+EXEC spSearchUnion 
 GO
 
-EXEC spSearch 
-GO
 
 -------------------------------- FORUMS --------------------------------
 CREATE PROCEDURE spForums
@@ -1254,39 +1245,39 @@ GO
 
 ---------------------POSTS CREATED (WRITTING) -------------------
 
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
-EXEC spCreateWriting @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
+EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.';
+EXEC spCreateWriting @rating=0,  @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
+EXEC spCreateWriting @rating=0,  @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
+EXEC spCreateWriting @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
+EXEC spCreateWriting @rating=0, @postTitle='', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
+EXEC spCreateWriting @rating=0,  @postTitle='', @postSubTitle='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
 GO
 
 ------------------POSTS CREATED (ART) -------------------
 
-EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='dragon.png'; 
-EXEC spCreateArt @rating=0, @postText='', @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
-EXEC spCreateArt @rating=1, @postText='', @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png';  
-EXEC spCreateArt @rating=0, @postText='', @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
-EXEC spCreateArt @rating=0, @postText='', @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
-EXEC spCreateArt @rating=0, @postText='', @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
+EXEC spCreateArt @rating=0, @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='dragon.png'; 
+EXEC spCreateArt @rating=0,  @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
+EXEC spCreateArt @rating=1, @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png';  
+EXEC spCreateArt @rating=0,  @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
+EXEC spCreateArt @rating=0,  @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
+EXEC spCreateArt @rating=0, @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
 
 ------------------POSTS CREATED (VIDEO) -------------------
 
---EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0, @postText='', @postDate='', @lastComment=3, @username='';
+--EXEC spCreatePost @rating=0, @postDate='', @lastComment=3, @username='';
+--EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
+--EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
+--EXEC spCreatePost @rating=0, , @postDate='', @lastComment=3, @username='';
+--EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
 GO
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
-EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';
-EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Pumkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumkinK.jpg';
-EXEC spCreatePhotography @rating=0, @postText='', @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
-EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
-EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
-EXEC  spCreatePhotography @rating=0, @postText='', @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumkinK.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
+EXEC  spCreatePhotography @rating=0, @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
+EXEC  spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
+EXEC  spCreatePhotography @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
 EXEC spCreateComment @postID=7, @postCommentNumber=0, @commentText='Cool logo!', @username='CanadaGhost';

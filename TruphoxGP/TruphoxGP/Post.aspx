@@ -113,20 +113,32 @@
         function comments(data) {
             //Get comment section created that will be used to append comment HTML created
             var sectionComments = document.getElementById("comments");
-            var comment = JSON.parse(data);
+            var comment = JSON.parse(data);          
 
             //loop through each comment for the post and create required elements for a comment
             for (i in comment.Table) {
-                c = comment.Table[i];
+                c = comment.Table[i];              
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (                    
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br />" +
-                    "<a href=''>" + c.username + "</a>"
+                    "<div>" +
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" +
+                    c.commentText + 
+                    "<br />" + "<a href=''>" + c.username + "</a>" + "</div>" 
                 )
-                getCommentReplies(c.parentCommentID, i);
+                //getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);
-            }
+            } 
+
+            //for (i in comment2.Table) {
+            //    c2 = comment2.Table[i];
+            //    var divCommentText = document.createElement("div");
+            //    divCommentText.setAttribute('id', 'ct' + i);
+            //    divCommentText.innerHTML(
+            //        "<div class='left column'><div class='col-lg-10'><div class='well'>" + c2.commentText + "</div></div></div>"
+            //    )
+            //    sectionComments.appendChild(divCommentText);
+            //}
         }
 
         function getCommentReplies(parentCommentID, i) {

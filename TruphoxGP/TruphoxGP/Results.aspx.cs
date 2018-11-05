@@ -27,10 +27,20 @@ namespace TruphoxGP
             Security sec = new Security();
             mydal = new DAL("spUSearch");
             mydal.addParm("@input", SearchResult);
-            DataSet ds = mydal.getDataSet();
 
-            imgUser.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
-           
+            DataSet ds = mydal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            if (ds.Tables[0].Rows.Count !=0)
+            {
+                dlUserSearch.DataSource = dtA;
+                dlUserSearch.DataBind();
+            }
+          else
+            {
+                lblNotFound.Visible = true;
+                lblNotFound.Text = SearchResult + "not found";
+            }
         }
 
         protected void dlUserSearch_ItemCommand(object source, DataListCommandEventArgs e)

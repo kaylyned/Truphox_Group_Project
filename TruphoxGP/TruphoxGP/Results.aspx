@@ -16,7 +16,7 @@
                   </ItemTemplate>
               </asp:DataList>
 
-                         <asp:DataList ID="dlUserSearch" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="username" OnItemCommand="dlUserSearch_ItemCommand">
+              <asp:DataList ID="dlUserSearch" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="username" OnItemCommand="dlUserSearch_ItemCommand">
                   <ItemTemplate>
                    <asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>' ></asp:Label>
                      <br />
@@ -24,6 +24,7 @@
                   </ItemTemplate>
               </asp:DataList>
                     <br>
+                    <asp:Label ID="lblNotFound" runat="server" Visible="false" Text=""></asp:Label>
                 </div>
             </div>
         </div>

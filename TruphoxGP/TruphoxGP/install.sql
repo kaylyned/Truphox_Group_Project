@@ -1184,6 +1184,17 @@ GO
 EXEC spSearchUnion 
 GO
 
+-------------------------------- SEARCH USERS --------------------------------
+CREATE PROCEDURE spUSearch 
+(
+  @input VARCHAR (200) = NULL
+)
+AS
+BEGIN
+	 SELECT username, './Images' +profileImage as profileImage FROM tbAccount
+	             WHERE username LIKE '%' + TRIM(@input) + '%';
+END
+GO
 
 -------------------------------- FORUMS --------------------------------
 CREATE PROCEDURE spForums

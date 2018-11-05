@@ -69,7 +69,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\abstract.jpg" />
+    <Content Include="Images\book1.jpg" />
+    <Content Include="Images\camera.jpg" />
+    <Content Include="Images\convet.jpg" />
+    <Content Include="Images\lights.jpg" />
+    <Content Include="Images\mountains.jpg" />
     <Content Include="PhoxForums.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="Useless\angularjs.html" />

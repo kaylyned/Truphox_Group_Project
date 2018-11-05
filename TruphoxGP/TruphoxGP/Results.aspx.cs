@@ -11,25 +11,45 @@ namespace TruphoxGP
     public partial class Results : System.Web.UI.Page
     {
         DAL mydal;
-        string searchResult;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (Request.QueryString["result"] != null)
                 {
-                    searchResult = Request.QueryString["result"].ToString();
-                    loadResults();
-                }
+                   string searchResult = Request.QueryString["result"].ToString();
+                   loadUSearch(searchResult);
+                }            
             }
         }
-        private void loadResults()
+        private void loadUSearch(string SearchResult)
         {
+            Security sec = new Security();
+            mydal = new DAL("spUSearch");
+            mydal.addParm("@input", SearchResult);
+            DataSet ds = mydal.getDataSet();
 
+            imgUser.ImageUrl = "./Images/" + ds.Tables[0].Rows[0]["profileImage"].ToString();
+           
         }
-        protected void dlSearchResult_ItemCommand(object source, DataListCommandEventArgs e)
+
+        protected void dlUserSearch_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int itemID = Convert.ToInt32(dlSearchResult.DataKeys[e.Item.ItemIndex]);
+            string viewUser = dlUserSearch.DataKeys[e.Item.ItemIndex].ToString();
+
+            if (e.CommandName == "Select")
+            {
+                Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+            }
+        }
+
+        protected void dlUnity_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            //dlUnity.SelectedIndex = e.Item.ItemIndex;
+            //DataListItem dli = dlUnity.SelectedItem;
+            //Label lblType = (Label)dli.FindControl("type");
+
+            int itemID = Convert.ToInt32(dlUnity.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
             {

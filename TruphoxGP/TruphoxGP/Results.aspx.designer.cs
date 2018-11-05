@@ -13,12 +13,21 @@ namespace TruphoxGP {
     public partial class Results {
         
         /// <summary>
-        /// dlSearchResult control.
+        /// dlUnity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlSearchResult;
+        protected global::System.Web.UI.WebControls.DataList dlUnity;
+        
+        /// <summary>
+        /// dlUserSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlUserSearch;
     }
 }

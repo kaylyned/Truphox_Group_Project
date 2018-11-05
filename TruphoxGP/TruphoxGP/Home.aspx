@@ -8,27 +8,35 @@
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
+       <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
            <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="abstract.jpg" alt="Art" width="1200" height="700">
+        <img src="Images/mountains.jpg" alt="Art" width="1200" height="700">
         <div class="carousel-caption">
           <h3>ART</h3>
-          <p>Share your creative adventures here!</p>
+            <p>An ordinary significance</p>
+        </div>      
+      </div>
+                   <div class="item">
+        <img src="Images/camera.jpg" alt="Photography" width="1200" height="700">
+        <div class="carousel-caption">
+          <h3>PHOTOGRAPHY</h3>
+            <p>The art of producing images of objects on sensitized surfaces by chemic actions of light and energy.</p>
         </div>      
       </div>
         <div class="item">
-        <img src="sample2.jpg" alt="Videos" width="1200" height="700">
+        <img src="Images/lights.jpg" alt="Videos" width="1200" height="700">
         <div class="carousel-caption">
           <h3>VIDEO</h3>
-          <p>You did something stupid? Post it here!</p>
+            <p>Reception of an image</p>
         </div>      
       </div>
               <div class="item">
-        <img src="sample.jpg" alt="Writting" width="1200" height="700">
+        <img src="Images/convet.jpg" alt="Writting" width="1200" height="400">
         <div class="carousel-caption">
-          <h3>WRITTING</h3>
-          <p>What inspired you to write that book? Post it here!</p>
+          <h3>LITERATURE</h3>
+            <p>Connection with ideas of permanent and universal interest</p>
         </div>      
       </div>
     </div>
@@ -43,6 +51,7 @@
 </div>
     <div id="band" class="container text-center">
         <h3>WELCOME TO TRUPHOX!</h3>
-        <p>A website for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.</p>
+        <p><strong>A website for even the most novice of artists, videographers and poets. </strong></p>
+        <p><strong> your creavity, like and share other ones and join the community that will accept you where ever you are.</strong></p>
     </div>
 </asp:Content>

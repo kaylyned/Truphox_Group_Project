@@ -8,11 +8,19 @@
             <br />
             <div class="row content">
                 <div class="leftcolumn">
-              <asp:DataList ID="dlSearchResult" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="postID" OnItemCommand="dlSearchResult_ItemCommand">
+              <asp:DataList ID="dlUnity" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="postID" OnItemCommand="dlUnity_ItemCommand">
                   <ItemTemplate>
-                   <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>' ></asp:Label>
+                   <asp:Label ID="lblPostID" runat="server" Text='<%#Eval("postID") %>' ></asp:Label>
                      <br />
                       <asp:ImageButton ID="imgSearch" CommandName="Select" runat="server" ImageUrl='<%#Eval("image") %>' />
+                  </ItemTemplate>
+              </asp:DataList>
+
+                         <asp:DataList ID="dlUserSearch" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="username" OnItemCommand="dlUserSearch_ItemCommand">
+                  <ItemTemplate>
+                   <asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>' ></asp:Label>
+                     <br />
+                      <asp:ImageButton ID="imgUser" CommandName="Select" runat="server" ImageUrl='<%#Eval("profileImage") %>' />
                   </ItemTemplate>
               </asp:DataList>
                     <br>

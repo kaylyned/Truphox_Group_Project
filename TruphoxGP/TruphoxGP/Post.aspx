@@ -46,7 +46,7 @@
                             <br>
                         </div>
                     </div>
-                    <br>
+                    <br />
                     <div style="padding: 30px">
                         <h3 class="text-center">COMMENTS</h3>
                         <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
@@ -66,8 +66,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="commentText" class="col-sm-8">
-                            </div>
+                            <br />         
+                                    <div id="commentText" class="col-sm-8">
+                                    </div>              
                         </div>
                     </div>
                 </div>

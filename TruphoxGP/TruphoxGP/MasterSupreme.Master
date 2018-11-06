@@ -22,7 +22,18 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="Home.aspx"><img src="Images/phox.jpg" style="height:33px; width:35px;" /></a>
-                </div>
+                    <asp:Panel runat="server" Visible="false" ID="pnlSubmit">                      
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SUBMIT <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="submitArt.aspx">SUBMIT ART</a></li>
+                                <li><a href="PhoxForums.aspx">SUBMIT PHOTOGRAPHY</a></li>
+                                <li><a href="Register.aspx">SUBMIT LITERATURE </a></li>
+                                <li><a href="Login.aspx">SUBMIT VIDEOS</a></li>
+                            </ul>
+                        </li>
+                        </asp:Panel> 
+                </div>        
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="Artwork.aspx">ARTWORK</a></li>
@@ -45,17 +56,7 @@
                                     <asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" runat="server" Text="Logout" /></asp:Panel>
                                 </li>
                             </ul>
-                        </li><asp:Panel runat="server" Visible="false" ID="pnlSubmit">                      
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SUBMIT <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="sumbitArt.aspx">SUBMIT ART</a></li>
-                                <li><a href="PhoxForums.aspx">SUBMIT PHOTOGRAPHY</a></li>
-                                <li><a href="Register.aspx">SUBMIT LITERATURE </a></li>
-                                <li><a href="Login.aspx">SUBMIT VIDEOS</a></li>
-                            </ul>
                         </li>
-                        </asp:Panel>         
                         <li>
                             <input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" placeholder="Search..." /></li>
                         <li class="ddlSearchFilerDrop">

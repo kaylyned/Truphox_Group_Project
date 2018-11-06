@@ -31,13 +31,5 @@ namespace TruphoxGP
         {
 
         }
-
-        protected void rblMature_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (ListItem == 1 )
-            //{
-            //    lblMature.Visible = true;
-            //}
-        }
     }
 }

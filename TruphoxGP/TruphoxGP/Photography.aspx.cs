@@ -44,7 +44,7 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            dlPhotoFav.DataSource = dtA;
+           dlPhotoFav.DataSource = dtA;
             dlPhotoFav.DataBind();
         }
 

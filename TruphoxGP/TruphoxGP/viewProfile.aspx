@@ -121,7 +121,6 @@
                                 </asp:DataList>
                             </div>
                             <div id="menu3" class="tab-pane fade">
-                                <%-- TURN LITERATURE INTO A PHOTO...???--%>
                                 <h2>LITERATURE</h2>
                                 <asp:DataList ID="dlWriting" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" CssClass="userWriting, profileDL"  DataKeyField="postID" RepeatLayout="Flow" OnItemCommand="dlWriting_ItemCommand">
                                     <ItemTemplate>
@@ -131,7 +130,6 @@
                                             <asp:Label ID="lblWriting" CssClass="" runat="server" Text='<%#Eval("writingText") %>' CommandName="Select"></asp:Label>
                                         </div>
                                     </ItemTemplate>
-                                    <%--  <SeparatorStyle BorderStyle="Ridge" />--%>
                                 </asp:DataList>
                             </div>
                         </div>
@@ -172,16 +170,15 @@
             <div class="well">
                <h3>FOLLOWING</h3>
                 <div class="Following">
-                    <asp:Repeater ID="repFollowing" runat="server">
-                        <ItemTemplate>
+                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand">
+                          <ItemTemplate>
                             <br />
-                            <asp:Label ID="lblFollow" runat="server" Text='<%#Eval("followedUser") %>'></asp:Label>
+                         <asp:LinkButton ID="lnkFollowed" runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:LinkButton> 
                             <br />
                         </ItemTemplate>
-                    </asp:Repeater>
+                    </asp:DataList>
                 </div>
                 <br />
-                <asp:Button ID="btnMore" runat="server" Text="More..." CssClass="btn btn-link"  Width="192px"/>
             </div>
             <div class="well">
                 <h3>TITLE</h3>

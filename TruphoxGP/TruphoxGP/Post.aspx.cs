@@ -28,39 +28,39 @@ namespace TruphoxGP
 
             if (postType == "writing")
             {
-                //make artwork panel visible
+                //make Literature panel visible
                 pnlWriting.Visible = true;
                 loadWriting(postID);
             }
 
             if (postType == "photography")
             {
-                //make artwork panel visible
+                //make photography panel visible
                 pnlPhotography.Visible = true;
             }
 
             if (postType == "video")
             {
-                //make artwork panel visible
+                //make video panel visible
                 pnlVideo.Visible = true;
             }
 
             if (!IsPostBack)
             {
-                loadUser();
+                loadUser(postID);
                 loadLikes(postID);
             }            
         }
-        private void loadUser()
+        private void loadUser( int PostID)
         {
             Security sec = new Security();
-            mydal = new DAL("spReadAccount");
-            mydal.addParm("username", viewUser);
+            mydal = new DAL("spReadPost");
+            mydal.addParm("postID", PostID.ToString());
             DataSet ds = mydal.getDataSet();
 
-            hlUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
-            txtBio.Text = ds.Tables[0].Rows[0]["bio"].ToString();
+            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
         }
+
         private void loadArt(int PostID)
         {
             //load post
@@ -117,7 +117,12 @@ namespace TruphoxGP
         {
             //string viewUser = dlFollowing.DataKeys[e.Item.ItemIndex].ToString();
             //Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
-        }              
+        }
 
+        protected void lnkBtnUsername_Click(object sender, EventArgs e)
+        {
+             string viewUser = lblUsername.Text; 
+            Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+        }
     }
 }

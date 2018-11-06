@@ -130,8 +130,8 @@ namespace TruphoxGP
             DataSet ds = myDal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            repFollowing.DataSource = dtA;
-            repFollowing.DataBind();
+            dlFollowing.DataSource = dtA;
+            dlFollowing.DataBind();
         }
 
         protected void dlArt_ItemCommand(object source, DataListCommandEventArgs e)
@@ -185,6 +185,16 @@ namespace TruphoxGP
                 myDal.addParm("username", sec.username);
                 myDal.addParm("followedUser", ViewUser);
    
+        }
+
+        protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            //string otherProfile = Convert.ToString(dlFollowing.DataKeys[e.Item.ItemIndex]);
+
+            //if (e.CommandName == "Select")
+            //{
+            //    Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
+            //}
         }
     }
 }

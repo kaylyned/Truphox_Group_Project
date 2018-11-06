@@ -530,6 +530,9 @@ BEGIN
 END
 GO
 
+EXEC spReadPost @postID=10
+GO
+
 CREATE PROCEDURE spUpdatePost
 (
 	@postID INT,
@@ -948,9 +951,15 @@ CREATE PROCEDURE spReadPhotography
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT * FROM tbPhotography WHERE postID = ISNULL(@postID, postID);
+	SELECT ph.postID as 'postID', './Images/' + photoLink as 'photoLink', postTitle, postSubTitle
+	    FROM tbPost p  INNER JOIN tbPhotography ph ON 
+	    p.postID= ph.postID 
+	    WHERE  ph.postID = ISNULL(@postID, p.postID);
+	--SELECT * FROM tbPhotography WHERE postID = ISNULL(@postID, postID);
 END
+GO
+
+EXEC spReadPhotography;
 GO
 
 CREATE PROCEDURE spUpdatePhotography

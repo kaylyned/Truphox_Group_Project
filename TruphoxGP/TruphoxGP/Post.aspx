@@ -5,14 +5,12 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <h1><asp:label id="lblPostName" runat="server" text=""></asp:label></h1>
+                <h1 ><asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label></h1>
+                <h3><asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label></h3>
             </div>
             <br />
             <div class="row content">
                 <div class="leftcolumn">
-                    <asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label>
-                    <br />
-                    <asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label>
 
                     <%-- Artwork --%>
                     <asp:Panel ID="pnlArtwork" runat="server" Visible="false">
@@ -79,25 +77,21 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2>
-                    <asp:HyperLink ID="hlUsername" runat="server"></asp:HyperLink></h2>
-                <p>
-                    <asp:TextBox ID="txtBio" ReadOnly="true" runat="server" TextMode="MultiLine" CssClass="profileBio"></asp:TextBox>
-                </p>
+                <h2><asp:LinkButton ID="lnkBtnUsername" runat="server" OnClick="lnkBtnUsername_Click"><asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></asp:LinkButton></h2>   
                 <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
-            <div class="well">
+           <div class="well">
                 <h3>MORE FROM USER</h3>
                 <p>
                     <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
                 </p>
             </div>
-            <div class="well">
+            <%--<div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>
                     <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList>
                 </p>
-            </div>
+            </div>--%>
         </div>
     </div>
     <script>

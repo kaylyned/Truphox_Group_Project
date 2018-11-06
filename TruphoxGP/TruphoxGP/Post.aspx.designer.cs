@@ -13,15 +13,6 @@ namespace TruphoxGP {
     public partial class Post {
         
         /// <summary>
-        /// lblPostName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPostName;
-        
-        /// <summary>
         /// lblPostTitle control.
         /// </summary>
         /// <remarks>
@@ -139,22 +130,22 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Button btnComment;
         
         /// <summary>
-        /// hlUsername control.
+        /// lnkBtnUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlUsername;
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnUsername;
         
         /// <summary>
-        /// txtBio control.
+        /// lblUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBio;
+        protected global::System.Web.UI.WebControls.Label lblUsername;
         
         /// <summary>
         /// btnFollow control.
@@ -173,14 +164,5 @@ namespace TruphoxGP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlMoreUser;
-        
-        /// <summary>
-        /// dlMoreTruphox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlMoreTruphox;
     }
 }

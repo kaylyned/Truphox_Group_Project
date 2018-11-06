@@ -52,14 +52,8 @@
                     <asp:Button ID="btnSubmitArt" runat="server" Text="Submit Thread" OnClick="btnSubmitArt_Click" />
                 </div>
                 <div id="menu2" class="tab-pane fade">
-                    <h2>VIDEOS</h2>
+                    <h2>STUFF</h2>
                     <asp:DataList ID="dlVideos" runat="server" RepeatDirection="Horizontal" RepeatColumns="2" DataKeyField="postID" CssClass="profileDL">
-                        <ItemTemplate>
-                            <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
-                            <br />
-                            <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("videoLink") %>' CommandName="Select" CssClass="ATrendImages" />
-                            <br />
-                        </ItemTemplate>
                     </asp:DataList>
                 </div>
             </div>

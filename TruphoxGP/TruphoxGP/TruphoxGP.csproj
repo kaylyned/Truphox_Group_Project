@@ -76,6 +76,7 @@
     <Content Include="Images\mountains.jpg" />
     <Content Include="PhoxForums.aspx" />
     <Content Include="Results.aspx" />
+    <Content Include="submitArt.aspx" />
     <Content Include="Useless\angularjs.html" />
     <Content Include="Artwork.aspx" />
     <Content Include="Useless\basic-plus.html" />
@@ -283,6 +284,13 @@
     </Compile>
     <Compile Include="Settings.aspx.designer.cs">
       <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="submitArt.aspx.cs">
+      <DependentUpon>submitArt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="submitArt.aspx.designer.cs">
+      <DependentUpon>submitArt.aspx</DependentUpon>
     </Compile>
     <Compile Include="TAP.aspx.cs">
       <DependentUpon>TAP.aspx</DependentUpon>

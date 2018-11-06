@@ -10,87 +10,96 @@
 namespace TruphoxGP {
     
     
-    public partial class Site1 {
+    public partial class submitArt {
         
         /// <summary>
-        /// form1 control.
+        /// lblFU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label lblFU;
         
         /// <summary>
-        /// pnlRegister control.
+        /// fuArt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlRegister;
+        protected global::System.Web.UI.WebControls.FileUpload fuArt;
         
         /// <summary>
-        /// pnlLogin control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLogin;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// pnlLogout control.
+        /// txtTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
         
         /// <summary>
-        /// btnLogout control.
+        /// lblSub control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::System.Web.UI.WebControls.Label lblSub;
         
         /// <summary>
-        /// pnlSubmit control.
+        /// txtSubtitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSubmit;
+        protected global::System.Web.UI.WebControls.TextBox txtSubtitle;
         
         /// <summary>
-        /// ddlSearchFilter control.
+        /// rblMature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSearchFilter;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblMature;
         
         /// <summary>
-        /// btnSearch control.
+        /// lblMature control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnSearch;
+        protected global::System.Web.UI.WebControls.Label lblMature;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// btnSubmitArt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btnSubmitArt;
+        
+        /// <summary>
+        /// dlVideos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlVideos;
     }
 }

@@ -7,29 +7,37 @@ using System.Web.UI.WebControls;
 
 namespace TruphoxGP
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class submitArt : System.Web.UI.Page
     {
-        //DAL myDal;
+        DAL myDal;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Security sec = new Security();
             if (!sec.isLoggedIn)
             {
-                pnlRegister.Visible = true;
-                pnlLogin.Visible = true;
-                pnlLogout.Visible = false;
-                pnlSubmit.Visible = false;
+                Response.Redirect("Home.aspx");
             }
             else
             {
                 if (!IsPostBack)
                 {
-                    pnlRegister.Visible = false;
-                    pnlLogin.Visible = false;
-                    pnlLogout.Visible = true;
-                    pnlSubmit.Visible = true;
+
                 }
             }
+        }
+
+        protected void btnSubmitArt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rblMature_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (ListItem == 1 )
+            //{
+            //    lblMature.Visible = true;
+            //}
         }
     }
 }

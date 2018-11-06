@@ -189,12 +189,12 @@ namespace TruphoxGP
 
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            //string otherProfile = Convert.ToString(dlFollowing.DataKeys[e.Item.ItemIndex]);
+            string otherProfile = Convert.ToString(dlFollowing.DataKeys[e.Item.ItemIndex]);
 
-            //if (e.CommandName == "Select")
-            //{
-            //    Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
-            //}
+            if (e.CommandName == "Select")
+            {
+               Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
+            }
         }
     }
 }

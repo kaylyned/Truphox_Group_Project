@@ -808,10 +808,13 @@ CREATE PROCEDURE spReadWriting
 )
 AS
 BEGIN
-	SELECT p.postTitle, p.postSubTitle, w.writingText
+	SELECT p.postID, p.postTitle, p.postSubTitle, w.writingText
 	FROM tbPost p INNER JOIN tbWriting w ON
 	p.postID = w.postID
 END
+GO
+
+EXEC spReadWriting 
 GO
 
 CREATE PROCEDURE spUpdateWriting
@@ -1268,9 +1271,9 @@ GO
 EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.';
 EXEC spCreateWriting @rating=0,  @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
 EXEC spCreateWriting @rating=0,  @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
-EXEC spCreateWriting @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
-EXEC spCreateWriting @rating=0, @postTitle='', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
-EXEC spCreateWriting @rating=0,  @postTitle='', @postSubTitle='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
+EXEC spCreateWriting @rating=0,  @postTitle='Tiny Rick', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
+EXEC spCreateWriting @rating=0, @postTitle='Philosophy', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
+EXEC spCreateWriting @rating=0,  @postTitle='Rick and Morty Quotes', @postSubTitle='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
 GO
 
 ------------------POSTS CREATED (ART) -------------------

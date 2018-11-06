@@ -28,7 +28,7 @@
                         <li><a href="Artwork.aspx">ARTWORK</a></li>
                         <li><a href="Photography.aspx">PHOTOGRAPHY</a></li>
                         <li><a href="Video.aspx">VIDEOS</a></li>
-                        <li><a href="Writting.aspx">LITERATURE</a></li>
+                        <li><a href="Writing.aspx">LITERATURE</a></li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>

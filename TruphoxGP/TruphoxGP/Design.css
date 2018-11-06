@@ -326,14 +326,33 @@ body {
 }
 
 /*ARTWORK*/
-/*.dlATrend{
-}*/
+
 .ATrendImages{
     width:300px;
     height:300px;
 }
 
+
+/*WRITING PAGE*/
+
+.dlLit {
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 16px;
+    padding: 5px;
+}
+
+.literature {
+    text-align: left;
+    width: 300px;
+    height: 200px;
+    position: relative;
+    overflow-y: auto;
+}
+
+
 /*POST*/
+
 .PostImage {
     margin: auto;
     width: 750px;
@@ -354,6 +373,10 @@ body {
 
 }
 
+
+
 /*FORUM PAGE*/
+
 .forum {
 }
+

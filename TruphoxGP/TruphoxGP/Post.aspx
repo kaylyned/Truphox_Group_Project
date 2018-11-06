@@ -5,7 +5,7 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <h1>POST</h1>
+                <h1><asp:label id="lblPostName" runat="server" text=""></asp:label></h1>
             </div>
             <br />
             <div class="row content">

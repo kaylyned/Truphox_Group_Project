@@ -47,11 +47,20 @@ namespace TruphoxGP
 
             if (!IsPostBack)
             {
-                
+                loadUser();
                 loadLikes(postID);
             }            
         }
+        private void loadUser()
+        {
+            Security sec = new Security();
+            mydal = new DAL("spReadAccount");
+            mydal.addParm("username", viewUser);
+            DataSet ds = mydal.getDataSet();
 
+            hlUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
+            txtBio.Text = ds.Tables[0].Rows[0]["bio"].ToString();
+        }
         private void loadArt(int PostID)
         {
             //load post

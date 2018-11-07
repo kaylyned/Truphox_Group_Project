@@ -13,7 +13,18 @@ namespace TruphoxGP
         DAL myDal;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Security sec = new Security();
+            if (!sec.isLoggedIn)
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
 
+                }
+            }
         }
 
         protected void btnSubmitVideo_Click(object sender, EventArgs e)
@@ -25,7 +36,7 @@ namespace TruphoxGP
             myDal.addParm("rating", rblMature.SelectedValue);
             myDal.addParm("postTitle", txtTitle.Text);
             myDal.addParm("postSubTitle", txtSubtitle.Text);
-            myDal.addParm("photoLink", fuVideo.FileName);
+            myDal.addParm("videoLink", fuVideo.FileName);
 
             string videoLink = Server.MapPath(".") + "\\Images\\";
             string fileName = fuVideo.FileName;

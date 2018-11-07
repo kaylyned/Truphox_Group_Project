@@ -13,7 +13,18 @@ namespace TruphoxGP
         DAL myDal;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Security sec = new Security();
+            if (!sec.isLoggedIn)
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                if (!IsPostBack)
+                {
 
+                }
+            }
         }
 
         protected void btnSubmitPhotography_Click(object sender, EventArgs e)
@@ -35,6 +46,8 @@ namespace TruphoxGP
             DataSet ds = myDal.getDataSet();
             myDal.execNonQuery();
 
+
+            int postID = Convert.ToInt32(myDal.execScalar());
             Response.Redirect("Post.aspx");
         }
     }

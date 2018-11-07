@@ -77,6 +77,9 @@
     <Content Include="PhoxForums.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="submitArt.aspx" />
+    <Content Include="submitLit.aspx" />
+    <Content Include="submitPhotography.aspx" />
+    <Content Include="submitVideo.aspx" />
     <Content Include="Useless\angularjs.html" />
     <Content Include="Artwork.aspx" />
     <Content Include="Useless\basic-plus.html" />
@@ -291,6 +294,27 @@
     </Compile>
     <Compile Include="submitArt.aspx.designer.cs">
       <DependentUpon>submitArt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="submitLit.aspx.cs">
+      <DependentUpon>submitLit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="submitLit.aspx.designer.cs">
+      <DependentUpon>submitLit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="submitPhotography.aspx.cs">
+      <DependentUpon>submitPhotography.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="submitPhotography.aspx.designer.cs">
+      <DependentUpon>submitPhotography.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="submitVideo.aspx.cs">
+      <DependentUpon>submitVideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="submitVideo.aspx.designer.cs">
+      <DependentUpon>submitVideo.aspx</DependentUpon>
     </Compile>
     <Compile Include="TAP.aspx.cs">
       <DependentUpon>TAP.aspx</DependentUpon>

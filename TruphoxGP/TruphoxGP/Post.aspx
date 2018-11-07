@@ -56,18 +56,9 @@
                             <li class="active"><a data-toggle="tab" href="#home">RECENT</a></li>
                         </ul>
 
-                        <div class="container-fluid text-center">
+                        <div>
                             <%-- Div created for grabElementByID in Javascript section. Comments will be loaded here --%>
-                            <div class="row content">
-                                <div class="leftcolumn">
-                                    <div class='row'>
-                                        <div id="comments" class="col-sm-4">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div id="commentText" class="col-sm-8">
+                            <div id="comments">
                             </div>
                         </div>
                     </div>
@@ -89,7 +80,6 @@
                 <h3>MORE FROM USER</h3>
                 <p>
                     <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
-                   
                 </p>
             </div>
             <%--<div class="well">
@@ -123,7 +113,7 @@
 
         function comments(data) {
             //Get comment section created that will be used to append comment HTML created
-            var sectionComments = document.getElementById("comments");           
+            var sectionComments = document.getElementById("comments");
             var comment = JSON.parse(data);
 
             //loop through each comment for the post and create required elements for a comment
@@ -132,8 +122,11 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<div class='well well-lg'>" + "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                    + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
+                    "<div class='well well-lg'>" +
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
+                    + c.commentText + "<br />"
+                    + "<a href=''>" + c.username + "</a>"
+                    + "</div>"
                     + "<br />"
                 )
                 getCommentReplies(c.parentCommentID, c.postID, i);
@@ -179,11 +172,11 @@
                     var divCommentReplies = document.createElement("div");
                     divCommentReplies.setAttribute('id', 'cr' + a);
                     //comment class setattribute here
-                    divCommentReplies.innerHTML{
+                    divCommentReplies.innerHTML(
                         "<div class='well well-lg'>" + "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                            + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
-                            + "<br />"
-                    }
+                        + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
+                        + "<br />"
+                    )
                     parentComment.appendChild(divCommentReplies);
                 }
             }

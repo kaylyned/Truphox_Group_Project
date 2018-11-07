@@ -826,7 +826,7 @@ CREATE PROCEDURE spCreateWriting
 (
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubtitle VARCHAR(50),
+	@postSubtitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@writingText VARCHAR(3000)
 )
@@ -836,6 +836,7 @@ BEGIN
 					(@rating, GETDATE(), @postTitle, @postSubtitle, @username)
 	INSERT INTO tbWriting (writingText, postID) VALUES
 					(@writingText, @@IDENTITY)
+	SELECT @@IDENTITY AS 'postID'
 END
 GO
 
@@ -859,7 +860,7 @@ CREATE PROCEDURE spUpdateWriting
 	@postID INT,
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@writingText VARCHAR(3000)
 )
@@ -932,7 +933,7 @@ CREATE PROCEDURE spUpdateArt
 	@postID INT,
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@artLink VARCHAR(150)
 )
@@ -972,7 +973,7 @@ CREATE PROCEDURE spCreatePhotography
 (
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)= NULL,
 	@username VARCHAR(30),
 	@photoLink VARCHAR(150)
 
@@ -983,6 +984,7 @@ BEGIN
 					(@rating,  GETDATE(), @postTitle, @postSubTitle,  @username)
 	INSERT INTO tbPhotography (postID, photoLink) VALUES
 					(@@IDENTITY, @photoLink)
+	SELECT @@IDENTITY AS 'postID'
 END
 GO
 
@@ -1008,7 +1010,7 @@ CREATE PROCEDURE spUpdatePhotography
 	@postID INT,
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@photoLink VARCHAR(150)
 )
@@ -1048,7 +1050,7 @@ CREATE PROCEDURE spCreateVideo
 (
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@videoLink VARCHAR(150)
 )
@@ -1058,6 +1060,7 @@ BEGIN
 					(@rating, GETDATE(), @postTitle, @postSubTitle, @username)
 	INSERT INTO tbVideo (postID, videoLink) VALUES
 					(@@IDENTITY, @videoLink)
+  SELECT @@IDENTITY AS 'postID'
 END
 GO
 
@@ -1077,7 +1080,7 @@ CREATE PROCEDURE spUpdateVideo
 	@postID INT,
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@videoLink VARCHAR(150)
 )

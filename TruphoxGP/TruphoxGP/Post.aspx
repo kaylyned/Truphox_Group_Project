@@ -123,8 +123,7 @@
 
         function comments(data) {
             //Get comment section created that will be used to append comment HTML created
-            var sectionComments = document.getElementById("comments");
-            var commentText = document.getElementById("commentText");
+            var sectionComments = document.getElementById("comments");           
             var comment = JSON.parse(data);
 
             //loop through each comment for the post and create required elements for a comment
@@ -137,7 +136,7 @@
                     + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
                     + "<br />"
                 )
-                getCommentReplies(c.parentCommentID, i);
+                getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
             }
 
@@ -153,12 +152,12 @@
             //}
         }
 
-        function getCommentReplies(parentCommentID, i) {
+        function getCommentReplies(parentCommentID, postID, i) {
             $.ajax({
                 type: "POST",
                 url: "readCommentReply.ashx", //handler
                 cache: false,
-                data: { "parentCommentID": parentCommentID },
+                data: { "parentCommentID": parentCommentID, "postID": postID },
                 success: function (data) {
                     commentReplies(data, i, parentCommentID);
                 },

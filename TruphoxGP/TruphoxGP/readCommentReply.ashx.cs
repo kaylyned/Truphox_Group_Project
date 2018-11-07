@@ -13,17 +13,27 @@ namespace TruphoxGP
     /// </summary>
     public class readCommentReply : IHttpHandler
     {
+        int postID;
+        int parentCommentID;
         DAL mydal;
         public void ProcessRequest(HttpContext context)
         {
-            //mydal = new DAL("spReadComment");
-            ////add params
-            //DataSet ds = mydal.getDataSet();
+            context.Response.ContentType = "text/plain";
+            if (context.Request.HttpMethod == "POST")
+            {
+                postID = Convert.ToInt32(context.Request.Form["postID"].ToString());
+                parentCommentID = Convert.ToInt32(context.Request.Form["parentCommentID"].ToString());
+            }
 
-            //string result = GetJSONString(ds.Tables[0]);
+            mydal = new DAL("spReadCommentReply"); //add read comment reply proc
+            mydal.addParm("postID", postID.ToString());
+            mydal.addParm("parentCommentID", parentCommentID.ToString());
+            DataSet ds = mydal.getDataSet();
 
-            //context.Response.ContentType = "text/javascript";
-            //context.Response.Write(result);
+            string result = GetJSONString(ds.Tables[0]);
+
+            context.Response.ContentType = "text/javascript";
+            context.Response.Write(result);
         }
 
         public static string GetJSONString(DataTable Dt)

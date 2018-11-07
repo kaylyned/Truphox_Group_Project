@@ -127,26 +127,26 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" +
-                    "<br />" + "<a href=''>" + c.username + "</a><br />"
-                    //+ "<div class='col-sm-8'" + "<div class='well'>" +
-                    //c.commentText
-                    //+ "</div></div>" + "<br />"
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
+                    + "<div class='well'>" +
+                    c.commentText+
+                    "<br />" + "<a href=''>" + c.username + "</a><br />"                    
+                    + "</div>" + "<br />"
                 )
                 //getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);
             }
 
-            for (i in comment.Table) {
-                c = comment.Table[i];
-                var divComments = document.createElement("div");
-                divComments.setAttribute('id', 'ct' + i);
-                divComments.innerHTML = (
-                    "<div class='well'>" + c.commentText + "</div><br />"
-                )
-                //getCommentReplies(c.parentCommentID, i);
-                commentText.appendChild(divComments);
-            }
+            //for (i in comment.Table) {
+            //    c = comment.Table[i];
+            //    var divComments = document.createElement("div");
+            //    divComments.setAttribute('id', 'ct' + i);
+            //    divComments.innerHTML = (
+            //        "<div class='well'>" + c.commentText + "</div><br />"
+            //    )
+            //    //getCommentReplies(c.parentCommentID, i);
+            //    commentText.appendChild(divComments);
+            //}
         }
 
         function getCommentReplies(parentCommentID, i) {

@@ -614,19 +614,11 @@ BEGIN
 						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
 	INSERT INTO tbChildComment(parentCommentID, commentID) VALUES
 							(@parentCommentID, @@IDENTITY)
+	UPDATE tbPost SET
+	lastComment = @postCommentNumber + 1
+	WHERE postID = @postID
 END
 GO
-
---CREATE PROCEDURE spReadComment
---(
---	@postID INT
---)
---AS
---BEGIN
---	SELECT postID, postCommentNumber, commentText, commentDate, username FROM tbComment WHERE postID = ISNULL (@postID, postID)
---	ORDER BY postCommentNumber DESC	
---END
---GO
 
 CREATE PROCEDURE spReadComment
 (
@@ -1356,13 +1348,17 @@ EXEC spCreateComment @postID=7, @postCommentNumber=3, @commentText='I am person.
 EXEC spCreateComment @postID=7, @postCommentNumber=4, @commentText='Truphox da best #truphox', @username='CanadaGhost';
 GO
 
-
+EXEC spCreateCommentReply @postID=7, @postCommentNumber=5, @commentText='Awesome Logo!', @username='Person', @parentCommentID=0;
+EXEC spCreateCommentReply @postID=7, @postCommentNumber=6, @commentText='Nice!', @username='CanadaGhost', @parentCommentID=2;
+GO
 
 SELECT * FROM tbPhotography
 SELECT * FROM tbArt
 SELECT * FROM tbWriting
 SELECT * FROM tbVideo
 SELECT * FROM tbComment
+SELECT * FROM tbParentComment
+SELECT * FROM tbChildComment
 GO
 
 

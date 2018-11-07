@@ -5,8 +5,10 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <h1 ><asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label></h1>
-                <h3><asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label></h3>
+                <h1>
+                    <asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label></h1>
+                <h3>
+                    <asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label></h3>
             </div>
             <br />
             <div class="row content">
@@ -64,9 +66,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <br />         
-                                    <div id="commentText" class="col-sm-8">
-                                    </div>              
+                            <br />
+                            <div id="commentText" class="col-sm-8">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,13 +79,17 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2><asp:LinkButton ID="lnkBtnUsername" runat="server" OnClick="lnkBtnUsername_Click"><asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></asp:LinkButton></h2>   
+                <h2>
+                    <asp:LinkButton ID="lnkBtnUsername" runat="server" OnClick="lnkBtnUsername_Click">
+                        <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                    </asp:LinkButton></h2>
                 <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
-           <div class="well">
+            <div class="well">
                 <h3>MORE FROM USER</h3>
                 <p>
                     <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
+                   
                 </p>
             </div>
             <%--<div class="well">
@@ -127,13 +133,11 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                    + "<div class='well'>" +
-                    c.commentText+
-                    "<br />" + "<a href=''>" + c.username + "</a><br />"                    
-                    + "</div>" + "<br />"
+                    "<div class='well well-lg'>" + "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
+                    + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
+                    + "<br />"
                 )
-                //getCommentReplies(c.parentCommentID, i);
+                getCommentReplies(c.parentCommentID, i);
                 sectionComments.appendChild(divComments);
             }
 
@@ -176,8 +180,11 @@
                     var divCommentReplies = document.createElement("div");
                     divCommentReplies.setAttribute('id', 'cr' + a);
                     //comment class setattribute here
-                    //comment reply requirements
-
+                    divCommentReplies.innerHTML{
+                        "<div class='well well-lg'>" + "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
+                            + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
+                            + "<br />"
+                    }
                     parentComment.appendChild(divCommentReplies);
                 }
             }

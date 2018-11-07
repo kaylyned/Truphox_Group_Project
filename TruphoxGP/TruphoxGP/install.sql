@@ -872,6 +872,7 @@ BEGIN
 					(@rating,  GETDATE(),@postTitle, @postSubTitle, @username)
 	INSERT INTO tbArt (postID, artLink) VALUES
 					(@@IDENTITY, @artLink)
+	SELECT @@IDENTITY AS 'postID'
 END
 GO
 

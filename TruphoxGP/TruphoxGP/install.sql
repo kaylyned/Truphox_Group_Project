@@ -68,6 +68,19 @@ CREATE TABLE tbComment
 	username VARCHAR(30)
 )
 
+CREATE TABLE tbParentComment
+(
+	parentCommentID INT IDENTITY (0,1) PRIMARY KEY,
+	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
+)
+
+CREATE TABLE tbChildComment
+(
+	childCommentID INT IDENTITY (0,1) PRIMARY KEY,
+	parentCommentID INT FOREIGN KEY REFERENCES tbParentComment(parentCommentID),
+	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
+)
+
 CREATE TABLE tbDeletedComments
 (
 	commentID INT,
@@ -579,10 +592,28 @@ AS
 BEGIN
 	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
 						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
-
+	INSERT INTO tbParentComment(commentID) VALUES
+								(@@IDENTITY)
 	UPDATE tbPost SET
 	lastComment = @postCommentNumber + 1
 	WHERE postID = @postID
+END
+GO
+
+CREATE PROCEDURE spCreateCommentReply
+(
+	@postID INT,
+	@postCommentNumber INT,
+	@commentText VARCHAR(100),
+	@username VARCHAR(30),
+	@parentCommentID INT
+)
+AS
+BEGIN
+	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
+						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
+	INSERT INTO tbChildComment(parentCommentID, commentID) VALUES
+							(@parentCommentID, @@IDENTITY)
 END
 GO
 
@@ -603,15 +634,29 @@ CREATE PROCEDURE spReadComment
 )
 AS
 BEGIN
-	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage 
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, p.parentCommentID
 	FROM tbComment c INNER JOIN tbAccount a ON
 	c.username = a.username
+	INNER JOIN tbParentComment p ON
+	p.commentID = c.commentID
 	WHERE postID = ISNULL (@postID, postID)
 	ORDER BY postCommentNumber DESC	
 END
 GO
 
-EXEC spReadComment @postID=7;
+CREATE PROCEDURE spReadCommentReply
+(
+	@parentCommentID INT,
+	@postID INT = NULL
+)
+AS
+BEGIN
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID
+	FROM tbComment c INNER JOIN tbAccount a ON
+	c.username = a.username
+	INNER JOIN tbChildComment ch ON
+	ch.commentID = c.commentID
+END
 GO
 
 CREATE PROCEDURE spUpdateComment
@@ -862,7 +907,7 @@ CREATE PROCEDURE spCreateArt
 (
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
+	@postSubTitle VARCHAR(50) = NULL,
 	@username VARCHAR(30),
 	@artLink VARCHAR(150)
 )
@@ -1310,6 +1355,8 @@ EXEC spCreateComment @postID=7, @postCommentNumber=2, @commentText='Drew it myse
 EXEC spCreateComment @postID=7, @postCommentNumber=3, @commentText='I am person.', @username='Person';
 EXEC spCreateComment @postID=7, @postCommentNumber=4, @commentText='Truphox da best #truphox', @username='CanadaGhost';
 GO
+
+
 
 SELECT * FROM tbPhotography
 SELECT * FROM tbArt

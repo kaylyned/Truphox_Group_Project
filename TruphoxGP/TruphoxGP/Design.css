@@ -366,6 +366,7 @@ body {
 
 .commentPic{
     height:50px;
+    float:left;
 }
 
 .commentText{
@@ -373,10 +374,18 @@ body {
 
 }
 
+.flexComment {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+    .flexComment > div {
+        width: 200px;
+        margin: 10px;
+    }
 
 
 /*FORUM PAGE*/
-
 .forum {
 }
 

@@ -52,10 +52,7 @@
                         <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
                         <br />
                         <asp:Button ID="btnComment" runat="server" Text="Comment" />
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#home">RECENT</a></li>
-                        </ul>
-
+                        <br />   <br />   <br />
                         <div>
                             <%-- Div created for grabElementByID in Javascript section. Comments will be loaded here --%>
                             <div id="comments">
@@ -122,10 +119,10 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<div class='well well-lg'>" +
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                    + c.commentText + "<br />"
-                    + "<a href=''>" + c.username + "</a>"
+                    "<div class='well well-lg flexComment'>" +
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br/>" 
+                    + "<div class='usercomment'>"+ c.commentText + "</div>" + "<br/>"
+                     + "<a href='''>" + c.username + "</a>" 
                     + "</div>"
                     + "<br />"
                 )

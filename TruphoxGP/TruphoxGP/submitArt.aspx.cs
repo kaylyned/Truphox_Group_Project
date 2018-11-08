@@ -46,7 +46,7 @@ namespace TruphoxGP
 
             int postID = Convert.ToInt32(myDal.execScalar());
 
-            Response.Redirect("Post.aspx?postID" + postID);
+            Response.Redirect("Post.aspx?postID=" + postID + "&postType=artwork");
         }
     }
 }

@@ -834,9 +834,9 @@ AS
 BEGIN
 	INSERT INTO tbPost (rating, postDate, postTitle, postSubtitle, username) VALUES
 					(@rating, GETDATE(), @postTitle, @postSubtitle, @username)
+	SELECT @@IDENTITY AS 'postID'
 	INSERT INTO tbWriting (writingText, postID) VALUES
 					(@writingText, @@IDENTITY)
-	SELECT @@IDENTITY AS 'postID'
 END
 GO
 
@@ -908,9 +908,10 @@ AS
 BEGIN
 	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
 					(@rating,  GETDATE(),@postTitle, @postSubTitle, @username)
+	SELECT @@IDENTITY AS 'postID'
 	INSERT INTO tbArt (postID, artLink) VALUES
 					(@@IDENTITY, @artLink)
-	SELECT @@IDENTITY AS 'postID', @rating as 'rating', @postTitle as 'postTitle', @postSubTitle as 'postSubTitle', @username as 'username', @artLink as 'artLink'
+	
 END
 GO
 
@@ -982,9 +983,9 @@ AS
 BEGIN
 	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
 					(@rating,  GETDATE(), @postTitle, @postSubTitle,  @username)
-	INSERT INTO tbPhotography (postID, photoLink) VALUES
-					(@@IDENTITY, @photoLink)
 	SELECT @@IDENTITY AS 'postID'
+	INSERT INTO tbPhotography (postID, photoLink) VALUES
+					(@@IDENTITY, @photoLink)	
 END
 GO
 
@@ -1058,9 +1059,9 @@ AS
 BEGIN
 	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
 					(@rating, GETDATE(), @postTitle, @postSubTitle, @username)
+	SELECT @@IDENTITY AS 'postID'
 	INSERT INTO tbVideo (postID, videoLink) VALUES
-					(@@IDENTITY, @videoLink)
-  SELECT @@IDENTITY AS 'postID'
+					(@@IDENTITY, @videoLink)  
 END
 GO
 
@@ -1339,9 +1340,9 @@ GO
 EXEC spCreatePhotography @rating=0,  @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';
 EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumkinK.jpg';
 EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
-EXEC  spCreatePhotography @rating=0, @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
-EXEC  spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
-EXEC  spCreatePhotography @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
+EXEC spCreatePhotography @rating=0, @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
 EXEC spCreateComment @postID=7, @postCommentNumber=0, @commentText='Cool logo!', @username='CanadaGhost';
@@ -1355,6 +1356,7 @@ EXEC spCreateCommentReply @postID=7, @postCommentNumber=5, @commentText='Awesome
 EXEC spCreateCommentReply @postID=7, @postCommentNumber=6, @commentText='Nice!', @username='CanadaGhost', @parentCommentID=2;
 GO
 
+SELECT * FROM tbPost
 SELECT * FROM tbPhotography
 SELECT * FROM tbArt
 SELECT * FROM tbWriting

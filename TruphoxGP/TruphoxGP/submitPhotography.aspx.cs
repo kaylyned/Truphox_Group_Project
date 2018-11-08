@@ -43,12 +43,9 @@ namespace TruphoxGP
             string pathAfile = photoLink + fileName;
             fuPhotography.PostedFile.SaveAs(pathAfile);
 
-            DataSet ds = myDal.getDataSet();
-            myDal.execNonQuery();
-
-
             int postID = Convert.ToInt32(myDal.execScalar());
-            Response.Redirect("Post.aspx");
+
+            Response.Redirect("Post.aspx?postID=" + postID + "&postType=photography");
         }
     }
 }

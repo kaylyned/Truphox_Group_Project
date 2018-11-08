@@ -29,7 +29,7 @@ namespace TruphoxGP
         protected void btnSubmitLit_Click(object sender, EventArgs e)
         {
             Security sec = new Security();
-            myDal = new DAL("spCreatePhotography");
+            myDal = new DAL("spCreateWriting");
             myDal.addParm("username", sec.username);
 
             myDal.addParm("rating", rblMature.SelectedValue);
@@ -40,7 +40,8 @@ namespace TruphoxGP
             myDal.execNonQuery();
 
             int postID = Convert.ToInt32(myDal.execScalar());
-            Response.Redirect("Post.aspx");
+
+            Response.Redirect("Post.aspx?postID=" + postID + "&postType=writing");
         }
     }
 }

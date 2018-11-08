@@ -52,7 +52,9 @@
                         <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
                         <br />
                         <asp:Button ID="btnComment" runat="server" Text="Comment" />
-                        <br />   <br />   <br />
+                        <br />
+                        <br />
+                        <br />
                         <div>
                             <%-- Div created for grabElementByID in Javascript section. Comments will be loaded here --%>
                             <div id="comments">
@@ -120,15 +122,16 @@
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
                     "<div class='well well-lg flexComment'>" +
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br/>" 
-                    + "<div class='usercomment'>"+ c.commentText + "</div>" + "<br/>"
-                     + "<a href='''>" + c.username + "</a>" 
-                    + "</div>"
-                    + "<br />"
-                )
+                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br/>"
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
+                    + "<a href=''>" + c.username + "</a><br />" +
+                    "<input type='button' value='Reply' onclick='return replyComment(" + c.parentCommentID + ")'/>" +
+                    "<input type='button' value='Like' onclick='return likeComment(" + c.parentCommentID + ")'/>" +
+                    "</div>" + "<br />"
+                );
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
-            }           
+            }
         }
 
         function getCommentReplies(parentCommentID, postID, i) {
@@ -159,9 +162,11 @@
                     divCommentReplies.setAttribute('id', 'cr' + a);
                     //comment class setattribute here
                     divCommentReplies.innerHTML(
-                        "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                        + "<a href=''>" + c.username + "</a><br />" + c.commentText + "<br />"
-                    )
+                        "<img src='./Images/" + cr.profileImage + "' class='commentPic'/>"
+                        + "<a href=''>" + cr.username + "</a><br />" + cr.commentText + "<br />" +
+                        "<input type='button' value='Reply' onclick='return replyComment(" + parentCommentID + ")'/>" +
+                        "<input type='button' value='Like' onclick='return likeComment(" + parentCommentID + ")'/>"
+                    );
                     parentComment.appendChild(divCommentReplies);
                 }
             }

@@ -648,6 +648,8 @@ BEGIN
 	c.username = a.username
 	INNER JOIN tbChildComment ch ON
 	ch.commentID = c.commentID
+	WHERE c.postID = ISNULL (@postID, c.postID) AND ch.parentCommentID = @parentCommentID
+	ORDER BY c.postCommentNumber DESC
 END
 GO
 
@@ -1383,3 +1385,5 @@ GO
 EXEC spReadFollow @username='wrenjay'
 GO
 SELECT * FROM tbAccount;
+
+EXEC spReadCommentReply @parentCommentID=2, @postID=7;

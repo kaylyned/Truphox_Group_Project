@@ -127,8 +127,8 @@
                     + "<a href=''>" + c.username + "</a><br />" +
                     "<input type='button' value='Reply' onclick='return replyComment(" + c.parentCommentID + ")'/>" +
                     "<input type='button' value='Like' onclick='return likeComment(" + c.parentCommentID + ")'/>" +
-                    "</div>" + "<br />"
-                );
+                    "</div>" + "<br />" + "<div id='r" + i + "'></div>"
+                );                
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
             }
@@ -139,9 +139,10 @@
                 type: "POST",
                 url: "readCommentReply.ashx", //handler
                 cache: false,
-                data: { "parentCommentID": parentCommentID, "postID": postID },
-                success: function (data) {
+                data: { "parentCommentID": parentCommentID, "postID": postID},
+                success: function (data) {                    
                     commentReplies(data, i, parentCommentID);
+                    
                 },
                 err: function (error) {
                     alert("error");
@@ -149,27 +150,26 @@
             });
         }
 
-        function commentReplies(data, i, parentCommentID) {
-            if (data != null) {
+        function commentReplies(data, i, parentCommentID) {                         
                 //Get created reply div from comments method using i to find associated comment for replies
-                var parentComment = document.getElementById('r', i);
+                var parentComment = document.getElementById('r'+ i);
                 var commentReply = JSON.parse(data);
 
                 //loop through each comment reply for the post and create required elements for a comment
                 for (a in commentReply.Table) {
                     cr = commentReply.Table[a];
                     var divCommentReplies = document.createElement("div");
-                    divCommentReplies.setAttribute('id', 'cr' + a);
-                    //comment class setattribute here
-                    divCommentReplies.innerHTML(
+                    divCommentReplies.setAttribute('id', 'cr' + a);                    
+                    divCommentReplies.innerHTML = (    
+                        "<div class='well well-lg flexComment'>" +
                         "<img src='./Images/" + cr.profileImage + "' class='commentPic'/>"
                         + "<a href=''>" + cr.username + "</a><br />" + cr.commentText + "<br />" +
                         "<input type='button' value='Reply' onclick='return replyComment(" + parentCommentID + ")'/>" +
-                        "<input type='button' value='Like' onclick='return likeComment(" + parentCommentID + ")'/>"
-                    );
+                        "<input type='button' value='Like' onclick='return likeComment(" + parentCommentID + ")'/>" +
+                        "</div>"
+                    );               
                     parentComment.appendChild(divCommentReplies);
-                }
-            }
+                }           
         }
 
         function getUrlParameter(name) {

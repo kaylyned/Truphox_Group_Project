@@ -910,7 +910,7 @@ BEGIN
 					(@rating,  GETDATE(),@postTitle, @postSubTitle, @username)
 	INSERT INTO tbArt (postID, artLink) VALUES
 					(@@IDENTITY, @artLink)
-	SELECT @@IDENTITY AS 'postID'
+	SELECT @@IDENTITY AS 'postID', @rating as 'rating', @postTitle as 'postTitle', @postSubTitle as 'postSubTitle', @username as 'username', @artLink as 'artLink'
 END
 GO
 

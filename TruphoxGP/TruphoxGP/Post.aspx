@@ -131,18 +131,7 @@
                 )
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
-            }
-
-            //for (i in comment.Table) {
-            //    c = comment.Table[i];
-            //    var divComments = document.createElement("div");
-            //    divComments.setAttribute('id', 'ct' + i);
-            //    divComments.innerHTML = (
-            //        "<div class='well'>" + c.commentText + "</div><br />"
-            //    )
-            //    //getCommentReplies(c.parentCommentID, i);
-            //    commentText.appendChild(divComments);
-            //}
+            }           
         }
 
         function getCommentReplies(parentCommentID, postID, i) {
@@ -173,9 +162,8 @@
                     divCommentReplies.setAttribute('id', 'cr' + a);
                     //comment class setattribute here
                     divCommentReplies.innerHTML(
-                        "<div class='well well-lg'>" + "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
-                        + "<a href=''>" + c.username + "</a><br />" + c.commentText + "</div>"
-                        + "<br />"
+                        "<img src='./Images/" + c.profileImage + "' class='commentPic'/>"
+                        + "<a href=''>" + c.username + "</a><br />" + c.commentText + "<br />"
                     )
                     parentComment.appendChild(divCommentReplies);
                 }

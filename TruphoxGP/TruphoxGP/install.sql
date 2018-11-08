@@ -138,7 +138,7 @@ CREATE TABLE tbVideo
 (
 	videoID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	videoLink VARCHAR(400)
+	videoLink VARCHAR(150)
 )
 
 CREATE TABLE tbPassRecovery

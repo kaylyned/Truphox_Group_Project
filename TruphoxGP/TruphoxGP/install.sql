@@ -138,7 +138,7 @@ CREATE TABLE tbVideo
 (
 	videoID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
-	videoLink VARCHAR(1500)
+	videoLink VARCHAR(150)
 )
 
 CREATE TABLE tbPassRecovery
@@ -1055,7 +1055,7 @@ CREATE PROCEDURE spCreateVideo
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
-	@videoLink VARCHAR(1500)
+	@videoLink VARCHAR(150)
 )
 AS
 BEGIN
@@ -1085,7 +1085,7 @@ CREATE PROCEDURE spUpdateVideo
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
-	@videoLink VARCHAR(1500)
+	@videoLink VARCHAR(150)
 )
 AS
 BEGIN
@@ -1331,7 +1331,7 @@ EXEC spCreateArt @rating=0, @postTitle='Rick and Morty', @postSubTitle='Harry Po
 
 ------------------POSTS CREATED (VIDEO) -------------------
 
---EXEC spCreatePost @rating=0, @postTitle='Island', @postSubTitle='', @username='wrenjay', @videoLink='dragon.png'; 
+--EXEC spCreatePost @rating=0, @postDate='', @lastComment=3, @username='';
 --EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
 --EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
 --EXEC spCreatePost @rating=0, , @postDate='', @lastComment=3, @username='';

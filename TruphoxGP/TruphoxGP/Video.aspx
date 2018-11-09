@@ -6,21 +6,21 @@
             <ItemTemplate>
                  <asp:ImageButton ID="imgATrend" runat="server" ImageUrl='<%#Eval("videoLink") %>' />
                 <br />
-                <asp:Label ID="lblATrend" runat="server" CommandName="Select" Text='<%#Eval("videoTitle") %>'></asp:Label>
+                <asp:Label ID="lblATrend" runat="server" CommandName="Select" Text='<%#Eval("postTitle") %>'></asp:Label>
             </ItemTemplate>
         </asp:DataList>
         <asp:DataList ID="dlVideoRecent" runat="server" OnItemCommand="dlVideoRecent_ItemCommand">
                <ItemTemplate>
                   <asp:ImageButton ID="imgATrend" CommandName="Select" runat="server" ImageUrl='<%#Eval("videoLink") %>' />
                 <br />
-                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("videoTitle") %>'></asp:Label>
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>
         </asp:DataList>
         <asp:DataList ID="dlVideoFav" runat="server" OnItemCommand="dlVideoFav_ItemCommand">
                <ItemTemplate>
                 <asp:ImageButton ID="imgATrend" CommandName="Select" runat="server" ImageUrl='<%#Eval("videoLink") %>' />
                 <br />
-                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("videoTitle") %>'></asp:Label>
+                <asp:Label ID="lblATrend" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label>
                </ItemTemplate>
         </asp:DataList>
     </div>

@@ -1073,8 +1073,9 @@ CREATE PROCEDURE spReadVideo
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT * FROM tbVideo WHERE postID = ISNULL(@postID, postID);
+	SELECT p.postID, p.postTitle, p.postSubTitle, p.postDate, p.username, v.videoID, './Video/' + v.videoLink as 'videoLink'
+	FROM tbPost p INNER JOIN tbVideo v ON
+	p.postID = v.postID
 END
 GO
 

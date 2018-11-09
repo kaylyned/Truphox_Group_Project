@@ -29,25 +29,29 @@ namespace TruphoxGP
 
         protected void btnSubmitVideo_Click(object sender, EventArgs e)
         {
-            Security sec = new Security();
-            myDal = new DAL("spCreateVideo");
-            myDal.addParm("username", sec.username);
+            if (fuVideo.FileName != "")
+            {
+                Security sec = new Security();
+                myDal = new DAL("spCreateVideo");
+                myDal.addParm("username", sec.username);
 
-            myDal.addParm("rating", rblMature.SelectedValue);
-            myDal.addParm("postTitle", txtTitle.Text);
-            myDal.addParm("postSubTitle", txtSubtitle.Text);
-            myDal.addParm("videoLink", fuVideo.FileName);
+                myDal.addParm("rating", rblMature.SelectedValue);
+                myDal.addParm("postTitle", txtTitle.Text);
+                myDal.addParm("postSubTitle", txtSubtitle.Text);
+                myDal.addParm("videoLink", fuVideo.FileName);
 
-            string videoLink = Server.MapPath(".") + "\\Images\\";
-            string fileName = fuVideo.FileName;
-            string pathAfile = videoLink + fileName;
-            fuVideo.PostedFile.SaveAs(pathAfile);
+                string videoLink = Server.MapPath(".") + "\\Video\\";
+                string fileName = fuVideo.FileName;
+                string pathAfile = videoLink + fileName;
+                fuVideo.PostedFile.SaveAs(pathAfile);
 
-            DataSet ds = myDal.getDataSet();
+                DataSet ds = myDal.getDataSet();
 
-            int postID = Convert.ToInt32(myDal.execScalar());
+                int postID = Convert.ToInt32(myDal.execScalar());
 
-            Response.Redirect("Post.aspx?postID=" + postID + "&postType=video");
+                Response.Redirect("Post.aspx?postID=" + postID + "&postType=video");
+            }
+           
         }
     }
 }

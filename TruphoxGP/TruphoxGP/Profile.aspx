@@ -119,8 +119,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />
-                                        
+                                        <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />                                        
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
@@ -261,8 +260,8 @@
             <br />
         </div>
         <div class="well">
-            <h3>OTHER</h3>
-            <p>MORE TEXT....</p>
+            <h3>NOTIFICATIONS</h3>
+            <p></p>
         </div>
     </div>
     </div>

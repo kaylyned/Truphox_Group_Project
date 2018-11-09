@@ -1183,7 +1183,8 @@ CREATE PROCEDURE spReadUserVideo
 )
 AS
 BEGIN
-	SELECT  * FROM tbPost p INNER JOIN tbVideo v ON 
+	SELECT p.postID, p.postTitle, p.postSubTitle, p.postDate, p.username, v.videoID, './Video/' + v.videoLink as 'videoLink'
+	FROM tbPost p INNER JOIN tbVideo v ON 
 	v.postID = p.postID
 	WHERE username = @username 
 	ORDER BY  postDate ASC

@@ -119,7 +119,8 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <asp:ImageButton ID="ibVideos" runat="server" ImageUrl='<%#Eval("videoLink") %>' CommandName="Select" CssClass="ATrendImages" />
+                                        <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />
+                                        
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>

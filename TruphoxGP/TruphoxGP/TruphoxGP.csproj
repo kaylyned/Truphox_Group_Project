@@ -80,7 +80,6 @@
     <Content Include="submitLit.aspx" />
     <Content Include="submitPhotography.aspx" />
     <Content Include="submitVideo.aspx" />
-    <Content Include="test.aspx" />
     <Content Include="Useless\angularjs.html" />
     <Content Include="Artwork.aspx" />
     <Content Include="Useless\basic-plus.html" />
@@ -323,13 +322,6 @@
     </Compile>
     <Compile Include="TAP.aspx.designer.cs">
       <DependentUpon>TAP.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="Video.aspx.cs">
       <DependentUpon>Video.aspx</DependentUpon>

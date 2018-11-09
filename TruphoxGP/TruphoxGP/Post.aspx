@@ -46,7 +46,6 @@
                             <br>
                         </div>
                     </div>
-                    <br />
                     <div style="padding: 30px">
                         <h3 class="text-center">COMMENTS</h3>
                         <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
@@ -81,7 +80,7 @@
                     <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
                 </p>
             </div>
-            <%--<div class="well">
+        <%--% <div class="well-sm ">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>
                     <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList>
@@ -121,13 +120,28 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<div class='well well-lg flexComment'>" +
-                    "<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br/>"
+                   "   <div class='well well-sm'>"+ "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/"+ c.profileImage + "' class='img-circle commentPic'/>"
+                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate +  "</span>"+ "</br>" +"</br>"
                     + "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
-                    + "<a href=''>" + c.username + "</a><br />" +
-                    "<input type='button' value='Reply' onclick='return replyComment(" + c.parentCommentID + ")'/>" +
-                    "<input type='button' value='Like' onclick='return likeComment(" + c.parentCommentID + ")'/>" +
-                    "</div>" + "<br />" + "<div id='r" + i + "'></div>"
+
+                    //reply btn
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID +")' id='myBtn'>" + "<b>Replies" + "</b>"
+                    + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+
+                    //like btn
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment("+ c.parentCommentID +")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                    "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+
+                    + "</div>" + "</div>" + "<div id='r" + i + "'></div>"
+
+                    //"<div class='well well-lg flexComment'>" +
+                    //"<img src='./Images/" + c.profileImage + "' class='commentPic'/>" + "<br/>"
+                    //+ "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
+                    //+ "<a href=''>" + c.username + "</a><br />" +
+                    //"<input type='button' value='Reply' onclick='return replyComment(" + c.parentCommentID + ")'/>" +
+                    //"<input type='button' value='Like' onclick='return likeComment(" + c.parentCommentID + ")'/>" +
+                    //"</div>" + "<br />" + "<div id='r" + i + "'></div>"
                 );                
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
@@ -161,12 +175,28 @@
                     var divCommentReplies = document.createElement("div");
                     divCommentReplies.setAttribute('id', 'cr' + a);                    
                     divCommentReplies.innerHTML = (    
-                        "<div class='well well-lg flexComment'>" +
-                        "<img src='./Images/" + cr.profileImage + "' class='commentPic'/>"
-                        + "<a href=''>" + cr.username + "</a><br />" + cr.commentText + "<br />" +
-                        "<input type='button' value='Reply' onclick='return replyComment(" + parentCommentID + ")'/>" +
-                        "<input type='button' value='Like' onclick='return likeComment(" + parentCommentID + ")'/>" +
-                        "</div>"
+                  "<div class='indentComments'>" + "<div class='well-sm'>"+ "<div class='w3-row'>" + "<hr>" +  " <div class='w3-col l2 m3'>" + "<img src='./Images/"+ cr.profileImage + "' class='img-circle commentPic'/>"
+                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + cr.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + cr.commentDate +  "</span>"+ "</br>" +"</br>"
+                        + "<div class='usercomment'>" + cr.commentText + "</div>" + "<br/>"
+
+                        //reply btn
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID +")' id='myBtn'>" + "<b>Replies" + "</b>"
+                        + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+
+                        //like btn
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment("+ parentCommentID +")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                    "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+
+                    + "</div>" + "</div>" + "</div>" //+ "<div id='r" + i + "'></div>"
+
+
+                        //"<div class='well well-lg flexComment'>" +
+                        //"<img src='./Images/" + cr.profileImage + "' class='commentPic'/>"
+                        //+ "<a href=''>" + cr.username + "</a><br />" + cr.commentText + "<br />" +
+                        //"<input type='button' value='Reply' onclick='return replyComment(" + parentCommentID + ")'/>" +
+                        //"<input type='button' value='Like' onclick='return likeComment(" + parentCommentID + ")'/>" +
+                        //"</div>"
                     );               
                     parentComment.appendChild(divCommentReplies);
                 }           

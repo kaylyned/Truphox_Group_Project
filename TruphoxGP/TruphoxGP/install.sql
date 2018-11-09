@@ -468,12 +468,11 @@ GO
 CREATE PROCEDURE spCreateNotification
 (
 	@notificationText VARCHAR(100),
-	@notificationDate DATETIME,
 	@username VARCHAR(30)
 )
 AS
 BEGIN
-	INSERT INTO tbNotifications (notificationText, notificationDate, username) VALUES (@notificationText, GETDATE(), @username)
+	INSERT INTO tbNotification (notificationText, notificationDate, username) VALUES (@notificationText, GETDATE(), @username)
 END
 GO
 
@@ -1382,6 +1381,8 @@ EXEC spCreateFollow @username='Stranger', @followedUser='Truphox';
 SELECT * FROM tbFollowing 
 GO
 
+EXEC spCreateNotification @notificationText='This is a notification', @username='CanadaGhost';
+EXEC spReadNotification @username='CanadaGhost';
 
 EXEC spReadFollow @username='wrenjay'
 GO

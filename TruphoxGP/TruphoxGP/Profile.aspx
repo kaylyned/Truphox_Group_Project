@@ -9,7 +9,7 @@
                 <h1>
                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
-                    <asp:Button ID="btnPictureEdit" CssClass="btn btn-secondary" runat="server" Text="Profile Picture"  Width="184px" OnClick="btnPictureEdit_Click" />
+                    <asp:Button ID="btnPictureEdit" CssClass="btn btn-secondary" runat="server" Text="Profile Picture" Width="184px" OnClick="btnPictureEdit_Click" />
                     <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Settings" Width="184px" OnClick="btnEdit_Click" />
                 </div>
             </div>
@@ -119,7 +119,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblVpostID" runat="server" Text='<%#Eval("postID") %>'></asp:Label>
                                         <br />
-                                        <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />                                        
+                                        <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />
                                         <br />
                                     </ItemTemplate>
                                 </asp:DataList>
@@ -251,21 +251,57 @@
             <div class="well">
                 <h3>FOLLOWING</h3>
                 <div class="Following">
-                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" DataKeyField="followedUser"  >
+                    <asp:DataList ID="dlFollowing" runat="server" OnItemCommand="dlFollowing_ItemCommand" DataKeyField="followedUser">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkFollowed" runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:LinkButton>  
+                            <asp:LinkButton ID="lnkFollowed" runat="server" Text='<%#Eval("followedUser") %>' CommandName="Select"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
-            <br />
+                <br />
+            </div>
+            <div class="well">
+                <h3>NOTIFICATIONS</h3>
+                <div id="notifications"></div>
+            </div>
         </div>
-        <div class="well">
-            <h3>NOTIFICATIONS</h3>
-            <p></p>
-        </div>
-    </div>
     </div>
     <script>
+        $(document).ready(function () {
+            getNotifications(username);
+        });
+
+        function getNotifications(username) {
+            $.ajax({
+                type: "POST",
+                url: "readNotification.ashx",//handler
+                cache: false,
+                data: { "username": username },
+                success: function (data) {
+                    notification(data);
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
+        }
+
+        function notification(data) {
+            //Get notification div created that will be used to append notification HTML created
+            var sectionNotification = document.getElementById("notifications");
+            var notification = JSON.parse(data);
+
+            //loop through each notification for the post and create required elements for a notification
+            for (i in notification.Table) {
+                n = notification.Table[i];
+                var divNotification = document.createElement("div");
+                divNotification.innerHTML = (
+                    n.notificationText
+                );
+                sectionNotification.appendChild(divNotification);
+            }
+        }
+
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

@@ -149,6 +149,7 @@
     <Content Include="Useless\package.json" />
     <Content Include="readComment.ashx" />
     <Content Include="readCommentReply.ashx" />
+    <Content Include="readNotification.ashx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -251,6 +252,9 @@
     </Compile>
     <Compile Include="readCommentReply.ashx.cs">
       <DependentUpon>readCommentReply.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="readNotification.ashx.cs">
+      <DependentUpon>readNotification.ashx</DependentUpon>
     </Compile>
     <Compile Include="Recover.aspx.cs">
       <DependentUpon>Recover.aspx</DependentUpon>

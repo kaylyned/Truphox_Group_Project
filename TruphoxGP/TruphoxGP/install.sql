@@ -1000,8 +1000,7 @@ BEGIN
 	SELECT ph.postID as 'postID', './Images/' + photoLink as 'photoLink', postTitle, postSubTitle
 	    FROM tbPost p  INNER JOIN tbPhotography ph ON 
 	    p.postID= ph.postID 
-	    WHERE  ph.postID = ISNULL(@postID, p.postID);
-	--SELECT * FROM tbPhotography WHERE postID = ISNULL(@postID, postID);
+	    WHERE  ph.postID = ISNULL(@postID, p.postID);	
 END
 GO
 
@@ -1073,8 +1072,9 @@ CREATE PROCEDURE spReadVideo
 )
 AS
 BEGIN
-	SELECT * FROM tbPost WHERE postID = ISNULL(@postID, postID);
-	SELECT * FROM tbVideo WHERE postID = ISNULL(@postID, postID);
+	SELECT p.postID, p.postTitle, p.postSubTitle, p.postDate, p.username, v.videoID, './Video/' + v.videoLink as 'videoLink'
+	FROM tbPost p INNER JOIN tbVideo v ON
+	p.postID = v.postID
 END
 GO
 
@@ -1183,7 +1183,8 @@ CREATE PROCEDURE spReadUserVideo
 )
 AS
 BEGIN
-	SELECT  * FROM tbPost p INNER JOIN tbVideo v ON 
+	SELECT p.postID, p.postTitle, p.postSubTitle, p.postDate, p.username, v.videoID, './Video/' + v.videoLink as 'videoLink'
+	FROM tbPost p INNER JOIN tbVideo v ON 
 	v.postID = p.postID
 	WHERE username = @username 
 	ORDER BY  postDate ASC

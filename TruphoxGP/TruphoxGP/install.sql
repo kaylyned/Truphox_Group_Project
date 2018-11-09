@@ -1000,8 +1000,7 @@ BEGIN
 	SELECT ph.postID as 'postID', './Images/' + photoLink as 'photoLink', postTitle, postSubTitle
 	    FROM tbPost p  INNER JOIN tbPhotography ph ON 
 	    p.postID= ph.postID 
-	    WHERE  ph.postID = ISNULL(@postID, p.postID);
-	--SELECT * FROM tbPhotography WHERE postID = ISNULL(@postID, postID);
+	    WHERE  ph.postID = ISNULL(@postID, p.postID);	
 END
 GO
 

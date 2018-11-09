@@ -364,26 +364,19 @@ body {
     width: 100%;
 }
 
-.commentPic{
-    height:50px;
-    float:left;
+.commentPic {
+    float: left;
+    width: 85px;
+    height:85px;
 }
 
 .commentText{
     margin-left: 30px;
 
 }
-
-.flexComment {
-    display: flex;
-    flex-wrap: nowrap;
+.indentComments{
+  margin-left:60px;
 }
-
-    .flexComment > div {
-        width: 200px;
-        margin: 10px;
-    }
-
 
 /*FORUM PAGE*/
 .forum {

@@ -121,8 +121,18 @@ namespace TruphoxGP
 
         protected void lnkBtnUsername_Click(object sender, EventArgs e)
         {
-             string viewUser = lblUsername.Text; 
-            Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+            Security mySecurity = new Security();
+            string viewUser = lblUsername.Text; 
+
+            if(viewUser != mySecurity.username)
+            {
+                Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+            }
+            else
+            {
+                Response.Redirect("Profile.aspx");
+            }
+          
         }
     }
 }

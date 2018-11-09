@@ -11,9 +11,14 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://github.com/blueimp/jQuery-File-Upload.git"></script>
+
     <link href="Design.css" rel="stylesheet" />
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -21,19 +26,20 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="Home.aspx"><img src="Images/phox.jpg" style="height:33px; width:35px;" /></a>
-                    <asp:Panel runat="server" Visible="false" ID="pnlSubmit">                      
+                    <a class="navbar-brand" href="Home.aspx">
+                        <img src="Images/phox.jpg" style="height: 33px; width: 35px;" /></a>
+                    <asp:Panel runat="server" Visible="false" ID="pnlSubmit">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">SUBMIT <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="submitArt.aspx">SUBMIT ART</a></li>
                                 <li><a href="submitPhotography.aspx">SUBMIT PHOTOGRAPHY</a></li>
-                                 <li><a href="submitVideo.aspx">SUBMIT VIDEOS</a></li>
+                                <li><a href="submitVideo.aspx">SUBMIT VIDEOS</a></li>
                                 <li><a href="submitLit.aspx">SUBMIT LITERATURE </a></li>
                             </ul>
                         </li>
-                        </asp:Panel> 
-                </div>        
+                    </asp:Panel>
+                </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="Artwork.aspx">ARTWORK</a></li>
@@ -43,18 +49,12 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="Profile.aspx">PROFILE</a></li>
+                                <li><a href="Profile.aspx">  PROFILE</a></li>
                                 <%--<li><a href="#">STORE</a></li>--%>
-                                <li><a href="PhoxForums.aspx">PHOX FORUMS</a></li>
-                                <li>
-                                    <asp:Panel ID="pnlRegister" runat="server" Visible="false">&nbsp&nbsp<a href="Register.aspx">REGISTER</a></asp:Panel>
-                                </li>
-                                <li>
-                                    <asp:Panel ID="pnlLogin" runat="server" Visible="false">&nbsp&nbsp<a href="Login.aspx">LOGIN</a></asp:Panel>
-                                </li>
-                                <li>
-                                    <asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" runat="server" Text="Logout" /></asp:Panel>
-                                </li>
+                                <li><a href="PhoxForums.aspx">  PHOX FORUMS</a></li>
+                                <li><asp:Panel ID="pnlRegister" runat="server" Visible="false">&nbsp&nbsp<a href="Register.aspx"> REGISTER</a></asp:Panel></li>
+                                <li><asp:Panel ID="pnlLogin" runat="server" Visible="false">&nbsp&nbsp<a href="Login.aspx"> LOGIN</a></asp:Panel></li>
+                                <li><asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" runat="server" Text="Logout" /></asp:Panel></li>
                             </ul>
                         </li>
                         <li>

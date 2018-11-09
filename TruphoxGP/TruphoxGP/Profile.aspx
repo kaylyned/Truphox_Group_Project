@@ -261,7 +261,9 @@
             </div>
             <div class="well">
                 <h3>NOTIFICATIONS</h3>
-                <div id="notifications"></div>
+                <div id="notifications">
+                    <%-- NEED WAY TO GET USERNAME TO JAVASCRIPT --%>                    
+                </div>
             </div>
         </div>
     </div>

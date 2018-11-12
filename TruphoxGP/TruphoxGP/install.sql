@@ -92,11 +92,17 @@ CREATE TABLE tbDeletedComments
 	deletedCommentDate DATETIME
 )
 
-
 CREATE TABLE tbLike
 (
 	likeID INT IDENTITY (0,1) PRIMARY KEY,
 	postID INT FOREIGN KEY REFERENCES tbPost(postID),
+	username VARCHAR(30) FOREIGN KEY REFERENCES tbAccount(username)
+)
+
+CREATE TABLE tbCommentLike
+(
+	commentLikeID INT IDENTITY (0,1) PRIMARY KEY,
+	commentID INT FOREIGN KEY REFERENCES tbComment(commentID),
 	username VARCHAR(30) FOREIGN KEY REFERENCES tbAccount(username)
 )
 
@@ -625,7 +631,7 @@ CREATE PROCEDURE spReadComment
 )
 AS
 BEGIN
-	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, p.parentCommentID
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, p.parentCommentID, c.commentID
 	FROM tbComment c INNER JOIN tbAccount a ON
 	c.username = a.username
 	INNER JOIN tbParentComment p ON
@@ -642,7 +648,7 @@ CREATE PROCEDURE spReadCommentReply
 )
 AS
 BEGIN
-	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID, c.commentID
 	FROM tbComment c INNER JOIN tbAccount a ON
 	c.username = a.username
 	INNER JOIN tbChildComment ch ON
@@ -704,7 +710,7 @@ BEGIN
 END
 GO
 
--------------------------------- LIKE --------------------------------
+-------------------------------- POST LIKE --------------------------------
 
 CREATE PROCEDURE spCreateLike
 (
@@ -735,6 +741,37 @@ BEGIN
 END
 GO
 
+-------------------------------- POST LIKE --------------------------------
+
+CREATE PROCEDURE spCreateCommentLike
+(
+	@commentID INT,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM tbCommentLike WHERE username = @username and commentID = @commentID)
+				BEGIN
+					DELETE FROM tbCommentLike WHERE username = @username and commentID = @commentID
+				END
+			ELSE
+				BEGIN				
+					INSERT INTO tbCommentLike (commentID, username) VALUES
+									(@commentID, @username)
+				END
+END
+GO
+
+
+CREATE PROCEDURE spReadCommentLike
+(
+	@commentID INT
+)
+AS
+BEGIN
+	SELECT count(commentID) as 'count' FROM tbCommentLike WHERE commentID = ISNULL (@commentID, commentID)
+END
+GO
 
 -------------------------------- TAGS --------------------------------
 
@@ -1356,6 +1393,10 @@ GO
 
 EXEC spCreateCommentReply @postID=7, @postCommentNumber=5, @commentText='Awesome Logo!', @username='Person', @parentCommentID=0;
 EXEC spCreateCommentReply @postID=7, @postCommentNumber=6, @commentText='Nice!', @username='CanadaGhost', @parentCommentID=2;
+GO
+
+EXEC spCreateCommentLike @commentID=1, @username='CanadaGhost';
+EXEC spCreateCommentLike @commentID=1, @username='wrenjay';
 GO
 
 SELECT * FROM tbPost

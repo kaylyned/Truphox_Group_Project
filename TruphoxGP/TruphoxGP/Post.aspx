@@ -118,7 +118,7 @@
             for (i in comment.Table) {
                 c = comment.Table[i];
                 var divComments = document.createElement("div");
-                divComments.setAttribute('id', 'c' + i);
+                divComments.setAttribute('id', 'c' + i);                
                 divComments.innerHTML = (
                     "   <div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
@@ -148,7 +148,6 @@
                 data: { "parentCommentID": parentCommentID, "postID": postID },
                 success: function (data) {
                     commentReplies(data, i, parentCommentID);
-
                 },
                 err: function (error) {
                     alert("error");
@@ -165,8 +164,8 @@
             for (a in commentReply.Table) {
                 cr = commentReply.Table[a];
                 var divCommentReplies = document.createElement("div");
-                divCommentReplies.setAttribute('id', 'cr' + a);
-                divCommentReplies.innerHTML = (
+                divCommentReplies.setAttribute('id', 'cr' + a);                
+                divCommentReplies.innerHTML = (                    
                     "<div class='indentComments'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
                     + "<a href=''>" + cr.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + cr.commentDate + "</span>" + "</br>" + "</br>"
@@ -194,10 +193,19 @@
         };
         var likeCount = 10;
 
-        function likeComment() {
-           
-
-
+        function likeComment(commentID) {
+            $.ajax({
+                type: "POST",
+                url: "likeComment.ashx", //handler
+                cache: false,
+                data: { "commentID": commentID },
+                success: function () {
+                    readCommentLikes()
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
 
             //$('.btn-counter').on('click', function (event, count) {
             //    event.preventDefault();
@@ -219,6 +227,21 @@
             //        ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
             //});
             return false;
+        }
+
+        function replyComment(parentCommentID) {
+            $.ajax({
+                type: "POST",
+                url: "replyComment.ashx", //handler
+                cache: false,
+                data: { "parentCommentID": parentCommentID },
+                success: function () {
+                    
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
         }
 
     </script>

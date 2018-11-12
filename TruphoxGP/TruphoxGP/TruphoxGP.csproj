@@ -150,6 +150,8 @@
     <Content Include="readComment.ashx" />
     <Content Include="readCommentReply.ashx" />
     <Content Include="readNotification.ashx" />
+    <Content Include="likeComment.ashx" />
+    <Content Include="replyComment.ashx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -202,6 +204,9 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="likeComment.ashx.cs">
+      <DependentUpon>likeComment.ashx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -269,6 +274,9 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="replyComment.ashx.cs">
+      <DependentUpon>replyComment.ashx</DependentUpon>
     </Compile>
     <Compile Include="Reset.aspx.cs">
       <DependentUpon>Reset.aspx</DependentUpon>

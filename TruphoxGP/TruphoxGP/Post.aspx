@@ -130,7 +130,7 @@
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
                     //like btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.parentCommentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
                     "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
 
                     + "</div>" + "</div>" + "<div id='r" + i + "'></div>"
@@ -195,7 +195,10 @@
         var likeCount = 10;
 
         function likeComment() {
-            alert("here");
+           
+
+
+
             //$('.btn-counter').on('click', function (event, count) {
             //    event.preventDefault();
 

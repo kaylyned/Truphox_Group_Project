@@ -12,7 +12,7 @@ namespace TruphoxGP
     /// <summary>
     /// Summary description for readNotification
     /// </summary>
-    public class readNotification : IHttpHandler
+    public class readNotification : IHttpHandler, System.Web.SessionState.IRequiresSessionState
     {
         DAL mydal;
         

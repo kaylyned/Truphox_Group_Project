@@ -1422,7 +1422,9 @@ EXEC spCreateFollow @username='Stranger', @followedUser='Truphox';
 SELECT * FROM tbFollowing 
 GO
 
-EXEC spCreateNotification @notificationText='This is a notification', @username='CanadaGhost';
+EXEC spCreateNotification @notificationText='This is a notification.', @username='CanadaGhost';
+EXEC spCreateNotification @notificationText='Another notification.', @username='CanadaGhost';
+EXEC spCreateNotification @notificationText='Someone liked your Tiny Rick post.', @username='CanadaGhost';
 EXEC spReadNotification @username='CanadaGhost';
 
 EXEC spReadFollow @username='wrenjay'

@@ -382,3 +382,11 @@ body {
 .forum {
 }
 
+/*NOTIFICATION PAGE*/
+.notificationText{
+    font-size: 20px;
+}
+
+.notificationDateText{
+    font-size: 12px;
+}

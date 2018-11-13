@@ -13,11 +13,13 @@ namespace TruphoxGP
     {
         DAL mydal;
         public int postID { get; set; }
+        public string postType { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
             string postType = Request.QueryString["postType"].ToString();
+            Security sec = new Security();
 
             if (postType == "artwork")
             {
@@ -49,6 +51,12 @@ namespace TruphoxGP
             {
                 loadUser(postID);
                 loadLikes(postID);
+
+                if(sec.username != null)
+                {
+                    pnlEditPost.Visible = true;
+                }
+
             }            
         }
         private void loadUser( int PostID)
@@ -133,6 +141,40 @@ namespace TruphoxGP
                 Response.Redirect("Profile.aspx");
             }
           
+        }
+
+        protected void btnEditPost_Click(object sender, EventArgs e)
+        {
+            int postID = this.postID;
+            string PostType = postType;
+
+            if (postID == null)
+            {
+
+            }
+            else
+            {
+                switch (PostType)
+                {
+                    case "artwork":
+                        Response.Redirect("submitArt?postID=" + postID);
+                        break;
+                    case "photography":
+                        Response.Redirect("submitPhotography?postID=" + postID);
+                        break;
+                    case "writing":
+                        Response.Redirect("submitLit?postID=" + postID);
+                        break;
+                    case "video":
+                        Response.Redirect("submitVideo?postID=" + postID);
+                        break;
+                }
+            }
+        }
+
+        protected void btnDeletePost_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

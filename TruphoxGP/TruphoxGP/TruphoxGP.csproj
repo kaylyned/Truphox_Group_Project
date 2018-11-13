@@ -74,6 +74,7 @@
     <Content Include="Images\convet.jpg" />
     <Content Include="Images\lights.jpg" />
     <Content Include="Images\mountains.jpg" />
+    <Content Include="Notifications.aspx" />
     <Content Include="PhoxForums.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="submitArt.aspx" />
@@ -214,6 +215,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications.aspx.cs">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notifications.aspx.designer.cs">
+      <DependentUpon>Notifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Photography.aspx.cs">
       <DependentUpon>Photography.aspx</DependentUpon>

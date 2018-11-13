@@ -259,51 +259,10 @@
                 </div>
                 <br />
             </div>
-            <div class="well">
-                <h3>NOTIFICATIONS</h3>
-                <div id="notifications">
-                    <%-- NEED WAY TO GET USERNAME TO JAVASCRIPT --%>                    
-                </div>
-            </div>
+           
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            getNotifications();
-        });
-
-        function getNotifications() {
-            $.ajax({
-                type: "GET",
-                url: "readNotification.ashx",//handler
-                cache: false,
-                data: {},
-                success: function (data) {
-                    notification(data);
-                },
-                err: function (error) {
-                    alert("error");
-                }
-            });
-        }
-
-        function notification(data) {
-            //Get notification div created that will be used to append notification HTML created
-            var sectionNotification = document.getElementById("notifications");
-            var notification = JSON.parse(data);
-
-            //loop through each notification for the post and create required elements for a notification
-            for (i in notification.Table) {
-                n = notification.Table[i];
-                var divNotification = document.createElement("div");
-                divNotification.innerHTML = (
-                    n.notificationText
-                );
-                sectionNotification.appendChild(divNotification);
-            }
-        }
-
-
+    <script>        
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

@@ -1430,3 +1430,4 @@ GO
 SELECT * FROM tbAccount;
 
 EXEC spReadCommentReply @parentCommentID=2, @postID=7;
+

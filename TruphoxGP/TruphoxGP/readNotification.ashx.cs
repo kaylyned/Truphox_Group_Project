@@ -15,16 +15,15 @@ namespace TruphoxGP
     public class readNotification : IHttpHandler
     {
         DAL mydal;
-        string username;
+        
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
-            if (context.Request.HttpMethod == "POST")
-            {
-                username = context.Request.Form["username"].ToString();
-            }
 
-            mydal = new DAL("spReadNotification"); //add read comment reply proc
+            Security mySecurity = new Security();
+            string username = mySecurity.username.ToString();
+
+            mydal = new DAL("spReadNotification");
             mydal.addParm("username", username);
             DataSet ds = mydal.getDataSet();
 

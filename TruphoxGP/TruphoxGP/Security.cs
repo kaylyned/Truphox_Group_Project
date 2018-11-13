@@ -19,7 +19,7 @@ namespace TruphoxGP
 
         public Security()
         {
-            if(HttpContext.Current.Session["username"] !=null)
+            if(HttpContext.Current.Session["username"] != null)
             {
                 username = (string)HttpContext.Current.Session["username"];
                 userPassword = (string)HttpContext.Current.Session["userPassword"];
@@ -53,7 +53,7 @@ namespace TruphoxGP
             username = ds.Tables[0].Rows[0]["username"].ToString();
             active = Convert.ToBoolean(ds.Tables[0].Rows[0]["active"]);
 
-            if (message != "invalid")
+            if (message == "valid")
             {
                 isLoggedIn = true;
                 HttpContext.Current.Session["username"] = username;

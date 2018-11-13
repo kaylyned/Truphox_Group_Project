@@ -269,15 +269,15 @@
     </div>
     <script>
         $(document).ready(function () {
-            getNotifications(username);
+            getNotifications();
         });
 
-        function getNotifications(username) {
+        function getNotifications() {
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: "readNotification.ashx",//handler
                 cache: false,
-                data: { "username": username },
+                data: {},
                 success: function (data) {
                     notification(data);
                 },
@@ -318,5 +318,6 @@
         $("#imgInp").change(function () {
             readURL(this);
         });
+
     </script>
 </asp:Content>

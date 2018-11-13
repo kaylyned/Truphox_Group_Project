@@ -126,7 +126,7 @@
                     + "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
 
                     //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Replies" + "</b>"
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
                     //like btn
@@ -172,15 +172,22 @@
                     + "<div class='usercomment'>" + cr.commentText + "</div>" + "<br/>"
 
                     //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID + ")' id='myBtn'>" + "<b>Replies" + "</b>"
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
                     //like btn
                     + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + cr.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
                     "</i> Like" + "<span class='w3-tag w3-white'>" + "data-count='0'" + "</span>" + "</b >" + "</button >" + "</p >"
 
-                    + "</div>" + "</div>" + "</div>" //+ "<div id='r" + i + "'></div>"
-                );
+                    + "</div>" + "</div>" + "</div>" + "<div "
+
+                    //sub comments
+                    + "<<asp:Panel visible=''>" + "<div class='nest'>"  +"<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
+                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + Security.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + cr.commentDate + "</span>" + "</br>" + "</br>"
+                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br/>" + "<input id='btnSubmit' type='button' value='Submit Reply' />"
+                    + "</div>" + "</div>" + "</div>" + "</div>" +"</asp:Panel>"
+                ); 
                 parentComment.appendChild(divCommentReplies);
             }
         }
@@ -206,42 +213,30 @@
                     alert("error");
                 }
             });
-
-            //$('.btn-counter').on('click', function (event, count) {
-            //    event.preventDefault();
-
-            //    var $this = $(this),
-            //        count = $this.attr('data-count'),
-            //        active = $this.hasClass('active'),
-            //        multiple = $this.hasClass('multiple-count');
-            //    /*Use when you want to do an ajax request
-            //    if (multiple) {
-            //    $this.attr('data-count', ++count);
-            //    // Your code here
-            //    } else {
-            //    $this.attr('data-count', active ? --count : ++count).toggleClass('active');
-            //    // Your code here
-            //  */
-            //    $.fn.noop = $.noop;
-            //    $this.attr('data-count', !active || multiple ?
-            //        ++count : --count)[multiple ? 'noop' : 'toggleClass']('active');
-            //});
             return false;
         }
 
         function replyComment(parentCommentID) {
-            $.ajax({
-                type: "POST",
-                url: "replyComment.ashx", //handler
-                cache: false,
-                data: { "parentCommentID": parentCommentID },
-                success: function () {
-                    
-                },
-                err: function (error) {
-                    alert("error");
-                }
-            });
+            alert("here");
+            if (typeof Security =='Security' && username !=null)
+            {
+                alert("Must be logged in to reply")
+            }
+            else {
+
+                $.ajax({
+                    type: "POST",
+                    url: "replyComment.ashx", //handler
+                    cache: false,
+                    data: { "parentCommentID": parentCommentID },
+                    success: function () {
+                    },
+                    err: function (error) {
+                        alert("error");
+                    }
+                });
+            }
+            return false;
         }
 
     </script>

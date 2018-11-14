@@ -124,15 +124,16 @@
             for (i in comment.Table) {
                 c = comment.Table[i];
                 var divComments = document.createElement("div");
-                divComments.setAttribute('id', 'c' + i);                
+                divComments.setAttribute('id', 'c' + i);   
+                alert("test");
                 divComments.innerHTML = (
                     "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "</br>" + "</br>"
-                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
+                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "<br />" + "<br />"
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
 
                     //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
                     //like btn
@@ -142,17 +143,18 @@
 
                     //sub comments
                     + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
-                    + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
-                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + cr.username + "</a><br />" + "</br>"
-                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br/>" 
+                    + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
+                    + "<br />" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + cr.username + "</a><br />" + "<br />"
+                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />" 
 
                     //submit reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.commentID + ")' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
-                    + "</div>" + "</div>" + "</div>" + "</div>" +"</div>" +"</div>"
+                    + "</div>" + "</div>" + "</div>" 
+                    + "</div>" + "</div>" + "</div>"
                 );
-                getCommentReplies(c.parentCommentID, c.postID, i);
+                //getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
             }
         }

@@ -157,6 +157,33 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Button btnFollow;
         
         /// <summary>
+        /// pnlEditPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEditPost;
+        
+        /// <summary>
+        /// btnEditPost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditPost;
+        
+        /// <summary>
+        /// btnDeletePost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeletePost;
+        
+        /// <summary>
         /// dlMoreUser control.
         /// </summary>
         /// <remarks>

@@ -488,7 +488,7 @@ CREATE PROCEDURE spReadNotification
 )
 AS
 BEGIN
-	SELECT * FROM tbNotification WHERE username = ISNULL (@username, username)
+	SELECT TOP 10 * FROM tbNotification WHERE username = ISNULL (@username, username)
 END
 GO
 

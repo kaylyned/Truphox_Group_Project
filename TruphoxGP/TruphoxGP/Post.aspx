@@ -120,7 +120,7 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);                
                 divComments.innerHTML = (
-                    "   <div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
+                    "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
                     + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "</br>" + "</br>"
                     + "<div class='usercomment'>" + c.commentText + "</div>" + "<br/>"
@@ -178,31 +178,31 @@
                 divCommentReplies.setAttribute('id', 'cr' + a);                
                 divCommentReplies.innerHTML = (                    
                     "<div class='indentComments'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
-                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + cr.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + cr.commentDate + "</span>" + "</br>" + "</br>"
+                    + "<br />" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + cr.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + cr.commentDate + "</span>" + "<br />" + "<br />"
                     + "<div class='usercomment'>" + cr.commentText + "</div>" + "<br/>"
 
-                    //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
-                    + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+                    ////reply btn
+                    //+ "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
+                    //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                    //like btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + cr.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
-                    "</i> Like" + "<span class='w3-tag w3-white'>" + "data-count='0'" + "</span>" + "</b >" + "</button >" + "</p >"
+                    ////like btn
+                    //+ "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + cr.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                    //"</i> Like" + "<span class='w3-tag w3-white'>" + "data-count='0'" + "</span>" + "</b >" + "</button >" + "</p >"
 
-                    + "</div>" + "</div>" + "</div>" + "<div>"
+                    //+ "</div>" + "</div>" + "</div>" 
 
-                    //sub comments
-                    + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
-                    + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
-                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + cr.username + "</a><br />" + "</br>"
-                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br/>" 
+                    ////sub comments
+                    //+ "<div>" + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
+                    //+ " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
+                    //+ "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                    //+ "<a href=''>" + cr.username + "</a><br />" + "<br />"
+                    //+ "<div class='usercomment'>" + "<input id='Text1' type='text' width='300' />" + "</div>" + "<br/>" 
 
                     //reply btn
                     + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
-                    + "</div>" + "</div>" + "</div>" + "</div>" +"</div>" +"</div>"
+                    + "</div>" + "</div>" + "</div>" + "</div>" +"</div>" +"</div>"+"</div>"
                 ); 
                 parentComment.appendChild(divCommentReplies);
             }
@@ -232,16 +232,7 @@
             return false;
         }
 
-        function replyComment(parentCommentID) {
-            alert("here");
-            document.getElementById("pnlComment").style.visibility = 'visible';
-
-            if (typeof Security =='Security' && username !=null)
-            {
-                alert("Must be logged in to reply")
-            }
-            else {
-
+        function replyComment(parentCommentID) {           
                 $.ajax({
                     type: "POST",
                     url: "replyComment.ashx", //handler

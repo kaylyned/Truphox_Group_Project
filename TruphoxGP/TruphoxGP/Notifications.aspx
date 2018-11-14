@@ -43,8 +43,7 @@
                     "<div class='well'>" +
                     "<p class='notificationText'>" + n.notificationText + "</p>" +
                     "<p class='notificationDateText'>" + n.notificationDate + "</p>" +
-                    "</div><br />"
-                    
+                    "</div><br />"                    
                 );
                 sectionNotification.appendChild(divNotification);
             }

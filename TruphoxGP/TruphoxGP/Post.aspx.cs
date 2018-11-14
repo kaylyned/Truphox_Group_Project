@@ -145,14 +145,10 @@ namespace TruphoxGP
 
         protected void btnEditPost_Click(object sender, EventArgs e)
         {
-            int postID = this.postID;
+            int PostID = postID;
             string PostType = postType;
 
-            if (postID == null)
-            {
-
-            }
-            else
+            if (PostType != null)
             {
                 switch (PostType)
                 {

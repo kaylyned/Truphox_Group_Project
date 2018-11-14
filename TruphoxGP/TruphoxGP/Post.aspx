@@ -74,6 +74,12 @@
                     </asp:LinkButton></h2>
                 <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
             </div>
+            <asp:Panel ID="pnlEditPost" runat="server" Visible="false">
+                   <div class="well">
+                <asp:Button ID="btnEditPost" runat="server" Text="Edit" OnClick="btnEditPost_Click" />
+                <asp:Button ID="btnDeletePost" runat="server" Text="Delete" OnClick="btnDeletePost_Click" />
+            </div>
+            </asp:Panel>
             <div class="well">
                 <h3>MORE FROM USER</h3>
                 <p>
@@ -192,12 +198,12 @@
 
                     //+ "</div>" + "</div>" + "</div>" 
 
-                    ////sub comments
-                    //+ "<div>" + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
-                    //+ " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
-                    //+ "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    //+ "<a href=''>" + cr.username + "</a><br />" + "<br />"
-                    //+ "<div class='usercomment'>" + "<input id='Text1' type='text' width='300' />" + "</div>" + "<br/>" 
+                    //sub comments
+                    + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
+                    + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + cr.profileImage + "' class='img-circle commentPic'/>"
+                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                    + "<a href=''>" + cr.username + "</a><br />" + "</br>"
+                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br/>" 
 
                     //reply btn
                     + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"

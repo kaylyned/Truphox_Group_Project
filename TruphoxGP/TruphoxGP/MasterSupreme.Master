@@ -19,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://github.com/blueimp/jQuery-File-Upload.git"></script>
 
+
     <link href="Design.css" rel="stylesheet" />
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -49,24 +50,28 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="Profile.aspx">  PROFILE</a></li>
+                                <li><a href="Profile.aspx">PROFILE</a></li>
                                 <%--<li><a href="#">STORE</a></li>--%>
-                                <li><a href="PhoxForums.aspx">  PHOX FORUMS</a></li>
-                                <li><asp:Panel ID="pnlRegister" runat="server" Visible="false">&nbsp&nbsp<a href="Register.aspx"> REGISTER</a></asp:Panel></li>
-                                <li><asp:Panel ID="pnlLogin" runat="server" Visible="false">&nbsp&nbsp<a href="Login.aspx"> LOGIN</a></asp:Panel></li>
-                                <li><asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" runat="server" Text="Logout" /></asp:Panel></li>
+                                <li><a href="PhoxForums.aspx">PHOX FORUMS</a></li>
+                                <li>
+                                    <asp:Panel ID="pnlRegister" runat="server" Visible="false">&nbsp&nbsp<a href="Register.aspx"> REGISTER</a></asp:Panel>
+                                </li>
+                                <li>
+                                    <asp:Panel ID="pnlLogin" runat="server" Visible="false">&nbsp&nbsp<a href="Login.aspx"> LOGIN</a></asp:Panel>
+                                </li>
+                                <li>
+                                    <asp:Panel ID="pnlLogout" runat="server" Visible="false">&nbsp&nbsp<asp:Button ID="btnLogout" runat="server" Text="Logout" /></asp:Panel>
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" placeholder="Search..." /></li>
                         <li class="ddlSearchFilerDrop">
-                            <asp:DropDownList ID="ddlSearchFilter" CssClass="ddlSearchFilter" runat="server">
+                            <asp:DropDownList ID="ddlUP" runat="server" style="padding:14.5px 16px; text-decoration:none; display:block;">
                                 <asp:ListItem>Users</asp:ListItem>
-                                <asp:ListItem>Art</asp:ListItem>
-                                <asp:ListItem>Photography</asp:ListItem>
-                                <asp:ListItem>Videos</asp:ListItem>
-                                <asp:ListItem>Literature</asp:ListItem>
-                            </asp:DropDownList></li>
+                              <asp:ListItem>Posts</asp:ListItem>
+                            </asp:DropDownList>
+                        </li>
                         <li>
                             <button id="btnSearch" runat="server" style="height: 45px; width: 30px" onclick="return Search()"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
                         </li>
@@ -82,13 +87,18 @@
         </div>
     </form>
     <script>
-        var result = document.getElementById("txtSearch").value;
-
         function Search() {
-            // alert("hate this");
-            window.location.replace("./Results.aspx?result" + result);
+            var result = document.getElementById("txtSearch").value;
+            var filter = document.getElementById("ddlUP").value;
+            //var filter = e.result[e.selectedIndex].value;
+
+            alert("I FUCKING HATE DEBUGGING");
+            window.location.replace("./Results.aspx?result" + result + "&filter" + filter);
+
             return false;
         }
+
+
     </script>
 </body>
 </html>

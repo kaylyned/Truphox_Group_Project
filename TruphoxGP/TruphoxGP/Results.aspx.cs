@@ -15,31 +15,60 @@ namespace TruphoxGP
         {
             if (!IsPostBack)
             {
-                if (Request.QueryString["result"] != null)
+                string search = Request.QueryString["result"].ToString();
+                string type = Request.QueryString["filter"].ToString();
+
+                if (type == "users")
                 {
-                   string searchResult = Request.QueryString["result"].ToString();
-                   loadUSearch(searchResult);
-                }            
+                    loadUSearch(search);
+                }
+
+                if (type == "posts")
+                {
+                    loadUnSearch(search);
+                }
+
             }
         }
-        private void loadUSearch(string SearchResult)
+        private void loadUSearch(string Search)
         {
             Security sec = new Security();
             mydal = new DAL("spUSearch");
-            mydal.addParm("@input", SearchResult);
+            mydal.addParm("@input", Search);
 
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            if (ds.Tables[0].Rows.Count !=0)
+            if (ds.Tables[0].Rows.Count != 0)
             {
                 dlUserSearch.DataSource = dtA;
                 dlUserSearch.DataBind();
             }
-          else
+            else
             {
                 lblNotFound.Visible = true;
-                lblNotFound.Text = SearchResult + "not found";
+                lblNotFound.Text = Search + "not found";
+            }
+        }
+
+        private void loadUnSearch(string Search)
+        {
+            Security sec = new Security();
+            mydal = new DAL("spSearchUnion");
+            mydal.addParm("@input", Search);
+
+            DataSet ds = mydal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                dlUnity.DataSource = dtA;
+                dlUnity.DataBind();
+            }
+            else
+            {
+                lblNotFound.Visible = true;
+                lblNotFound.Text = Search + "not found";
             }
         }
 

@@ -39,12 +39,14 @@ namespace TruphoxGP
             {
                 //make photography panel visible
                 pnlPhotography.Visible = true;
+                loadPhotography(postID);
             }
 
             if (postType == "video")
             {
                 //make video panel visible
                 pnlVideo.Visible = true;
+                loadVideo(postID);
             }
 
             if (!IsPostBack)
@@ -81,6 +83,18 @@ namespace TruphoxGP
             imgArtwork.ImageUrl = ds.Tables[0].Rows[0]["artLink"].ToString();
         }
 
+        private void loadPhotography(int PostID)
+        {
+            //load post
+            mydal = new DAL("spReadPhotography");
+            mydal.addParm("postID", PostID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+            lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+            lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+            imgPhotography.ImageUrl = ds.Tables[0].Rows[0]["photoLink"].ToString();
+        }
+
         private void loadWriting(int PostID)
         {
             //load post
@@ -92,6 +106,18 @@ namespace TruphoxGP
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
         } 
+
+        private void loadVideo(int PostID)
+        {
+            //load post
+            mydal = new DAL("spReadVideo");
+            mydal.addParm("postID", PostID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+            lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+            lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+            //postVideo. = ds.Tables[0].Rows[0]["videoLink"].ToString();
+        }
 
         private void loadLikes(int PostID)
         {

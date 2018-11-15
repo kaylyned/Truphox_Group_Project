@@ -173,30 +173,51 @@ namespace TruphoxGP
         {
             int PostID = postID;
             string PostType = postType;
-
-            if (PostType != null)
+            Security mySecurity = new Security();
+            string viewUser = lblUsername.Text;
+            if (viewUser != mySecurity.username)
             {
-                switch (PostType)
+                
+            }
+            else
+            {
+                if (PostType != null)
                 {
-                    case "artwork":
-                        Response.Redirect("submitArt?postID=" + postID);
-                        break;
-                    case "photography":
-                        Response.Redirect("submitPhotography?postID=" + postID);
-                        break;
-                    case "writing":
-                        Response.Redirect("submitLit?postID=" + postID);
-                        break;
-                    case "video":
-                        Response.Redirect("submitVideo?postID=" + postID);
-                        break;
+                    switch (PostType)
+                    {
+                        case "artwork":
+                            Response.Redirect("submitArt?postID=" + postID);
+                            break;
+                        case "photography":
+                            Response.Redirect("submitPhotography?postID=" + postID);
+                            break;
+                        case "writing":
+                            Response.Redirect("submitLit?postID=" + postID);
+                            break;
+                        case "video":
+                            Response.Redirect("submitVideo?postID=" + postID);
+                            break;
+                    }
                 }
             }
         }
 
         protected void btnDeletePost_Click(object sender, EventArgs e)
         {
+            Security mySecurity = new Security();
+            string viewUser = lblUsername.Text;
 
+            if (viewUser != mySecurity.username)
+            {
+               
+            }
+            else
+            {
+                mydal = new DAL("spDeletePost");
+                mydal.addParm("username", mySecurity.username);
+                mydal.addParm("postID", postID.ToString());
+                mydal.execNonQuery();
+            }
         }
     }
 }

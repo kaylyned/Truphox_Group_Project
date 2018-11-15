@@ -356,8 +356,11 @@ body {
 .PostImage {
     margin: auto;
     width: 750px;
-    height: 100%;
-    padding: 20px;
+    height: 75%;
+    max-height:850px;
+    padding-bottom: 40px;
+    padding-left:35px;
+    top:0px;
 }
 
 .commentTextBox{

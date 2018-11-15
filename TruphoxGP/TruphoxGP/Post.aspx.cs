@@ -18,7 +18,7 @@ namespace TruphoxGP
         protected void Page_Load(object sender, EventArgs e)
         {
             postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
-            string postType = Request.QueryString["postType"].ToString();
+            postType = Request.QueryString["postType"].ToString();
             Security sec = new Security();
 
             if (postType == "artwork")
@@ -54,14 +54,14 @@ namespace TruphoxGP
                 loadUser(postID);
                 loadLikes(postID);
 
-                if(sec.username != null)
+                if (sec.username != null)
                 {
                     pnlEditPost.Visible = true;
                 }
 
-            }            
+            }
         }
-        private void loadUser( int PostID)
+        private void loadUser(int PostID)
         {
             Security sec = new Security();
             mydal = new DAL("spReadPost");
@@ -105,7 +105,7 @@ namespace TruphoxGP
             lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             lblWriting.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
-        } 
+        }
 
         private void loadVideo(int PostID)
         {
@@ -144,15 +144,15 @@ namespace TruphoxGP
             {
 
             }
-            loadLikes(postID);            
+            loadLikes(postID);
         }
 
         protected void lnkBtnUsername_Click(object sender, EventArgs e)
         {
             Security mySecurity = new Security();
-            string viewUser = lblUsername.Text; 
+            string viewUser = lblUsername.Text;
 
-            if(viewUser != mySecurity.username)
+            if (viewUser != mySecurity.username)
             {
                 Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
             }
@@ -160,7 +160,7 @@ namespace TruphoxGP
             {
                 Response.Redirect("Profile.aspx");
             }
-          
+
         }
 
         protected void btnEditPost_Click(object sender, EventArgs e)
@@ -171,27 +171,24 @@ namespace TruphoxGP
             string viewUser = lblUsername.Text;
             if (viewUser != mySecurity.username)
             {
-                
+
             }
             else
             {
-                if (PostType != null)
+                switch (PostType)
                 {
-                    switch (PostType)
-                    {
-                        case "artwork":
-                            Response.Redirect("submitArt?postID=" + postID);
-                            break;
-                        case "photography":
-                            Response.Redirect("submitPhotography?postID=" + postID);
-                            break;
-                        case "writing":
-                            Response.Redirect("submitLit?postID=" + postID);
-                            break;
-                        case "video":
-                            Response.Redirect("submitVideo?postID=" + postID);
-                            break;
-                    }
+                    case "artwork":
+                        Response.Redirect("submitArt.aspx?postID=" + postID);
+                        break;
+                    case "photography":
+                        Response.Redirect("submitPhotography.aspx?postID=" + postID);
+                        break;
+                    case "writing":
+                        Response.Redirect("submitLit.aspx?postID=" + postID);
+                        break;
+                    case "video":
+                        Response.Redirect("submitVideo.aspx?postID=" + postID);
+                        break;
                 }
             }
         }
@@ -203,7 +200,7 @@ namespace TruphoxGP
 
             if (viewUser != mySecurity.username)
             {
-               
+
             }
             else
             {

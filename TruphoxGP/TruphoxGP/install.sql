@@ -392,11 +392,13 @@ BEGIN
 			IF EXISTS (SELECT * FROM tbFollowing WHERE username = @username and followedUser = @followedUser)
 				BEGIN
 					DELETE FROM tbFollowing WHERE username = @username and followedUser = @followedUser
+					SELECT 'unfollowed' AS MESSAGE
 				END
 			ELSE
 				BEGIN
 					INSERT INTO tbFollowing (username, followedUser) VALUES
 											(@username, @followedUser)
+					SELECT 'followed' AS MESSAGE
 				END
 		END
 END

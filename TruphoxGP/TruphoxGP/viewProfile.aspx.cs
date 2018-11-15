@@ -177,8 +177,7 @@ namespace TruphoxGP
         }
         protected void btnFollow_Click(object sender, EventArgs e)
         {            
-            followUser(viewUser);
-            followNofitication(viewUser);
+            followUser(viewUser);            
         }
 
         private void followUser(string ViewUser)
@@ -187,8 +186,13 @@ namespace TruphoxGP
             myDal = new DAL("spCreateFollow");
             myDal.addParm("username", sec.username);
             myDal.addParm("followedUser", ViewUser);
-            myDal.execNonQuery();
+            
+            string message = myDal.execScalar();
 
+            if (message == "followed")
+            {
+               followNofitication(ViewUser);
+            }   
         }
 
         private void followNofitication(string ViewUser)
@@ -209,7 +213,5 @@ namespace TruphoxGP
                 Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
             }
         }
-
-
     }
 }

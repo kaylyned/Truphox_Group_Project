@@ -520,24 +520,6 @@ END
 GO
 
 -------------------------------- POST --------------------------------
-
---CREATE PROCEDURE spCreatePost
---(
---	@rating BIT,
---	@postText VARCHAR(800),
---	@postDate DATETIME,
---	@postTitle VARCHAR(50),
---	@postSubTitle VARCHAR(50),
---	@lastComment INT,
---	@username VARCHAR(30)
---)
---AS
---BEGIN
---	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, lastComment, username) VALUES
---					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle, @lastComment, @username)
---END
---GO
-
 CREATE PROCEDURE spReadPost
 (
 	@postID INT
@@ -549,29 +531,6 @@ END
 GO
 
 EXEC spReadPost @postID=10
-GO
-
-CREATE PROCEDURE spUpdatePost
-(
-	@postID INT,
-	@rating BIT,
-	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
-	@postDate DATETIME,
-	@lastComment INT,
-	@username VARCHAR(30)
-)
-AS
-BEGIN
-	UPDATE tbPost SET
-	rating = @rating,
-	postDate = @postDate,
-	postTitle = @postTitle,
-	postSubtitle = @postSubTitle,
-	lastComment = @lastComment,
-	username = @username
-	WHERE postID = @postID
-END
 GO
 
 CREATE PROCEDURE spDeletePost

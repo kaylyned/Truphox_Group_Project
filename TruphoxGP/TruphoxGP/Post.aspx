@@ -64,16 +64,29 @@
         <br />
         <div class="col-sm-4">
             <div class="well">
-                <h2>
+                <h1>
                     <asp:LinkButton ID="lnkBtnUsername" runat="server" OnClick="lnkBtnUsername_Click">
                         <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
-                    </asp:LinkButton></h2>
-                <asp:Button ID="btnFollow" runat="server" Text="Follow" CssClass="btn-info" OnClick="btnFollow_Click" />
+                    </asp:LinkButton></h1>
             </div>
             <asp:Panel ID="pnlEditPost" runat="server" Visible="false">
                 <div class="well">
                     <asp:Button ID="btnEditPost" runat="server" Text="Edit" OnClick="btnEditPost_Click" />
                     <asp:Button ID="btnDeletePost" runat="server" Text="Delete" OnClick="btnDeletePost_Click" />
+                </div>
+            </asp:Panel>
+            <asp:Panel ID="pnlEdit" runat="server" Visible="false">
+                <div class="well">
+                    <table>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </asp:Panel>
             <div class="well">

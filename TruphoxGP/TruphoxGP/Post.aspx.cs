@@ -147,12 +147,6 @@ namespace TruphoxGP
             loadLikes(postID);            
         }
 
-        protected void btnFollow_Click(object sender, EventArgs e)
-        {
-            //string viewUser = dlFollowing.DataKeys[e.Item.ItemIndex].ToString();
-            //Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
-        }
-
         protected void lnkBtnUsername_Click(object sender, EventArgs e)
         {
             Security mySecurity = new Security();
@@ -214,7 +208,6 @@ namespace TruphoxGP
             else
             {
                 mydal = new DAL("spDeletePost");
-                mydal.addParm("username", mySecurity.username);
                 mydal.addParm("postID", postID.ToString());
                 mydal.execNonQuery();
             }

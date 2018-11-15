@@ -520,24 +520,6 @@ END
 GO
 
 -------------------------------- POST --------------------------------
-
---CREATE PROCEDURE spCreatePost
---(
---	@rating BIT,
---	@postText VARCHAR(800),
---	@postDate DATETIME,
---	@postTitle VARCHAR(50),
---	@postSubTitle VARCHAR(50),
---	@lastComment INT,
---	@username VARCHAR(30)
---)
---AS
---BEGIN
---	INSERT INTO tbPost (rating, postText, postDate, postTitle, postSubTitle, lastComment, username) VALUES
---					(@rating, @postText, GETDATE(), @postTitle, @postSubTitle, @lastComment, @username)
---END
---GO
-
 CREATE PROCEDURE spReadPost
 (
 	@postID INT
@@ -551,38 +533,29 @@ GO
 EXEC spReadPost @postID=10
 GO
 
-CREATE PROCEDURE spUpdatePost
+CREATE PROCEDURE spDeletePost
 (
-	@postID INT,
-	@rating BIT,
-	@postTitle VARCHAR(50),
-	@postSubTitle VARCHAR(50),
-	@postDate DATETIME,
-	@lastComment INT,
-	@username VARCHAR(30)
+	@postID INT
 )
 AS
 BEGIN
-	UPDATE tbPost SET
-	rating = @rating,
-	postDate = @postDate,
-	postTitle = @postTitle,
-	postSubtitle = @postSubTitle,
-	lastComment = @lastComment,
-	username = @username
-	WHERE postID = @postID
+	DELETE FROM tbComment WHERE postID = @postID
+	DELETE FROM tbDeletedComments WHERE postID = @postID
+	DELETE FROM tbLike WHERE postID = @postID
+	DELETE FROM tbPostTag WHERE postID = @postID
+	DELETE FROM tbWriting WHERE postID = @postID
+    DELETE FROM tbVideo WHERE postID = @postID
+	DELETE FROM tbArt WHERE postID = @postID
+	DELETE FROM tbPhotography WHERE postID = @postID
+	DELETE FROM tbPost WHERE postID = @postID
 END
 GO
 
---CREATE PROCEDURE spDeletePost
---(
---	@postID INT
---)
---AS
---BEGIN
---	DELETE FROM tbPost WHERE postID = @postID
---END
---GO
+SELECT * FROM tbPost
+--EXEC spDeletePost @postID=1
+--SELECT * FROM tbPost
+GO
+
 
 -------------------------------- COMMENT --------------------------------
 
@@ -917,20 +890,20 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeleteWriting
-(
-	@postID INT
-)
-AS
-BEGIN
-	DELETE FROM tbComment WHERE postID = @postID
-	DELETE FROM tbDeletedComments WHERE postID = @postID
-	DELETE FROM tbLike WHERE postID = @postID
-	DELETE FROM tbPostTag WHERE postID = @postID
-	DELETE FROM tbWriting WHERE postID = @postID
-	DELETE FROM tbPost WHERE postID = @postID
-END
-GO
+--CREATE PROCEDURE spDeleteWriting
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbComment WHERE postID = @postID
+--	DELETE FROM tbDeletedComments WHERE postID = @postID
+--	DELETE FROM tbLike WHERE postID = @postID
+--	DELETE FROM tbPostTag WHERE postID = @postID
+--	DELETE FROM tbWriting WHERE postID = @postID
+--	DELETE FROM tbPost WHERE postID = @postID
+--END
+--GO
 
 -------------------------------- ART --------------------------------
 	
@@ -991,20 +964,20 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeleteArt
-(
-	@postID INT
-)
-AS
-BEGIN
-	DELETE FROM tbComment WHERE postID = @postID
-	DELETE FROM tbDeletedComments WHERE postID = @postID
-	DELETE FROM tbLike WHERE postID = @postID
-	DELETE FROM tbPostTag WHERE postID = @postID
-	DELETE FROM tbArt WHERE postID = @postID
-	DELETE FROM tbPost WHERE postID = @postID
-END
-GO
+--CREATE PROCEDURE spDeleteArt
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbComment WHERE postID = @postID
+--	DELETE FROM tbDeletedComments WHERE postID = @postID
+--	DELETE FROM tbLike WHERE postID = @postID
+--	DELETE FROM tbPostTag WHERE postID = @postID
+--	DELETE FROM tbArt WHERE postID = @postID
+--	DELETE FROM tbPost WHERE postID = @postID
+--END
+--GO
 
 -------------------------------- PHOTOGRAPHY --------------------------------
 
@@ -1067,20 +1040,20 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeletePhotography
-(
-	@postID INT
-)
-AS
-BEGIN
-	DELETE FROM tbComment WHERE postID = @postID
-	DELETE FROM tbDeletedComments WHERE postID = @postID
-	DELETE FROM tbLike WHERE postID = @postID
-	DELETE FROM tbPostTag WHERE postID = @postID
-	DELETE FROM tbPhotography WHERE postID = @postID
-	DELETE FROM tbPost WHERE postID = @postID
-END
-GO
+--CREATE PROCEDURE spDeletePhotography
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbComment WHERE postID = @postID
+--	DELETE FROM tbDeletedComments WHERE postID = @postID
+--	DELETE FROM tbLike WHERE postID = @postID
+--	DELETE FROM tbPostTag WHERE postID = @postID
+--	DELETE FROM tbPhotography WHERE postID = @postID
+--	DELETE FROM tbPost WHERE postID = @postID
+--END
+--GO
 
 -------------------------------- VIDEO --------------------------------
 
@@ -1138,20 +1111,20 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE spDeleteVideo
-(
-	@postID INT
-)
-AS
-BEGIN
-	DELETE FROM tbComment WHERE postID = @postID
-	DELETE FROM tbDeletedComments WHERE postID = @postID
-	DELETE FROM tbLike WHERE postID = @postID
-	DELETE FROM tbPostTag WHERE postID = @postID
-	DELETE FROM tbVideo WHERE postID = @postID
-	DELETE FROM tbPost WHERE postID = @postID
-END
-GO
+--CREATE PROCEDURE spDeleteVideo
+--(
+--	@postID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbComment WHERE postID = @postID
+--	DELETE FROM tbDeletedComments WHERE postID = @postID
+--	DELETE FROM tbLike WHERE postID = @postID
+--	DELETE FROM tbPostTag WHERE postID = @postID
+--	DELETE FROM tbVideo WHERE postID = @postID
+--	DELETE FROM tbPost WHERE postID = @postID
+--END
+--GO
 
 ------------------RECENTLY ADDED... PROFILE--------------------
 
@@ -1400,6 +1373,7 @@ EXEC spCreateCommentLike @commentID=1, @username='wrenjay';
 GO
 
 SELECT * FROM tbPost
+SELECT * FROM tbWriting
 SELECT * FROM tbPhotography
 SELECT * FROM tbArt
 SELECT * FROM tbWriting

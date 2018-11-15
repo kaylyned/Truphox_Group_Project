@@ -13,6 +13,15 @@ namespace TruphoxGP {
     public partial class submitLit {
         
         /// <summary>
+        /// pnlSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSubmit;
+        
+        /// <summary>
         /// lblTitle control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,14 @@ namespace TruphoxGP {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitLit;
+        
+        /// <summary>
+        /// pnlUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUpdate;
     }
 }

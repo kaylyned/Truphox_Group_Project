@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterSupreme.Master" AutoEventWireup="true" CodeBehind="submitLit.aspx.cs" Inherits="TruphoxGP.submitLit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Panel ID="pnlSubmit" runat="server">
     <div class="container-fluid text-center">
         <br />
         <h3>SUBMIT LITERATURE</h3>
@@ -30,4 +31,11 @@
         <br />
         <asp:Button ID="btnSubmitLit" runat="server" Text="Submit Thread" OnClick="btnSubmitLit_Click" />
     </div>
+        </asp:Panel>
+    <asp:Panel ID="pnlUpdate" runat="server" Visible="false">
+            <div class="container-fluid text-center">
+        <br />
+        <h3>UPDATE LITERATURE</h3>
+    </div>
+    </asp:Panel>
 </asp:Content>

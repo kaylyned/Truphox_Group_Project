@@ -74,7 +74,16 @@ namespace TruphoxGP
 
         protected void btnUpdateArt_Click(object sender, EventArgs e)
         {
+            int PostID = postID;
+            mydal = new DAL("spUpdateArt");
+            mydal.addParm("postID", PostID.ToString());
 
+            mydal.addParm("rating", rblUMature.SelectedValue);
+            mydal.addParm("postTitle", txtUTitle.Text);
+            mydal.addParm("postSubTitle", lblUSubtitle.Text);
+            mydal.addParm("artLink", imgPrevArtwork.ImageUrl);
+
+            Response.Redirect("Post.aspx?postID=" + PostID + "&postType=artwork");
         }
     }
 }

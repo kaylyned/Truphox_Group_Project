@@ -176,15 +176,27 @@ namespace TruphoxGP
 
         protected void btnFollow_Click(object sender, EventArgs e)
         {
+
             followUser(viewUser);
+            followNofitication(viewUser);
         }
         private void followUser(string ViewUser)
         {
-               Security sec = new Security();
-                myDal = new DAL("spCreateFollow");
-                myDal.addParm("username", sec.username);
-                myDal.addParm("followedUser", ViewUser);
-   
+            Security sec = new Security();
+            myDal = new DAL("spCreateFollow");
+            myDal.addParm("username", sec.username);
+            myDal.addParm("followedUser", ViewUser);
+            myDal.execNonQuery();
+
+        }
+
+        private void followNofitication(string ViewUser)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spCreateNotification");
+            myDal.addParm("username", ViewUser);
+            myDal.addParm("notificationText", sec.username + "is following you.");
+            myDal.execNonQuery();
         }
 
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
@@ -193,7 +205,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-               Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
+                Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
             }
         }
     }

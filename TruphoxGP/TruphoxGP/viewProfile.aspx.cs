@@ -173,13 +173,12 @@ namespace TruphoxGP
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
-
         protected void btnFollow_Click(object sender, EventArgs e)
-        {
-
+        {            
             followUser(viewUser);
             followNofitication(viewUser);
         }
+
         private void followUser(string ViewUser)
         {
             Security sec = new Security();
@@ -208,5 +207,7 @@ namespace TruphoxGP
                 Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
             }
         }
+
+
     }
 }

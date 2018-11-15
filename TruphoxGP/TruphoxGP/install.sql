@@ -1441,6 +1441,7 @@ EXEC spCreateNotification @notificationText='This is a notification.', @username
 EXEC spCreateNotification @notificationText='Another notification.', @username='CanadaGhost';
 EXEC spCreateNotification @notificationText='Someone liked your Tiny Rick post.', @username='CanadaGhost';
 EXEC spReadNotification @username='CanadaGhost';
+EXEC spReadNotification @username='wrenjay';
 
 EXEC spReadFollow @username='wrenjay'
 GO

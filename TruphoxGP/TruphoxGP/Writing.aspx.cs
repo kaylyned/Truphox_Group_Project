@@ -16,8 +16,8 @@ namespace TruphoxGP
             if (!IsPostBack)
             {
                 loadWriteTrending();
-                loadWriteRecent();
-               loadWriteFav();
+               // loadWriteRecent();
+               //loadWriteFav();
             }
         }
         private void loadWriteTrending()

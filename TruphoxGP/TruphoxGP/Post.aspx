@@ -24,7 +24,7 @@
 
                     <%-- Photography --%>
                     <asp:Panel ID="pnlPhotography" runat="server" Visible="false">
-                        <asp:Image ID="imgPhotography" runat="server" />
+                        <asp:Image ID="imgPhotography" runat="server" CssClass="PostImage" />
                     </asp:Panel>
 
                     <%-- Video --%>
@@ -236,7 +236,6 @@
         }
 
         function replyComment(parentCommentID) {
-            alert("here");
             document.getElementById("pnlComment").style.visibility = 'visible';
 
                 $.ajax({

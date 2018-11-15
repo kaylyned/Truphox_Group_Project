@@ -35,6 +35,7 @@ namespace TruphoxGP
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Abandon();
+            Response.Redirect("Home.aspx");
         }
     }
 }

@@ -14,6 +14,8 @@ namespace TruphoxGP
         string viewUser;
         protected void Page_Load(object sender, EventArgs e)
         {
+            viewUser = Request.QueryString["followedUser"].ToString();
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["followedUser"] != null)
@@ -194,7 +196,7 @@ namespace TruphoxGP
             Security sec = new Security();
             myDal = new DAL("spCreateNotification");
             myDal.addParm("username", ViewUser);
-            myDal.addParm("notificationText", sec.username + "is following you.");
+            myDal.addParm("notificationText", sec.username + " is following you.");
             myDal.execNonQuery();
         }
 

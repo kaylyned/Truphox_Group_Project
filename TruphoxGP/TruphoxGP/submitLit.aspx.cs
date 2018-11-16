@@ -27,11 +27,13 @@ namespace TruphoxGP
                     {
                         postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
                         pnlUpdate.Visible = true;
+                        pnlSubmit.Visible = false;
                         loadLit(postID);
                     }
                     else
                     {
                         pnlSubmit.Visible = true;
+                        pnlUpdate.Visible = false;
                     }
                 }
             }
@@ -47,7 +49,6 @@ namespace TruphoxGP
             txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             txtUText.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
-            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitLit_Click(object sender, EventArgs e)
@@ -70,16 +71,17 @@ namespace TruphoxGP
 
         protected void btnUpdateLit_Click(object sender, EventArgs e)
         {
-            int PostID = postID;
+            Security sec = new Security();
             myDal = new DAL("spUpdateWriting");
-            myDal.addParm("postID", PostID.ToString());
+           myDal.addParm("username", sec.username);
 
+            myDal.addParm("postID", lblPostID.ToString());
             myDal.addParm("rating", rblUMature.SelectedValue);
             myDal.addParm("postTitle", txtUTitle.Text);
             myDal.addParm("postSubTitle", lblUSubtitle.Text);
             myDal.addParm("writingText", txtUText.Text);
 
-            Response.Redirect("Post.aspx?postID=" + PostID + "&postType=writing");
+            Response.Redirect("Post.aspx?postID=" + postID + "&postType=writing");
         }
     }
 }

@@ -839,14 +839,14 @@ CREATE PROCEDURE spCreateWriting
 (
 	@rating BIT,
 	@postTitle VARCHAR(50),
-	@postSubtitle VARCHAR(50)=NULL,
+	@postSubTitle VARCHAR(50)=NULL,
 	@username VARCHAR(30),
 	@writingText VARCHAR(3000)
 )
 AS
 BEGIN
-	INSERT INTO tbPost (rating, postDate, postTitle, postSubtitle, username) VALUES
-					(@rating, GETDATE(), @postTitle, @postSubtitle, @username)
+	INSERT INTO tbPost (rating, postDate, postTitle, postSubTitle, username) VALUES
+					(@rating, GETDATE(), @postTitle, @postSubTitle, @username)
 	SELECT @@IDENTITY AS 'postID'
 	INSERT INTO tbWriting (writingText, postID) VALUES
 					(@writingText, @@IDENTITY)
@@ -862,6 +862,7 @@ BEGIN
 	SELECT p.postID, p.postTitle, p.postSubTitle, w.writingText
 	FROM tbPost p INNER JOIN tbWriting w ON
 	p.postID = w.postID
+   WHERE p.postID = ISNULL(@postID, p.postID);
 END
 GO
 
@@ -884,11 +885,11 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = @postID
+   WHERE postID = ISNULL(@postID, postID);
 
 	UPDATE tbWriting SET
 	writingText = @writingText
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -958,11 +959,11 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 
 	UPDATE tbArt SET
 	artLink = @artLink
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -1034,11 +1035,11 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 
 	UPDATE tbPhotography SET
 	photoLink = @photoLink
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 END
 GO
 
@@ -1086,6 +1087,7 @@ BEGIN
 	SELECT p.postID, p.postTitle, p.postSubTitle, p.postDate, p.username, v.videoID, './Video/' + v.videoLink as 'videoLink'
 	FROM tbPost p INNER JOIN tbVideo v ON
 	p.postID = v.postID
+	WHERE p.postID = ISNULL(@postID, p.postID);
 END
 GO
 
@@ -1105,11 +1107,11 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 
 	UPDATE tbVideo SET
 	videoLink = @videoLink
-	WHERE postID = @postID
+	WHERE postID = ISNULL(@postID, postID);
 END
 GO
 

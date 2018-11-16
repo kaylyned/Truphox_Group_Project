@@ -24,15 +24,15 @@ namespace TruphoxGP
             {
                 if (!IsPostBack)
                 {
-                    postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
-                    if (Request.QueryString == null)
+                    if (Request.QueryString["postID"] != null)
                     {
-                        pnlNewArt.Visible = true;
+                        postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
+                        pnlUpdateArt.Visible = true;
+                        loadArt(postID);
                     }
                     else
                     {
-                        pnlUpdateArt.Visible = true;
-                        loadArt(postID);
+                        pnlNewArt.Visible = true;
                     }
                 }
             }
@@ -48,7 +48,8 @@ namespace TruphoxGP
             lblPostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
             txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            imgPrevArtwork.ImageUrl = ds.Tables[0].Rows[0]["artLink"].ToString();                 
+            imgPrevArtwork.ImageUrl = ds.Tables[0].Rows[0]["artLink"].ToString();
+            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitArt_Click(object sender, EventArgs e)

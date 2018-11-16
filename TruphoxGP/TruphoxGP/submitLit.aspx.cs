@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ namespace TruphoxGP
     public partial class submitLit : System.Web.UI.Page
     {
         DAL myDal;
+        public int postID { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             Security sec = new Security();
@@ -21,9 +23,31 @@ namespace TruphoxGP
             {
                 if (!IsPostBack)
                 {
-
+                    if (Request.QueryString["postID"] != null)
+                    {
+                        postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
+                        pnlUpdate.Visible = true;
+                        loadLit(postID);
+                    }
+                    else
+                    {
+                        pnlSubmit.Visible = true;
+                    }
                 }
             }
+        }
+        private void loadLit(int PostID)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spReadWriting");
+            myDal.addParm("postID", PostID.ToString());
+            DataSet ds = myDal.getDataSet();
+
+            lblPostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
+            txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+            txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+            txtUText.Text = ds.Tables[0].Rows[0]["writingText"].ToString();
+            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitLit_Click(object sender, EventArgs e)
@@ -34,7 +58,7 @@ namespace TruphoxGP
 
             myDal.addParm("rating", rblMature.SelectedValue);
             myDal.addParm("postTitle", txtTitle.Text);
-            myDal.addParm("postSubTitle", txtSubtitle.Text);
+            myDal.addParm("postSubtitle", txtSubtitle.Text);
             myDal.addParm("writingText", txtWriting.Text);
 
             myDal.execNonQuery();
@@ -42,6 +66,20 @@ namespace TruphoxGP
             int postID = Convert.ToInt32(myDal.execScalar());
 
             Response.Redirect("Post.aspx?postID=" + postID + "&postType=writing");
+        }
+
+        protected void btnUpdateLit_Click(object sender, EventArgs e)
+        {
+            int PostID = postID;
+            myDal = new DAL("spUpdateWriting");
+            myDal.addParm("postID", PostID.ToString());
+
+            myDal.addParm("rating", rblUMature.SelectedValue);
+            myDal.addParm("postTitle", txtUTitle.Text);
+            myDal.addParm("postSubTitle", lblUSubtitle.Text);
+            myDal.addParm("writingText", txtUText.Text);
+
+            Response.Redirect("Post.aspx?postID=" + PostID + "&postType=writing");
         }
     }
 }

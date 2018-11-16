@@ -23,15 +23,15 @@ namespace TruphoxGP
             {
                 if (!IsPostBack)
                 {
-                    postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
-                    if (Request.QueryString == null)
+                  if (Request.QueryString["postID"] != null)
                     {
-                        pnlSubmit.Visible = true;
+                        postID = Convert.ToInt32(Request.QueryString["postID"].ToString());
+                        pnlUpdate.Visible = true;
+                        loadPhotography(postID);
                     }
                     else
                     {
-                        pnlUpdate.Visible = true;
-                        loadPhotography(postID);
+                        pnlSubmit.Visible = true;
                     }
                 }
             }
@@ -47,6 +47,7 @@ namespace TruphoxGP
             txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             imgPrevPhotography.ImageUrl = ds.Tables[0].Rows[0]["photoLink"].ToString();
+            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitPhotography_Click(object sender, EventArgs e)

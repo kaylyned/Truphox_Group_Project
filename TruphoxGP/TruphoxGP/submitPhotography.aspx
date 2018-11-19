@@ -44,8 +44,8 @@
             <asp:Label ID="lblUSubtitle" runat="server" Text="Photography Subtitle"></asp:Label>
             <br />
             <asp:TextBox ID="txtUSubtitle" runat="server" Width="242px"></asp:TextBox>
-            <br />
-            <asp:Image ID="imgPrevPhotography" runat="server" CssClass="imgPreview" />
+            <br /><br />
+            <asp:Image ID="imgPrevPhotography" runat="server" CssClass="imgPreview" Width="800px" Height="" />
             <br />
             <asp:Label runat="server" Text="Does your image contain mature content?"></asp:Label>
             <asp:RadioButtonList ID="rblUMature" runat="server" RepeatDirection="Vertical">

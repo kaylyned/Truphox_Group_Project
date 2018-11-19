@@ -39,7 +39,7 @@ namespace TruphoxGP
         private void loadPhotography(int PostID)
         {
             Security sec = new Security();
-            myDal = new DAL("spReadArt");
+            myDal = new DAL("spReadPhotography");
             myDal.addParm("postID", PostID.ToString());
             DataSet ds = myDal.getDataSet();
 
@@ -47,7 +47,6 @@ namespace TruphoxGP
             txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             imgPrevPhotography.ImageUrl = ds.Tables[0].Rows[0]["photoLink"].ToString();
-            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitPhotography_Click(object sender, EventArgs e)
@@ -73,16 +72,14 @@ namespace TruphoxGP
 
         protected void btnUpdatePhotography_Click(object sender, EventArgs e)
         {
-            int PostID = postID;
             myDal = new DAL("spUpdatePhotography");
-            myDal.addParm("postID", PostID.ToString());
+            myDal.addParm("postID", lblPostID.Text);
 
             myDal.addParm("rating", rblUMature.SelectedValue);
             myDal.addParm("postTitle", txtUTitle.Text);
             myDal.addParm("postSubTitle", lblUSubtitle.Text);
-            myDal.addParm("photoLink", imgPrevPhotography.ImageUrl);
 
-            Response.Redirect("Post.aspx?postID=" + PostID + "&postType=photography");
+            Response.Redirect("Post.aspx?postID=" +  lblPostID.Text + "&postType=photography");
         }
     }
 }

@@ -49,7 +49,6 @@ namespace TruphoxGP
             txtUTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             txtUSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
             imgPrevArtwork.ImageUrl = ds.Tables[0].Rows[0]["artLink"].ToString();
-            rblUMature.SelectedValue = ds.Tables[0].Rows[0]["rating"].ToString();
         }
 
         protected void btnSubmitArt_Click(object sender, EventArgs e)
@@ -75,16 +74,18 @@ namespace TruphoxGP
 
         protected void btnUpdateArt_Click(object sender, EventArgs e)
         {
-            int PostID = postID;
+            Security sec = new Security();
             mydal = new DAL("spUpdateArt");
-            mydal.addParm("postID", PostID.ToString());
+            mydal.addParm("postID", lblPostID.Text);
+            mydal.addParm("username", sec.username);
 
             mydal.addParm("rating", rblUMature.SelectedValue);
             mydal.addParm("postTitle", txtUTitle.Text);
-            mydal.addParm("postSubTitle", lblUSubtitle.Text);
+            mydal.addParm("postSubTitle", txtUSubtitle.Text);
             mydal.addParm("artLink", imgPrevArtwork.ImageUrl);
 
-            Response.Redirect("Post.aspx?postID=" + PostID + "&postType=artwork");
+            mydal.execNonQuery();
+            Response.Redirect("Post.aspx?postID=" + postID + "&postType=artwork");
         }
     }
 }

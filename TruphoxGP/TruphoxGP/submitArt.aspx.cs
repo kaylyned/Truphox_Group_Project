@@ -81,11 +81,11 @@ namespace TruphoxGP
 
             mydal.addParm("rating", rblUMature.SelectedValue);
             mydal.addParm("postTitle", txtUTitle.Text);
-            mydal.addParm("postSubTitle", txtUSubtitle.Text);
-            mydal.addParm("artLink", imgPrevArtwork.ImageUrl);
+            mydal.addParm("postSubTitle", txtUSubtitle.Text);          
 
             mydal.execNonQuery();
-            Response.Redirect("Post.aspx?postID=" + postID + "&postType=artwork");
+            Response.Redirect("Post.aspx?postID=" + lblPostID.Text + "&postType=artwork");
+            string test;
         }
     }
 }

@@ -949,8 +949,7 @@ CREATE PROCEDURE spUpdateArt
 	@rating BIT,
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50)=NULL,
-	@username VARCHAR(30),
-	@artLink VARCHAR(150)
+	@username VARCHAR(30)
 )
 AS
 BEGIN
@@ -959,11 +958,7 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = ISNULL(@postID, postID);
-
-	UPDATE tbArt SET
-	artLink = @artLink
-	WHERE postID = ISNULL(@postID, postID);
+	WHERE postID = ISNULL(@postID, postID);	
 END
 GO
 
@@ -1025,8 +1020,7 @@ CREATE PROCEDURE spUpdatePhotography
 	@rating BIT,
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50)=NULL,
-	@username VARCHAR(30),
-	@photoLink VARCHAR(150)
+	@username VARCHAR(30)
 )
 AS
 BEGIN
@@ -1035,10 +1029,6 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = ISNULL(@postID, postID);
-
-	UPDATE tbPhotography SET
-	photoLink = @photoLink
 	WHERE postID = ISNULL(@postID, postID);
 END
 GO
@@ -1097,8 +1087,7 @@ CREATE PROCEDURE spUpdateVideo
 	@rating BIT,
 	@postTitle VARCHAR(50),
 	@postSubTitle VARCHAR(50)=NULL,
-	@username VARCHAR(30),
-	@videoLink VARCHAR(150)
+	@username VARCHAR(30)
 )
 AS
 BEGIN
@@ -1107,10 +1096,6 @@ BEGIN
 	postTitle = @postTitle,
 	postSubtitle = @postSubTitle,
 	username = @username
-	WHERE postID = ISNULL(@postID, postID);
-
-	UPDATE tbVideo SET
-	videoLink = @videoLink
 	WHERE postID = ISNULL(@postID, postID);
 END
 GO
@@ -1266,51 +1251,51 @@ BEGIN
 END
 GO
 
--------------------------------- FORUMS --------------------------------
-CREATE PROCEDURE spForums
-(
-	@rating BIT,
-	@forumTitle VARCHAR(50),
-	@forumText VARCHAR(800),
-	@forumDate DATETIME,
-	@username VARCHAR(30)
-)
-AS
-BEGIN
-	INSERT INTO tbFo (rating, forumTitle, forumText, forumDate, username) VALUES
-					          (@rating, @forumTitle, @forumText, GETDATE(), @username)
-END
-GO
+---------------------------------- FORUMS --------------------------------
+--CREATE PROCEDURE spForums
+--(
+--	@rating BIT,
+--	@forumTitle VARCHAR(50),
+--	@forumText VARCHAR(800),
+--	@forumDate DATETIME,
+--	@username VARCHAR(30)
+--)
+--AS
+--BEGIN
+--	INSERT INTO tbFo (rating, forumTitle, forumText, forumDate, username) VALUES
+--					          (@rating, @forumTitle, @forumText, GETDATE(), @username)
+--END
+--GO
 
---------------------------------  UPDATE FORUMS --------------------------------
-CREATE PROCEDURE spUpdateForum
-(
-   @rating BIT,
-	@forumTitle VARCHAR(50),
-	@forumText VARCHAR(800),
-	@username VARCHAR(30)
-)
-AS
-BEGIN
-	UPDATE tbForum SET
-      rating = @rating, 
-      forumTitle= @forumTitle,
-	  forumText = @forumText
-	WHERE username = @username
+----------------------------------  UPDATE FORUMS --------------------------------
+--CREATE PROCEDURE spUpdateForum
+--(
+--   @rating BIT,
+--	@forumTitle VARCHAR(50),
+--	@forumText VARCHAR(800),
+--	@username VARCHAR(30)
+--)
+--AS
+--BEGIN
+--	UPDATE tbForum SET
+--      rating = @rating, 
+--      forumTitle= @forumTitle,
+--	  forumText = @forumText
+--	WHERE username = @username
 
-END
-GO
+--END
+--GO
 
---------------------------------DELETE  FORUMS --------------------------------
-CREATE PROCEDURE spDeleteForum
-(
-	@forumID INT
-)
-AS
-BEGIN
-	DELETE FROM tbForum WHERE forumID = @forumID
-END
-GO
+----------------------------------DELETE  FORUMS --------------------------------
+--CREATE PROCEDURE spDeleteForum
+--(
+--	@forumID INT
+--)
+--AS
+--BEGIN
+--	DELETE FROM tbForum WHERE forumID = @forumID
+--END
+--GO
 
 -------------------------------- USERS CREATED --------------------------------
 

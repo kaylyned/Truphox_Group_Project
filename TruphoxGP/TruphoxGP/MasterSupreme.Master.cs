@@ -17,6 +17,7 @@ namespace TruphoxGP
             {
                 pnlRegister.Visible = true;
                 pnlLogin.Visible = true;
+                pnlNotifications.Visible = false;
                 pnlLogout.Visible = false;
                 pnlSubmit.Visible = false;
             }
@@ -26,6 +27,7 @@ namespace TruphoxGP
                 {
                     pnlRegister.Visible = false;
                     pnlLogin.Visible = false;
+                    pnlNotifications.Visible = true;
                     pnlLogout.Visible = true;
                     pnlSubmit.Visible = true;
                 }

@@ -1239,6 +1239,23 @@ GO
 EXEC spSearchUnion 
 GO
 
+-------------------------------- SEARCH SITE --------------------------------
+CREATE PROCEDURE spSearch 
+(
+  @input VARCHAR (200) = NULL
+)
+AS
+BEGIN
+	 SELECT * FROM  tbPost
+ WHERE postTitle LIKE '%' + TRIM(@input) + '%';
+END
+GO
+
+EXEC spSearch @input='Ruka';
+GO
+
+
+
 -------------------------------- SEARCH USERS --------------------------------
 CREATE PROCEDURE spUSearch 
 (
@@ -1246,7 +1263,7 @@ CREATE PROCEDURE spUSearch
 )
 AS
 BEGIN
-	 SELECT username, './Images' +profileImage as profileImage FROM tbAccount
+	 SELECT username, './Images' +profileImage as profileImage, bio FROM tbAccount
 	             WHERE username LIKE '%' + TRIM(@input) + '%';
 END
 GO

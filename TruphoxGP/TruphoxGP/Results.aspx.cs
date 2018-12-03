@@ -54,7 +54,7 @@ namespace TruphoxGP
         private void loadUnSearch(string Search)
         {
             Security sec = new Security();
-            mydal = new DAL("spSearchUnion");
+            mydal = new DAL("spSearch");
             mydal.addParm("@input", Search);
 
             DataSet ds = mydal.getDataSet();

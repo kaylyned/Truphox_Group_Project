@@ -18,9 +18,10 @@
 
               <asp:DataList ID="dlUserSearch" runat="server" RepeatDirection="Horizontal" RepeatColumns="3" CssClass="dlATrend" DataKeyField="username" OnItemCommand="dlUserSearch_ItemCommand">
                   <ItemTemplate>
-                   <asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>' ></asp:Label>
-                     <br />
+                      <br />
+                   <h1><asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>'></asp:Label></h1>
                       <asp:ImageButton ID="imgUser" CommandName="Select" runat="server" ImageUrl='<%#Eval("profileImage") %>' />
+                      <br />
                   </ItemTemplate>
               </asp:DataList>
                     <br>
@@ -31,11 +32,11 @@
         <br />
         <br />
         <br />
-        <div class="col-sm-4">
+<%--        <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>MORE POSTS.... IN A DATALIST</p>
             </div>
-        </div>
+        </div>--%>
     </div>
 </asp:Content>

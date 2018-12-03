@@ -73,8 +73,8 @@
                             <input id="txtSearch" type="text" style="width: 170px; height: 45px" onblur="if(this.value=='')this.defaultValue;" onfocus="if(this.value==this.defaultValue)this.value='';" placeholder="Search..." /></li>
                         <li class="ddlSearchFilerDrop">
                             <asp:DropDownList ID="ddlUP" runat="server" style="padding:14.5px 16px; text-decoration:none; display:block;">
-                                <asp:ListItem>Users</asp:ListItem>
-                              <asp:ListItem>Posts</asp:ListItem>
+                                <asp:ListItem Value="users">Users</asp:ListItem>
+                              <asp:ListItem Value="posts">Posts</asp:ListItem>
                             </asp:DropDownList>
                         </li>
                         <li>
@@ -96,9 +96,10 @@
             var result = document.getElementById("txtSearch").value;
             var filter = document.getElementById("ddlUP").value;
             //var filter = e.result[e.selectedIndex].value;
+            alert(result);
 
             alert("I FUCKING HATE DEBUGGING");
-            window.location.replace("./Results.aspx?result" + result + "&filter" + filter);
+            window.location.replace("./Results.aspx?result=" + result + "&filter=" + filter);
 
             return false;
         }

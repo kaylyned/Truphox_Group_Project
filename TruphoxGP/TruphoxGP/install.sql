@@ -1236,7 +1236,7 @@ UNION --PHOTOGRAPHY
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --VIDEO 
-      SELECT v.postID, rating, postTitle, postSubTitle, username, './Images/' + videoLink AS 'Images', 'Video' AS TYPE 
+      SELECT v.postID, rating, postTitle, postSubTitle, username, './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
  FROM tbVideo v INNER JOIN tbPost po ON 
   v.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
@@ -1329,7 +1329,7 @@ GO
 EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='profilePict.jpg', @bio='',  @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='Truphox', @lastName='Admin', @dob='', @profileImage='profilePict.jpg',  @bio='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='GigglesMcklown', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='GigglesMcklown', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='profilePict.jpg',  @bio='I am here because I have to be not because I want to be.', @active='1', @accessLevel='1';
 EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 

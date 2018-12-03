@@ -81,7 +81,7 @@ namespace TruphoxGP
             myDal.addParm("postSubTitle", lblUSubtitle.Text);
             myDal.addParm("writingText", txtUText.Text);
 
-            Response.Redirect("Post.aspx?postID=" + postID + "&postType=writing");
+            Response.Redirect("Post.aspx?postID=" + lblPostID.Text + "&postType=writing");
         }
     }
 }

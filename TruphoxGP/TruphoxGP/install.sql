@@ -1213,30 +1213,37 @@ GO
 
 ------------------UNION  PROC -------------------
 CREATE PROCEDURE spSearchUnion
+(
+  @input VARCHAR (200) = NULL
+)
 AS 
 BEGIN --WRITING 
      SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'Images', 'Writing' AS TYPE 
   FROM tbWriting w INNER JOIN tbPost po ON 
   w.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --ART 
-      SELECT a.postID, rating, postTitle, postSubTitle, username,'./Images' + artLink AS 'Images', 'Art' AS TYPE 
+      SELECT a.postID, rating, postTitle, postSubTitle, username,'./Images/' + artLink AS 'Images', 'Art' AS TYPE 
  FROM tbArt a INNER JOIN tbPost po ON 
   a.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --PHOTOGRAPHY 
-      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images' + photoLink AS 'Images', 'Photography' AS TYPE  
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
  FROM tbPhotography ph INNER JOIN tbPost po ON 
   ph.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --VIDEO 
-      SELECT v.postID, rating, postTitle, postSubTitle, username, './Images' + videoLink AS 'Images', 'Video' AS TYPE 
+      SELECT v.postID, rating, postTitle, postSubTitle, username, './Images/' + videoLink AS 'Images', 'Video' AS TYPE 
  FROM tbVideo v INNER JOIN tbPost po ON 
   v.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 END 
 GO
-EXEC spSearchUnion 
+EXEC spSearchUnion @input='ru'
 GO
 
 -------------------------------- SEARCH SITE --------------------------------
@@ -1263,9 +1270,12 @@ CREATE PROCEDURE spUSearch
 )
 AS
 BEGIN
-	 SELECT username, './Images' +profileImage as profileImage, bio FROM tbAccount
+	 SELECT username, './Images/' +profileImage as profileImage, bio FROM tbAccount
 	             WHERE username LIKE '%' + TRIM(@input) + '%';
 END
+GO
+
+EXEC spUSearch @input='w';
 GO
 
 ---------------------------------- FORUMS --------------------------------

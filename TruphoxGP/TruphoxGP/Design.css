@@ -154,6 +154,19 @@ textarea {
     display: inline-block;
 }
 
+.SearchHL {
+    background: none !important;
+    color: #FF5733;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    cursor: pointer;
+}
+
+    .SearchHL:hover {
+        color: #581845;
+    }
+
 /*PROFILE PAGE*/
 body {
     font-family: Arial;

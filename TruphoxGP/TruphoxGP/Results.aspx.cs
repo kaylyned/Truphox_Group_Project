@@ -54,7 +54,7 @@ namespace TruphoxGP
         private void loadUnSearch(string Search)
         {
             Security sec = new Security();
-            mydal = new DAL("spSearch");
+            mydal = new DAL("spSearchUnion");
             mydal.addParm("@input", Search);
 
             DataSet ds = mydal.getDataSet();
@@ -74,25 +74,29 @@ namespace TruphoxGP
 
         protected void dlUserSearch_ItemCommand(object source, DataListCommandEventArgs e)
         {
+            Security mySecurity = new Security();
             string viewUser = dlUserSearch.DataKeys[e.Item.ItemIndex].ToString();
 
             if (e.CommandName == "Select")
-            {
-                Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+            { 
+                if (viewUser != mySecurity.username)
+                {
+                    Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
+                }
+                else
+                {
+                    Response.Redirect("Profile.aspx");
+                }
             }
         }
 
         protected void dlUnity_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            //dlUnity.SelectedIndex = e.Item.ItemIndex;
-            //DataListItem dli = dlUnity.SelectedItem;
-            //Label lblType = (Label)dli.FindControl("type");
-
             int itemID = Convert.ToInt32(dlUnity.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
             {
-                //Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
     }

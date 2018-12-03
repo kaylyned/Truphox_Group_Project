@@ -95,12 +95,8 @@
         function Search() {
             var result = document.getElementById("txtSearch").value;
             var filter = document.getElementById("ddlUP").value;
-            //var filter = e.result[e.selectedIndex].value;
-            alert(result);
 
-            alert("I FUCKING HATE DEBUGGING");
             window.location.replace("./Results.aspx?result=" + result + "&filter=" + filter);
-
             return false;
         }
 

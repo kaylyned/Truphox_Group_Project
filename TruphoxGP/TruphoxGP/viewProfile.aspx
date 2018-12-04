@@ -180,10 +180,10 @@
                 </div>
                 <br />
             </div>
-            <div class="well">
+      <%--      <div class="well">
                 <h3>TITLE</h3>
                 <p>MORE TEXT....</p>
-            </div>
+            </div>--%>
         </div>
     </div>
 </asp:Content>

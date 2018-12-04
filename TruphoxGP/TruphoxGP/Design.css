@@ -225,8 +225,8 @@ body {
 .userWriting {
     max-width: 650px;
     overflow: auto;
-    text-wrap:normal;
-    text-space-collapse:collapse;
+    text-wrap: normal;
+    text-space-collapse: collapse;
 }
 
 .literature {
@@ -242,11 +242,12 @@ body {
     text-align: center;
     margin: auto;
 }
+
 .Following {
     display: block;
     padding-top: 0px;
     text-align: center;
-    text-align:justify;
+    text-align: justify;
 }
 
 .profileDL {
@@ -289,9 +290,11 @@ body {
     border-radius: 5px;
     padding: 60px;
 }
-.login:focus{
+
+.login:focus {
     border: 3px solid #555;
 }
+
 .btnLogin {
     width: 675px;
     background-color: #4CAF50;
@@ -302,9 +305,11 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+
     .btnLogin:hover {
         background-color: #45a049;
     }
+
 .login {
     width: 795px;
     padding: 12px 20px;
@@ -313,8 +318,8 @@ body {
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
-
 }
+
 .divLogin {
     border-radius: 5px;
     padding: 80px;
@@ -322,6 +327,7 @@ body {
     left: 0;
     top: 0%;
 }
+
 .loginForm {
     left: 0;
     top: 0%;
@@ -329,20 +335,21 @@ body {
     text-align: center;
     font-size: 18px;
 }
+
 .UOCenter {
     text-align: center;
     margin: auto;
     width: 82%;
     padding: 80px;
     float: left;
-    margin-right:30px;
+    margin-right: 30px;
 }
 
 /*ARTWORK*/
 
-.ATrendImages{
-    width:300px;
-    height:300px;
+.ATrendImages {
+    width: 300px;
+    height: 300px;
 }
 
 
@@ -370,28 +377,28 @@ body {
     margin: auto;
     width: 750px;
     height: 75%;
-    max-height:850px;
+    max-height: 850px;
     padding-bottom: 40px;
-    padding-left:35px;
-    top:0px;
+    padding-left: 35px;
+    top: 0px;
 }
 
-.commentTextBox{
+.commentTextBox {
     width: 100%;
 }
 
 .commentPic {
     float: left;
     width: 85px;
-    height:85px;
+    height: 85px;
 }
 
-.commentText{
+.commentText {
     margin-left: 30px;
-
 }
-.indentComments{
-  margin-left:60px;
+
+.indentComments {
+    margin-left: 60px;
 }
 
 /*FORUM PAGE*/
@@ -399,10 +406,30 @@ body {
 }
 
 /*NOTIFICATION PAGE*/
-.notificationText{
+.notificationText {
     font-size: 20px;
 }
 
-.notificationDateText{
+.notificationDateText {
     font-size: 12px;
 }
+
+/*VIEW PROFILE*/
+.btnFollowClick {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #000;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    background-color:white;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    text-align: center;
+}
+
+    .btnFollowClick:hover {
+        border-color: #7a7a7a;
+    }
+

@@ -199,6 +199,8 @@ namespace TruphoxGP
 
             if (message == "followed")
             {
+                btnFollow.CssClass= "btnFollowClick";
+                btnFollow.Text = "Followed";
                followNofitication(ViewUser);
             }   
         }

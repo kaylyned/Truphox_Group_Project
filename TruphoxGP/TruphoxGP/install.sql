@@ -297,6 +297,7 @@ END
 GO
 
 EXEC spLogin @username='CanadaGhost', @userPassword='admin';
+EXEC spLogin @username='Stranger', @userPassword='password';
 GO
 -------------------------------- RECOVER --------------------------------
 
@@ -1130,7 +1131,8 @@ BEGIN
 END
 GO
 
-EXEC spRecentlyAdded @username='wrenjay'
+EXEC spRecentlyAdded @username='wrenjay';
+EXEC spRecentlyAdded @username='Stranger';
 GO
 
 ------------------USER ART -------------------

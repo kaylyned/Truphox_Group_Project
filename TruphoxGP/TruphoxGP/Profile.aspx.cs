@@ -62,21 +62,29 @@ namespace TruphoxGP
             myDal.addParm("username", sec.username);
 
             DataSet ds = myDal.getDataSet();
+            try
+            {
+                lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
+                lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
+                lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
+                lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
 
-            lblpostID.Text = ds.Tables[0].Rows[0]["postID"].ToString();
-            lblTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
-            lblSubTitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            lblDateCreated.Text = ds.Tables[0].Rows[0]["postDate"].ToString();
+                lblpostID2.Text = ds.Tables[0].Rows[1]["postID"].ToString();
+                lblTitle2.Text = ds.Tables[0].Rows[1]["postTitle"].ToString();
+                lblSubTitle2.Text = ds.Tables[0].Rows[1]["postSubTitle"].ToString();
+                lblDateCreated2.Text = ds.Tables[0].Rows[1]["postDate"].ToString();
 
-            lblpostID2.Text = ds.Tables[0].Rows[1]["postID"].ToString();
-            lblTitle2.Text = ds.Tables[0].Rows[1]["postTitle"].ToString();
-            lblSubTitle2.Text = ds.Tables[0].Rows[1]["postSubTitle"].ToString();
-            lblDateCreated2.Text = ds.Tables[0].Rows[1]["postDate"].ToString();
-
-            lblpostID3.Text = ds.Tables[0].Rows[2]["postID"].ToString();
-            lblTitle3.Text = ds.Tables[0].Rows[2]["postTitle"].ToString();
-            lblSubTitle3.Text = ds.Tables[0].Rows[2]["postSubTitle"].ToString();
-            lblDateCreated3.Text = ds.Tables[0].Rows[2]["postDate"].ToString();
+                lblpostID3.Text = ds.Tables[0].Rows[2]["postID"].ToString();
+                lblTitle3.Text = ds.Tables[0].Rows[2]["postTitle"].ToString();
+                lblSubTitle3.Text = ds.Tables[0].Rows[2]["postSubTitle"].ToString();
+                lblDateCreated3.Text = ds.Tables[0].Rows[2]["postDate"].ToString();
+            }
+            catch
+            {
+                lblpostID.Text = "Nothing here yet";
+                lblpostID2.Text = "Nothing here yet";
+                lblpostID3.Text = "Nothing here yet";
+            }
         }
 
         private void loadArt()
@@ -146,7 +154,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlPhotots.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {        
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -156,7 +164,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlWriting.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {       
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -166,7 +174,7 @@ namespace TruphoxGP
             int itemID = Convert.ToInt32(dlVideos.DataKeys[e.Item.ItemIndex]);
 
             if (e.CommandName == "Select")
-            {             
+            {
                 Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
@@ -252,7 +260,7 @@ namespace TruphoxGP
             string viewUser = dlFollowing.DataKeys[e.Item.ItemIndex].ToString();
 
             if (e.CommandName == "Select")
-            {         
+            {
                 Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
             }
         }

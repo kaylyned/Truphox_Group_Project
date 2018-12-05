@@ -58,22 +58,22 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Panel pnlcreateForum;
         
         /// <summary>
-        /// forumTitle control.
+        /// txtforumTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox forumTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtforumTitle;
         
         /// <summary>
-        /// txtForums control.
+        /// txtForumText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtForums;
+        protected global::System.Web.UI.WebControls.TextBox txtForumText;
         
         /// <summary>
         /// rblMature control.

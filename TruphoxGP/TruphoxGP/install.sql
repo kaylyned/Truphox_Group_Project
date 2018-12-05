@@ -1283,20 +1283,35 @@ EXEC spUSearch @input='w';
 GO
 
 ---------------------------------- FORUMS --------------------------------
---CREATE PROCEDURE spForums
---(
---	@rating BIT,
---	@forumTitle VARCHAR(50),
---	@forumText VARCHAR(800),
---	@forumDate DATETIME,
---	@username VARCHAR(30)
---)
---AS
---BEGIN
---	INSERT INTO tbFo (rating, forumTitle, forumText, forumDate, username) VALUES
---					          (@rating, @forumTitle, @forumText, GETDATE(), @username)
---END
---GO
+CREATE PROCEDURE spForums
+(
+	@rating BIT,
+	@forumTitle VARCHAR(50),
+	@forumText VARCHAR(800),
+	@forumDate DATETIME,
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	INSERT INTO tbForum (rating, forumTitle, forumText, forumDate, username) VALUES
+					          (@rating, @forumTitle, @forumText, GETDATE(), @username)
+END
+GO
+
+---------------------------------- READ FORUMS --------------------------------
+CREATE PROCEDURE spReadForums
+(
+  @forumID INT = NULL 
+)
+ AS
+BEGIN
+    SELECT * FROM tbForum WHERE forumID = ISNULL (@forumID, forumID);
+END 
+GO
+
+EXEC spReadForums @forumID = NULL;
+
+
 
 ----------------------------------  UPDATE FORUMS --------------------------------
 --CREATE PROCEDURE spUpdateForum
@@ -1428,3 +1443,4 @@ SELECT * FROM tbAccount;
 
 EXEC spReadCommentReply @parentCommentID=2, @postID=7;
 
+EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....', @forumDate= '', @username='wrenjay'

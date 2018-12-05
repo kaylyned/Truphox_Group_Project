@@ -53,14 +53,42 @@ namespace TruphoxGP
             {
                 loadUser(postID);
                 loadLikes(postID);
-
-                if (sec.username != null)
-                {
-                    pnlEditPost.Visible = true;
-                }
-
+                checkUser(postID);
+                checkButtons();
             }
         }
+
+        private void checkButtons()
+        {
+            Security sec = new Security();
+            
+            if (sec.isLoggedIn == true)
+            {
+                pnlLike.Visible = true;
+                pnlComments.Visible = true;
+            }
+            else
+            {
+                pnlLike.Visible = false;
+                pnlComments.Visible = false;
+            }
+        }
+
+        private void checkUser(int PostID)
+        {
+            Security sec = new Security();
+            mydal = new DAL("spReadPost");
+            mydal.addParm("postID", PostID.ToString());
+            DataSet ds = mydal.getDataSet();
+
+            string username = ds.Tables[0].Rows[0]["username"].ToString();
+            
+            if (username == sec.username)
+            {
+                pnlEditPost.Visible = true;
+            }
+        }
+
         private void loadUser(int PostID)
         {
             Security sec = new Security();
@@ -142,7 +170,7 @@ namespace TruphoxGP
             }
             else
             {
-
+                
             }
             loadLikes(postID);
         }

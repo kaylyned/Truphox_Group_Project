@@ -5,8 +5,10 @@
         <div class="col-sm-8 text-left">
             <br />
             <div class="header">
-                <h1><asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label></h1>
-                <h3><asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label></h3>
+                <h1>
+                    <asp:Label ID="lblPostTitle" runat="server" Text=""></asp:Label></h1>
+                <h3>
+                    <asp:Label ID="lblPostSubtitle" runat="server" Text=""></asp:Label></h3>
             </div>
             <div class="row content">
                 <div class="leftcolumn">
@@ -37,16 +39,20 @@
                         <div class="col-sm-4">
                             <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
                             <br />
-                            <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
+                            <asp:Panel ID="pnlLike" runat="server" Visible="false">
+                                <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
+                            </asp:Panel>
                             <p></p>
                             <br>
                         </div>
                     </div>
                     <div style="padding: 30px">
                         <h3 class="text-center">COMMENTS</h3>
-                        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
-                        <br />
-                        <asp:Button ID="btnComment" runat="server" Text="Comment" />
+                        <asp:Panel ID="pnlComments" runat="server" Visible="false">
+                            <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="commentTextBox"></asp:TextBox>
+                            <br />
+                            <asp:Button ID="btnComment" runat="server" Text="Comment" />
+                        </asp:Panel>
                         <br />
                         <br />
                         <br />
@@ -79,12 +85,8 @@
                 <div class="well">
                     <table>
                         <tr>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
@@ -141,7 +143,7 @@
                     + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
 
                     //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" +"</b>"
+                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
                     //like btn
@@ -151,16 +153,16 @@
 
                     //sub comments
                     + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
-                    + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"+ "<br />" + "</div>" 
-                    + " <div class='w3-col l10 m9'>"+ "<a href=''>" + c.username + "</a><br />" + "<br />"
+                    + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>" + "<br />" + "</div>"
+                    + " <div class='w3-col l10 m9'>" + "<a href=''>" + c.username + "</a><br />" + "<br />"
                     + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />"
 
                     //submit reply btn
                     + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
-                   + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
-                  + "</div>" + "</div>"   + "</div>" + "</div>" + "</div>" + "</div>"
+                    + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+                    + "</div>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>"
 
-                            
+
                 );
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);
@@ -202,11 +204,11 @@
                     + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
                     + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                    ////like btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + cr.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
-                    "</i> Like" + "<span class='w3-tag w3-white'>" + "data-count='0'" + "</span>" + "</b >" + "</button >" + "</p >"
+                    //////like btn
+                    //+ "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + cr.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                    //"</i> Like" + "<span class='w3-tag w3-white'>" + "data-count='0'" + "</span>" + "</b >" + "</button >" + "</p >"
 
-                    + "</div>" + "</div>" + "</div>"
+                    //+ "</div>" + "</div>" + "</div>"
 
                     ////sub comments
                     + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
@@ -251,17 +253,17 @@
         function replyComment(parentCommentID) {
             document.getElementById("pnlComment").style.visibility = 'visible';
 
-                $.ajax({
-                    type: "POST",
-                    url: "replyComment.ashx", //handler
-                    cache: false,
-                    data: { "parentCommentID": parentCommentID },
-                    success: function () {
-                    },
-                    err: function (error) {
-                        alert("error");
-                    }
-                });
+            $.ajax({
+                type: "POST",
+                url: "replyComment.ashx", //handler
+                cache: false,
+                data: { "parentCommentID": parentCommentID },
+                success: function () {
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });
             return false;
         }
 

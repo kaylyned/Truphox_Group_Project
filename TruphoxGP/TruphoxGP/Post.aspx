@@ -108,17 +108,33 @@
     <script>
         $(document).ready(function () {
             var postID = getUrlParameter('postID');
-            getComments(postID);
+            //getComments(postID);
+            checkLoggedIn(postID);            
         });
 
-        function getComments(postID) {
+        function checkLoggedIn(postID) {         
+            $.ajax({
+                type: "POST",
+                url: "checkLoggedIn.ashx",
+                cache: false,
+                data: {},
+                success: function (data) {
+                    getComments(postID, data);
+                },
+                err: function (error) {
+                    alert("error");
+                }
+            });            
+        }
+
+        function getComments(postID, loggedIn) {
             $.ajax({
                 type: "POST",
                 url: "readComment.ashx",//handler
                 cache: false,
                 data: { "postID": postID },
                 success: function (data) {
-                    comments(data);
+                    comments(data, loggedIn);
                 },
                 err: function (error) {
                     alert("error");
@@ -126,43 +142,61 @@
             });
         }
 
-        function comments(data) {
+        function comments(data, loggedIn) {
             //Get comment section created that will be used to append comment HTML created
             var sectionComments = document.getElementById("comments");
             var comment = JSON.parse(data);
+            var loggedIn = loggedIn;
 
             //loop through each comment for the post and create required elements for a comment
             for (i in comment.Table) {
                 c = comment.Table[i];
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
-                divComments.innerHTML = (
-                    "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
-                    + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "<br />" + "<br />"
-                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
 
-                    //reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
-                    + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+                if (loggedIn == "true")
+                    {
+                        divComments.innerHTML = (
+                        "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
+                        + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                        + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "<br />" + "<br />"
+                        + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
 
-                    //like btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
-                    "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
-                    + "</div>" + "</div>" + "<div id='r" + i + "'>" + "</div>"
+                        //reply btn
+                        + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment(" + c.parentCommentID + ")' id='myBtn'>" + "<b>Reply" + "</b>"
+                        + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                    //sub comments
-                    + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
-                    + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>" + "<br />" + "</div>"
-                    + " <div class='w3-col l10 m9'>" + "<a href=''>" + c.username + "</a><br />" + "<br />"
-                    + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />"
+                        //like btn
+                        + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>" +
+                        "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+                        + "</div>" + "</div>" + "<div id='r" + i + "'>" + "</div>"
 
-                    //submit reply btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
-                    + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
-                    + "</div>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>"
+                        //sub comments
+                        + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
+                        + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>" + "<br />" + "</div>"
+                        + " <div class='w3-col l10 m9'>" + "<a href=''>" + c.username + "</a><br />" + "<br />"
+                        + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />"
 
+                        //submit reply btn
+                        + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
+                        + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+                        + "</div>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>")
+                    }
+                else
+                    {
+                        divComments.innerHTML = (
+                        "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
+                        + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
+                        + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "<br />" + "<br />"
+                        + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
 
+                        //sub comments
+                        + "<div id='pnlComment' style='visibility:hidden'>" + "<div class='nest'>" + "<div class='well-sm'>" + "<div class='w3-row'>" + "<hr>"
+                        + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>" + "<br />" + "</div>"
+                        + " <div class='w3-col l10 m9'>" + "<a href=''>" + c.username + "</a><br />" + "<br />"
+                        + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />")
+                    };         
+                
                 );
                 getCommentReplies(c.parentCommentID, c.postID, i);
                 sectionComments.appendChild(divComments);

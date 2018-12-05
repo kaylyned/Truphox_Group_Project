@@ -153,6 +153,7 @@
     <Content Include="readNotification.ashx" />
     <Content Include="likeComment.ashx" />
     <Content Include="replyComment.ashx" />
+    <Content Include="checkLoggedIn.ashx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -189,6 +190,9 @@
     </Compile>
     <Compile Include="Artwork.aspx.designer.cs">
       <DependentUpon>Artwork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkLoggedIn.ashx.cs">
+      <DependentUpon>checkLoggedIn.ashx</DependentUpon>
     </Compile>
     <Compile Include="comment.cs" />
     <Compile Include="DAL.cs" />

@@ -199,10 +199,15 @@ namespace TruphoxGP
 
             if (message == "followed")
             {
-                btnFollow.CssClass= "btnFollowClick";
                 btnFollow.Text = "Followed";
                followNofitication(ViewUser);
             }   
+
+           else if (message == "unfollowed")
+            {
+                btnFollow.Text = "Follow";
+                unfollowNotification(viewUser);
+            }
         }
 
         private void followNofitication(string ViewUser)
@@ -214,6 +219,15 @@ namespace TruphoxGP
             myDal.execNonQuery();
         }
 
+        private void unfollowNotification(string viewUser)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spCreateNotification");
+            myDal.addParm("username", viewUser);
+            myDal.addParm("notificationText", sec.username + " is no longer following you.");
+            myDal.execNonQuery();
+        }
+
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
         {
             string otherProfile = Convert.ToString(dlFollowing.DataKeys[e.Item.ItemIndex]);
@@ -221,6 +235,29 @@ namespace TruphoxGP
             if (e.CommandName == "Select")
             {
                 Response.Redirect("viewProfile.aspx?followedUser=" + otherProfile);
+            }
+        }
+
+        protected void btnBlock_Click(object sender, EventArgs e)
+        {
+            blockUser(viewUser);       
+        }
+
+        private void blockUser(string viewUser)
+        {
+            Security sec = new Security();
+            myDal = new DAL("spCreateBlock");
+            myDal.addParm("username", sec.username);
+            myDal.addParm("blockedUser", viewUser);
+            string message = myDal.execScalar();
+
+            if (message == "blocked")
+            {
+                btnBlock.Text = "Unblock";
+            }
+            else if (message == "unblocked")
+            {
+                btnBlock.Text = "Block";
             }
         }
     }

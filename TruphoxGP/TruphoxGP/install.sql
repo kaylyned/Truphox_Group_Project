@@ -441,11 +441,13 @@ BEGIN
 	IF EXISTS (SELECT * FROM tbBlocked WHERE username = @username and blockedUser = @blockedUser)
 		BEGIN
 			DELETE FROM tbBlocked WHERE username = @username and blockedUser = @blockedUser
+			SELECT 'unblocked' AS MESSAGE
 		END
 	ELSE
 		BEGIN
 			INSERT INTO tbBlocked(username, blockedUser, blockDate) VALUES
 						(@username, @blockedUser, GETDATE())
+		SELECT 'blocked' AS MESSAGE
 		END
 END
 GO

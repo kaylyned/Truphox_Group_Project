@@ -86,7 +86,6 @@
     <Content Include="Useless\basic-plus.html" />
     <Content Include="Useless\basic.html" />
     <Content Include="Useless\bower-version-update.js" />
-    <Content Include="Form.aspx" />
     <Content Include="Images\Astro.jpg" />
     <Content Include="Images\DAngel.jpg" />
     <Content Include="Images\Debby.jpg" />
@@ -196,13 +195,6 @@
     </Compile>
     <Compile Include="comment.cs" />
     <Compile Include="DAL.cs" />
-    <Compile Include="Form.aspx.cs">
-      <DependentUpon>Form.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Form.aspx.designer.cs">
-      <DependentUpon>Form.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

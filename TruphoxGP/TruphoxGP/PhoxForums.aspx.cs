@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,8 +24,21 @@ namespace TruphoxGP
                 if (!IsPostBack)
                 {
                     pnlLoginDiv.Visible = false;
+                    loadgvForum();
                 }
             }
+        }
+
+        private void loadgvForum()
+        {
+           // myDal = new DAL("spReadForums");
+
+           // DataSet ds = myDal.getDataSet();
+           //DataTable dtA = ds.Tables[0];
+
+           // gvForum.DataSource = dtA;
+           // gvForum.DataBind();
+
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -46,16 +60,25 @@ namespace TruphoxGP
 
         protected void btnSubmitForum_Click(object sender, EventArgs e)
         {
+            createForum();
             pnlcreateForum.Visible = false;
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-             Security sec = new Security();
-            myDal = new DAL("spCreateForum");
-            myDal.addParm("username", sec.username);
-
             pnlcreateForum.Visible = true;
+        }
+
+        private void createForum()
+        {
+            Security sec = new Security();
+            myDal = new DAL("spForums");
+            myDal.addParm("username", sec.username);
+            myDal.addParm("rating", rblMature.SelectedValue);
+            myDal.addParm("forumTitle", txtforumTitle.Text);
+            myDal.addParm("forumText", txtForumText.Text);
+
+            int forumID = Convert.ToInt32(myDal.execScalar());
         }
     }
 }

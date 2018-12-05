@@ -9,10 +9,8 @@
             <asp:Button ID="btnCreate" runat="server" CssClass="btn-info" Text="New Forum" OnClick="btnCreate_Click" />
             <asp:Panel ID="pnlLoginDiv" runat="server" Visible="false">
                 <div class="well">
-                    <h2>LOGIN TO SUBMIT FORUMS</h2>
-                    <p>
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-block" OnClick="btnLogin_Click" />
-                    </p>
+                    <h3>PLEASE LOGIN TO VIEW FORMS</h3>
+                  <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-block" OnClick="btnLogin_Click"  Width="500px"/>
                 </div>
             </asp:Panel>
             <div class="well">
@@ -36,9 +34,9 @@
                             <div class="tab-content">
                                 <div id="home" class="tab-pane fade in active">
                                     <h2>Title: </h2>
-                                    <asp:TextBox ID="forumTitle" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtforumTitle" runat="server"></asp:TextBox>
                                     <h2>Text: </h2>
-                                    <asp:TextBox ID="txtForums" runat="server" Height="100px" Width="100%" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox ID="txtForumText" runat="server" Height="100px" Width="100%" TextMode="MultiLine"></asp:TextBox>
                                     <br />
                                     Does your forum contain mature content?
                                     <asp:RadioButtonList ID="rblMature" runat="server" RepeatDirection="Horizontal" OnSelectedIndexChanged="rblMature_SelectedIndexChanged">

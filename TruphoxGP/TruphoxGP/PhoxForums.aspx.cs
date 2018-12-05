@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -30,8 +31,13 @@ namespace TruphoxGP
 
         private void loadgvForum()
         {
-            myDal = new DAL("loadForums");
+           // myDal = new DAL("spReadForums");
 
+           // DataSet ds = myDal.getDataSet();
+           //DataTable dtA = ds.Tables[0];
+
+           // gvForum.DataSource = dtA;
+           // gvForum.DataBind();
 
         }
 

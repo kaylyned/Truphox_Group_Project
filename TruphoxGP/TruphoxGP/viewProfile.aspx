@@ -8,6 +8,7 @@
                    <h1><asp:Label ID="lblUsername" runat="server" Text=""></asp:Label></h1>
                 <div class="btn-group" role="group">
                         <asp:Button ID="btnFollow" CssClass="btn btn-secondary" runat="server" Text="Follow" OnClick="btnFollow_Click" style="height: 44px" />
+                    <asp:Button ID="btnBlock" CssClass="btn btn-secondary" runat="server" Text="Block" style="height: 44px" OnClick="btnBlock_Click" />
                 </div>
             </div>
             <br />

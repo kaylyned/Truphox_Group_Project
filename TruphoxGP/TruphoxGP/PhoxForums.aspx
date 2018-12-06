@@ -75,7 +75,7 @@
                                 </div>
                             <br />
                             <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
-                             <asp:Label ID="type" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
+                             <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
                         </ItemTemplate>
                     </asp:DataList></p>
             </div>

@@ -106,14 +106,14 @@ namespace TruphoxGP
 
             if (e.CommandName == "More")
             {
-
+                // NOT SURE WHAT TO DO... DAN MIGHT HAVE IDEAS?
             }
         }
 
         protected void dlUnion_ItemCommand(object source, DataListCommandEventArgs e)
         {
             int postID = Convert.ToInt32(dlUnion.DataKeys[e.Item.ItemIndex]);
-            DataListItem dl = dlUnion.SelectedItem;
+            DataListItem dl = dlUnion.SelectedItem; //ASK DAN FOR ADVICE ON THIS ONE...
             Label lblType = (Label)dl.FindControl("type");
 
             if (e.CommandName == "post")

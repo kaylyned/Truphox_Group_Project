@@ -10,16 +10,19 @@
             <asp:Panel ID="pnlLoginDiv" runat="server" Visible="false">
                 <div class="well">
                     <h3>PLEASE LOGIN TO VIEW FORMS</h3>
-                  <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-block" OnClick="btnLogin_Click"  Width="500px"/>
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-block" OnClick="btnLogin_Click" Width="500px" />
                 </div>
             </asp:Panel>
-            <div class="well">
-                <asp:GridView ID="gvForum" runat="server">
+            <div class="well well-lg">
+                <asp:GridView ID="gvForum" runat="server" DataKeyNames="forumID" AutoGenerateColumns="false" CssClass="cssforum" PagerStyle-CssClass="forumPager" HeaderStyle-CssClass="forumHeader"
+                    RowStyle-CssClass="forumRow" AllowPaging="true" OnPageIndexChanging="gvForum_PageIndexChanging" PageSize="3" AllowSorting="true" OnRowCommand="gvForum_RowCommand">
                     <Columns>
-                        <asp:ButtonField ButtonType="Image" CommandName="user" />
-                      <asp:BoundField DataField="date" HeaderText="DatePublished" />
-                        <asp:BoundField DataField="Replies" HeaderText="Replies" />
-                        <asp:ButtonField ButtonType="Button"  Text="" CommandName="Reply" />
+                        <asp:BoundField DataField="forumTitle" HeaderText="Title" />
+                        <asp:BoundField DataField="forumText" HeaderText="Text" />
+                        <asp:BoundField DataField="username" HeaderText="Author" />
+                        <asp:BoundField DataField="forumDate" HeaderText="DatePublished" />
+                        <asp:CheckBoxField DataField="rating" HeaderText="Mature?" />
+                        <asp:ButtonField ButtonType="button" Text="Read More" CommandName="More" />
                     </Columns>
                 </asp:GridView>
             </div>
@@ -54,9 +57,7 @@
                 </div>
             </asp:Panel>
         </div>
-        <br />
-        <br />
-        <br />
+        <br /><br /><br /><br /><br />
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
@@ -66,7 +67,17 @@
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>MORE POSTS.... IN A DATALIST</p>
+                <p>
+                    <asp:DataList ID="dlUnion" runat="server" DataKeyField="postID" OnItemCommand="dlUnion_ItemCommand" RepeatColumns="3" RepeatDirection="Horizontal" >
+                        <ItemTemplate>
+                            <div class="form-group-sm">
+                            <asp:textbox ID="txtWT" runat="server" Text='<%#Eval("writingText") %>' CssClass="form-control"  height="90px" max-width="90px"  CommandName="post" TextMode="MultiLine"></asp:textbox>
+                                </div>
+                            <br />
+                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
+                             <asp:Label ID="type" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
+                        </ItemTemplate>
+                    </asp:DataList></p>
             </div>
         </div>
     </div>

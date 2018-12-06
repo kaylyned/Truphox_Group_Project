@@ -25,20 +25,32 @@ namespace TruphoxGP
                 {
                     pnlLoginDiv.Visible = false;
                     loadgvForum();
+                    loadgvUnion();
                 }
             }
         }
 
         private void loadgvForum()
         {
-           // myDal = new DAL("spReadForums");
+           myDal = new DAL("spReadForums");
+           DataSet ds = myDal.getDataSet();
+           DataTable dtA = ds.Tables[0];
 
-           // DataSet ds = myDal.getDataSet();
-           //DataTable dtA = ds.Tables[0];
+            gvForum.DataSource = dtA;
+            gvForum.DataBind();
 
-           // gvForum.DataSource = dtA;
-           // gvForum.DataBind();
+        }
 
+        private void loadgvUnion()
+        {
+            myDal = new DAL("spSearchUnion");
+            myDal.addParm("input", "");
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlUnion.DataSource = dtA;
+            dlUnion.DataBind();
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
@@ -79,6 +91,52 @@ namespace TruphoxGP
             myDal.addParm("forumText", txtForumText.Text);
 
             int forumID = Convert.ToInt32(myDal.execScalar());
+        }
+
+        protected void gvForum_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvForum.PageIndex = e.NewPageIndex;
+            loadgvForum();
+        }
+
+        protected void gvForum_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            gvForum.SelectedIndex = Convert.ToInt32(e.CommandArgument);
+            int forumID = Convert.ToInt32(gvForum.SelectedDataKey.Value);
+
+            if (e.CommandName == "More")
+            {
+
+            }
+        }
+
+        protected void dlUnion_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int postID = Convert.ToInt32(dlUnion.DataKeys[e.Item.ItemIndex]);
+            DataListItem dl = dlUnion.SelectedItem;
+            Label lblType = (Label)dl.FindControl("type");
+
+            if (e.CommandName == "post")
+            {
+                switch (lblType.Text)
+                {
+                    case "Writing":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Art":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Photography":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Video":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+                }         
+            }
         }
     }
 }

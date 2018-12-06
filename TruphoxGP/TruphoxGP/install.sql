@@ -1222,25 +1222,25 @@ CREATE PROCEDURE spSearchUnion
 )
 AS 
 BEGIN --WRITING 
-     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'Images', 'Writing' AS TYPE 
+     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
   FROM tbWriting w INNER JOIN tbPost po ON 
   w.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --ART 
-      SELECT a.postID, rating, postTitle, postSubTitle, username,'./Images/' + artLink AS 'Images', 'Art' AS TYPE 
+      SELECT a.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText', './Images/' + artLink AS 'Images', 'Art' AS TYPE 
  FROM tbArt a INNER JOIN tbPost po ON 
   a.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --PHOTOGRAPHY 
-      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText',  './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
  FROM tbPhotography ph INNER JOIN tbPost po ON 
   ph.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --VIDEO 
-      SELECT v.postID, rating, postTitle, postSubTitle, username, './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
+      SELECT v.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText',  './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
  FROM tbVideo v INNER JOIN tbPost po ON 
   v.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
@@ -1357,7 +1357,7 @@ GO
 
 ---------------------POSTS CREATED (WRITTING) -------------------
 
-EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.';
+EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creativity, like and share other ones and join the community that will accept you where ever you are.';
 EXEC spCreateWriting @rating=0,  @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
 EXEC spCreateWriting @rating=0,  @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
 EXEC spCreateWriting @rating=0,  @postTitle='Tiny Rick', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
@@ -1444,3 +1444,6 @@ SELECT * FROM tbAccount;
 EXEC spReadCommentReply @parentCommentID=2, @postID=7;
 
 EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....', @forumDate= '', @username='wrenjay'
+EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...' ,@forumDate= '', @username='Stranger'
+EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @forumDate= '', @username='wrenjay'
+EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @forumDate= '', @username='GigglesMcklown'

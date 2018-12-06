@@ -402,7 +402,73 @@ body {
 }
 
 /*FORUM PAGE*/
-.forum {
+.cssforum {
+    width: 90%;
+    min-width: 80%;
+    margin-left:43px;
+}
+
+.forumHeader {
+    background-color: #646464;
+    color: White;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.forumRow {
+    background-color: #fff;
+    font-size: 14px;
+    color: #000;
+    min-height: 25px;
+    text-align: center;
+}
+
+.formRow:hover {
+    background-color: #ff8000;
+    color: #fff;
+    text-align: left;
+}
+
+.selectedrow {
+    background-color: #646464;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+}
+
+.cssforum a {
+    background-color: Transparent;
+    padding: 5px 5px 5px 5px;
+    color: #fff;
+     text-decoration: none;
+    font-weight: bold;
+}
+
+    .cssforum a:hover {
+        background-color: #000;
+        color: #fff;
+    }
+
+.cssforum span {
+    background-color: #ff8000;
+    color: #000;
+    padding: 5px 5px 5px 5px;
+}
+
+.forumPager {
+    background-color: #646464;
+    color: White;
+    height: 30px;
+    text-align: left;
+}
+
+.cssforum td {
+    padding: 5px;
+}
+
+.cssforum th{
+    padding: 5px;
 }
 
 /*NOTIFICATION PAGE*/
@@ -413,6 +479,3 @@ body {
 .notificationDateText {
     font-size: 12px;
 }
-
-
-

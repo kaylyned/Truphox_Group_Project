@@ -107,6 +107,7 @@ namespace TruphoxGP
             if (e.CommandName == "More")
             {
                 // NOT SURE WHAT TO DO...  HAVE IDEAS?
+                Response.Redirect("ForumPost.aspx?forumID=" + forumID.ToString());
             }
         }
 

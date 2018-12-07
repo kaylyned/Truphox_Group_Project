@@ -29,7 +29,7 @@ namespace TruphoxGP
 
                 string username = mySecurity.username;
 
-                mydal = new DAL("spReadComment"); //add read comment reply proc
+                mydal = new DAL("spCreateCommentReply"); //add read comment reply proc
                 mydal.addParm("parentCommentID", parentCommentID.ToString());
                 mydal.addParm("username", username);
                 DataSet ds = mydal.getDataSet();

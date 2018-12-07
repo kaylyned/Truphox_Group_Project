@@ -240,14 +240,16 @@ namespace TruphoxGP
         }
         private void loadmoreUser()
         {
-            myDal = new DAL("spSearchUnion");
-            myDal.addParm("input", "");
+            string viewUser = lblUsername.Text;
 
-            DataSet ds = myDal.getDataSet();
+            mydal = new DAL("spSearchUnion");
+            mydal.addParm("username", viewUser );
+
+            DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 
-            dlUnion.DataSource = dtA;
-            dlUnion.DataBind();
+            dlMoreUser.DataSource = dtA;
+            dlMoreUser.DataBind();
         }
 
         protected void dlMoreUser_ItemCommand(object source, DataListCommandEventArgs e)

@@ -1215,6 +1215,43 @@ GO
 EXEC spReadUserWriting @username='wrenjay'
 GO
 
+
+----------------------------------UNION BASED ON USERS  --------------------------------
+CREATE PROCEDURE spHoomanUnion
+(
+ 	@username VARCHAR(30)=NULL
+)
+AS 
+BEGIN --WRITING 
+--     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
+--  FROM tbWriting w INNER JOIN tbPost po ON 
+--  w.postID = po.postID
+--   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+
+--UNION --ART 
+      SELECT a.postID, rating, postTitle, postSubTitle, username,  './Images/' + artLink AS 'Images', 'Art' AS TYPE 
+ FROM tbArt a INNER JOIN tbPost po ON 
+  a.postID = po.postID
+   WHERE username = @username
+
+UNION --PHOTOGRAPHY 
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
+ FROM tbPhotography ph INNER JOIN tbPost po ON 
+  ph.postID = po.postID
+   WHERE username = @username
+
+UNION --VIDEO 
+      SELECT v.postID, rating, postTitle, postSubTitle, username,  './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
+ FROM tbVideo v INNER JOIN tbPost po ON 
+  v.postID = po.postID
+      WHERE username = @username
+
+END 
+GO
+EXEC spHoomanUnion @username='wrenjay';
+GO
+
+
 ------------------UNION  PROC -------------------
 CREATE PROCEDURE spSearchUnion
 (

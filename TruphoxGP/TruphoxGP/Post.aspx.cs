@@ -55,6 +55,7 @@ namespace TruphoxGP
                 loadLikes(postID);
                 checkUser(postID);
                 checkButtons();
+                loadmoreUser();
             }
         }
 
@@ -235,6 +236,41 @@ namespace TruphoxGP
                 mydal = new DAL("spDeletePost");
                 mydal.addParm("postID", postID.ToString());
                 mydal.execNonQuery();
+            }
+        }
+        private void loadmoreUser()
+        {
+            myDal = new DAL("spSearchUnion");
+            myDal.addParm("input", "");
+
+            DataSet ds = myDal.getDataSet();
+            DataTable dtA = ds.Tables[0];
+
+            dlUnion.DataSource = dtA;
+            dlUnion.DataBind();
+        }
+
+        protected void dlMoreUser_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            int postID = Convert.ToInt32(dlMoreUser.DataKeys[e.Item.ItemIndex]);
+            Label lblType = (Label)e.Item.FindControl("lblType");
+
+            if (e.CommandName == "post")
+            {
+                switch (lblType.Text)
+                {
+                    case "Art":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Photography":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Video":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+                }
             }
         }
     }

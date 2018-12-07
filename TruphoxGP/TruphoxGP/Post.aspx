@@ -93,9 +93,13 @@
             </asp:Panel>
             <div class="well">
                 <h3>MORE FROM USER</h3>
-                <p>
-                    <asp:DataList ID="dlMoreUser" runat="server"></asp:DataList>
-                </p>
+              <p>
+                    <asp:DataList ID="dlMoreUser" runat="server" DataKeyField="postID" RepeatColumns="3" RepeatDirection="Horizontal" OnItemCommand="dlMoreUser_ItemCommand" >
+                        <ItemTemplate>
+                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
+                             <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
+                        </ItemTemplate>
+                    </asp:DataList></p>
             </div>
             <%--% <div class="well-sm ">
                 <h3>MORE FROM TRUPHOX</h3>

@@ -114,7 +114,7 @@ namespace TruphoxGP
         {
             int postID = Convert.ToInt32(dlUnion.DataKeys[e.Item.ItemIndex]);
             //DataListItem dl = dlUnion.SelectedItem;
-            Label lblType = (Label)e.Item.FindControl("lblType");
+            Label lblType = (Label)e.Item.FindControl(lblType");
 
             if (e.CommandName == "post")
             {

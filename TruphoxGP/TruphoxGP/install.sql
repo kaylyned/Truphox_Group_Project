@@ -1222,25 +1222,25 @@ CREATE PROCEDURE spSearchUnion
 )
 AS 
 BEGIN --WRITING 
-     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
-  FROM tbWriting w INNER JOIN tbPost po ON 
-  w.postID = po.postID
-   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+--     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
+--  FROM tbWriting w INNER JOIN tbPost po ON 
+--  w.postID = po.postID
+--   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
-UNION --ART 
-      SELECT a.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText', './Images/' + artLink AS 'Images', 'Art' AS TYPE 
+--UNION --ART 
+      SELECT a.postID, rating, postTitle, postSubTitle, username,  './Images/' + artLink AS 'Images', 'Art' AS TYPE 
  FROM tbArt a INNER JOIN tbPost po ON 
   a.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --PHOTOGRAPHY 
-      SELECT ph.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText',  './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images/' + photoLink AS 'Images', 'Photography' AS TYPE  
  FROM tbPhotography ph INNER JOIN tbPost po ON 
   ph.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 UNION --VIDEO 
-      SELECT v.postID, rating, postTitle, postSubTitle, username, ''  AS 'writingText',  './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
+      SELECT v.postID, rating, postTitle, postSubTitle, username,  './Video/' + videoLink AS 'Images', 'Video' AS TYPE 
  FROM tbVideo v INNER JOIN tbPost po ON 
   v.postID = po.postID
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
@@ -1288,13 +1288,13 @@ CREATE PROCEDURE spForums
 	@rating BIT,
 	@forumTitle VARCHAR(50),
 	@forumText VARCHAR(800),
-	@forumDate DATETIME,
 	@username VARCHAR(30)
 )
 AS
 BEGIN
 	INSERT INTO tbForum (rating, forumTitle, forumText, forumDate, username) VALUES
 					          (@rating, @forumTitle, @forumText, GETDATE(), @username)
+   SELECT @@IDENTITY AS 'forumID'
 END
 GO
 
@@ -1443,7 +1443,7 @@ SELECT * FROM tbAccount;
 
 EXEC spReadCommentReply @parentCommentID=2, @postID=7;
 
-EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....', @forumDate= '', @username='wrenjay'
-EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...' ,@forumDate= '', @username='Stranger'
-EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @forumDate= '', @username='wrenjay'
-EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @forumDate= '', @username='GigglesMcklown'
+EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....',  @username='wrenjay'
+EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...' , @username='Stranger'
+EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @username='wrenjay'
+EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @username='GigglesMcklown'

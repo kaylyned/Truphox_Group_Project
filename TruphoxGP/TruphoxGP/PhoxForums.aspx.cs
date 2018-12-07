@@ -106,23 +106,23 @@ namespace TruphoxGP
 
             if (e.CommandName == "More")
             {
-                // NOT SURE WHAT TO DO... DAN MIGHT HAVE IDEAS?
+                // NOT SURE WHAT TO DO...  HAVE IDEAS?
             }
         }
 
         protected void dlUnion_ItemCommand(object source, DataListCommandEventArgs e)
         {
             int postID = Convert.ToInt32(dlUnion.DataKeys[e.Item.ItemIndex]);
-            DataListItem dl = dlUnion.SelectedItem; //ASK DAN FOR ADVICE ON THIS ONE...
-            Label lblType = (Label)dl.FindControl("type");
+            //DataListItem dl = dlUnion.SelectedItem;
+            Label lblType = (Label)e.Item.FindControl("lblType");
 
             if (e.CommandName == "post")
             {
                 switch (lblType.Text)
                 {
-                    case "Writing":
-                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
-                        break;
+                    //case "Writing":
+                    //    Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                    //    break;
 
                     case "Art":
                         Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");

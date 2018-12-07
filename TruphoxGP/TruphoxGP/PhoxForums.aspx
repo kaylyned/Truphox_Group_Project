@@ -70,10 +70,10 @@
                 <p>
                     <asp:DataList ID="dlUnion" runat="server" DataKeyField="postID" OnItemCommand="dlUnion_ItemCommand" RepeatColumns="3" RepeatDirection="Horizontal" >
                         <ItemTemplate>
-                            <div class="form-group-sm">
+                          <%--  <div class="form-group-sm">
                             <asp:textbox ID="txtWT" runat="server" Text='<%#Eval("writingText") %>' CssClass="form-control"  height="90px" max-width="90px"  CommandName="post" TextMode="MultiLine"></asp:textbox>
                                 </div>
-                            <br />
+                            <br />--%>
                             <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
                              <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
                         </ItemTemplate>

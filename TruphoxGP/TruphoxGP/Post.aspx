@@ -96,23 +96,17 @@
               <p>
                     <asp:DataList ID="dlMoreUser" runat="server" DataKeyField="postID" RepeatColumns="3" RepeatDirection="Horizontal" OnItemCommand="dlMoreUser_ItemCommand" >
                         <ItemTemplate>
-                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
+                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="100px" max-width="100px"  CommandName="post" />
                              <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
                         </ItemTemplate>
                     </asp:DataList></p>
             </div>
-            <%--% <div class="well-sm ">
-                <h3>MORE FROM TRUPHOX</h3>
-                <p>
-                    <asp:DataList ID="dlMoreTruphox" runat="server"></asp:DataList>
-                </p>
-            </div>--%>
         </div>
     </div>
     <script>        
         $(document).ready(function () {            
             var postID = getUrlParameter('postID');
-            //getComments(postID);           
+            getComments(postID);           
             checkLoggedIn(postID);
             
         });
@@ -160,8 +154,8 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
 
-                //if (loggedIn == "true")
-                //    {
+                if (loggedIn == "true")
+                 {
                 //        divComments.innerHTML = (
                 //        "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                 //        + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
@@ -187,9 +181,9 @@
                 //        + "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='btnSubmit'>" + "<b>Submit Reply" + "</b>"
                 //        + "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
                 //        + "</div>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>")
-                //    }
-                //else
-                //    {
+                  }
+              else
+                  {
                 //        divComments.innerHTML = (
                 //        "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                 //        + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
@@ -201,7 +195,7 @@
                 //        + "<div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>" + "<br />" + "</div>"
                 //        + " <div class='w3-col l10 m9'>" + "<a href=''>" + c.username + "</a><br />" + "<br />"
                 //        + "<div class='usercomment'>" + "<input id='Text1' type='text' width='300px' />" + "</div>" + "<br />")
-                //    };         
+               };         
                 
                 //);
                 //getCommentReplies(c.parentCommentID, c.postID, i);

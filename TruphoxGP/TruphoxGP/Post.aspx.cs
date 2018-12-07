@@ -242,7 +242,7 @@ namespace TruphoxGP
         {
             string viewUser = lblUsername.Text;
 
-            mydal = new DAL("spSearchUnion");
+            mydal = new DAL("spHoomanUnion");
             mydal.addParm("username", viewUser );
 
             DataSet ds = mydal.getDataSet();

@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ForumPost.aspx" />
     <Content Include="Images\book1.jpg" />
     <Content Include="Images\camera.jpg" />
     <Content Include="Images\convet.jpg" />
@@ -195,6 +196,13 @@
     </Compile>
     <Compile Include="comment.cs" />
     <Compile Include="DAL.cs" />
+    <Compile Include="ForumPost.aspx.cs">
+      <DependentUpon>ForumPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForumPost.aspx.designer.cs">
+      <DependentUpon>ForumPost.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

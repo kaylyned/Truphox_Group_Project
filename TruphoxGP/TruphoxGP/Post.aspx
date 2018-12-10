@@ -119,12 +119,13 @@
                 data: {},
                 success: function (data) {   
                     alert(data);
-                    getComments(postID, data);                     
+                    getComments(postID, data);       
                 },
                 err: function (error) {
                     alert("error");
                 }
             });            
+            alert("failure"); // dies here 
         }
 
         function getComments(postID, loggedIn) {

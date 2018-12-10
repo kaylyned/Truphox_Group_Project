@@ -106,7 +106,7 @@
     <script>        
         $(document).ready(function () {            
             var postID = getUrlParameter('postID');
-            getComments(postID);           
+            //getComments(postID);           
             checkLoggedIn(postID);
             
         });
@@ -118,13 +118,14 @@
                 cache: false,
                 data: {},
                 success: function (data) {   
-                    alert(data);
+                   
                     getComments(postID, data);       
                 },
                 err: function (error) {
                     alert("error");
                 }
-            });            
+            });          
+            alert(data);
             alert("failure"); // dies here 
         }
 

@@ -13,19 +13,22 @@ namespace TruphoxGP
 
         public void ProcessRequest(HttpContext context)
         {
-            context.Response.ContentType = "text/plain";
+            
             Security sec = new Security();
 
-            string result;
             if (sec.isLoggedIn == true)
             {
-                result = "true";
+                context.Response.ContentType = "text/plain";
+                string result = "true";
+                context.Response.Write(result);
             }
             else
             {
-                result = "false";
+                context.Response.ContentType = "text/plain";
+                string result = "false";
+                context.Response.Write(result);
             }            
-            context.Response.Write(result);
+            
         }
 
         public bool IsReusable

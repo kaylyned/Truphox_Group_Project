@@ -34,7 +34,7 @@ namespace TruphoxGP
 
         private void loadARecent()
         {
-            mydal = new DAL("spReadArt");
+            mydal = new DAL("spReadRecentArt");
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 

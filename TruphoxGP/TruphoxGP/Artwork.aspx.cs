@@ -58,7 +58,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {                               
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post2.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }      
         }
 
@@ -68,7 +68,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post2.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
 
@@ -78,7 +78,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post2.aspx?postID=" + itemID.ToString() + "&postType=artwork");
             }
         }
     }

@@ -1347,6 +1347,7 @@ END
 GO
 
 EXEC spReadForums @forumID = NULL;
+EXEC spReadForums @forumID = 1;
 
 
 

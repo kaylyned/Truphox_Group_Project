@@ -125,11 +125,11 @@ namespace TruphoxGP
                         break;
 
                     case "Photography":
-                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=photography");
                         break;
 
                     case "Video":
-                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=video");
                         break;
                 }         
             }

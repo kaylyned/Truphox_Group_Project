@@ -9,14 +9,13 @@
             <br />
             <div class="row content">
                 <div class="leftcolumn">
-                    <asp:DataList ID="dlUnity" runat="server"  RepeatColumns="3" CssClass="" DataKeyField="postID" OnItemCommand="dlUnity_ItemCommand"  Width="791px">
+                    <asp:DataList ID="dlUnity" runat="server" RepeatColumns="3" CssClass="" DataKeyField="postID" OnItemCommand="dlUnity_ItemCommand" Width="791px">
                         <ItemTemplate>
                             <div class="header">
-                            <asp:Label ID="lblPostID" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
-                            <h1><asp:Button ID="btnSelect" runat="server" Text='<%#Eval("postTitle") %>' CommandName="Select" CssClass="SearchHL" /></h1>
-                          
-<%--       <asp:ImageButton ID="imgSearch" CommandName="Select" runat="server" ImageUrl='<%#Eval("Images") %>' />--%>
-                                            </div>
+                                <asp:Label ID="lblPostID" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
+                                <h1><asp:Button ID="btnSelect" runat="server" Text='<%#Eval("postTitle") %>' CommandName="Select" CssClass="SearchHL" /></h1>
+                                <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' Visible="false"></asp:Label>
+                            </div>
                         </ItemTemplate>
                     </asp:DataList>
 

@@ -16,7 +16,7 @@ namespace TruphoxGP
         protected void Page_Load(object sender, EventArgs e)
         {
             Security sec = new Security();
-            if (!sec.isLoggedIn)
+            if (sec.isLoggedIn)
             {
                 if (!IsPostBack)
                 {

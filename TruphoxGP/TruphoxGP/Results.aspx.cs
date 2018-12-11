@@ -20,17 +20,17 @@ namespace TruphoxGP
 
                 if (type == "users")
                 {
-                    loadUSearch(search);
+                    loadUserSearch(search);
                 }
 
                 if (type == "posts")
                 {
-                    loadUnSearch(search);
+                    loadPostSearch(search);
                 }
 
             }
         }
-        private void loadUSearch(string Search)
+        private void loadUserSearch(string Search)
         {
             Security sec = new Security();
             mydal = new DAL("spUSearch");
@@ -51,7 +51,7 @@ namespace TruphoxGP
             }
         }
 
-        private void loadUnSearch(string Search)
+        private void loadPostSearch(string Search)
         {
             Security sec = new Security();
             mydal = new DAL("spSearchUnion");
@@ -78,7 +78,7 @@ namespace TruphoxGP
             string viewUser = dlUserSearch.DataKeys[e.Item.ItemIndex].ToString();
 
             if (e.CommandName == "Select")
-            { 
+            {
                 if (viewUser != mySecurity.username)
                 {
                     Response.Redirect("viewProfile.aspx?followedUser=" + viewUser);
@@ -92,11 +92,25 @@ namespace TruphoxGP
 
         protected void dlUnity_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int itemID = Convert.ToInt32(dlUnity.DataKeys[e.Item.ItemIndex]);
+            int postID = Convert.ToInt32(dlUnity.DataKeys[e.Item.ItemIndex]);
+            Label lblType = (Label)e.Item.FindControl("lblType");
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                switch (lblType.Text)
+                {
+                    case "Art":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=artwork");
+                        break;
+
+                    case "Photography":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=photography");
+                        break;
+
+                    case "Video":
+                        Response.Redirect("Post.aspx?postID=" + postID.ToString() + "&postType=video");
+                        break;
+                }
             }
         }
     }

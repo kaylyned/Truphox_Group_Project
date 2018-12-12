@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ForumPost.aspx" />
+    <Content Include="Images\foxx.jpg" />
     <Content Include="Images\book1.jpg" />
     <Content Include="Images\camera.jpg" />
     <Content Include="Images\convet.jpg" />

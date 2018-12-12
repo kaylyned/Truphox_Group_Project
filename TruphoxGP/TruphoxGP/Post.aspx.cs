@@ -283,9 +283,8 @@ namespace TruphoxGP
             {
                 mydal = new DAL("spCreateComment");
                 mydal.addParm("username", mySecurity.username);
-                mydal.addParm("commentText", txtComment.ToString());
+                mydal.addParm("commentText", txtComment.Text);
                 mydal.addParm("postID", postID.ToString());
-                mydal.addParm("postCommentNumber", "1");
                 mydal.execNonQuery();
             }
             else

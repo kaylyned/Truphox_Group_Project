@@ -68,18 +68,18 @@ CREATE TABLE tbComment
 	username VARCHAR(30)
 )
 
-CREATE TABLE tbParentComment
-(
-	parentCommentID INT IDENTITY (0,1) PRIMARY KEY,
-	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
-)
+--CREATE TABLE tbParentComment
+--(
+--	parentCommentID INT IDENTITY (0,1) PRIMARY KEY,
+--	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
+--)
 
-CREATE TABLE tbChildComment
-(
-	childCommentID INT IDENTITY (0,1) PRIMARY KEY,
-	parentCommentID INT FOREIGN KEY REFERENCES tbParentComment(parentCommentID),
-	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
-)
+--CREATE TABLE tbChildComment
+--(
+--	childCommentID INT IDENTITY (0,1) PRIMARY KEY,
+--	parentCommentID INT FOREIGN KEY REFERENCES tbParentComment(parentCommentID),
+--	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
+--)
 
 CREATE TABLE tbDeletedComments
 (
@@ -567,39 +567,14 @@ GO
 CREATE PROCEDURE spCreateComment
 (
 	@postID INT,
-	@postCommentNumber INT,
 	@commentText VARCHAR(100),
 	@username VARCHAR(30)
 )
 AS
 BEGIN
-	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
-						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
-	INSERT INTO tbParentComment(commentID) VALUES
-								(@@IDENTITY)
-	UPDATE tbPost SET
-	lastComment = @postCommentNumber + 1
-	WHERE postID = @postID
-END
-GO
+	INSERT INTO tbComment (postID, commentText, commentDate, username) VALUES
+						(@postID, @commentText, GETDATE(), @username)
 
-CREATE PROCEDURE spCreateCommentReply
-(
-	@postID INT,
-	@postCommentNumber INT,
-	@commentText VARCHAR(100),
-	@username VARCHAR(30),
-	@parentCommentID INT
-)
-AS
-BEGIN
-	INSERT INTO tbComment (postID, postCommentNumber, commentText, commentDate, username) VALUES
-						(@postID, @postCommentNumber, @commentText, GETDATE(), @username)
-	INSERT INTO tbChildComment(parentCommentID, commentID) VALUES
-							(@parentCommentID, @@IDENTITY)
-	UPDATE tbPost SET
-	lastComment = @postCommentNumber + 1
-	WHERE postID = @postID
 END
 GO
 
@@ -609,31 +584,29 @@ CREATE PROCEDURE spReadComment
 )
 AS
 BEGIN
-	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, p.parentCommentID, c.commentID
+	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage
 	FROM tbComment c INNER JOIN tbAccount a ON
 	c.username = a.username
-	INNER JOIN tbParentComment p ON
-	p.commentID = c.commentID
 	WHERE postID = ISNULL (@postID, postID)
-	ORDER BY postCommentNumber DESC	
+	ORDER BY c.commentDate DESC	
 END
 GO
 
-CREATE PROCEDURE spReadCommentReply
-(
-	@parentCommentID INT,
-	@postID INT = NULL
-)
-AS
-BEGIN
-	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID, c.commentID
-	FROM tbComment c INNER JOIN tbAccount a ON
-	c.username = a.username
-	INNER JOIN tbChildComment ch ON
-	ch.commentID = c.commentID
-	WHERE c.postID = ISNULL (@postID, c.postID) AND ch.parentCommentID = @parentCommentID
-	ORDER BY c.postCommentNumber DESC
-END
+--CREATE PROCEDURE spReadCommentReply
+--(
+--	@parentCommentID INT,
+--	@postID INT = NULL
+--)
+--AS
+--BEGIN
+--	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID, c.commentID
+--	FROM tbComment c INNER JOIN tbAccount a ON
+--	c.username = a.username
+--	INNER JOIN tbChildComment ch ON
+--	ch.commentID = c.commentID
+--	WHERE c.postID = ISNULL (@postID, c.postID) AND ch.parentCommentID = @parentCommentID
+--	ORDER BY c.postCommentNumber DESC
+--END
 GO
 
 CREATE PROCEDURE spUpdateComment
@@ -655,8 +628,8 @@ CREATE PROCEDURE spDeleteComment
 )	
 AS
 BEGIN
-	INSERT INTO tbDeletedComments (commentID, postID, postCommentNumber, commentText, commentDate, username)
-	SELECT commentID, postID, postCommentNumber, commentText, commentDate, username
+	INSERT INTO tbDeletedComments (commentID, postID, commentText, commentDate, username)
+	SELECT commentID, postID, commentText, commentDate, username
 	FROM tbComment
 	WHERE commentID = @commentID
 	
@@ -1428,7 +1401,7 @@ EXEC spReadForums @forumID = 1;
 -------------------------------- USERS CREATED --------------------------------
 
 EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='profilePict.jpg', @bio='',  @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='tiny-rick_profile.jpg', @bio='',  @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='Truphox', @lastName='Admin', @dob='', @profileImage='profilePict.jpg',  @bio='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @active='1', @accessLevel='0';
 EXEC spCreateAccount @username='GigglesMcklown', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='profilePict.jpg',  @bio='I am here because I have to be not because I want to be.', @active='1', @accessLevel='1';
 EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
@@ -1474,15 +1447,11 @@ EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @us
 EXEC spCreatePhotography @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
-EXEC spCreateComment @postID=7, @postCommentNumber=0, @commentText='Cool logo!', @username='CanadaGhost';
-EXEC spCreateComment @postID=7, @postCommentNumber=1, @commentText='We thought so!', @username='Truphox';
-EXEC spCreateComment @postID=7, @postCommentNumber=2, @commentText='Drew it myself!', @username='wrenjay';
-EXEC spCreateComment @postID=7, @postCommentNumber=3, @commentText='I am person.', @username='Person';
-EXEC spCreateComment @postID=7, @postCommentNumber=4, @commentText='Truphox da best #truphox', @username='CanadaGhost';
-GO
-
-EXEC spCreateCommentReply @postID=7, @postCommentNumber=5, @commentText='Awesome Logo!', @username='Person', @parentCommentID=0;
-EXEC spCreateCommentReply @postID=7, @postCommentNumber=6, @commentText='Nice!', @username='CanadaGhost', @parentCommentID=2;
+EXEC spCreateComment @postID=7, @commentText='Cool logo!', @username='CanadaGhost';
+EXEC spCreateComment @postID=7, @commentText='We thought so!', @username='Truphox';
+EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenjay';
+EXEC spCreateComment @postID=7, @commentText='I am person.', @username='Person';
+EXEC spCreateComment @postID=7, @commentText='Truphox da best #truphox', @username='CanadaGhost';
 GO
 
 EXEC spCreateCommentLike @commentID=1, @username='CanadaGhost';
@@ -1496,8 +1465,6 @@ SELECT * FROM tbArt
 SELECT * FROM tbWriting
 SELECT * FROM tbVideo
 SELECT * FROM tbComment
-SELECT * FROM tbParentComment
-SELECT * FROM tbChildComment
 GO
 
 
@@ -1522,8 +1489,6 @@ EXEC spReadNotification @username='wrenjay';
 EXEC spReadFollow @username='wrenjay'
 GO
 SELECT * FROM tbAccount;
-
-EXEC spReadCommentReply @parentCommentID=2, @postID=7;
 
 EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....',  @username='wrenjay'
 EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...' , @username='Stranger'

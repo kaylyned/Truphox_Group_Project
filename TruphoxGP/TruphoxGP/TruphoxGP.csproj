@@ -76,6 +76,7 @@
     <Content Include="Images\convet.jpg" />
     <Content Include="Images\lights.jpg" />
     <Content Include="Images\mountains.jpg" />
+    <Content Include="Images\tiny-rick_profile.jpg" />
     <Content Include="Notifications.aspx" />
     <Content Include="PhoxForums.aspx" />
     <Content Include="Post2.aspx" />
@@ -151,7 +152,6 @@
     <Content Include="Useless\bower.json" />
     <Content Include="Useless\package.json" />
     <Content Include="readComment.ashx" />
-    <Content Include="readCommentReply.ashx" />
     <Content Include="readNotification.ashx" />
     <Content Include="likeComment.ashx" />
     <Content Include="replyComment.ashx" />
@@ -275,9 +275,6 @@
     </Compile>
     <Compile Include="readComment.ashx.cs">
       <DependentUpon>readComment.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="readCommentReply.ashx.cs">
-      <DependentUpon>readCommentReply.ashx</DependentUpon>
     </Compile>
     <Compile Include="readNotification.ashx.cs">
       <DependentUpon>readNotification.ashx</DependentUpon>

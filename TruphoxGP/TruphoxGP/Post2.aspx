@@ -85,6 +85,7 @@
                 <div class="well">
                     <table>
                         <tr>
+
                             <td></td>
                             <td></td>
                         </tr>
@@ -120,7 +121,7 @@
                     comments(data);
                 },
                 err: function (error) {
-                    alert("error");
+                    alert(error);
                 }
             });
         };
@@ -136,21 +137,26 @@
                 var divComments = document.createElement("div");
                 divComments.setAttribute('id', 'c' + i);
                 divComments.innerHTML = (
-                    "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>" + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
+                    "<div class='well well-sm'>" + "<div class='w3-row'>" + "<hr>" + " <div class='w3-col l2 m3'>"
+                    + "<img src='./Images/" + c.profileImage + "' class='img-circle commentPic'/>"
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
-                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate + "</span>" + "<br />" + "<br />"
-                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />"
+                    + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate
+                    + "</span>" + "<br />" + "<br />"
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "</div></div></div>" + "<br />");
 
-                    ////reply btn
-                    //+ "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
-                    //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
+                sectionComments.appendChild(divComments);
+                ////reply btn
+                //+ "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
+                //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                    //like btn
-                    + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>"
-                    + "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
-                    + "</div>" + "</div>" + "<div id='r" + i + "'>" + "</div>");
+                //like btn
+                //+ "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>"
+                //+ "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+                //+ "</div>" + "</div>");
+
+                //+ "<div id='r" + i + "'>" + "</div>");
             };
-            sectionComments.appendChild(divComments);            
+
         };
 
         function getUrlParameter(name) {
@@ -158,7 +164,7 @@
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        };   
+        };
 
         function likeComment(commentID) {
             $.ajax({
@@ -177,19 +183,18 @@
         };
 
         function replyComment() {
-            var postID = getUrlParameter('postID');            
+            var postID = getUrlParameter('postID');
             var commentText = getElementById("txtComment");
 
             $.ajax({
                 type: "POST",
                 url: "replyComment.ashx", //handler
                 cache: false,
-                data: {postID, commentText},
+                data: { postID, commentText },
                 success: function () {
-                    alert("test");
                 },
                 err: function (error) {
-                    alert("error");
+                    alert(error);
                 }
             });
             return false;

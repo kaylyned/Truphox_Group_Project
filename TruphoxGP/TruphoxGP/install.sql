@@ -68,19 +68,6 @@ CREATE TABLE tbComment
 	username VARCHAR(30)
 )
 
---CREATE TABLE tbParentComment
---(
---	parentCommentID INT IDENTITY (0,1) PRIMARY KEY,
---	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
---)
-
---CREATE TABLE tbChildComment
---(
---	childCommentID INT IDENTITY (0,1) PRIMARY KEY,
---	parentCommentID INT FOREIGN KEY REFERENCES tbParentComment(parentCommentID),
---	commentID INT FOREIGN KEY REFERENCES tbComment(commentID)
---)
-
 CREATE TABLE tbDeletedComments
 (
 	commentID INT,
@@ -557,8 +544,6 @@ END
 GO
 
 SELECT * FROM tbPost
---EXEC spDeletePost @postID=1
---SELECT * FROM tbPost
 GO
 
 
@@ -590,23 +575,6 @@ BEGIN
 	WHERE postID = ISNULL (@postID, postID)
 	ORDER BY c.commentDate DESC	
 END
-GO
-
---CREATE PROCEDURE spReadCommentReply
---(
---	@parentCommentID INT,
---	@postID INT = NULL
---)
---AS
---BEGIN
---	SELECT c.postID, c.postCommentNumber, c.commentText, c.commentDate, c.username, a.profileImage, ch.childCommentID, c.commentID
---	FROM tbComment c INNER JOIN tbAccount a ON
---	c.username = a.username
---	INNER JOIN tbChildComment ch ON
---	ch.commentID = c.commentID
---	WHERE c.postID = ISNULL (@postID, c.postID) AND ch.parentCommentID = @parentCommentID
---	ORDER BY c.postCommentNumber DESC
---END
 GO
 
 CREATE PROCEDURE spUpdateComment
@@ -1466,7 +1434,6 @@ SELECT * FROM tbWriting
 SELECT * FROM tbVideo
 SELECT * FROM tbComment
 GO
-
 
 ------------------FOLLOWING PROC -------------------
 

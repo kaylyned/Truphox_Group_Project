@@ -142,19 +142,20 @@
                     + "<br/>" + "</div>" + " <div class='w3-col l10 m9'>"
                     + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate
                     + "</span>" + "<br />" + "<br />"
-                    + "<div class='usercomment'>" + c.commentText + "</div>" + "</div></div></div>" + "<br />");
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "</div></div></div>" + "<br />"
 
-                sectionComments.appendChild(divComments);
+                
                 ////reply btn
                 //+ "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
                 //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                //like btn
-                //+ "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>"
-                //+ "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
-                //+ "</div>" + "</div>");
+                like btn
+                + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>"
+                + "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+                + "</div>" + "</div>");
 
                 //+ "<div id='r" + i + "'>" + "</div>");
+                sectionComments.appendChild(divComments);
             };
 
         };

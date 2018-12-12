@@ -18,7 +18,7 @@ namespace TruphoxGP
             {
                 loadATrending();
                 loadARecent();
-                loadAFav();
+               // loadAFav();
 
             }
         }

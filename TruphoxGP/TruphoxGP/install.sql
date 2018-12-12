@@ -970,10 +970,9 @@ BEGIN
 	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle, postSubTitle
 	FROM tbPost p INNER JOIN tbArt a ON
 	p.postID = a.postID
-	WHERE a.postID = ISNULL(@postID, a.postID) AND postDate = GETDATE();	
+	WHERE a.postID = ISNULL(@postID, a.postID) AND postDate = GETDATE();
 END
 GO
-
 
 CREATE PROCEDURE spUpdateArt
 (

@@ -17,7 +17,7 @@ namespace TruphoxGP
             {
                 loadVTrending();
                 loadVRecent();
-                loadVFav();
+               // loadVFav();
             }
         }
         private void loadVTrending()

@@ -149,7 +149,7 @@
                 //+ "<p class='w3-right'>" + "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
                 //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"
 
-                like btn
+                //like btn
                 + "<p class='w3-right'>" + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>" + "<b>" + "<i class='fa fa-thumbs-up'>"
                 + "</i> Like" + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
                 + "</div>" + "</div>");

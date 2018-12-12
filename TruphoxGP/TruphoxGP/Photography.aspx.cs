@@ -17,7 +17,7 @@ namespace TruphoxGP
             {
                 loadPTrending();
                 loadPRecent();
-                loadPFav();
+               // loadPFav();
             }
         }
         private void loadPTrending()
@@ -31,7 +31,7 @@ namespace TruphoxGP
         }
         private void loadPRecent()
         {
-            mydal = new DAL("spReadPhotography");
+            mydal = new DAL("spReadRecentPhoto");
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 

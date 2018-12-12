@@ -16,7 +16,7 @@ namespace TruphoxGP
             if (!IsPostBack)
             {
                 loadWriteTrending();
-               // loadWriteRecent();
+                loadWriteRecent();
                //loadWriteFav();
             }
         }
@@ -32,7 +32,7 @@ namespace TruphoxGP
 
         private void loadWriteRecent()
         {
-            mydal = new DAL("spReadWriting");
+            mydal = new DAL("spReadRecentWriting");
             DataSet ds = mydal.getDataSet();
             DataTable dtA = ds.Tables[0];
 

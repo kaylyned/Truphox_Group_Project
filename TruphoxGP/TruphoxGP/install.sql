@@ -872,6 +872,22 @@ GO
 EXEC spReadWriting 
 GO
 
+CREATE PROCEDURE spReadRecentWriting
+(
+	@postID INT=NULL
+)
+AS
+BEGIN
+	SELECT p.postID, p.postTitle, p.postSubTitle, w.writingText
+	FROM tbPost p INNER JOIN tbWriting w ON
+	p.postID = w.postID
+   WHERE p.postID = ISNULL(@postID, p.postID) AND postDate = GETDATE();	
+END
+GO
+
+EXEC spReadRecentWriting 
+GO
+
 CREATE PROCEDURE spUpdateWriting
 (
 	@postID INT,
@@ -944,7 +960,19 @@ BEGIN
 	WHERE a.postID = ISNULL(@postID, a.postID);
 END
 GO
-
+ 
+ CREATE PROCEDURE spReadRecentArt
+(
+	@postID INT=NULL
+)
+AS
+BEGIN
+	SELECT a.postID as 'postID', './Images/' + artLink  as 'artLink', postTitle, postSubTitle
+	FROM tbPost p INNER JOIN tbArt a ON
+	p.postID = a.postID
+	WHERE a.postID = ISNULL(@postID, a.postID) AND postDate = GETDATE();
+END
+GO
 
 CREATE PROCEDURE spUpdateArt
 (
@@ -1015,6 +1043,22 @@ END
 GO
 
 EXEC spReadPhotography;
+GO
+
+CREATE PROCEDURE spReadRecentPhoto
+(
+@postID INT=NULL
+)
+AS
+BEGIN
+	SELECT ph.postID as 'postID', './Images/' + photoLink as 'photoLink', postTitle, postSubTitle
+	    FROM tbPost p  INNER JOIN tbPhotography ph ON 
+	    p.postID= ph.postID 
+	    WHERE  ph.postID = ISNULL(@postID, p.postID) AND postDate = GETDATE();	
+END
+GO
+
+EXEC spReadRecentPhoto;
 GO
 
 CREATE PROCEDURE spUpdatePhotography

@@ -13,33 +13,32 @@ namespace TruphoxGP
     /// </summary>
     public class likeComment : IHttpHandler
     {
-        int commentID;        
-        DAL mydal;        
+        int commentID;
+        DAL mydal;
 
         public void ProcessRequest(HttpContext context)
         {
-            Security mySecurity = new Security();           
-
-            if (mySecurity.isLoggedIn == true)
+            context.Response.ContentType = "text/plain";
+            if (context.Request.HttpMethod == "POST")
             {
-                context.Response.ContentType = "text/plain";
-                if (context.Request.HttpMethod == "POST")
+                Security mySecurity = new Security();
+
+                if (mySecurity.isLoggedIn == true)
                 {
                     commentID = Convert.ToInt32(context.Request.Form["commentID"].ToString());
+                    string username = mySecurity.username;
+
+                    mydal = new DAL("spReadComment"); //add read comment reply proc
+                    mydal.addParm("commentID", commentID.ToString());
+                    mydal.addParm("username", username);
+                    DataSet ds = mydal.getDataSet();
+
+                    string result = GetJSONString(ds.Tables[0]);
+
+                    context.Response.ContentType = "text/javascript";
+                    context.Response.Write(result);
                 }
-
-                string username = mySecurity.username;
-
-                mydal = new DAL("spReadComment"); //add read comment reply proc
-                mydal.addParm("commentID", commentID.ToString());
-                mydal.addParm("username", username);
-                DataSet ds = mydal.getDataSet();
-
-                string result = GetJSONString(ds.Tables[0]);
-
-                context.Response.ContentType = "text/javascript";
-                context.Response.Write(result);
-            }       
+            }
         }
 
         public static string GetJSONString(DataTable Dt)

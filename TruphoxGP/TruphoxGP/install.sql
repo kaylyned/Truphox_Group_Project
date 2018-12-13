@@ -1412,7 +1412,7 @@ EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #1', @postSubTitle='KCar
 EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
 EXEC spCreatePhotography @rating=0, @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
 EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
-EXEC spCreatePhotography @rating=0,  @postTitle='', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Camping', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
 EXEC spCreateComment @postID=7, @commentText='Cool logo!', @username='CanadaGhost';

@@ -156,6 +156,7 @@
     <Content Include="likeComment.ashx" />
     <Content Include="replyComment.ashx" />
     <Content Include="checkLoggedIn.ashx" />
+    <Content Include="Another Flight.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -376,6 +377,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Shocking Headline DF.otf" />
     <None Include="Useless\packages.config" />
     <Content Include="MasterSupreme.Master" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />

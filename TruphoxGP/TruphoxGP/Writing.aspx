@@ -7,7 +7,7 @@
             <ItemTemplate>
                 <div class="form-group">
                 <div class="well well-lg">
-                    <asp:LinkButton ID="lnkLitPosts" runat="server"  CommandName="Select"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label></asp:LinkButton>
+                    <asp:LinkButton ID="lnkLitPosts" runat="server"  CommandName="Select"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>' CssClass="postTitle"></asp:Label></asp:LinkButton>
                 <br />
                 <asp:Label ID="lblTwritingSub" runat="server" Text='<%#Eval("postSubTitle") %>'></asp:Label>
                 <br />
@@ -24,7 +24,7 @@
             <ItemTemplate>
                 <div class="form-group">
                 <div class="well well-lg">
-             <asp:LinkButton ID="lnkLitRPosts" runat="server"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label></asp:LinkButton>
+             <asp:LinkButton ID="lnkLitRPosts" runat="server"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>' CssClass="postTitle"></asp:Label></asp:LinkButton>
                 <br />
                 <asp:Label ID="lblTwritingSub" runat="server" Text='<%#Eval("postSubTitle") %>'></asp:Label>
                 <br />
@@ -40,7 +40,7 @@
             <ItemTemplate>
                 <div class="form-group">
                 <div class="well well-lg">
-                  <asp:LinkButton ID="lnkLitFPosts" runat="server"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>'></asp:Label></asp:LinkButton>
+                  <asp:LinkButton ID="lnkLitFPosts" runat="server"><asp:Label ID="lblTwritingTitle" runat="server" Text='<%#Eval("postTitle") %>' CssClass="postTitle"></asp:Label></asp:LinkButton>
                 <br />
                 <asp:Label ID="lblTwritingSub" runat="server" Text='<%#Eval("postSubTitle") %>'></asp:Label>
                 <br />

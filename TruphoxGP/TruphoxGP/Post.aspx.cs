@@ -234,6 +234,7 @@ namespace TruphoxGP
                 mydal = new DAL("spDeletePost");
                 mydal.addParm("postID", postID.ToString());
                 mydal.execNonQuery();
+                Response.Redirect("Artwork.aspx");
             }
         }
 

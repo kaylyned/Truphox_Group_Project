@@ -1,4 +1,13 @@
-﻿/*Nav bar - Master Page*/
+﻿@font-face {
+    font-family: 'Shocking Headline DF';
+    src: url('Shocking Headline DF.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Another Flight';
+    src: url('Another Flight.otf') format('opentype');
+}
+/*Nav bar - Master Page*/
 body {
     font: 400 15px/1.8 Lato, sans-serif;
     color: #777;
@@ -379,9 +388,13 @@ body {
     height: 300px;
 }
 
+.postTitle{
+font-family:'Another Flight';
+font-size:x-large;
+}
+
 
 /*WRITING PAGE*/
-
 .dlLit {
     box-sizing: border-box;
     text-decoration: none;

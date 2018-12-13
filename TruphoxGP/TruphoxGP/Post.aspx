@@ -40,6 +40,7 @@
                             <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
                             <br />
                             <asp:Panel ID="pnlLike" runat="server" Visible="false">
+<%--                         <button class="btn btn-primary" onclick="btnLike_Click"><i class="fa fa-meh-o"></i>Like</button>--%>
                                 <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
                             </asp:Panel>
                             <p></p>

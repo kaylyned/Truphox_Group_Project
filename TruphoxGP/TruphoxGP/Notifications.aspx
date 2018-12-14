@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid text-center">
         <br />
-        <h3>NOTIFICATIONS</h3>
+        <h3 class="notificationTitle">NOTIFICATIONS</h3>
         <div class="well">            
             <div id="notifications">
                 

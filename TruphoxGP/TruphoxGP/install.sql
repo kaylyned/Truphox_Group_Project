@@ -201,6 +201,18 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE spActivateAccount
+(
+	@username VARCHAR(30)
+)
+AS
+BEGIN
+	UPDATE tbAccount SET
+	active = 1
+	WHERE username = @username;
+END
+GO
+
 CREATE PROCEDURE spReadAccount
 (
 	@username VARCHAR(30)=NULL

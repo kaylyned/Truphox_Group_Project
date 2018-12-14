@@ -43,7 +43,8 @@ namespace TruphoxGP
                 emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
                 emailMessage.To.Add(new MailAddress(txtEmail.Text));
                 emailMessage.Subject = "Confirmation Link";
-                emailMessage.Body = "<h3>Welcome to Truphox!</h3>";
+                emailMessage.Body = "<h3>Welcome to Truphox!</h3><br>" +
+                    "";
                 emailMessage.IsBodyHtml = true;
                 SmtpClient client = new SmtpClient();
                 client.Host = "smtp.gmail.com";

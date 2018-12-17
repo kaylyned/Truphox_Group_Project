@@ -526,3 +526,19 @@ font-size:x-large;
 .notificationDateText {
     font-size: 12px;
 }
+
+.likeButton{
+    border:none;
+    color:white;
+    width:175px;
+    height:64px;
+    padding: 15px 32px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:20px;
+    margin:4px 2px;
+    margin-top:10px;
+    background-color:dimgrey;
+    border-radius:12px;
+}

@@ -37,11 +37,13 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
+                            <a class="label label-danger fa-2x" style="background-color: #FF5733">
+                                <i class="fa fa-heart "></i>
+                                <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
+                            </a>
                             <br />
                             <asp:Panel ID="pnlLike" runat="server" Visible="false">
-                                <%--                         <button class="btn btn-primary" onclick="btnLike_Click"><i class="fa fa-meh-o"></i>Like</button>--%>
-                                <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
+                                    <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" CssClass="likeButton" />
                             </asp:Panel>
                             <p></p>
                             <br>

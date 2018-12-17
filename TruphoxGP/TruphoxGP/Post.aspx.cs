@@ -157,6 +157,26 @@ namespace TruphoxGP
             lblLikes.Text = ds.Tables[0].Rows[0]["count"].ToString() + " Likes";
         }
 
+        private void validLike(int PostID)
+        {
+            Security mysec = new Security();
+            mydal = new DAL("spLikeRead");
+            mydal.addParm("postID", PostID.ToString());
+            mydal.addParm("username", mysec.username);
+            DataSet ds = mydal.getDataSet();
+
+            string message = mydal.execScalar();
+
+            if (message != "Liked")
+            {
+
+            }
+            else
+            {
+                btnLike.Text = "Liked";
+            }
+        }
+
         protected void btnLike_Click(object sender, EventArgs e)
         {
             Security mySecurity = new Security();
@@ -167,11 +187,13 @@ namespace TruphoxGP
                 mydal.addParm("username", mySecurity.username);
                 mydal.addParm("postID", postID.ToString());
                 mydal.execNonQuery();
+                
             }
             else
             {
 
             }
+            validLike(postID);
             loadLikes(postID);
         }
 

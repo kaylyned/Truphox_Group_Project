@@ -672,37 +672,27 @@ BEGIN
 END
 GO
 
--------------------------------- POST LIKE --------------------------------
-
-CREATE PROCEDURE spCreateCommentLike
+CREATE PROCEDURE spReadUserLike
 (
-	@commentID INT,
+	@postID INT,
 	@username VARCHAR(30)
 )
 AS
 BEGIN
-	IF EXISTS (SELECT * FROM tbCommentLike WHERE username = @username and commentID = @commentID)
-				BEGIN
-					DELETE FROM tbCommentLike WHERE username = @username and commentID = @commentID
-				END
-			ELSE
-				BEGIN				
-					INSERT INTO tbCommentLike (commentID, username) VALUES
-									(@commentID, @username)
-				END
+	IF EXISTS (SELECT * FROM tbLike WHERE username = @username and postID = @postID)
+		BEGIN
+			SELECT 'LIKED' AS MESSAGE
+		END
+	ELSE
+		BEGIN
+			SELECT 'LIKE' AS MESSAGE
+		END
 END
 GO
 
-
-CREATE PROCEDURE spReadCommentLike
-(
-	@commentID INT
-)
-AS
-BEGIN
-	SELECT count(commentID) as 'count' FROM tbCommentLike WHERE commentID = ISNULL (@commentID, commentID)
-END
+EXEC spReadUserLike @postID='17', @username='CanadaGhost';
 GO
+
 
 -------------------------------- TAGS --------------------------------
 
@@ -912,6 +902,9 @@ BEGIN
 	p.postID = a.postID
 	WHERE a.postID = ISNULL(@postID, a.postID);
 END
+GO
+
+EXEC spReadArt @postID=17;
 GO
  
  CREATE PROCEDURE spReadRecentArt
@@ -1432,10 +1425,6 @@ EXEC spCreateComment @postID=7, @commentText='We thought so!', @username='Trupho
 EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenjay';
 EXEC spCreateComment @postID=7, @commentText='I am person.', @username='Person';
 EXEC spCreateComment @postID=7, @commentText='Truphox da best #truphox', @username='CanadaGhost';
-GO
-
-EXEC spCreateCommentLike @commentID=1, @username='CanadaGhost';
-EXEC spCreateCommentLike @commentID=1, @username='wrenjay';
 GO
 
 SELECT * FROM tbPost

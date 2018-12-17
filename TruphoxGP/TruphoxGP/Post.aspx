@@ -40,7 +40,7 @@
                             <asp:Label ID="lblLikes" runat="server" Text=""></asp:Label>
                             <br />
                             <asp:Panel ID="pnlLike" runat="server" Visible="false">
-<%--                         <button class="btn btn-primary" onclick="btnLike_Click"><i class="fa fa-meh-o"></i>Like</button>--%>
+                                <%--                         <button class="btn btn-primary" onclick="btnLike_Click"><i class="fa fa-meh-o"></i>Like</button>--%>
                                 <asp:Button ID="btnLike" runat="server" Text="Like" OnClick="btnLike_Click" />
                             </asp:Panel>
                             <p></p>
@@ -145,19 +145,19 @@
                     + "<div class='w3-col l10 m9'>"
                     + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate
                     + "</span>" + "<br />" + "<br />"
-                    + "<div class='usercomment'>" + c.commentText + "</div>"  + "<br />"                   
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />");
 
-                    //like btn
-                    + "<p class='w3-right'>"
-                    + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>"
-                    + "<b>" + "<i class='fa fa-thumbs-up'>" + "</i> Like"
-                    + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
-                    + "</div>" + "</div>" + "</div>");
+                ////like btn
+                //+ "<p class='w3-right'>"
+                //    + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>"
+                //    + "<b>" + "<i class='fa fa-thumbs-up'>" + "</i> Like"
+                //    + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
+                //    + "</div>" + "</div>" + "</div>"
 
-                    ////reply btn
-                    //+ "<p class='w3-right'>" 
-                    //+ "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
-                    //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"                   
+                ////reply btn
+                //+ "<p class='w3-right'>" 
+                //+ "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
+                //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"                   
                 sectionComments.appendChild(divComments);
             };
         };
@@ -202,7 +202,7 @@
             });
             return false;
         };
-        
+
         //function checkLoggedIn(postID) {         
         //    $.ajax({
         //        type: "POST",

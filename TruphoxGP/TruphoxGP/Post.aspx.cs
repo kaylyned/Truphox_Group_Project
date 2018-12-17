@@ -292,7 +292,7 @@ namespace TruphoxGP
             {
 
             }
-            
+            txtComment.Text = "";            
         }
     }
 }

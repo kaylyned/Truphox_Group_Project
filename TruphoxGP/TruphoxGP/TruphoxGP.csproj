@@ -79,7 +79,6 @@
     <Content Include="Images\tiny-rick_profile.jpg" />
     <Content Include="Notifications.aspx" />
     <Content Include="PhoxForums.aspx" />
-    <Content Include="Post2.aspx" />
     <Content Include="Results.aspx" />
     <Content Include="submitArt.aspx" />
     <Content Include="submitLit.aspx" />
@@ -243,13 +242,6 @@
     </Compile>
     <Compile Include="PhoxForums.aspx.designer.cs">
       <DependentUpon>PhoxForums.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Post2.aspx.cs">
-      <DependentUpon>Post2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Post2.aspx.designer.cs">
-      <DependentUpon>Post2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>

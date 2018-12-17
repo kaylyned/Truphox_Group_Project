@@ -160,20 +160,19 @@ namespace TruphoxGP
         private void validLike(int PostID)
         {
             Security mysec = new Security();
-            mydal = new DAL("spLikeRead");
+            mydal = new DAL("spReadUserLike");
             mydal.addParm("postID", PostID.ToString());
             mydal.addParm("username", mysec.username);
-            DataSet ds = mydal.getDataSet();
 
             string message = mydal.execScalar();
 
-            if (message != "Liked")
-            {
-
-            }
-            else
+            if (message == "LIKED")
             {
                 btnLike.Text = "Liked";
+            }
+            if(message == "LIKE")
+            {
+                btnLike.Text = "Like";
             }
         }
 

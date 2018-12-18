@@ -61,9 +61,9 @@
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>FORUM #1</p>
-                <p>FORUM #2</p>
-                <p>FORUM #3</p>
+                <p>DON'T HAVE THE TIME.</p>
+                <p>DON'T FUCKING CARE.</p>
+                <p>GOOD BYE.</p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>

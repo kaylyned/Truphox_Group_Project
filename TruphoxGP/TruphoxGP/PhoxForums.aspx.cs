@@ -43,7 +43,7 @@ namespace TruphoxGP
 
         private void loadgvUnion()
         {
-            myDal = new DAL("spSearchUnion");
+            myDal = new DAL("spPhoxUnion");
             myDal.addParm("input", "");
 
             DataSet ds = myDal.getDataSet();
@@ -101,6 +101,11 @@ namespace TruphoxGP
 
         protected void gvForum_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if(e.CommandName == "Page")
+            {
+                return;
+            }
+
             gvForum.SelectedIndex = Convert.ToInt32(e.CommandArgument);
             int forumID = Convert.ToInt32(gvForum.SelectedDataKey.Value);
 

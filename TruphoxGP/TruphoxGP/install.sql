@@ -1250,11 +1250,7 @@ CREATE PROCEDURE spSearchUnion
   @input VARCHAR (200) = NULL
 )
 AS 
-BEGIN --WRITING 
---     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
---  FROM tbWriting w INNER JOIN tbPost po ON 
---  w.postID = po.postID
---   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+BEGIN
 
 --UNION --ART 
       SELECT a.postID, rating, postTitle, postSubTitle, username,  './Images/' + artLink AS 'Images', 'Art' AS TYPE 
@@ -1278,6 +1274,41 @@ END
 GO
 EXEC spSearchUnion @input='ru'
 GO
+
+
+------------------PHOX  PROC -------------------
+CREATE PROCEDURE spPhoxUnion
+(
+  @input VARCHAR (200) = NULL
+)
+AS 
+BEGIN
+
+--UNION --ART 
+      SELECT a.postID, rating, postTitle, postSubTitle, username,  './Images/' + artLink AS 'Images', 'Art' AS TYPE, postDate
+ FROM tbArt a INNER JOIN tbPost po ON 
+  a.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+
+UNION --PHOTOGRAPHY 
+      SELECT ph.postID, rating, postTitle, postSubTitle, username, './Images/' + photoLink AS 'Images', 'Photography' AS TYPE, postDate 
+ FROM tbPhotography ph INNER JOIN tbPost po ON 
+  ph.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+
+UNION --VIDEO 
+      SELECT v.postID, rating, postTitle, postSubTitle, username,  './Video/' + videoLink AS 'Images', 'Video' AS TYPE, postDate
+ FROM tbVideo v INNER JOIN tbPost po ON 
+  v.postID = po.postID
+   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
+	SELECT TOP 6 * FROM tbPost
+	   	ORDER BY  postDate ASC 
+
+END 
+GO
+EXEC spPhoxUnion @input=''
+GO
+
 
 -------------------------------- SEARCH SITE --------------------------------
 CREATE PROCEDURE spSearch 

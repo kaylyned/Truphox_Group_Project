@@ -1423,3 +1423,5 @@ EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this worl
 EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @username='GigglesMcklown'
 
 EXEC spReadRecentArt;
+
+EXEC spReadVideo;

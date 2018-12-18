@@ -45,8 +45,6 @@ namespace TruphoxGP
                 string pathAfile = videoLink + fileName;
                 fuVideo.PostedFile.SaveAs(pathAfile);
 
-                DataSet ds = myDal.getDataSet();
-
                 int postID = Convert.ToInt32(myDal.execScalar());
 
                 Response.Redirect("Post.aspx?postID=" + postID + "&postType=video");

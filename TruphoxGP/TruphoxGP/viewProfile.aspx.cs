@@ -160,7 +160,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=photography");
             }
         }
 
@@ -170,7 +170,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=writing");
             }
         }
 
@@ -180,7 +180,7 @@ namespace TruphoxGP
 
             if (e.CommandName == "Select")
             {
-                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=artwork");
+                Response.Redirect("Post.aspx?postID=" + itemID.ToString() + "&postType=video");
             }
         }
         protected void btnFollow_Click(object sender, EventArgs e)

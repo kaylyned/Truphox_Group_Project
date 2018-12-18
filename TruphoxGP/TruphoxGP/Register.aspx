@@ -68,7 +68,6 @@
         <br />
         <hr>
         <p>By creating an account you agree to our <a href="TAP.aspx">Terms & Privacy</a>.</p>
-        <%--<button type="submit" class="registerbtn">Register</button>--%>
         <asp:Button ID="btnSubmit" runat="server" CssClass="registerbtn" Text="Submit" OnClick="btnSubmit_Click" />
     </div>
     <div class="container signin">

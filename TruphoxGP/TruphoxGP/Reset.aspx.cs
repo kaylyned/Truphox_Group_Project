@@ -12,7 +12,6 @@ namespace TruphoxGP
     public partial class Reset : System.Web.UI.Page
     {
         DAL myDal;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,7 +42,6 @@ namespace TruphoxGP
             {
                 Response.Redirect("Login.aspx");
             }
-
         }
 
         protected void btnHome_Click(object sender, EventArgs e)

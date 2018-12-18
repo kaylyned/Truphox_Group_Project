@@ -84,8 +84,7 @@ namespace TruphoxGP
             mydal.addParm("postSubTitle", txtUSubtitle.Text);          
 
             mydal.execNonQuery();
-            Response.Redirect("Post.aspx?postID=" + lblPostID.Text + "&postType=artwork");
-            string test;
+            Response.Redirect("Post.aspx?postID=" + lblPostID.Text + "&postType=artwork");           
         }
     }
 }

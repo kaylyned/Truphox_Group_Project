@@ -49,6 +49,7 @@
                             <br>
                         </div>
                     </div>
+
                     <div style="padding: 30px">
                         <h3 class="text-center">COMMENTS</h3>
                         <asp:Panel ID="pnlComments" runat="server" Visible="false">
@@ -107,6 +108,7 @@
             </div>
         </div>
     </div>
+
     <script>        
         $(document).ready(function () {
             var postID = getUrlParameter('postID');
@@ -147,19 +149,7 @@
                     + "<div class='w3-col l10 m9'>"
                     + "<a href=''>" + c.username + "</a><br />" + "<span class='w3-opacity w3-medium'>" + c.commentDate
                     + "</span>" + "<br />" + "<br />"
-                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />");
-
-                ////like btn
-                //+ "<p class='w3-right'>"
-                //    + "<button class='w3-button w3-white w3-border' onclick='return likeComment(" + c.commentID + ")'>"
-                //    + "<b>" + "<i class='fa fa-thumbs-up'>" + "</i> Like"
-                //    + "<span class='w3-tag w3-white'>1" + "</span>" + "</b >" + "</button >" + "</p >"
-                //    + "</div>" + "</div>" + "</div>"
-
-                ////reply btn
-                //+ "<p class='w3-right'>" 
-                //+ "<button class='w3-button w3-black' onclick='return replyComment()' id='myBtn'>" + "<b>Reply" + "</b>"
-                //+ "<span class='w3-tag w3-white'>" + "</span>" + "</button>" + "</p>"                   
+                    + "<div class='usercomment'>" + c.commentText + "</div>" + "<br />");                 
                 sectionComments.appendChild(divComments);
             };
         };
@@ -204,23 +194,5 @@
             });
             return false;
         };
-
-        //function checkLoggedIn(postID) {         
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "checkLoggedIn.ashx",
-        //        cache: false,
-        //        data: {},
-        //        success: function (data) {   
-
-        //            getComments(postID, data);       
-        //        },
-        //        err: function (error) {
-        //            alert("error");
-        //        }
-        //    });          
-        //    alert(data);
-        //    alert("failure"); // dies here 
-        //}   
     </script>
 </asp:Content>

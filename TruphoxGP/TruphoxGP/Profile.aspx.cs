@@ -14,7 +14,6 @@ namespace TruphoxGP
     public partial class Profile : System.Web.UI.Page
     {
         DAL myDal;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Security mySecurity = new Security();

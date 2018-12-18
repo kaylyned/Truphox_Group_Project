@@ -13,7 +13,6 @@ namespace TruphoxGP
     public partial class Recover : System.Web.UI.Page
     {
         DAL myDal;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

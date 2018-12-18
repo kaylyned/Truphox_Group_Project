@@ -137,14 +137,6 @@
                     </div>
                 </div>
             </div>
-   <%--         <div class="col-sm-10">
-                <div class="well">
-                    <p>WORDS</p>
-                </div>
-                <div class="well">
-                    <p>WORDS</p>
-                </div>
-            </div>--%>
         </div>
         <br />
         <br />
@@ -181,10 +173,6 @@
                 </div>
                 <br />
             </div>
-      <%--      <div class="well">
-                <h3>TITLE</h3>
-                <p>MORE TEXT....</p>
-            </div>--%>
         </div>
     </div>
 </asp:Content>

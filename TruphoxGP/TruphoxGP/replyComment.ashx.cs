@@ -18,7 +18,6 @@ namespace TruphoxGP
         public void ProcessRequest(HttpContext context)
         {
             Security mySecurity = new Security();
-
             if (mySecurity.isLoggedIn == true)
             {
                 context.Response.ContentType = "text/plain";
@@ -28,7 +27,6 @@ namespace TruphoxGP
                 }
 
                 string username = mySecurity.username;
-
                 mydal = new DAL("spCreateCommentReply"); //add read comment reply proc
                 mydal.addParm("parentCommentID", parentCommentID.ToString());
                 mydal.addParm("username", username);

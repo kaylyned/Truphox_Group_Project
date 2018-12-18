@@ -6,10 +6,8 @@
     <div>
         <asp:Button ID="btnHome" runat="server" Text="Back to Home" Visible="false" OnClick="btnHome_Click" />
         <br />
-
         <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
         <asp:Label ID="lblUsername" runat="server" Text="" Visible="false"></asp:Label>
-
         <asp:Panel ID="pnlReset" runat="server">
             <table>
                     <tr>

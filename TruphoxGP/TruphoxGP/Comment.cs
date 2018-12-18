@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 
 namespace TruphoxGP
 {
-
     public class comment
     { 
         public int postID { get; set; }

@@ -88,6 +88,5 @@ namespace TruphoxGP
         {
             _parms = new List<parms>();
         }
-
     }
 }

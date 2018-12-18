@@ -17,7 +17,6 @@ namespace TruphoxGP
             {
                 loadWriteTrending();
                 loadWriteRecent();
-               //loadWriteFav();
             }
         }
         private void loadWriteTrending()

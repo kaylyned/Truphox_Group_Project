@@ -21,16 +21,6 @@ namespace TruphoxGP
             comments = new List<comment>();
         }
 
-        //public void add(int PostID, string CommentText, DateTime CommentDate, int PostCommentNumber)
-        //{
-        //    myDal = new DAL("spCreateComment");
-        //    myDal.addParm("postID", PostID.ToString());
-        //    myDal.addParm("commentText", CommentText);
-        //    myDal.addParm("commentDate", CommentDate.ToString());
-        //    myDal.addParm("postCommentNumber", PostCommentNumber.ToString());
-        //    myDal.execNonQuery();
-        //}
-
         public List<comment> getComments(int postID)
         {
             myDal = new DAL("spReadComment");
@@ -51,7 +41,6 @@ namespace TruphoxGP
 
                 comments.Add(newComment);
             }
-
             return comments;
         }
     }

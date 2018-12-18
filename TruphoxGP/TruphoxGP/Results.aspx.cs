@@ -27,9 +27,9 @@ namespace TruphoxGP
                 {
                     loadPostSearch(search);
                 }
-
             }
         }
+
         private void loadUserSearch(string Search)
         {
             Security sec = new Security();

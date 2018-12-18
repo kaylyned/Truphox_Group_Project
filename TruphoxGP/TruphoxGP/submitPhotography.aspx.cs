@@ -36,6 +36,7 @@ namespace TruphoxGP
                 }
             }
         }
+
         private void loadPhotography(int PostID)
         {
             Security sec = new Security();

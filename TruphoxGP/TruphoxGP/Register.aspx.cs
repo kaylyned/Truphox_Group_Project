@@ -14,9 +14,7 @@ namespace TruphoxGP
     public partial class Register : System.Web.UI.Page
     {
         DAL myDal;
-
         DateTime dob { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,7 +22,6 @@ namespace TruphoxGP
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
             if (txtPassword.Text == txtpswRepeat.Text)
             {
                 dob = Convert.ToDateTime(txtDOB.Text);
@@ -43,8 +40,7 @@ namespace TruphoxGP
                 emailMessage.From = new MailAddress("truphox@gmail.com", "Truphox Admin");
                 emailMessage.To.Add(new MailAddress(txtEmail.Text));
                 emailMessage.Subject = "Confirmation Link";
-                emailMessage.Body = "<h3>Welcome to Truphox!</h3><br>" +
-                    "";
+                emailMessage.Body = "<h3>Welcome to Truphox!</h3><br>" + "";
                 emailMessage.IsBodyHtml = true;
                 SmtpClient client = new SmtpClient();
                 client.Host = "smtp.gmail.com";
@@ -62,9 +58,7 @@ namespace TruphoxGP
             {
                 lblMessage.Text = "Password do not match. Please recheck your password.";
             }
-
-            followTruphox(txtUsername.Text);
-            
+            followTruphox(txtUsername.Text);            
         }
 
         private void followTruphox(string username)

@@ -13,6 +13,7 @@
                     <asp:Button ID="btnEdit" CssClass="btn btn-secondary" runat="server" Text="Settings" Width="184px" OnClick="btnEdit_Click" />
                 </div>
             </div>
+
             <br />
             <div class="row content">
                 <div class="leftcolumn">
@@ -141,15 +142,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <%--            <div class="col-sm-10">
-                <div class="well">
-                    <p>WORDS</p>
-                </div>
-                <div class="well">
-                    <p>WORDS</p>
-                </div>
-            </div>--%>
+            </div>         
         </div>
         <br />
         <br />
@@ -262,6 +255,7 @@
            
         </div>
     </div>
+
     <script>        
         function readURL(input) {
             if (input.files && input.files[0]) {

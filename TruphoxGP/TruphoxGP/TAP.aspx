@@ -190,7 +190,6 @@
         <p>Pour toute question relative à la présente Politique de Confidentialité, veuillez nous contacter:</p>
         <ul>
             <li>Par courrier électronique: truphox@gmail.com</li>
-
         </ul>
     </asp:Panel>
 </asp:Content>

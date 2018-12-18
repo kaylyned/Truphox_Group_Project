@@ -12,6 +12,7 @@ namespace TruphoxGP
     public partial class Post : System.Web.UI.Page
     {
         DAL mydal;
+        public string postUser { get; set; }
         public int postID { get; set; }
         public string postType { get; set; }
 
@@ -97,7 +98,7 @@ namespace TruphoxGP
             mydal.addParm("postID", PostID.ToString());
             DataSet ds = mydal.getDataSet();
 
-            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
+            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();                
         }
 
         private void loadArt(int PostID)
@@ -184,9 +185,17 @@ namespace TruphoxGP
             {
                 mydal = new DAL("spCreateLike");
                 mydal.addParm("username", mySecurity.username);
-                mydal.addParm("postID", postID.ToString());
-                mydal.execNonQuery();
-                
+                mydal.addParm("postID", postID.ToString());             
+                string message = mydal.execScalar();
+
+                if (message == "LIKED")
+                {
+                    likeNotification();
+                }
+                else if (message == "UNLIKED")
+                {
+
+                }                
             }
             else
             {
@@ -194,6 +203,15 @@ namespace TruphoxGP
             }
             validLike(postID);
             loadLikes(postID);
+        }
+
+        private void likeNotification()
+        {
+            Security sec = new Security();
+            mydal = new DAL("spCreateNotification");
+            mydal.addParm("username", lblUsername.Text);
+            mydal.addParm("notificationText", sec.username + " has liked your post " + lblPostTitle.Text + ".");
+            mydal.execNonQuery();
         }
 
         protected void lnkBtnUsername_Click(object sender, EventArgs e)
@@ -308,12 +326,22 @@ namespace TruphoxGP
                 mydal.addParm("commentText", txtComment.Text);
                 mydal.addParm("postID", postID.ToString());
                 mydal.execNonQuery();
+                commentNotification();
             }
             else
             {
 
             }
             txtComment.Text = "";            
+        }
+
+        private void commentNotification()
+        {
+            Security sec = new Security();
+            mydal = new DAL("spCreateNotification");
+            mydal.addParm("username", lblUsername.Text);
+            mydal.addParm("notificationText", sec.username + " has commented on your post " + lblPostTitle.Text + ".");
+            mydal.execNonQuery();
         }
     }
 }

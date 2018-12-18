@@ -653,11 +653,13 @@ BEGIN
 	IF EXISTS (SELECT * FROM tbLike WHERE username = @username and postID = @postID)
 				BEGIN
 					DELETE FROM tbLike WHERE username = @username and postID = @postID
+					SELECT 'UNLIKED' AS MESSAGE
 				END
 			ELSE
 				BEGIN				
 					INSERT INTO tbLike (postID, username) VALUES
 									(@postID, @username)
+					SELECT 'LIKED' AS MESSAGE
 				END
 END
 GO

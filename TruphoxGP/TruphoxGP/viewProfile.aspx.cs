@@ -199,14 +199,14 @@ namespace TruphoxGP
 
             if (message == "followed")
             {
-                btnFollow.Text = "Followed";
+               btnFollow.Text = "Followed";
                followNofitication(ViewUser);
             }   
 
            else if (message == "unfollowed")
             {
                 btnFollow.Text = "Follow";
-                unfollowNotification(viewUser);
+                //unfollowNotification(viewUser);
             }
         }
 
@@ -219,14 +219,14 @@ namespace TruphoxGP
             myDal.execNonQuery();
         }
 
-        private void unfollowNotification(string viewUser)
-        {
-            Security sec = new Security();
-            myDal = new DAL("spCreateNotification");
-            myDal.addParm("username", viewUser);
-            myDal.addParm("notificationText", sec.username + " is no longer following you.");
-            myDal.execNonQuery();
-        }
+        //private void unfollowNotification(string viewUser)
+        //{
+        //    Security sec = new Security();
+        //    myDal = new DAL("spCreateNotification");
+        //    myDal.addParm("username", viewUser);
+        //    myDal.addParm("notificationText", sec.username + " is no longer following you.");
+        //    myDal.execNonQuery();
+        //}
 
         protected void dlFollowing_ItemCommand(object source, DataListCommandEventArgs e)
         {

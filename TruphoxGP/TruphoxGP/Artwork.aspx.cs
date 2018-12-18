@@ -18,8 +18,6 @@ namespace TruphoxGP
             {
                 loadATrending();
                 loadARecent();
-               // loadAFav();
-
             }
         }
         private void loadATrending()
@@ -40,16 +38,6 @@ namespace TruphoxGP
 
             dlArtRecent.DataSource = dtA;
             dlArtRecent.DataBind();
-        }
-
-        private void loadAFav()
-        {
-            mydal = new DAL("spReadArt");
-            DataSet ds = mydal.getDataSet();
-            DataTable dtA = ds.Tables[0];
-
-            dlArtFav.DataSource = dtA;
-            dlArtFav.DataBind();
         }
 
         protected void dlArtTrending_ItemCommand(object source, DataListCommandEventArgs e)

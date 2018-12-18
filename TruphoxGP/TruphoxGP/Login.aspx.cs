@@ -37,11 +37,6 @@ namespace TruphoxGP
 
                 Response.Redirect("Home.aspx");
             }
-
-            else
-            {
-                
-            }
         }
 
         private void saveUser()

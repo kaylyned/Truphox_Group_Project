@@ -17,7 +17,6 @@ namespace TruphoxGP
             {
                 loadPTrending();
                 loadPRecent();
-               // loadPFav();
             }
         }
         private void loadPTrending()
@@ -37,15 +36,6 @@ namespace TruphoxGP
 
             dlPhotoRecent.DataSource = dtA;
             dlPhotoRecent.DataBind();
-        }
-        private void loadPFav()
-        {
-            mydal = new DAL("spReadPhotography");
-            DataSet ds = mydal.getDataSet();
-            DataTable dtA = ds.Tables[0];
-
-           dlPhotoFav.DataSource = dtA;
-            dlPhotoFav.DataBind();
         }
 
         protected void dlPhotoTrending_ItemCommand(object source, DataListCommandEventArgs e)

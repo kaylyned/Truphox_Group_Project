@@ -14,12 +14,7 @@
                     <asp:Label ID="lblForums" runat="server" Text='<%#Eval("forumText") %>'></asp:Label>
                 </p>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <br /><br /> <br /><br /><br /> <br />
             <div style="padding: 30px">
                 <h3 class="text-center">COMMENTS</h3>
                 <asp:Panel ID="pnlComments" runat="server" Visible="true">
@@ -30,18 +25,12 @@
                     <p><strong>--Truphox Admin</strong></p>
                     <br />
                 </asp:Panel>
-                <br />
-                <br />
-                <br />
+                <br /><br /><br />
                 <div>
                 </div>
             </div>
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <br /><br /><br /><br /><br />
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>

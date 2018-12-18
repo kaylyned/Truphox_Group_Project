@@ -52,7 +52,6 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="Profile.aspx">PROFILE</a></li>
-                                <%--<li><a href="#">STORE</a></li>--%>
                                 <li>
                                     <asp:Panel ID="pnlNotifications" runat="server" Visible="false">&nbsp&nbsp<a href="Notifications.aspx">NOTIFICATIONS</a></asp:Panel>
                                 </li>

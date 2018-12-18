@@ -150,6 +150,7 @@ CREATE TABLE tbForum
 	forumDate DATETIME,
 	username VARCHAR(30)
 )
+
 --CREATE TABLE tbSale
 --(
 --	saleID INT IDENTITY (0,1) PRIMARY KEY,
@@ -170,9 +171,8 @@ CREATE TABLE tbForum
 --)
 
 GO
--------------------------------- PROCEDURES --------------------------------
 
--------------------------------- ACCOUNTS --------------------------------
+-------------------------------- ACCOUNTS PROCEDURES--------------------------------
 
 CREATE PROCEDURE spCreateAccount
 (
@@ -857,21 +857,6 @@ BEGIN
 END
 GO
 
---CREATE PROCEDURE spDeleteWriting
---(
---	@postID INT
---)
---AS
---BEGIN
---	DELETE FROM tbComment WHERE postID = @postID
---	DELETE FROM tbDeletedComments WHERE postID = @postID
---	DELETE FROM tbLike WHERE postID = @postID
---	DELETE FROM tbPostTag WHERE postID = @postID
---	DELETE FROM tbWriting WHERE postID = @postID
---	DELETE FROM tbPost WHERE postID = @postID
---END
---GO
-
 -------------------------------- ART --------------------------------
 	
 CREATE PROCEDURE spCreateArt
@@ -940,21 +925,6 @@ BEGIN
 	WHERE postID = ISNULL(@postID, postID);	
 END
 GO
-
---CREATE PROCEDURE spDeleteArt
---(
---	@postID INT
---)
---AS
---BEGIN
---	DELETE FROM tbComment WHERE postID = @postID
---	DELETE FROM tbDeletedComments WHERE postID = @postID
---	DELETE FROM tbLike WHERE postID = @postID
---	DELETE FROM tbPostTag WHERE postID = @postID
---	DELETE FROM tbArt WHERE postID = @postID
---	DELETE FROM tbPost WHERE postID = @postID
---END
---GO
 
 -------------------------------- PHOTOGRAPHY --------------------------------
 
@@ -1095,20 +1065,6 @@ BEGIN
 END
 GO
 
---CREATE PROCEDURE spDeleteVideo
---(
---	@postID INT
---)
---AS
---BEGIN
---	DELETE FROM tbComment WHERE postID = @postID
---	DELETE FROM tbDeletedComments WHERE postID = @postID
---	DELETE FROM tbLike WHERE postID = @postID
---	DELETE FROM tbPostTag WHERE postID = @postID
---	DELETE FROM tbVideo WHERE postID = @postID
---	DELETE FROM tbPost WHERE postID = @postID
---END
---GO
 
 ------------------RECENTLY ADDED... PROFILE--------------------
 
@@ -1214,12 +1170,7 @@ CREATE PROCEDURE spHoomanUnion
  	@username VARCHAR(30)=NULL
 )
 AS 
-BEGIN --WRITING 
---     SELECT w.postID, rating, postTitle, postSubtitle, username, writingText  AS 'writingText', '' as 'Images', 'Writing' AS TYPE 
---  FROM tbWriting w INNER JOIN tbPost po ON 
---  w.postID = po.postID
---   WHERE postTitle LIKE '%' + TRIM(@input) + '%'
-
+BEGIN 
 --UNION --ART 
       SELECT a.postID, rating, postTitle, postSubTitle, username,  './Images/' + artLink AS 'Images', 'Art' AS TYPE 
  FROM tbArt a INNER JOIN tbPost po ON 
@@ -1373,26 +1324,6 @@ EXEC spReadForums @forumID = NULL;
 EXEC spReadForums @forumID = 1;
 
 
-
-----------------------------------  UPDATE FORUMS --------------------------------
---CREATE PROCEDURE spUpdateForum
---(
---   @rating BIT,
---	@forumTitle VARCHAR(50),
---	@forumText VARCHAR(800),
---	@username VARCHAR(30)
---)
---AS
---BEGIN
---	UPDATE tbForum SET
---      rating = @rating, 
---      forumTitle= @forumTitle,
---	  forumText = @forumText
---	WHERE username = @username
-
---END
---GO
-
 ----------------------------------DELETE  FORUMS --------------------------------
 --CREATE PROCEDURE spDeleteForum
 --(
@@ -1434,15 +1365,10 @@ EXEC spCreateArt @rating=1, @postTitle='Truphox', @postSubTitle='', @username='T
 EXEC spCreateArt @rating=0,  @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
 EXEC spCreateArt @rating=0,  @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
 EXEC spCreateArt @rating=0, @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
+GO
 
 ------------------POSTS CREATED (VIDEO) -------------------
-
---EXEC spCreatePost @rating=0, @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0, , @postDate='', @lastComment=3, @username='';
---EXEC spCreatePost @rating=0,  @postDate='', @lastComment=3, @username='';
-GO
+--NO SAMPLE DATA
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
 EXEC spCreatePhotography @rating=0,  @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';

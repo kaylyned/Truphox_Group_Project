@@ -47,7 +47,7 @@ namespace TruphoxGP
             else
             {
                 lblNotFound.Visible = true;
-                lblNotFound.Text = Search + "not found";
+                lblNotFound.Text = Search + " not found";
             }
         }
 
@@ -68,7 +68,7 @@ namespace TruphoxGP
             else
             {
                 lblNotFound.Visible = true;
-                lblNotFound.Text = Search + "not found";
+                lblNotFound.Text = Search + " not found";
             }
         }
 

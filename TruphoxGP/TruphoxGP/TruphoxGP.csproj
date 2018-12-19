@@ -164,6 +164,7 @@
     <Content Include="Settings.aspx" />
     <Content Include="TAP.aspx" />
     <Content Include="Video.aspx" />
+    <Content Include="Video\SampleVideo.mp4" />
     <Content Include="viewProfile.aspx" />
     <Content Include="Writing.aspx" />
     <Content Include="Scripts\popper-utils.js" />
@@ -384,9 +385,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Video\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

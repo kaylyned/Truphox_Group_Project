@@ -1379,6 +1379,8 @@ EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @us
 EXEC spCreatePhotography @rating=0,  @postTitle='Camping', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
+EXEC spCreateVideo @rating=0, @postTitle='Sample Video', @postSubtitle='Rabbit Video', @username='CanadaGhost', @videoLink='SampleVideo.mp4';
+
 EXEC spCreateComment @postID=7, @commentText='Cool logo!', @username='CanadaGhost';
 EXEC spCreateComment @postID=7, @commentText='We thought so!', @username='Truphox';
 EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenjay';

@@ -151,6 +151,15 @@ CREATE TABLE tbForum
 	username VARCHAR(30)
 )
 
+CREATE TABLE tbForumResponse
+(
+	forumResID INT IDENTITY(0,1) PRIMARY KEY,
+	forumResText VARCHAR(500),
+	forumResDate DATETIME,
+	username VARCHAR(30),
+	forumID INT FOREIGN KEY REFERENCES tbForum(forumID)
+)
+
 --CREATE TABLE tbSale
 --(
 --	saleID INT IDENTITY (0,1) PRIMARY KEY,
@@ -1323,6 +1332,7 @@ GO
 EXEC spReadForums @forumID = NULL;
 EXEC spReadForums @forumID = 1;
 
+GO
 
 ----------------------------------DELETE  FORUMS --------------------------------
 --CREATE PROCEDURE spDeleteForum
@@ -1334,6 +1344,31 @@ EXEC spReadForums @forumID = 1;
 --	DELETE FROM tbForum WHERE forumID = @forumID
 --END
 --GO
+
+----------------------------------RESPONSE  FORUMS --------------------------------
+
+CREATE PROCEDURE spCreateForumResponse
+(
+	@forumResText VARCHAR(500),	
+	@username VARCHAR(30),
+	@forumID INT
+)
+AS
+BEGIN
+	INSERT INTO tbForumResponse (forumResText, forumResDate, username, forumID) VALUES
+								(@forumResText, GETDATE(), @username, @forumID)
+END
+GO
+
+CREATE PROCEDURE spReadForumResponse
+(
+	@forumID INT
+)
+AS
+BEGIN
+	SELECT * FROM tbForumResponse WHERE forumID = ISNULL (@forumID, forumID);
+END
+GO
 
 -------------------------------- USERS CREATED --------------------------------
 
@@ -1424,6 +1459,8 @@ EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I
 EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @username='wrenjay'
 EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @username='GigglesMcklown'
 
-EXEC spReadRecentArt;
+EXEC spCreateForumResponse @forumResText='This is a response', @username='CanadaGhost', @forumID='0';
+EXEC spCreateForumResponse @forumResText='Test reponse with a lot of text. This is to see how the gridview responds to having all this text in a forum response.', @username='wrenjay', @forumID='0';
+EXEC spCreateForumResponse @forumResText='This is not the forum I was looking for.', @username='CanadaGhost', @forumID='0';
 
-EXEC spReadVideo;
+EXEC spReadForumResponse @forumID='0';

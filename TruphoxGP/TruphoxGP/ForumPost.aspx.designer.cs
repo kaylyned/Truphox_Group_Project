@@ -22,21 +22,39 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// lblForums control.
+        /// GVForumPost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForums;
+        protected global::System.Web.UI.WebControls.GridView GVForumPost;
         
         /// <summary>
-        /// pnlComments control.
+        /// GVForumResponse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlComments;
+        protected global::System.Web.UI.WebControls.GridView GVForumResponse;
+        
+        /// <summary>
+        /// txtReplyForum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReplyForum;
+        
+        /// <summary>
+        /// btnReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReply;
     }
 }

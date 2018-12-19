@@ -1366,7 +1366,9 @@ CREATE PROCEDURE spReadForumResponse
 )
 AS
 BEGIN
-	SELECT * FROM tbForumResponse WHERE forumID = ISNULL (@forumID, forumID);
+	SELECT forumResText, forumResDate, username, forumID
+	FROM tbForumResponse WHERE forumID = ISNULL (@forumID, forumID)
+	ORDER BY forumResDate DESC
 END
 GO
 

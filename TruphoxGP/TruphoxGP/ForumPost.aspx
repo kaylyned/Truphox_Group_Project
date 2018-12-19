@@ -6,31 +6,50 @@
             <div class="header">
                 <h1>PHOX FORUMS</h1>
             </div>
-            <br />
             <div class="well well-lg">
-                <h2>
-                    <asp:Label ID="lblTitle" runat="server" Text='<%#Eval("fourmTitle") %>'></asp:Label></h2>
-                <p>
-                    <asp:Label ID="lblForums" runat="server" Text='<%#Eval("forumText") %>'></asp:Label>
-                </p>
+                <div class="header">
+                    <h2>
+                        <asp:Label ID="lblTitle" runat="server" Text='<%#Eval("forumTitle") %>'></asp:Label>
+                    </h2>
+                </div>
+                <br />
+                <asp:GridView ID="GVForumPost" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader">
+                    <Columns>
+                        <asp:BoundField DataField="username" HeaderText="Author" />
+                        <asp:BoundField DataField="forumDate" HeaderText="Date" />
+                        <asp:BoundField DataField="forumText" HeaderText="Post" />
+                    </Columns>
+                </asp:GridView>
             </div>
-            <br /><br /> <br /><br /><br /> <br />
-            <div style="padding: 30px">
-                <h3 class="text-center">COMMENTS</h3>
-                <asp:Panel ID="pnlComments" runat="server" Visible="true">
-                    <p>
-                        This comment section should've been used properly but due to a sad looking database and a lack of enthousastic hard-core talent, it has failed. We are sorry to all of those who just wanted to use this as a way to express hurtful fucking thing and you should keep your oppinions to yourself or only on Twitter.
-                If you were going to use this for all of those horrible ratings and/or political issues you just had to share with some random person over the internet, use the fucking twitter... Next time this will be used for better things. Until then....
-                    </p>
-                    <p><strong>--Truphox Admin</strong></p>
-                    <br />
-                </asp:Panel>
-                <br /><br /><br />
-                <div>
+
+            <div class="well well-lg">
+                <div class="header">
+                    <h3>Replies</h3>
+                </div>
+                <asp:GridView ID="GVForumResponse" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader">
+                    <Columns>
+                        <asp:BoundField DataField="username" HeaderText="Username" />
+                        <asp:BoundField DataField="forumResDate" HeaderText="Date" />
+                        <asp:BoundField DataField="forumResText" HeaderText="Response" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <div class="well well-lg">
+                 <div class="header">
+                    <h3>Reply to Forum Post</h3>
+                </div>
+                <asp:TextBox ID="txtReplyForum" runat="server" TextMode="MultiLine" MaxLength="500" CssClass="forumReply"></asp:TextBox>
+                <div class="header">
+                    <asp:Button ID="btnReply" runat="server" Text="Reply" CssClass="likeButton" OnClick="btnReply_Click" />
                 </div>
             </div>
         </div>
-        <br /><br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
@@ -44,4 +63,5 @@
             </div>
         </div>
     </div>
+
 </asp:Content>

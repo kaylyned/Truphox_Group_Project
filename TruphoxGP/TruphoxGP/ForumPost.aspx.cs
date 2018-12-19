@@ -22,6 +22,7 @@ namespace TruphoxGP
                 {
                     forumID = Convert.ToInt32(Request.QueryString["forumID"].ToString());
                     loadForum(forumID);
+                    loadReplies(forumID);
                 }
             }
         }
@@ -31,9 +32,40 @@ namespace TruphoxGP
             mydal = new DAL("spReadForums");
             mydal.addParm("forumID", forumID.ToString());
             DataSet ds = mydal.getDataSet();
+            DataTable dta = ds.Tables[0];
 
-            lblTitle.Text = ds.Tables[0].Rows[0]["forumTitle"].ToString();
-            lblForums.Text = ds.Tables[0].Rows[0]["forumText"].ToString();
+            lblTitle.Text = ds.Tables[0].Rows[0]["forumTitle"].ToString();            
+
+            GVForumPost.DataSource = dta;
+            GVForumPost.DataBind();
+        }
+
+        private void loadReplies(int forumID)
+        {
+            //load post replies
+            mydal = new DAL("spReadForumResponse");
+            mydal.addParm("forumID", forumID.ToString());
+            DataSet ds = mydal.getDataSet();
+            DataTable dta = ds.Tables[0];
+
+            GVForumResponse.DataSource = dta;
+            GVForumResponse.DataBind();
+        }
+
+        protected void btnReply_Click(object sender, EventArgs e)
+        {
+            Security sec = new Security();
+
+            //reply to forum post
+            mydal = new DAL("spCreateForumResponse");
+            mydal.addParm("forumID", forumID.ToString());
+            mydal.addParm("username", sec.username);
+            mydal.addParm("forumResText", txtReplyForum.Text);
+            mydal.execNonQuery();
+
+            loadForum(forumID);
+            loadReplies(forumID);
+
         }
     }
 }

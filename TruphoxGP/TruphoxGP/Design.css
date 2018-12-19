@@ -511,6 +511,12 @@ font-size:x-large;
     padding: 5px;
 }
 
+.forumReply{
+    max-width: 800px;
+    width:800px;
+    height:150px;
+}
+
 /*NOTIFICATION PAGE*/
 
 .notificationTitle {

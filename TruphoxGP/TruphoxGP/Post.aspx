@@ -31,7 +31,7 @@
 
                     <%-- Video --%>
                     <asp:Panel ID="pnlVideo" runat="server" Visible="false">
-                        <video id="postVideo" controls="controls">
+                        <video id="postVideo" runat="server" controls="controls" width="800">
                         </video>
                     </asp:Panel>
 

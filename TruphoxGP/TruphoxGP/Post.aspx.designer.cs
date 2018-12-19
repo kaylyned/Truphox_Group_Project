@@ -94,6 +94,15 @@ namespace TruphoxGP {
         protected global::System.Web.UI.WebControls.Panel pnlVideo;
         
         /// <summary>
+        /// postVideo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlVideo postVideo;
+        
+        /// <summary>
         /// lblLikes control.
         /// </summary>
         /// <remarks>

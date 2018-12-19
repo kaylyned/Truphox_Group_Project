@@ -146,7 +146,7 @@ namespace TruphoxGP
 
             lblPostTitle.Text = ds.Tables[0].Rows[0]["postTitle"].ToString();
             lblPostSubtitle.Text = ds.Tables[0].Rows[0]["postSubTitle"].ToString();
-            //postVideo. = ds.Tables[0].Rows[0]["videoLink"].ToString();
+            postVideo.Src = ds.Tables[0].Rows[0]["videoLink"].ToString();           
         }
 
         private void loadLikes(int PostID)

@@ -1424,13 +1424,14 @@ EXEC spCreateComment @postID=7, @commentText='We thought so!', @username='Trupho
 EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenjay';
 EXEC spCreateComment @postID=7, @commentText='I am person.', @username='Person';
 EXEC spCreateComment @postID=7, @commentText='Truphox da best #truphox', @username='CanadaGhost';
+EXEC  spCreateComment @postID=12, @commentText='Everyone who liked or viewed this owes me $5000.', @username='CanadaGhost';
 GO
 
-EXEC spCreateLike @postID12, @username='Person';
-EXEC spCreateLike @postID12, @username='wrenjay';
-EXEC spCreateLike @postID12, @username='Stranger';
-EXEC spCreateLike @postID12, @username='GigglesMcklown';
-EXEC spCreateLike @postID12, @username='Truphox';
+EXEC spCreateLike @postID=12, @username='Person';
+EXEC spCreateLike @postID=12, @username='wrenjay';
+EXEC spCreateLike @postID=12, @username='Stranger';
+EXEC spCreateLike @postID=12, @username='GigglesMcklown';
+EXEC spCreateLike @postID=12, @username='Truphox';
 
 SELECT * FROM tbPost
 SELECT * FROM tbWriting

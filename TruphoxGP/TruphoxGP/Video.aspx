@@ -7,7 +7,9 @@
             <ItemTemplate>
                 <asp:Label ID="lblpostID" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
                 <br />
-                <asp:Label ID="lblPostTitle" runat="server" CommandName="Select" Text='<%#Eval("postTitle") %>' CssClass="postTitle"></asp:Label>
+                <asp:LinkButton ID="videoLinks" runat="server" CommandName="Select">
+                    <asp:Label ID="VideoTitle" runat="server" Text='<%#Eval("postTitle") %>' CssClass="postTitle"></asp:Label>
+                </asp:LinkButton>
                 <br />
                 <video controls="controls" width="200" height="200" src='<%#Eval("videoLink") %>' />
             </ItemTemplate>

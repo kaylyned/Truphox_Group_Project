@@ -1402,6 +1402,7 @@ EXEC spCreateArt @rating=1, @postTitle='Truphox', @postSubTitle='', @username='T
 EXEC spCreateArt @rating=0,  @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
 EXEC spCreateArt @rating=0,  @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
 EXEC spCreateArt @rating=0, @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
+EXEC spCreateArt @rating=0, @postTitle='Million Dollar Painting', @postSubTitle='$5000 to even look at it', @username='CanadaGhost', @artLink='MillionDollarArt.png'; 
 GO
 
 ------------------POSTS CREATED (VIDEO) -------------------
@@ -1424,6 +1425,12 @@ EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenj
 EXEC spCreateComment @postID=7, @commentText='I am person.', @username='Person';
 EXEC spCreateComment @postID=7, @commentText='Truphox da best #truphox', @username='CanadaGhost';
 GO
+
+EXEC spCreateLike @postID12, @username='Person';
+EXEC spCreateLike @postID12, @username='wrenjay';
+EXEC spCreateLike @postID12, @username='Stranger';
+EXEC spCreateLike @postID12, @username='GigglesMcklown';
+EXEC spCreateLike @postID12, @username='Truphox';
 
 SELECT * FROM tbPost
 SELECT * FROM tbWriting

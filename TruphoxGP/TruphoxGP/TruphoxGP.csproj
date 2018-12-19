@@ -76,6 +76,7 @@
     <Content Include="Images\camera.jpg" />
     <Content Include="Images\convet.jpg" />
     <Content Include="Images\lights.jpg" />
+    <Content Include="Images\MillionDollarArt.png" />
     <Content Include="Images\mountains.jpg" />
     <Content Include="Images\tiny-rick_profile.jpg" />
     <Content Include="Notifications.aspx" />

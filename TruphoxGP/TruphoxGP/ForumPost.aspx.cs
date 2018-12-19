@@ -34,7 +34,9 @@ namespace TruphoxGP
             DataSet ds = mydal.getDataSet();
             DataTable dta = ds.Tables[0];
 
-            lblTitle.Text = ds.Tables[0].Rows[0]["forumTitle"].ToString();            
+            lblTitle.Text = ds.Tables[0].Rows[0]["forumTitle"].ToString();
+            lblUsername.Text = ds.Tables[0].Rows[0]["username"].ToString();
+            lblPostID.Text = forumID.ToString();
 
             GVForumPost.DataSource = dta;
             GVForumPost.DataBind();
@@ -62,10 +64,33 @@ namespace TruphoxGP
             mydal.addParm("username", sec.username);
             mydal.addParm("forumResText", txtReplyForum.Text);
             mydal.execNonQuery();
+            forumReplyNotification();
 
             loadForum(forumID);
             loadReplies(forumID);
+        }
 
+        private void forumReplyNotification()
+        {
+            Security sec = new Security();
+            mydal = new DAL("spCreateNotification");
+            mydal.addParm("username", lblUsername.Text);
+            mydal.addParm("notificationText", sec.username + " has commented on your forum post " + lblTitle.Text + ".");
+            mydal.execNonQuery();
+        }
+
+        protected void GVForumResponse_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GVForumResponse.PageIndex = e.NewPageIndex;
+            loadReplies(Convert.ToInt32(lblPostID.Text));
+        }
+
+        protected void GVForumResponse_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Page")
+            {
+                return;
+            }
         }
     }
 }

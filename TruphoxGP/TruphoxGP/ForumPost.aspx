@@ -12,8 +12,10 @@
                         <asp:Label ID="lblTitle" runat="server" Text='<%#Eval("forumTitle") %>'></asp:Label>
                     </h2>
                 </div>
+                <asp:Label ID="lblUsername" runat="server" Text="" Visible="false"></asp:Label>
+                <asp:Label ID="lblPostID" runat="server" Text="" Visible="false"></asp:Label>
                 <br />
-                <asp:GridView ID="GVForumPost" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader">
+                <asp:GridView ID="GVForumPost" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader" RowStyle-CssClass="forumRow">
                     <Columns>
                         <asp:BoundField DataField="username" HeaderText="Author" />
                         <asp:BoundField DataField="forumDate" HeaderText="Date" />
@@ -26,7 +28,8 @@
                 <div class="header">
                     <h3>Replies</h3>
                 </div>
-                <asp:GridView ID="GVForumResponse" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader">
+                <asp:GridView ID="GVForumResponse" runat="server" AutoGenerateColumns="false" CssClass="cssforum" HeaderStyle-CssClass="forumHeader" 
+                    AllowPaging="true" RowStyle-CssClass="forumRow" PageSize="5" PagerStyle-CssClass="forumPager" OnPageIndexChanging="GVForumResponse_PageIndexChanging" OnRowCommand="GVForumResponse_RowCommand"  >
                     <Columns>
                         <asp:BoundField DataField="username" HeaderText="Username" />
                         <asp:BoundField DataField="forumResDate" HeaderText="Date" />

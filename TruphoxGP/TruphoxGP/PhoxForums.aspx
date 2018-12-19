@@ -9,8 +9,10 @@
             <asp:Button ID="btnCreate" runat="server" CssClass="btn-info" Text="New Forum" OnClick="btnCreate_Click" />
             <asp:Panel ID="pnlLoginDiv" runat="server" Visible="false">
                 <div class="well">
-                    <h3>PLEASE LOGIN TO VIEW FORMS</h3>
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-block" OnClick="btnLogin_Click" Width="500px" />
+                    <div class="header">
+                        <h3>PLEASE LOGIN TO VIEW FORMS</h3>
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="likebutton" OnClick="btnLogin_Click" Width="500px" />
+                    </div>
                 </div>
             </asp:Panel>
             <div class="well well-lg">
@@ -57,7 +59,11 @@
                 </div>
             </asp:Panel>
         </div>
-        <br /><br /><br /><br /><br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
@@ -68,12 +74,13 @@
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
                 <p>
-                    <asp:DataList ID="dlUnion" runat="server" DataKeyField="postID" OnItemCommand="dlUnion_ItemCommand" RepeatColumns="3" RepeatDirection="Horizontal" >
+                    <asp:DataList ID="dlUnion" runat="server" DataKeyField="postID" OnItemCommand="dlUnion_ItemCommand" RepeatColumns="3" RepeatDirection="Horizontal">
                         <ItemTemplate>
-                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" height="90px" max-width="90px"  CommandName="post" />
-                             <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' visible="false"></asp:Label>
+                            <asp:ImageButton runat="server" ImageUrl='<%#Eval("Images") %>' CssClass="img-circle" Height="90px" max-width="90px" CommandName="post" />
+                            <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>' Visible="false"></asp:Label>
                         </ItemTemplate>
-                    </asp:DataList></p>
+                    </asp:DataList>
+                </p>
             </div>
         </div>
     </div>

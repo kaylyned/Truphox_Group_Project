@@ -5,8 +5,7 @@
         <div class="col-sm-8 text-left">
             <div class="header">
                 <h1>PHOX FORUMS</h1>
-            </div>
-            <asp:Button ID="btnCreate" runat="server" CssClass="btn-info" Text="New Forum" OnClick="btnCreate_Click" />
+            </div>            
             <asp:Panel ID="pnlLoginDiv" runat="server" Visible="false">
                 <div class="well">
                     <div class="header">
@@ -28,6 +27,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
+            <asp:Button ID="btnCreate" runat="server" CssClass="btn-info" Text="New Forum" OnClick="btnCreate_Click" />
             <asp:Panel runat="server" ID="pnlcreateForum" Visible="false">
                 <div class="row content">
                     <div class="leftcolumn">

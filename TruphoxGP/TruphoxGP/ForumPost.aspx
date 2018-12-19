@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid text-center">
         <div class="col-sm-8 text-left">
-            <div class="header">
-                <h1>PHOX FORUMS</h1>
+            <div class="header">               
+               <a href="PhoxForums.aspx"><h1>PHOX FORUMS</h1></a> 
             </div>
             <div class="well well-lg">
                 <div class="header">

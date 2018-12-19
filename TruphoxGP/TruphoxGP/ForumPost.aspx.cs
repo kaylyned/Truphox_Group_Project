@@ -60,14 +60,16 @@ namespace TruphoxGP
 
             //reply to forum post
             mydal = new DAL("spCreateForumResponse");
-            mydal.addParm("forumID", forumID.ToString());
+            mydal.addParm("forumID", lblPostID.Text);
             mydal.addParm("username", sec.username);
             mydal.addParm("forumResText", txtReplyForum.Text);
             mydal.execNonQuery();
             forumReplyNotification();
 
-            loadForum(forumID);
-            loadReplies(forumID);
+            txtReplyForum.Text = "";
+
+            loadForum(Convert.ToInt32(lblPostID.Text));
+            loadReplies(Convert.ToInt32(lblPostID.Text));
         }
 
         private void forumReplyNotification()

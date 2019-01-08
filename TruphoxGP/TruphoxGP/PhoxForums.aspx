@@ -67,9 +67,8 @@
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>DON'T HAVE THE TIME.</p>
-                <p>DON'T FUCKING CARE.</p>
-                <p>GOOD BYE.</p>
+                <p>Something could have been here.</p>
+                <p>Did not have the time to come up with something.</p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>

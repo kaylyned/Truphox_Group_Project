@@ -50,6 +50,6 @@
     <div id="band" class="container text-center">
         <h3>WELCOME TO TRUPHOX!</h3>
         <p><strong>A website for even the most novice of artists, videographers and poets. </strong></p>
-        <p><strong> Share your creativity, like and share other ones and join the community that will accept you where ever you are. Unless you are here to critizize the shit out of this...</strong></p>
+        <p><strong> Share your creativity, like and share other ones and join the community that will accept you where ever you are...</strong></p>
     </div>
 </asp:Content>

@@ -56,13 +56,13 @@
         <div class="col-sm-4">
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>This project is quite frankly driving me up the wall </p>
-                <p>And the pressure to finish is time ticking </p>
-                <p>Right now I just want a glass of wine and a good old fashioned horror movie. </p>
+                <p>This space would've been used</p>
+                <p>if we would've had more time in order to come </p>
+                <p>up with something better than this long text rant.</p>
             </div>
             <div class="well">
                 <h3>MORE FROM TRUPHOX</h3>
-                <p>There is nothing here. You don't deserve hopes...</p>
+                <p>There is nothing here either.</p>
             </div>
         </div>
     </div>

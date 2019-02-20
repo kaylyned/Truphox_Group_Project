@@ -42,7 +42,7 @@ namespace TruphoxGP
             username = Username;
             userPassword = UserPassword;
 
-            //Add Login Proc
+            //Login Proc
             myDal = new DAL("spLogin");
             myDal.addParm("username", username);
             myDal.addParm("userPassword", userPassword);

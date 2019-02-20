@@ -1410,8 +1410,8 @@ GO
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
 EXEC spCreatePhotography @rating=0,  @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';
-EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumkinK.jpg';
-EXEC spCreatePhotography @rating=0,  @postTitle='Pumkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='PumkinD.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Pumpkin #1', @postSubTitle='KCarvings', @username='wrenjay', @photoLink='pumpkinK.jpg';
+EXEC spCreatePhotography @rating=0,  @postTitle='Pumpkin #2', @postSubTitle='DCarvings', @username='CanadaGhost', @photoLink='pumpkinD.jpg';
 EXEC spCreatePhotography @rating=0, @postTitle='Ruka', @postSubTitle='My canine.', @username='wrenjay', @photoLink='Ruka.jpg';
 EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @username='wrenjay', @photoLink='WpgSky.jpg';
 EXEC spCreatePhotography @rating=0,  @postTitle='Camping', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';

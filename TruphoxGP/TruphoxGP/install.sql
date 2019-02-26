@@ -232,9 +232,6 @@ BEGIN
 END
 GO
 
-EXEC spReadAccount @username='wrenjay'
-GO
-
 CREATE PROCEDURE spUpdateAccount
 (
     @username VARCHAR(30), 
@@ -304,9 +301,6 @@ BEGIN
 END
 GO
 
-EXEC spLogin @username='CanadaGhost', @userPassword='admin';
-EXEC spLogin @username='Stranger', @userPassword='password';
-GO
 -------------------------------- RECOVER --------------------------------
 
 CREATE PROCEDURE spRecoverUsername
@@ -1090,10 +1084,6 @@ BEGIN
 END
 GO
 
-EXEC spRecentlyAdded @username='wrenjay';
-EXEC spRecentlyAdded @username='Stranger';
-GO
-
 ------------------USER ART -------------------
 
 CREATE PROCEDURE spReadUserArt
@@ -1108,9 +1098,6 @@ BEGIN
 	WHERE username = @username 
 	ORDER BY  postDate ASC
 END
-GO
-
-EXEC spReadUserArt @username='wrenjay'
 GO
 
 ------------------USER PHOTOGRAPHY -------------------
@@ -1130,9 +1117,6 @@ BEGIN
 END
 GO
 
-EXEC spReadUserPhotography @username='wrenjay'
-GO
-
 ------------------USER VIDEOS -------------------
 
 CREATE PROCEDURE spReadUserVideo
@@ -1150,9 +1134,6 @@ BEGIN
 END
 GO
 
-EXEC spReadUserVideo @username='wrenjay'
-GO
-
 ------------------USER WRITING -------------------
 
 CREATE PROCEDURE spReadUserWriting
@@ -1168,10 +1149,6 @@ BEGIN
 	ORDER BY  postDate ASC
 END
 GO
-
-EXEC spReadUserWriting @username='wrenjay'
-GO
-
 
 ----------------------------------UNION BASED ON USERS  --------------------------------
 CREATE PROCEDURE spHoomanUnion
@@ -1200,9 +1177,6 @@ UNION --VIDEO
 
 END 
 GO
-EXEC spHoomanUnion @username='wrenjay';
-GO
-
 
 ------------------UNION  PROC -------------------
 CREATE PROCEDURE spSearchUnion
@@ -1231,8 +1205,6 @@ UNION --VIDEO
    WHERE postTitle LIKE '%' + TRIM(@input) + '%'
 
 END 
-GO
-EXEC spSearchUnion @input='ru'
 GO
 
 
@@ -1266,9 +1238,6 @@ UNION --VIDEO
 
 END 
 GO
-EXEC spPhoxUnion @input=''
-GO
-
 
 -------------------------------- SEARCH SITE --------------------------------
 CREATE PROCEDURE spSearch 
@@ -1282,11 +1251,6 @@ BEGIN
 END
 GO
 
-EXEC spSearch @input='Ruka';
-GO
-
-
-
 -------------------------------- SEARCH USERS --------------------------------
 CREATE PROCEDURE spUSearch 
 (
@@ -1297,9 +1261,6 @@ BEGIN
 	 SELECT username, './Images/' +profileImage as profileImage, bio FROM tbAccount
 	             WHERE username LIKE '%' + TRIM(@input) + '%';
 END
-GO
-
-EXEC spUSearch @input='w';
 GO
 
 ---------------------------------- FORUMS --------------------------------
@@ -1374,39 +1335,39 @@ GO
 
 -------------------------------- USERS CREATED --------------------------------
 
-EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-07-08', @profileImage='profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-09-07', @profileImage='tiny-rick_profile.jpg', @bio='',  @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='Truphox', @lastName='Admin', @dob='', @profileImage='profilePict.jpg',  @bio='IT HAS FINIALLY ARIVVED! This is the offical launch of TruPhox, the website built for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @active='1', @accessLevel='0';
-EXEC spCreateAccount @username='GigglesMcklown', @userPassword='password', @email='', @firstName='Alex', @lastName='Chartier', @dob='', @profileImage='profilePict.jpg',  @bio='I am here because I have to be not because I want to be.', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Stranger', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
-EXEC spCreateAccount @username='Person', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='wrenjay', @userPassword='admin', @email='wrenjaymes@gmail.com', @firstName='Wren', @lastName='Jaymes', @dob='1997-01-01', @profileImage='profilePict.jpg', @bio='One of the geeky nerds running this website.', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='CanadaGhost', @userPassword='admin', @email='dcourcelles7@gmail.com', @firstName='Dan', @lastName='Courcelles', @dob='1990-01-01', @profileImage='tiny-rick_profile.jpg', @bio='',  @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='Truphox', @userPassword='admin', @email='truphox@gmail.com', @firstName='Truphox', @lastName='Admin', @dob='', @profileImage='profilePict.jpg',  @bio='IT HAS FINIALLY ARRIVED! This is the offical launch of TruPhox, the website built for even the most novice of artists, videographers and poets. Post your creavity, like and share other ones and join the community that will accept you where ever you are.', @active='1', @accessLevel='0';
+EXEC spCreateAccount @username='TestAccount1', @userPassword='password', @email='email@gmail.com', @firstName='Person', @lastName='PersonLast', @dob='1999-11-28', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
+EXEC spCreateAccount @username='TestAccount2', @userPassword='password', @email='email2@gmail.com', @firstName='Person', @lastName='Person', @dob='1989-01-24', @profileImage='profilePict.jpg',  @bio='', @active='1', @accessLevel='1';
 
 SELECT * FROM tbAccount
 GO
 
----------------------POSTS CREATED (WRITTING) -------------------
+---------------------POSTS CREATED (WRITING) -------------------
 
-EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINIALLY ARIVED! This is the offical launch of TruPhox, the website built  for even the most novice of artists, videographers and poets. Post your creativity, like and share other ones and join the community that will accept you where ever you are.';
+EXEC spCreateWriting @rating=0, @postTitle='WELCOME', @postSubTitle='', @username='Truphox', @writingText='IT HAS FINALLY ARRIVED! This is the offical launch of TruPhox, the website built for even the most novice of artists, videographers and poets. Post your creativity, like and share other ones and join the community that will accept you where ever you are.';
 EXEC spCreateWriting @rating=0,  @postTitle='Albert Einstein', @postSubTitle='Quotes', @username='Truphox', @writingText='Two things are infinite: the universe and human stupidity; and I''m not sure about the universe';
 EXEC spCreateWriting @rating=0,  @postTitle='The Four Loves', @postSubTitle='C.S. Lewis', @username='wrenjay', @writingText='To love at all is to be vulnerable. Love anything and your heart will be wrung and possibly broken. If you want to make sure of keeping it intact you must give it to no one, not even an animal. Wrap it carefully round with hobbies and little luxuries; avoid all entanglements. Lock it up safe in the casket or coffin of your selfishness. But in that casket, safe, dark, motionless, airless, it will change. It will not be broken; it will become unbreakable, impenetrable, irredeemable. To love is to be vulnerabe.';
 EXEC spCreateWriting @rating=0,  @postTitle='Tiny Rick', @postSubTitle='', @username='CanadaGhost' , @writingText='I''M TINY RICK!!';
 EXEC spCreateWriting @rating=0, @postTitle='Philosophy', @postSubTitle='', @username='wrenjay', @writingText='I have decied that if I spent my whole life believing I am something, I will amount to nothing. But if I believe I am nothing I will amount to nothing. Either way you cannot win...';
-EXEC spCreateWriting @rating=0,  @postTitle='Rick and Morty Quotes', @postSubTitle='', @username='Person', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
+EXEC spCreateWriting @rating=0,  @postTitle='Rick and Morty Quotes', @postSubTitle='', @username='TestAccount2', @writingText='Nobody exists on purpose. Nobody belongs anywhere. We''re all going to die. Come watch TV.';
 GO
 
 ------------------POSTS CREATED (ART) -------------------
 
 EXEC spCreateArt @rating=0, @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='dragon.png'; 
-EXEC spCreateArt @rating=0,  @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
+EXEC spCreateArt @rating=0, @postTitle='Demonized Angels', @postSubTitle='', @username='wrenjay', @artLink='DAngel.jpg'; 
 EXEC spCreateArt @rating=1, @postTitle='Truphox', @postSubTitle='', @username='Truphox', @artLink='GP-Logo.png';  
-EXEC spCreateArt @rating=0,  @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
-EXEC spCreateArt @rating=0,  @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
+EXEC spCreateArt @rating=0, @postTitle='Space', @postSubTitle='Inktober promt day 17', @username='wrenjay', @artLink='Astro.jpg';
+EXEC spCreateArt @rating=0, @postTitle='Dragon', @postSubTitle='', @username='wrenjay', @artLink='Dragon.jpg'; 
 EXEC spCreateArt @rating=0, @postTitle='Rick and Morty', @postSubTitle='Harry Potter', @username='CanadaGhost', @artLink='RickMortyHP.jpg'; 
 EXEC spCreateArt @rating=0, @postTitle='Million Dollar Painting', @postSubTitle='$5000 to even look at it', @username='CanadaGhost', @artLink='MillionDollarArt.png'; 
 GO
 
 ------------------POSTS CREATED (VIDEO) -------------------
---NO SAMPLE DATA
+EXEC spCreateVideo @rating=0, @postTitle='Sample Video', @postSubtitle='Rabbit Video', @username='CanadaGhost', @videoLink='SampleVideo.mp4';
+
 ------------------POSTS CREATED (PHOTOGRAPHY) -------------------
 
 EXEC spCreatePhotography @rating=0,  @postTitle='Debby', @postSubTitle='Crazy cat lady life', @username='wrenjay', @photoLink='Debby.jpg';
@@ -1417,20 +1378,20 @@ EXEC spCreatePhotography @rating=0,  @postTitle='Sunset', @postSubTitle='.', @us
 EXEC spCreatePhotography @rating=0,  @postTitle='Camping', @postSubTitle='', @username='CanadaGhost', @photoLink='Sky.jpg';
 GO
 
-EXEC spCreateVideo @rating=0, @postTitle='Sample Video', @postSubtitle='Rabbit Video', @username='CanadaGhost', @videoLink='SampleVideo.mp4';
+------------------ COMMENTS -------------------
 
 EXEC spCreateComment @postID=7, @commentText='Cool logo!', @username='CanadaGhost';
 EXEC spCreateComment @postID=7, @commentText='We thought so!', @username='Truphox';
 EXEC spCreateComment @postID=7, @commentText='Drew it myself!', @username='wrenjay';
-EXEC spCreateComment @postID=7, @commentText='I am person.', @username='Person';
+EXEC spCreateComment @postID=7, @commentText='I like it!', @username='TestAccount1';
 EXEC spCreateComment @postID=7, @commentText='Truphox da best #truphox', @username='CanadaGhost';
 EXEC  spCreateComment @postID=12, @commentText='Everyone who liked or viewed this owes me $5000.', @username='CanadaGhost';
 GO
 
-EXEC spCreateLike @postID=12, @username='Person';
+EXEC spCreateLike @postID=12, @username='CanadaGhost';
 EXEC spCreateLike @postID=12, @username='wrenjay';
-EXEC spCreateLike @postID=12, @username='Stranger';
-EXEC spCreateLike @postID=12, @username='GigglesMcklown';
+EXEC spCreateLike @postID=12, @username='TestAccount1';
+EXEC spCreateLike @postID=12, @username='TestAccount2';
 EXEC spCreateLike @postID=12, @username='Truphox';
 
 SELECT * FROM tbPost
@@ -1446,11 +1407,10 @@ GO
 
 EXEC spCreateFollow @username='wrenjay', @followedUser='CanadaGhost';
 EXEC spCreateFollow @username='wrenjay', @followedUser='Truphox';
-EXEC spCreateFollow @username='wrenjay', @followedUser='Stranger';
-EXEC spCreateFollow @username='GigglesMcklown', @followedUser='Truphox';
+EXEC spCreateFollow @username='wrenjay', @followedUser='TestAccount2';
 EXEC spCreateFollow @username='CanadaGhost', @followedUser='Truphox'; 
-EXEC spCreateFollow @username='Person', @followedUser='Truphox';
-EXEC spCreateFollow @username='Stranger', @followedUser='Truphox';
+EXEC spCreateFollow @username='TestAccount2', @followedUser='Truphox';
+EXEC spCreateFollow @username='TestAccount1', @followedUser='Truphox';
 SELECT * FROM tbFollowing 
 GO
 
@@ -1460,14 +1420,10 @@ EXEC spCreateNotification @notificationText='Someone liked your Tiny Rick post.'
 EXEC spReadNotification @username='CanadaGhost';
 EXEC spReadNotification @username='wrenjay';
 
-EXEC spReadFollow @username='wrenjay'
-GO
-SELECT * FROM tbAccount;
-
-EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....',  @username='wrenjay'
-EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...' , @username='Stranger'
-EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @username='wrenjay'
-EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @username='GigglesMcklown'
+EXEC spForums @rating=1, @forumTitle='Broken', @forumText='Do you feel like your broken? But you''ve already broke. You keep trying to talk but someone already spoke....',  @username='wrenjay';
+EXEC spForums @rating=0, @forumTitle='Torn', @forumText='Some days I feel like I''m living sea to sea, Like every wave comes crashing over me. What do you do when your drowning? When the waves come crashing in, I will stand my ground again...', @username='TestAccount2';
+EXEC spForums @rating=1, @forumTitle='A quote', @forumText='Nothing in this world can take the place of persistence. Talent will not: nothing is more common than unsuccessful men with talent. Genius will not; unrewarded genius is almost a proverb. Education will not: the world is full of educated derelicts. Persistence and determination alone are omnipotent.', @username='wrenjay';
+EXEC spForums @rating=1, @forumTitle='Winston Churchill', @forumText='Success is not final, failure is not fatal: it is the courage to continue that counts.', @username='TestAccount1';
 
 EXEC spCreateForumResponse @forumResText='This is a response', @username='CanadaGhost', @forumID='0';
 EXEC spCreateForumResponse @forumResText='Test reponse with a lot of text. This is to see how the gridview responds to having all this text in a forum response.', @username='wrenjay', @forumID='0';

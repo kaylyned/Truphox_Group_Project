@@ -7,4 +7,4 @@ A two-month project done in a collerabative team and the conclusion of in-class 
 A website for even the most novice of artists, videographers and poets. 
 Share your creativity, like and share others and join a community that will accept your wherever you are. 
 ```
-
+ _Copywrite 2019 All Rights Reserved_
